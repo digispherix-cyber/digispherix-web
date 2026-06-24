@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { MessageSquare, Palette, Code2, Rocket } from 'lucide-react'
 
 const steps = [
@@ -41,8 +41,84 @@ const steps = [
   },
 ]
 
-/* ---------- sub-components with their own hook calls ---------- */
+function CardContent({ step }) {
+  return (
+    <div style={{
+      borderRadius: '20px', padding: '24px',
+      background: 'linear-gradient(135deg, rgba(17,13,48,0.95), rgba(12,9,35,0.9))',
+      border: `1px solid ${step.color}44`,
+      boxShadow: `0 0 60px ${step.color}18`,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+        <div style={{
+          width: '56px', height: '56px', borderRadius: '14px', flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: `${step.color}22`, color: step.color,
+        }}>
+          {step.icon}
+        </div>
+        <div>
+          <div style={{ fontSize: '0.7rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '2px' }}>
+            PASO {step.num}
+          </div>
+          <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
+          <p style={{ fontSize: '0.82rem', color: step.color, marginTop: '2px' }}>{step.subtitle}</p>
+        </div>
+      </div>
+      <p style={{ fontSize: '0.9rem', color: '#c4b5fd', lineHeight: 1.7, marginBottom: '16px' }}>
+        {step.desc}
+      </p>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {step.tags.map(t => (
+          <span key={t} style={{
+            fontSize: '0.75rem', padding: '5px 12px', borderRadius: '999px', fontWeight: 500,
+            background: `${step.color}18`, color: step.color, border: `1px solid ${step.color}33`,
+          }}>
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
 
+/* Mobile: tarjetas apiladas, sin sticky */
+function ProcessMobile() {
+  return (
+    <div style={{ padding: '80px 0 60px', position: 'relative' }}>
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+        background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)',
+      }} />
+      <div className="ds-container">
+        <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: '#d946ef', textTransform: 'uppercase', marginBottom: '12px' }}>
+          Cómo trabajamos
+        </p>
+        <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'white', lineHeight: 1.05, marginBottom: '14px' }}>
+          Nuestro<br /><span className="gradient-text">Proceso</span>
+        </h2>
+        <p style={{ fontSize: '0.85rem', color: '#9d8fc2', lineHeight: 1.7, marginBottom: '32px' }}>
+          De la idea al lanzamiento en 4 pasos claros. Contigo en cada etapa para que el resultado supere tus expectativas.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              <CardContent step={step} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* Desktop: sticky scroll effect */
 function StepCard({ step, progress, rangeStart, rangeEnd }) {
   const opacity = useTransform(progress, [rangeStart, rangeStart + 0.08, rangeEnd - 0.08, rangeEnd], [0, 1, 1, 0])
   const y       = useTransform(progress, [rangeStart, rangeStart + 0.08], [50, 0])
@@ -50,44 +126,7 @@ function StepCard({ step, progress, rangeStart, rangeEnd }) {
 
   return (
     <motion.div style={{ opacity, y, scale, position: 'absolute', width: '100%' }}>
-      <div style={{
-        borderRadius: '20px', padding: 'clamp(20px, 4vw, 40px) clamp(18px, 4vw, 44px)',
-        background: 'linear-gradient(135deg, rgba(17,13,48,0.95), rgba(12,9,35,0.9))',
-        border: `1px solid ${step.color}44`,
-        boxShadow: `0 0 60px ${step.color}18`,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-          <div style={{
-            width: '64px', height: '64px', borderRadius: '16px', flexShrink: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: `${step.color}22`, color: step.color,
-          }}>
-            {step.icon}
-          </div>
-          <div>
-            <div style={{ fontSize: '0.7rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '4px' }}>
-              PASO {step.num}
-            </div>
-            <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
-            <p style={{ fontSize: '0.85rem', color: step.color, marginTop: '3px' }}>{step.subtitle}</p>
-          </div>
-        </div>
-
-        <p style={{ fontSize: '1rem', color: '#c4b5fd', lineHeight: 1.75, marginBottom: '28px' }}>
-          {step.desc}
-        </p>
-
-        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-          {step.tags.map(t => (
-            <span key={t} style={{
-              fontSize: '0.8rem', padding: '6px 14px', borderRadius: '999px', fontWeight: 500,
-              background: `${step.color}18`, color: step.color, border: `1px solid ${step.color}33`,
-            }}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
+      <CardContent step={step} />
     </motion.div>
   )
 }
@@ -108,49 +147,38 @@ function StepLabel({ step, index, total, progress }) {
   )
 }
 
-/* ---------- main component ---------- */
-
-export default function Process() {
+function ProcessDesktop() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   const progressBarH = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
     <div ref={ref} style={{ minHeight: '380vh', position: 'relative' }}>
-      <div className="process-sticky" style={{
+      <div style={{
         position: 'sticky', top: 0, height: '100vh',
         overflow: 'hidden', display: 'flex', alignItems: 'center',
         background: 'transparent',
       }}>
-        {/* Top divider */}
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
           background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)',
         }} />
-
-        {/* Background blobs */}
         <div className="absolute inset-0 pointer-events-none">
           <div style={{ position: 'absolute', top: '15%', left: '-8%', width: '420px', height: '420px', borderRadius: '50%', background: 'radial-gradient(circle, #7c3aed, transparent)', opacity: 0.08, filter: 'blur(80px)' }} />
           <div style={{ position: 'absolute', bottom: '10%', right: '-5%', width: '360px', height: '360px', borderRadius: '50%', background: 'radial-gradient(circle, #d946ef, transparent)', opacity: 0.08, filter: 'blur(80px)' }} />
         </div>
-
         <div className="ds-container" style={{ width: '100%' }}>
           <div className="process-grid">
-
-            {/* LEFT */}
             <div>
               <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: '#d946ef', textTransform: 'uppercase', marginBottom: '14px' }}>
                 Cómo trabajamos
               </p>
               <h2 className="process-title" style={{ fontWeight: 900, color: 'white', lineHeight: 1.05, marginBottom: '18px' }}>
-                Nuestro<br />
-                <span className="gradient-text">Proceso</span>
+                Nuestro<br /><span className="gradient-text">Proceso</span>
               </h2>
               <p className="process-desc" style={{ color: '#9d8fc2', lineHeight: 1.75, marginBottom: '32px' }}>
                 De la idea al lanzamiento en 4 pasos claros. Contigo en cada etapa para que el resultado supere tus expectativas.
               </p>
-
-              {/* Timeline */}
               <div style={{ display: 'flex', gap: '20px' }}>
                 <div style={{ position: 'relative', width: '2px', background: 'rgba(124,58,237,0.2)', borderRadius: '2px', flexShrink: 0 }}>
                   <motion.div style={{
@@ -167,8 +195,6 @@ export default function Process() {
                 </div>
               </div>
             </div>
-
-            {/* RIGHT — stacked cards */}
             <div className="process-cards">
               {steps.map((step, i) => (
                 <StepCard
@@ -180,10 +206,22 @@ export default function Process() {
                 />
               ))}
             </div>
-
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+export default function Process() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  return isMobile ? <ProcessMobile /> : <ProcessDesktop />
 }
