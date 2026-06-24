@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -15,6 +16,16 @@ body {
   color: #f0e8ff;
   font-family: 'Inter', 'Segoe UI', sans-serif;
   overflow-x: hidden;
+}
+
+/* Hide desktop nav CTA on mobile */
+.nav-cta-desktop {
+  display: none;
+}
+@media (min-width: 768px) {
+  .nav-cta-desktop {
+    display: inline-flex;
+  }
 }
 
 ::-webkit-scrollbar {

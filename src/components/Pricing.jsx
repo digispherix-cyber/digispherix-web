@@ -233,6 +233,7 @@ export default function Pricing() {
               WebkitOverflowScrolling: 'touch',
               scrollbarWidth: 'none',
               maxWidth: '100%',
+              paddingRight: '8px',
             }}
           >
             {categories.map((cat) => (

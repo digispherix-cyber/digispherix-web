@@ -51,7 +51,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contacto" className="hidden md:inline-flex btn-primary text-sm">
+        <a href="#contacto" className="btn-primary nav-cta-desktop text-sm">
           Cotizar Proyecto
         </a>
 
@@ -79,7 +79,7 @@ export default function Navbar() {
               bottom: 0,
               background: 'rgba(10,7,28,0.98)',
               backdropFilter: 'blur(20px)',
-              zIndex: 40,
+              zIndex: 49,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
