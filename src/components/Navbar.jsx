@@ -31,12 +31,8 @@ export default function Navbar() {
         }`}
       >
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="#inicio" className="flex items-center gap-3">
-            <img src="/logo-icon.png" alt="DigiSpherix" className="h-10 w-10 object-contain" />
-            <span className="text-xl font-bold">
-              <span style={{ color: '#6b21a8' }}>Digi</span>
-              <span style={{ color: '#e879f9' }}>Spherix</span>
-            </span>
+          <a href="#inicio">
+            <img src="/logo-horizontal.png" alt="DigiSpherix" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
           </a>
 
           <ul className="hidden md:flex items-center gap-8">
