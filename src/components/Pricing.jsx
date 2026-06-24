@@ -222,13 +222,17 @@ export default function Pricing() {
         </motion.div>
 
         {/* Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '80px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '80px', padding: '0 16px' }}>
           <div
             style={{
-              display: 'flex', gap: '6px', padding: '8px',
+              display: 'flex', gap: '4px', padding: '6px',
               borderRadius: '999px',
               background: 'rgba(17,13,48,0.8)',
               border: '1px solid rgba(124,58,237,0.3)',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none',
+              maxWidth: '100%',
             }}
           >
             {categories.map((cat) => (
@@ -236,13 +240,15 @@ export default function Pricing() {
                 key={cat}
                 onClick={() => setActiveTab(cat)}
                 style={{
-                  padding: '10px 28px',
+                  padding: '8px 20px',
                   borderRadius: '999px',
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   fontWeight: 600,
                   border: 'none',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
                   ...(activeTab === cat
                     ? { background: 'linear-gradient(135deg, #7c3aed, #d946ef)', color: 'white' }
                     : { background: 'transparent', color: '#9d8fc2' }),

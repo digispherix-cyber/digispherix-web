@@ -58,6 +58,7 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-purple-300 hover:text-pink-400 transition-colors"
+          style={{ position: 'relative', zIndex: 50 }}
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -66,25 +67,40 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#110d30]/95 backdrop-blur-xl border-t border-purple-900/30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="md:hidden"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(10,7,28,0.98)',
+              backdropFilter: 'blur(20px)',
+              zIndex: 40,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
-            <ul className="flex flex-col px-6 py-4 gap-4">
+            <ul className="flex flex-col items-center gap-6">
               {links.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block text-purple-200 hover:text-pink-400 transition-colors py-2 font-medium"
+                    style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e9d5ff' }}
+                    className="hover:text-pink-400 transition-colors"
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
-              <li>
-                <a href="#contacto" onClick={() => setOpen(false)} className="btn-primary w-full justify-center mt-2">
+              <li style={{ marginTop: '16px' }}>
+                <a href="#contacto" onClick={() => setOpen(false)} className="btn-primary justify-center">
                   Cotizar Proyecto
                 </a>
               </li>
