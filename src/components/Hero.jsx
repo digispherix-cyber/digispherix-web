@@ -217,15 +217,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          style={{ display: 'flex', justifyContent: 'center', gap: '64px' }}
+          style={{ display: 'flex', justifyContent: 'center', gap: '32px' }}
         >
           {[
             { to: 50,  suffix: '+',  label: 'Proyectos Entregados' },
             { to: 5,   suffix: '+',  label: 'Años de Experiencia'  },
             { to: 100, suffix: '%',  label: 'Clientes Satisfechos' },
           ].map((s) => (
-            <div key={s.label} style={{ textAlign: 'center' }}>
-              <div className="gradient-text" style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>
+            <div key={s.label} style={{ textAlign: 'center', minWidth: '80px' }}>
+              <div className="gradient-text" style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1, display: 'block', minWidth: '80px', textAlign: 'center' }}>
                 <CountUp to={s.to} suffix={s.suffix} />
               </div>
               <div style={{ color: '#9d8fc2', fontSize: '0.75rem', marginTop: '6px' }}>{s.label}</div>
