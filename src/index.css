@@ -8,7 +8,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip; /* clip no crea scroll container, no rompe position:sticky */
 }
 
 body {
@@ -173,6 +172,7 @@ body {
 .ds-section {
   padding: 100px 0;
   position: relative;
+  overflow-x: hidden;
 }
 
 .section-divider {

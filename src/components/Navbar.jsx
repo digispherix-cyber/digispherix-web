@@ -32,7 +32,7 @@ export default function Navbar() {
       >
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <a href="#inicio">
-            <img src="/logo-horizontal.png" alt="DigiSpherix" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+            <img src="/logo-horizontal.png" alt="DigiSpherix" style={{ height: '52px', width: 'auto', objectFit: 'contain' }} />
           </a>
 
           <ul className="hidden md:flex items-center gap-8">
@@ -84,6 +84,18 @@ export default function Navbar() {
               alignItems: 'center',
             }}
           >
+            {/* Botón cerrar */}
+            <button
+              onClick={() => setOpen(false)}
+              style={{
+                position: 'absolute', top: '20px', right: '24px',
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: '#e9d5ff', padding: '8px',
+              }}
+            >
+              <X size={28} />
+            </button>
+
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
               {links.map((l) => (
                 <li key={l.href}>
