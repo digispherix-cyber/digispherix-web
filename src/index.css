@@ -77,11 +77,17 @@ body {
 @media (max-width: 768px) {
   .process-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
   }
-  .process-title { font-size: 2rem; }
-  .process-desc  { font-size: 0.82rem; margin-bottom: 20px; }
-  .process-cards { height: 320px; }
+  .process-title { font-size: 1.8rem; }
+  .process-desc  { font-size: 0.8rem; margin-bottom: 12px; }
+  .process-cards { height: 380px; }
+  .process-sticky {
+    padding-bottom: 90px !important;
+    align-items: flex-start !important;
+    padding-top: 80px !important;
+    overflow-y: auto;
+  }
 }
 
 .gradient-text {

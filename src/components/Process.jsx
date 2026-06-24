@@ -117,7 +117,7 @@ export default function Process() {
 
   return (
     <div ref={ref} style={{ minHeight: '380vh', position: 'relative' }}>
-      <div style={{
+      <div className="process-sticky" style={{
         position: 'sticky', top: 0, height: '100vh',
         overflow: 'hidden', display: 'flex', alignItems: 'center',
         background: 'transparent',
