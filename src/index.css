@@ -17,6 +17,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Navbar logo responsive */
+.nav-logo { height: 36px; }
+@media (min-width: 768px) {
+  .nav-logo { height: 52px; }
+}
+
 /* Hide desktop nav CTA on mobile */
 .nav-cta-desktop {
   display: none !important;
