@@ -36,7 +36,7 @@ export default function Navbar() {
           <a href="/">
             <picture>
               <source srcSet="/logo-horizontal.webp" type="image/webp" />
-              <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" style={{ width: 'auto', objectFit: 'contain' }} />
+              <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" width="180" height="45" style={{ width: 'auto', objectFit: 'contain' }} />
             </picture>
           </a>
 

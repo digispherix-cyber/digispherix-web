@@ -44,6 +44,8 @@ export default function Footer() {
                   src="/logo-icon.png"
                   alt="DigiSpherix"
                   className="h-10 w-10 object-contain"
+                  width="40"
+                  height="40"
                   onClick={handleLogoTap}
                   style={{ cursor: 'pointer', userSelect: 'none' }}
                   title="🎮"

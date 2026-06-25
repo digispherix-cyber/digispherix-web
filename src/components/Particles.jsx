@@ -1,4 +1,7 @@
-const DOTS = Array.from({ length: 120 }, (_, i) => ({
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+const COUNT = isMobile ? 0 : 60
+
+const DOTS = Array.from({ length: COUNT }, (_, i) => ({
   id: i,
   x: (i * 31 + 7) % 100,
   size: ((i * 5) % 4) + 1,
@@ -9,6 +12,7 @@ const DOTS = Array.from({ length: 120 }, (_, i) => ({
 }))
 
 export default function Particles() {
+  if (COUNT === 0) return null
   return (
     <div
       style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}

@@ -99,6 +99,8 @@ export default function LoadingScreen() {
               <img
                 src="/logo-icon.png"
                 alt="DigiSpherix"
+                width="80"
+                height="80"
                 style={{ width: '80px', height: '80px', objectFit: 'contain', display: 'block' }}
               />
             </picture>
