@@ -39,24 +39,18 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '56px' }}>
           {/* Brand */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ marginBottom: '16px' }}>
               <picture>
-                <source srcSet="/logo-icon.webp" type="image/webp" />
+                <source srcSet="/logo-horizontal.webp" type="image/webp" />
                 <img
-                  src="/logo-icon.png"
+                  src="/logo-horizontal.png"
                   alt="DigiSpherix"
-                  className="h-14 w-14 md:h-10 md:w-10 object-contain"
-                  width="40"
-                  height="40"
+                  className="object-contain"
+                  style={{ height: '48px', width: 'auto', cursor: 'pointer', userSelect: 'none' }}
                   onClick={handleLogoTap}
-                  style={{ cursor: 'pointer', userSelect: 'none' }}
                   title="🎮"
                 />
               </picture>
-              <span className="text-xl font-bold">
-                <span style={{ color: '#9333ea' }}>Digi</span>
-                <span style={{ color: '#e879f9' }}>Spherix</span>
-              </span>
             </div>
             <p style={{ fontSize: '0.9rem', color: '#9d8fc2', lineHeight: 2, maxWidth: '280px', marginBottom: '24px' }}>
               Transformamos ideas en experiencias digitales. Desarrollo web, apps Android
