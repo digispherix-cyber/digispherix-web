@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Zap } from 'lucide-react'
@@ -465,3 +467,4 @@ export default function EasterEggGame() {
     </div>
   )
 }
+

@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Check, MessageCircle } from 'lucide-react'
@@ -289,3 +291,4 @@ export default function Pricing() {
     </section>
   )
 }
+

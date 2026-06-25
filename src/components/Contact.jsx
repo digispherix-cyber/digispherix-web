@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { MessageCircle, Mail, Phone, Send, MapPin } from 'lucide-react'
@@ -322,3 +324,4 @@ export default function Contact() {
     </section>
   )
 }
+

@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Star, Quote } from 'lucide-react'
@@ -217,3 +219,4 @@ export default function Testimonials() {
     </section>
   )
 }
+

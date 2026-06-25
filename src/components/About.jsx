@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Code2, Smartphone, TrendingUp, Award } from 'lucide-react'
@@ -150,3 +152,4 @@ export default function About() {
     </section>
   )
 }
+

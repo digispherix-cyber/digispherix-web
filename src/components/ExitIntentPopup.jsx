@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MessageCircle } from 'lucide-react'
@@ -205,3 +207,4 @@ export default function ExitIntentPopup() {
     </AnimatePresence>
   )
 }
+

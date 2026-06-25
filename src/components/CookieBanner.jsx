@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Cookie, X, Check, Settings } from 'lucide-react'
@@ -161,3 +163,4 @@ export default function CookieBanner() {
     </AnimatePresence>
   )
 }
+

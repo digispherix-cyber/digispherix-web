@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Globe, Smartphone, Megaphone, Database, LifeBuoy, Search } from 'lucide-react'
@@ -154,3 +156,4 @@ export default function Services() {
     </section>
   )
 }
+

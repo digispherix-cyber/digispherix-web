@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import { MessageSquare, Palette, Code2, Rocket } from 'lucide-react'
@@ -229,3 +231,4 @@ export default function Process() {
 
   return isMobile ? <ProcessMobile /> : <ProcessDesktop />
 }
+

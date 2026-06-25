@@ -1,3 +1,5 @@
+﻿'use client'
+
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 const COUNT = isMobile ? 0 : 60
 
@@ -37,3 +39,4 @@ export default function Particles() {
     </div>
   )
 }
+

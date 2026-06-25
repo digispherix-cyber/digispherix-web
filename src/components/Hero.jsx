@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView, animate } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
@@ -241,3 +243,4 @@ export default function Hero() {
     </section>
   )
 }
+

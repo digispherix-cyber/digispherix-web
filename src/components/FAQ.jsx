@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Plus, Minus } from 'lucide-react'
@@ -193,3 +195,4 @@ export default function FAQ() {
     </section>
   )
 }
+

@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 import { useRef } from 'react'
 import { ExternalLink } from 'lucide-react'
@@ -294,3 +296,4 @@ export default function Portfolio() {
     </section>
   )
 }
+

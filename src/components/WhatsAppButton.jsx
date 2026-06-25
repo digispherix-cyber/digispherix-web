@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { MessageCircle, X } from 'lucide-react'
@@ -73,3 +75,4 @@ export default function WhatsAppButton() {
     </div>
   )
 }
+

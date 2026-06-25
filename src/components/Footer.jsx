@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { motion } from 'framer-motion'
 import { MessageCircle, Mail } from 'lucide-react'
 import { useState } from 'react'
@@ -129,3 +131,4 @@ export default function Footer() {
     </footer>
   )
 }
+
