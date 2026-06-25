@@ -46,6 +46,7 @@ export default function EasterEggGame() {
   const [respawning, setRespawning] = useState(false)
   const [countdown, setCountdown]   = useState(3)
   const [, forceRender]             = useState(0)
+  const [scale, setScale]           = useState(1)
 
   // Game refs
   const pxRef          = useRef(W / 2 - PLAYER_W / 2)
@@ -65,6 +66,14 @@ export default function EasterEggGame() {
   const gameStateRef   = useRef('idle')
 
   useEffect(() => { gameStateRef.current = gameState }, [gameState])
+
+  // Scale canvas to fit mobile screens
+  useEffect(() => {
+    const update = () => setScale(Math.min(1, (window.innerWidth - 24) / W))
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   // Easter egg trigger
   useEffect(() => {
@@ -300,13 +309,16 @@ export default function EasterEggGame() {
           <span style={{ color: '#9d8fc2', fontSize: '0.7rem' }}>{diffLabel}</span>
         </div>
 
-        {/* Canvas */}
+        {/* Canvas — wrapper shrinks height to match scaled content */}
+        <div style={{ width: W * scale, height: H * scale, flexShrink: 0 }}>
         <div style={{
-          width: '100%', maxWidth: W, height: H,
+          width: W, height: H,
           background: 'rgba(12,9,35,0.95)',
           border: `1px solid ${respawning ? 'rgba(239,68,68,0.4)' : 'rgba(124,58,237,0.4)'}`,
           borderRadius: '16px', position: 'relative', overflow: 'hidden',
           transition: 'border-color 0.3s',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
         }}>
           {/* Stars */}
           {Array.from({ length: 25 }).map((_, i) => (
@@ -427,6 +439,7 @@ export default function EasterEggGame() {
 
           <div style={{ position: 'absolute', bottom: '28px', left: 0, right: 0, height: '1px', background: 'rgba(124,58,237,0.18)' }} />
         </div>
+        </div>{/* end scale wrapper */}
 
         {/* Touch controls */}
         <div style={{ display: 'flex', gap: '14px' }}>
