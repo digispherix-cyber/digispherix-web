@@ -7,20 +7,20 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const W = 460
 const H = 460
 const PLAYER_W = 44
-const BULLET_SPEED = 7
 const ENEMY_ROWS = 3
 const ENEMY_COLS = 7
 const MAX_LIVES = 3
-const INVINCIBLE_MS = 1800  // ms after hit before ship can be hit again
+const INVINCIBLE_MS = 1800
 
 const IS_TOUCH = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
 
-// Score → difficulty
+// Score → difficulty: shooters = how many enemies fire per wave, bulletSpeed increases too
 function getDifficulty(score) {
-  if (score < 60)  return { shootInterval: 7500, enemySpeed: 0.28, label: 'Fácil' }
-  if (score < 150) return { shootInterval: 5000, enemySpeed: 0.5,  label: 'Normal' }
-  if (score < 300) return { shootInterval: 3000, enemySpeed: 0.8,  label: 'Difícil' }
-  return             { shootInterval: 1700, enemySpeed: 1.2,  label: '🔥 Experto' }
+  if (score < 50)  return { shootInterval: 5500, shooters: 1, bulletSpeed: 2.2, enemySpeed: 0.28, label: 'Fácil' }
+  if (score < 120) return { shootInterval: 4500, shooters: 1, bulletSpeed: 2.8, enemySpeed: 0.45, label: 'Normal' }
+  if (score < 220) return { shootInterval: 3500, shooters: 2, bulletSpeed: 3.5, enemySpeed: 0.65, label: 'Difícil' }
+  if (score < 350) return { shootInterval: 2800, shooters: 3, bulletSpeed: 4.2, enemySpeed: 0.9,  label: '💀 Peligroso' }
+  return             { shootInterval: 1800, shooters: 5, bulletSpeed: 5.5, enemySpeed: 1.2,  label: '🔥 Experto' }
 }
 
 function createEnemies() {
@@ -158,20 +158,32 @@ export default function EasterEggGame() {
         return next
       })
 
-      // Enemy shoots (only if not invincible)
+      // Enemy shoots — only `diff.shooters` random enemies fire per wave
       if (!invincibleRef.current && ts - lastEnemyShot > diff.shootInterval) {
         lastEnemyShot = ts
         setEnemies(cur => {
           const alive = cur.filter(e => e.alive)
           if (alive.length > 0) {
-            const s = alive[Math.floor(Math.random() * alive.length)]
-            setEnemyBullets(prev => [...prev, { id: ts + Math.random(), x: s.x + enemyX + 12, y: s.y + 28 }])
+            // Shuffle alive array and pick first N shooters
+            const shuffled = [...alive].sort(() => Math.random() - 0.5)
+            const firing = shuffled.slice(0, Math.min(diff.shooters, alive.length))
+            setEnemyBullets(prev => [
+              ...prev,
+              ...firing.map(s => ({
+                id: ts + Math.random(),
+                x: s.x + enemyX + 12,
+                y: s.y + 28,
+                speed: diff.bulletSpeed,
+              }))
+            ])
           }
           return cur
         })
       }
 
-      setEnemyBullets(prev => prev.map(b => ({ ...b, y: b.y + 3.2 })).filter(b => b.y < H))
+      setEnemyBullets(prev =>
+        prev.map(b => ({ ...b, y: b.y + (b.speed ?? 3.2) })).filter(b => b.y < H)
+      )
 
       // Bullet vs enemy collision
       setBullets(curBullets => {
