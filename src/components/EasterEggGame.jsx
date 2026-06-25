@@ -10,25 +10,17 @@ const MAX_LIVES = 3
 const INVINCIBLE_MS = 1800
 const IS_TOUCH = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
 
-// 8 oleadas con más enemigos, diferente emoji y puntos por kill
+// Dificultad definida por oleada — interval(ms entre disparos), shooters(cuántos disparan), bSpeed(vel bala), eSpeed(vel enemigos)
 const WAVES = [
-  { rows: 3, cols: 7, gap: 58, pts: 10, emoji: '👾', name: 'Oleada 1' },
-  { rows: 3, cols: 8, gap: 52, pts: 12, emoji: '👾', name: 'Oleada 2' },
-  { rows: 4, cols: 7, gap: 58, pts: 15, emoji: '🛸', name: 'Oleada 3' },
-  { rows: 4, cols: 8, gap: 52, pts: 18, emoji: '🛸', name: 'Oleada 4' },
-  { rows: 5, cols: 7, gap: 58, pts: 20, emoji: '👽', name: 'Oleada 5' },
-  { rows: 5, cols: 8, gap: 52, pts: 22, emoji: '👽', name: 'Oleada 6' },
-  { rows: 4, cols: 9, gap: 46, pts: 28, emoji: '💀', name: 'Oleada 7' },
-  { rows: 5, cols: 9, gap: 46, pts: 35, emoji: '💀', name: '🔥 Oleada FINAL' },
+  { rows: 3, cols: 7, gap: 58, pts: 10, emoji: '👾', name: 'Oleada 1',       interval: 7000, shooters: 1, bSpeed: 2.0, eSpeed: 0.22, label: '😊 Muy Fácil'  },
+  { rows: 3, cols: 8, gap: 52, pts: 12, emoji: '👾', name: 'Oleada 2',       interval: 5800, shooters: 1, bSpeed: 2.6, eSpeed: 0.32, label: '🙂 Fácil'       },
+  { rows: 4, cols: 7, gap: 58, pts: 15, emoji: '🛸', name: 'Oleada 3',       interval: 4800, shooters: 2, bSpeed: 3.1, eSpeed: 0.42, label: '😐 Normal'      },
+  { rows: 4, cols: 8, gap: 52, pts: 18, emoji: '🛸', name: 'Oleada 4',       interval: 3900, shooters: 2, bSpeed: 3.7, eSpeed: 0.54, label: '😬 Normal+'     },
+  { rows: 5, cols: 7, gap: 58, pts: 20, emoji: '👽', name: 'Oleada 5',       interval: 3100, shooters: 3, bSpeed: 4.3, eSpeed: 0.68, label: '😤 Difícil'     },
+  { rows: 5, cols: 8, gap: 52, pts: 22, emoji: '👽', name: 'Oleada 6',       interval: 2500, shooters: 3, bSpeed: 5.0, eSpeed: 0.85, label: '😰 Difícil+'    },
+  { rows: 4, cols: 9, gap: 46, pts: 28, emoji: '💀', name: 'Oleada 7',       interval: 1900, shooters: 4, bSpeed: 5.8, eSpeed: 1.05, label: '💀 Peligroso'   },
+  { rows: 5, cols: 9, gap: 46, pts: 35, emoji: '💀', name: '🔥 Oleada FINAL', interval: 1400, shooters: 5, bSpeed: 7.0, eSpeed: 1.35, label: '🔥 EXPERTO'    },
 ]
-
-function getDifficulty(score) {
-  if (score < 80)  return { interval: 6000, shooters: 1, bSpeed: 2.2, eSpeed: 0.28, label: 'Fácil' }
-  if (score < 200) return { interval: 4800, shooters: 1, bSpeed: 2.8, eSpeed: 0.45, label: 'Normal' }
-  if (score < 400) return { interval: 3600, shooters: 2, bSpeed: 3.6, eSpeed: 0.65, label: 'Difícil' }
-  if (score < 700) return { interval: 2600, shooters: 3, bSpeed: 4.5, eSpeed: 0.9,  label: '💀 Peligroso' }
-  return             { interval: 1600, shooters: 5, bSpeed: 6.0, eSpeed: 1.3,  label: '🔥 Experto' }
-}
 
 function mkEnemies(waveIdx) {
   const w = WAVES[waveIdx]
@@ -188,7 +180,7 @@ export default function EasterEggGame() {
     const loop = (ts) => {
       if (gameStateRef.current !== 'playing') return
 
-      const diff = getDifficulty(scoreRef.current)
+      const diff = WAVES[waveRef.current] ?? WAVES[WAVES.length - 1]
       setDiffLabel(diff.label)
 
       // Move player
