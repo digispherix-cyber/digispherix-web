@@ -94,11 +94,14 @@ export default function LoadingScreen() {
                 opacity: 0.5,
               }}
             />
-            <img
-              src="/logo-icon.png"
-              alt="DigiSpherix"
-              style={{ width: '80px', height: '80px', objectFit: 'contain', display: 'block' }}
-            />
+            <picture>
+              <source srcSet="/logo-icon.webp" type="image/webp" />
+              <img
+                src="/logo-icon.png"
+                alt="DigiSpherix"
+                style={{ width: '80px', height: '80px', objectFit: 'contain', display: 'block' }}
+              />
+            </picture>
           </motion.div>
 
           {/* Nombre */}

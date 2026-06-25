@@ -34,7 +34,10 @@ export default function Navbar() {
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '16px 80px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <a href="/">
-            <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" style={{ width: 'auto', objectFit: 'contain' }} />
+            <picture>
+              <source srcSet="/logo-horizontal.webp" type="image/webp" />
+              <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" style={{ width: 'auto', objectFit: 'contain' }} />
+            </picture>
           </a>
 
           <ul className="hidden lg:flex items-center gap-8">

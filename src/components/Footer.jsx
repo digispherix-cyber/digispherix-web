@@ -38,14 +38,17 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <img
-                src="/logo-icon.png"
-                alt="DigiSpherix"
-                className="h-10 w-10 object-contain"
-                onClick={handleLogoTap}
-                style={{ cursor: 'pointer', userSelect: 'none' }}
-                title="🎮"
-              />
+              <picture>
+                <source srcSet="/logo-icon.webp" type="image/webp" />
+                <img
+                  src="/logo-icon.png"
+                  alt="DigiSpherix"
+                  className="h-10 w-10 object-contain"
+                  onClick={handleLogoTap}
+                  style={{ cursor: 'pointer', userSelect: 'none' }}
+                  title="🎮"
+                />
+              </picture>
               <span className="text-xl font-bold">
                 <span style={{ color: '#6b21a8' }}>Digi</span>
                 <span style={{ color: '#e879f9' }}>Spherix</span>

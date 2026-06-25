@@ -9,7 +9,8 @@ const projects = [
     category: 'E-Commerce Industrial',
     desc: 'Tienda en línea para distribuidora de equipo de automatización y control industrial con catálogo de productos.',
     color: '#e67e00',
-    image: '/gambvel.png',
+    image: '/gambvel.webp',
+    imageFallback: '/gambvel.png',
   },
   {
     name: 'Termocontroles',
@@ -17,7 +18,8 @@ const projects = [
     category: 'Sitio Industrial',
     desc: 'Plataforma web para empresa de control de temperatura con tienda en línea y catálogo de productos industriales.',
     color: '#2563eb',
-    image: '/termocontroles.png',
+    image: '/termocontroles.webp',
+    imageFallback: '/termocontroles.png',
   },
   {
     name: 'San Vicente Hospital',
@@ -25,7 +27,8 @@ const projects = [
     category: 'Salud',
     desc: 'Sitio web institucional para hospital médico-quirúrgico con información de especialidades y servicios médicos 24/7.',
     color: '#dc2626',
-    image: '/sanvicente.png',
+    image: '/sanvicente.webp',
+    imageFallback: '/sanvicente.png',
   },
   {
     name: 'Corporativo Sollem',
@@ -33,7 +36,8 @@ const projects = [
     category: 'Corporativo',
     desc: 'Diseño web profesional para corporativo empresarial con identidad visual moderna y presencia digital estratégica.',
     color: '#16a34a',
-    image: '/sollem.png',
+    image: '/sollem.webp',
+    imageFallback: '/sollem.png',
   },
 ]
 
@@ -125,17 +129,24 @@ function ProjectCard({ p, index }) {
 
         {/* Screenshot */}
         <div style={{ height: '180px', overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
-          <motion.img
-            src={p.image}
-            alt={`Screenshot de ${p.name}`}
+          <motion.picture
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
-            style={{
-              width: '100%', height: '100%',
-              objectFit: 'cover', objectPosition: 'top',
-              display: 'block',
-            }}
-          />
+            style={{ display: 'block', width: '100%', height: '100%' }}
+          >
+            <source srcSet={p.image} type="image/webp" />
+            <img
+              src={p.imageFallback}
+              alt={`Screenshot de ${p.name}`}
+              loading="lazy"
+              decoding="async"
+              style={{
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'top',
+                display: 'block',
+              }}
+            />
+          </motion.picture>
 
           {/* Hover overlay */}
           <motion.div
