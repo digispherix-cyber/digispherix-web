@@ -168,15 +168,27 @@ body {
 
 /* Global container — used in every section */
 .ds-container {
-  max-width: 1100px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px;
   width: 100%;
 }
 
 @media (max-width: 768px) {
   .ds-container {
     padding: 0 20px;
+  }
+}
+
+/* Banner +20 centrado en móvil */
+@media (max-width: 768px) {
+  .portfolio-banner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+  .portfolio-banner-divider {
+    display: none !important;
   }
 }
 

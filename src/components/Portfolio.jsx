@@ -225,9 +225,10 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
+          className="portfolio-banner"
           style={{
             marginTop: '48px',
-            padding: '28px 32px',
+            padding: '32px',
             borderRadius: '16px',
             background: 'rgba(124,58,237,0.07)',
             border: '1px solid rgba(124,58,237,0.2)',
@@ -238,18 +239,18 @@ export default function Portfolio() {
             flexWrap: 'wrap',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
-            <div style={{ textAlign: 'center' }}>
-              <div className="gradient-text" style={{ fontSize: '2.2rem', fontWeight: 900, lineHeight: 1 }}>+20</div>
-              <div style={{ fontSize: '0.75rem', color: '#9d8fc2', marginTop: '4px' }}>sitios entregados</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap', flex: 1 }}>
+            <div style={{ textAlign: 'center', flexShrink: 0 }}>
+              <div className="gradient-text" style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1 }}>+20</div>
+              <div style={{ fontSize: '0.8rem', color: '#9d8fc2', marginTop: '4px' }}>sitios entregados</div>
             </div>
-            <div style={{ width: '1px', height: '40px', background: 'rgba(124,58,237,0.3)' }} />
-            <div>
-              <p style={{ color: 'white', fontWeight: 600, fontSize: '0.95rem', marginBottom: '4px' }}>
+            <div className="portfolio-banner-divider" style={{ width: '1px', height: '50px', background: 'rgba(124,58,237,0.3)', flexShrink: 0 }} />
+            <div style={{ flex: 1 }}>
+              <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem', marginBottom: '6px' }}>
                 Estos son solo algunos de nuestros proyectos
               </p>
-              <p style={{ color: '#9d8fc2', fontSize: '0.82rem' }}>
-                Hemos trabajado con empresas de industria, salud, comercio y servicios en toda México.
+              <p style={{ color: '#9d8fc2', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                Hemos trabajado con empresas de industria, salud, comercio y servicios en toda México. Cada proyecto es único y construido a medida para cumplir los objetivos de nuestros clientes.
               </p>
             </div>
           </div>
