@@ -16,6 +16,7 @@ import Particles from './components/Particles'
 import CookieBanner from './components/CookieBanner'
 import LoadingScreen from './components/LoadingScreen'
 import EasterEggGame from './components/EasterEggGame'
+import ExitIntentPopup from './components/ExitIntentPopup'
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
       <WhatsAppButton />
       <CookieBanner />
       <EasterEggGame />
+      <ExitIntentPopup />
     </>
   )
 }
