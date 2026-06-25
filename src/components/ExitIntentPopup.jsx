@@ -23,36 +23,33 @@ export default function ExitIntentPopup() {
   useEffect(() => {
     if (sessionStorage.getItem('exit_popup_shown')) return
 
-    let enabled = false
-
     const show = () => {
       if (sessionStorage.getItem('exit_popup_shown')) return
       sessionStorage.setItem('exit_popup_shown', '1')
       setVisible(true)
     }
 
-    // Desktop: cursor sale hacia arriba (cerrar pestaña o navegador)
+    // Desktop: cursor hacia la barra de pestañas/cierre
+    // Se escucha en documentElement que es más confiable que document
     const handleMouseLeave = (e) => {
-      if (!enabled) return
-      if (e.clientY <= 5) show()
+      if (e.relatedTarget !== null) return   // sigue dentro del documento
+      if (e.clientY < 20) show()            // salió por arriba
     }
 
-    // Móvil / cualquier dispositivo: usuario cambia de pestaña o minimiza
+    // Móvil / tab switch / minimizar
     const handleVisibility = () => {
-      if (!enabled) return
       if (document.hidden) show()
     }
 
-    // Espera 8s — evita molestar a quien acaba de llegar
+    // Espera 5s antes de activar
     const timer = setTimeout(() => {
-      enabled = true
-      document.addEventListener('mouseleave', handleMouseLeave)
+      document.documentElement.addEventListener('mouseleave', handleMouseLeave)
       document.addEventListener('visibilitychange', handleVisibility)
-    }, 8000)
+    }, 5000)
 
     return () => {
       clearTimeout(timer)
-      document.removeEventListener('mouseleave', handleMouseLeave)
+      document.documentElement.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [])
@@ -69,7 +66,6 @@ export default function ExitIntentPopup() {
   return (
     <AnimatePresence>
       {visible && (
-        // Overlay cubre toda la pantalla y centra el modal con flexbox
         <motion.div
           key="exit-overlay"
           initial={{ opacity: 0 }}
@@ -86,7 +82,6 @@ export default function ExitIntentPopup() {
             padding: '16px',
           }}
         >
-          {/* Modal — stopPropagation para que clic dentro no cierre el overlay */}
           <motion.div
             key="exit-modal"
             initial={{ opacity: 0, scale: 0.88, y: 24 }}
@@ -105,7 +100,6 @@ export default function ExitIntentPopup() {
               boxShadow: '0 0 80px rgba(124,58,237,0.2), 0 0 0 1px rgba(217,70,239,0.1)',
             }}
           >
-            {/* Línea de brillo superior */}
             <div style={{
               position: 'absolute', top: 0, left: '50%',
               transform: 'translateX(-50%)',
@@ -163,7 +157,6 @@ export default function ExitIntentPopup() {
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   <input
-                    id="exit-name"
                     value={name}
                     onChange={e => setName(e.target.value)}
                     placeholder="Tu nombre"
@@ -172,7 +165,6 @@ export default function ExitIntentPopup() {
                     style={inputStyle}
                   />
                   <input
-                    id="exit-phone"
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
                     placeholder="Tu WhatsApp (ej. +52 332 000 0000)"
