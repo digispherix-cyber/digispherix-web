@@ -41,37 +41,41 @@ const steps = [
   },
 ]
 
-function CardContent({ step }) {
+function CardContent({ step, large = false }) {
   return (
     <div style={{
-      borderRadius: '20px', padding: '24px',
+      borderRadius: '20px',
+      padding: large ? '40px 44px' : '24px',
       background: 'linear-gradient(135deg, rgba(17,13,48,0.95), rgba(12,9,35,0.9))',
       border: `1px solid ${step.color}44`,
       boxShadow: `0 0 60px ${step.color}18`,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: large ? '24px' : '16px' }}>
         <div style={{
-          width: '56px', height: '56px', borderRadius: '14px', flexShrink: 0,
+          width: large ? '72px' : '56px', height: large ? '72px' : '56px',
+          borderRadius: '16px', flexShrink: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: `${step.color}22`, color: step.color,
         }}>
           {step.icon}
         </div>
         <div>
-          <div style={{ fontSize: '0.7rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '2px' }}>
+          <div style={{ fontSize: '0.75rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '4px' }}>
             PASO {step.num}
           </div>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
-          <p style={{ fontSize: '0.82rem', color: step.color, marginTop: '2px' }}>{step.subtitle}</p>
+          <h3 style={{ fontSize: large ? '1.8rem' : '1.3rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
+          <p style={{ fontSize: large ? '0.95rem' : '0.82rem', color: step.color, marginTop: '4px' }}>{step.subtitle}</p>
         </div>
       </div>
-      <p style={{ fontSize: '0.9rem', color: '#c4b5fd', lineHeight: 1.7, marginBottom: '16px' }}>
+      <p style={{ fontSize: large ? '1.05rem' : '0.9rem', color: '#c4b5fd', lineHeight: 1.8, marginBottom: large ? '28px' : '16px' }}>
         {step.desc}
       </p>
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         {step.tags.map(t => (
           <span key={t} style={{
-            fontSize: '0.75rem', padding: '5px 12px', borderRadius: '999px', fontWeight: 500,
+            fontSize: large ? '0.85rem' : '0.75rem',
+            padding: large ? '7px 16px' : '5px 12px',
+            borderRadius: '999px', fontWeight: 500,
             background: `${step.color}18`, color: step.color, border: `1px solid ${step.color}33`,
           }}>
             {t}
@@ -126,7 +130,7 @@ function StepCard({ step, progress, rangeStart, rangeEnd }) {
 
   return (
     <motion.div style={{ opacity, y, scale, position: 'absolute', width: '100%' }}>
-      <CardContent step={step} />
+      <CardContent step={step} large />
     </motion.div>
   )
 }

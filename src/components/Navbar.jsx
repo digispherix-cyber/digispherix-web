@@ -30,7 +30,7 @@ export default function Navbar() {
           scrolled ? 'backdrop-blur-xl bg-[#0c0923]/80 border-b border-purple-900/30' : ''
         }`}
       >
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '16px 80px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <a href="#inicio">
             <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" style={{ width: 'auto', objectFit: 'contain' }} />
           </a>
