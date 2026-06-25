@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { MessageCircle, Mail } from 'lucide-react'
+import { useState } from 'react'
+import { easterEggTrigger } from './EasterEggGame'
 
 const links = {
   Servicios: [
@@ -17,6 +19,18 @@ const links = {
 }
 
 export default function Footer() {
+  const [tapCount, setTapCount] = useState(0)
+  const [showHint, setShowHint] = useState(false)
+
+  const handleLogoTap = () => {
+    const next = tapCount + 1
+    setTapCount(next)
+    if (next >= 5) {
+      setTapCount(0)
+      if (easterEggTrigger.open) easterEggTrigger.open()
+    }
+  }
+
   return (
     <footer className="relative px-6" style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '72px', paddingBottom: '40px' }}>
       <div className="ds-container">
@@ -24,7 +38,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <img src="/logo-icon.png" alt="DigiSpherix" className="h-10 w-10 object-contain" />
+              <img
+                src="/logo-icon.png"
+                alt="DigiSpherix"
+                className="h-10 w-10 object-contain"
+                onClick={handleLogoTap}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+                title="🎮"
+              />
               <span className="text-xl font-bold">
                 <span style={{ color: '#6b21a8' }}>Digi</span>
                 <span style={{ color: '#e879f9' }}>Spherix</span>
@@ -81,6 +102,14 @@ export default function Footer() {
         >
           <p style={{ fontSize: '0.75rem', color: '#6b5fa0' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
+          </p>
+          <p
+            style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
+            onMouseEnter={e => e.target.style.color = '#7c3aed'}
+            onMouseLeave={e => e.target.style.color = '#3d2f6e'}
+            title="↑↑↓↓←→←→BA"
+          >
+            🎮 Psst... ¿conoces el código Konami?
           </p>
         </div>
       </div>
