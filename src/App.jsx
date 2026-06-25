@@ -6,6 +6,8 @@ import Services from './components/Services'
 import Process from './components/Process'
 import Portfolio from './components/Portfolio'
 import Pricing from './components/Pricing'
+import Clients from './components/Clients'
+import Stats from './components/Stats'
 import Testimonials from './components/Testimonials'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
@@ -26,6 +28,8 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Clients />
+        <Stats />
         <About />
         <Services />
         <Process />

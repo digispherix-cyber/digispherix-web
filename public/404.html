@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Página no encontrada | DigiSpherix</title>
+  <link rel="icon" type="image/png" href="/logo-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: #0c0923;
+      color: #f0e8ff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(124,58,237,0.15); top: -100px; left: -100px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(217,70,239,0.1); bottom: -100px; right: -100px; }
+    .logo { height: 56px; margin-bottom: 40px; }
+    .code {
+      font-size: clamp(6rem, 20vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #7c3aed, #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 700; color: white; margin-bottom: 12px; }
+    p { font-size: 0.95rem; color: #9d8fc2; margin-bottom: 40px; max-width: 360px; line-height: 1.7; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #7c3aed, #d946ef);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(217,70,239,0.4); }
+    .stars {
+      position: fixed; inset: 0; pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="stars" id="stars"></div>
+
+  <img src="/logo-horizontal.png" alt="DigiSpherix" class="logo" />
+  <div class="code">404</div>
+  <h1>Página no encontrada</h1>
+  <p>La página que buscas no existe o fue movida. Regresa al inicio y encuentra lo que necesitas.</p>
+  <a href="/" class="btn">← Volver al inicio</a>
+
+  <script>
+    const s = document.getElementById('stars')
+    for (let i = 0; i < 40; i++) {
+      const d = document.createElement('div')
+      d.className = 'star'
+      const size = Math.random() > 0.8 ? 2 : 1
+      d.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;opacity:${0.05 + Math.random()*0.2}`
+      s.appendChild(d)
+    }
+  </script>
+</body>
+</html>
