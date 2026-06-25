@@ -37,7 +37,7 @@ export default function Navbar() {
             <img src="/logo-horizontal.png" alt="DigiSpherix" className="nav-logo" style={{ width: 'auto', objectFit: 'contain' }} />
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-8">
             {links.map((l) => (
               <li key={l.href}>
                 <a
@@ -56,7 +56,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-purple-300 hover:text-pink-400 transition-colors"
+            className="lg:hidden text-purple-300 hover:text-pink-400 transition-colors"
             style={{ position: 'relative', zIndex: 60 }}
           >
             {open ? <X size={24} /> : <Menu size={24} />}

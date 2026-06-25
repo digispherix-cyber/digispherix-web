@@ -74,7 +74,7 @@ export default function CustomCursor() {
       <motion.div
         style={{
           x: sx, y: sy,
-          position: 'fixed', top: 0, left: 0, zIndex: 9999,
+          position: 'fixed', top: 0, left: 0, zIndex: 999999,
           width: clicking ? '6px' : hovering ? '14px' : '10px',
           height: clicking ? '6px' : hovering ? '14px' : '10px',
           borderRadius: '50%',

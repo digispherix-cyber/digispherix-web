@@ -103,14 +103,20 @@ export default function Footer() {
           <p style={{ fontSize: '0.75rem', color: '#6b5fa0' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
           </p>
-          <p
-            style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
-            onMouseEnter={e => e.target.style.color = '#7c3aed'}
-            onMouseLeave={e => e.target.style.color = '#3d2f6e'}
-            title="↑↑↓↓←→←→BA"
-          >
-            🎮 Psst... ¿conoces el código Konami?
-          </p>
+          {typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches ? (
+            <p style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', userSelect: 'none' }}>
+              🎮 Psst... toca el logo 5 veces
+            </p>
+          ) : (
+            <p
+              style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
+              onMouseEnter={e => e.target.style.color = '#7c3aed'}
+              onMouseLeave={e => e.target.style.color = '#3d2f6e'}
+              title="↑↑↓↓←→←→BA"
+            >
+              🎮 Psst... ¿conoces el código Konami?
+            </p>
+          )}
         </div>
       </div>
     </footer>

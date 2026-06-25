@@ -27,7 +27,7 @@ body {
 .nav-cta-desktop {
   display: none !important;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .nav-cta-desktop {
     display: inline-flex !important;
   }
