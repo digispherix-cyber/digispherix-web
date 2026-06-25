@@ -2,10 +2,14 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const clients = [
-  { name: 'Gambvel',        logo: '/gambvel.png' },
-  { name: 'Termocontroles', logo: '/termocontroles.png' },
-  { name: 'Sollem',         logo: '/sollem.png' },
-  { name: 'Hospital San Vicente', logo: '/sanvicente.png' },
+  { name: 'Gambvel',             logo: '/logo-gambvel.png' },
+  { name: 'Termocontroles',      logo: '/logo-termocontroles.png' },
+  { name: 'Sollem',              logo: '/logo-sollem.png' },
+  { name: 'Hospital San Vicente',logo: '/logo-sanvicente.png' },
+  { name: 'Catering Sollem',     logo: '/logo-catering-sollem.png' },
+  { name: 'Holistic Sollem',     logo: '/logo-holistic-sollem.png' },
+  { name: 'Sollem & Tea',        logo: '/logo-sollem-and-tea.png' },
+  { name: 'Rincón Sollem',       logo: '/logo-rincon-sollem.png' },
 ]
 
 export default function Clients() {
