@@ -188,7 +188,7 @@ export default function EasterEggGame() {
       if (keysRef.current['ArrowRight'] || keysRef.current['d']) pxRef.current = Math.min(W - PLAYER_W, pxRef.current + 4)
 
       // Player shoot
-      if ((keysRef.current[' '] || keysRef.current['ArrowUp']) && ts - lastShotRef.current > 300) {
+      if (!invRef.current && (keysRef.current[' '] || keysRef.current['ArrowUp']) && ts - lastShotRef.current > 300) {
         lastShotRef.current = ts
         bulletsRef.current = [...bulletsRef.current, { id: ts + Math.random(), x: pxRef.current + PLAYER_W / 2 - 2, y: H - 62 }]
       }
