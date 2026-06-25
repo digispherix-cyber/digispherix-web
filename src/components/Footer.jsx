@@ -45,7 +45,7 @@ export default function Footer() {
                 <img
                   src="/logo-icon.png"
                   alt="DigiSpherix"
-                  className="h-10 w-10 object-contain"
+                  className="h-14 w-14 md:h-10 md:w-10 object-contain"
                   width="40"
                   height="40"
                   onClick={handleLogoTap}
