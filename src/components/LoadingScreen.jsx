@@ -10,7 +10,7 @@ export default function LoadingScreen() {
   useEffect(() => {
     // Animate progress bar
     const start = performance.now()
-    const duration = 1800
+    const duration = 350
 
     const tick = (now) => {
       const elapsed = now - start
@@ -19,7 +19,7 @@ export default function LoadingScreen() {
       if (pct < 100) {
         requestAnimationFrame(tick)
       } else {
-        setTimeout(() => setVisible(false), 300)
+        setTimeout(() => setVisible(false), 80)
       }
     }
     requestAnimationFrame(tick)
@@ -31,8 +31,8 @@ export default function LoadingScreen() {
         <motion.div
           key="loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.04 }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.15, ease: 'easeInOut' }}
           style={{
             position: 'fixed', inset: 0, zIndex: 99999,
             background: '#0c0923',
