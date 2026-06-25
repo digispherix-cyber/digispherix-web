@@ -24,25 +24,26 @@ export default function ExitIntentPopup() {
     if (sessionStorage.getItem('exit_popup_shown')) return
 
     let enabled = false
-    const enable = () => { enabled = true }
 
+    const show = () => {
+      if (sessionStorage.getItem('exit_popup_shown')) return
+      sessionStorage.setItem('exit_popup_shown', '1')
+      setVisible(true)
+    }
+
+    // Desktop: cursor sale hacia arriba (cerrar pestaña o navegador)
     const handleMouseLeave = (e) => {
       if (!enabled) return
-      if (e.clientY <= 5) {
-        setVisible(true)
-        sessionStorage.setItem('exit_popup_shown', '1')
-      }
+      if (e.clientY <= 5) show()
     }
 
+    // Móvil / cualquier dispositivo: usuario cambia de pestaña o minimiza
     const handleVisibility = () => {
       if (!enabled) return
-      if (document.hidden && !sessionStorage.getItem('exit_popup_shown')) {
-        setVisible(true)
-        sessionStorage.setItem('exit_popup_shown', '1')
-      }
+      if (document.hidden) show()
     }
 
-    // Espera 8s antes de activar — evita mostrar a quien acaba de llegar
+    // Espera 8s — evita molestar a quien acaba de llegar
     const timer = setTimeout(() => {
       enabled = true
       document.addEventListener('mouseleave', handleMouseLeave)
@@ -68,42 +69,43 @@ export default function ExitIntentPopup() {
   return (
     <AnimatePresence>
       {visible && (
-        <>
+        // Overlay cubre toda la pantalla y centra el modal con flexbox
+        <motion.div
+          key="exit-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={close}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 99990,
+            background: 'rgba(5,3,20,0.85)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+          }}
+        >
+          {/* Modal — stopPropagation para que clic dentro no cierre el overlay */}
           <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={close}
-            style={{
-              position: 'fixed', inset: 0,
-              background: 'rgba(5,3,20,0.85)',
-              backdropFilter: 'blur(8px)',
-              zIndex: 99990,
-            }}
-          />
-
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0, scale: 0.88, y: 32 }}
+            key="exit-modal"
+            initial={{ opacity: 0, scale: 0.88, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.88, y: 32 }}
+            exit={{ opacity: 0, scale: 0.88, y: 24 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+            onClick={e => e.stopPropagation()}
             style={{
-              position: 'fixed',
-              top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 99991,
-              width: 'calc(100% - 32px)',
+              width: '100%',
               maxWidth: '420px',
               background: 'rgba(17,13,48,0.98)',
               border: '1px solid rgba(124,58,237,0.45)',
               borderRadius: '20px',
               padding: '36px 28px 28px',
+              position: 'relative',
               boxShadow: '0 0 80px rgba(124,58,237,0.2), 0 0 0 1px rgba(217,70,239,0.1)',
             }}
           >
-            {/* Glow superior */}
+            {/* Línea de brillo superior */}
             <div style={{
               position: 'absolute', top: 0, left: '50%',
               transform: 'translateX(-50%)',
@@ -186,10 +188,8 @@ export default function ExitIntentPopup() {
                       padding: '13px', borderRadius: '12px', border: 'none', cursor: 'pointer',
                       background: 'linear-gradient(135deg, #7c3aed, #d946ef)',
                       color: 'white', fontWeight: 700, fontSize: '0.95rem',
-                      marginTop: '4px', transition: 'opacity 0.2s',
+                      marginTop: '4px',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
-                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
                   >
                     <MessageCircle size={18} />
                     Contáctame por WhatsApp
@@ -208,7 +208,7 @@ export default function ExitIntentPopup() {
               </>
             )}
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   )
