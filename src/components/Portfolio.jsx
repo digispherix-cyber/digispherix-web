@@ -137,9 +137,11 @@ function ProjectCard({ p, index }) {
             <source srcSet={p.image} type="image/webp" />
             <img
               src={p.imageFallback}
-              alt={`Screenshot de ${p.name}`}
+              alt={`Screenshot del sitio web de ${p.name}`}
               loading="lazy"
               decoding="async"
+              width="1280"
+              height="720"
               style={{
                 width: '100%', height: '100%',
                 objectFit: 'cover', objectPosition: 'top',

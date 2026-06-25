@@ -59,6 +59,8 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen(!open)}
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={open}
             className="lg:hidden text-purple-300 hover:text-pink-400 transition-colors"
             style={{ position: 'relative', zIndex: 60 }}
           >
@@ -92,6 +94,7 @@ export default function Navbar() {
             {/* Botón cerrar */}
             <button
               onClick={() => setOpen(false)}
+              aria-label="Cerrar menú"
               style={{
                 position: 'absolute', top: '20px', right: '24px',
                 background: 'none', border: 'none', cursor: 'pointer',

@@ -277,7 +277,7 @@ export default function EasterEggGame() {
       justifyContent: 'center', overflow: 'hidden', padding: '16px',
     }}>
       {/* Close */}
-      <button onClick={close} style={{
+      <button onClick={close} aria-label="Cerrar juego" style={{
         position: 'fixed', top: '16px', right: '16px', zIndex: 99999,
         width: '44px', height: '44px', borderRadius: '12px',
         background: 'rgba(124,58,237,0.3)', border: '1px solid rgba(124,58,237,0.5)',

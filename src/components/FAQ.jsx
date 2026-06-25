@@ -62,6 +62,8 @@ function FAQItem({ item, index, isOpen, onToggle }) {
     >
       <button
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? `Cerrar: ${item.q}` : `Abrir: ${item.q}`}
         style={{
           width: '100%', display: 'flex', alignItems: 'center',
           justifyContent: 'space-between', gap: '16px',

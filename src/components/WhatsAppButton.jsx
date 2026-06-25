@@ -51,6 +51,8 @@ export default function WhatsAppButton() {
 
       <motion.button
         onClick={() => setOpen(!open)}
+        aria-label={open ? 'Cerrar chat de WhatsApp' : 'Abrir chat de WhatsApp'}
+        aria-expanded={open}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg"

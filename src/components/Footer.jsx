@@ -50,7 +50,7 @@ export default function Footer() {
                 />
               </picture>
               <span className="text-xl font-bold">
-                <span style={{ color: '#6b21a8' }}>Digi</span>
+                <span style={{ color: '#9333ea' }}>Digi</span>
                 <span style={{ color: '#e879f9' }}>Spherix</span>
               </span>
             </div>
@@ -63,6 +63,7 @@ export default function Footer() {
                 href="https://wa.me/523320318435"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Contáctanos por WhatsApp"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
                 style={{ background: 'rgba(37,211,102,0.15)', color: '#25D366', border: '1px solid rgba(37,211,102,0.3)' }}
               >
@@ -70,6 +71,7 @@ export default function Footer() {
               </a>
               <a
                 href="mailto:info@digispherix.com.mx"
+                aria-label="Envíanos un correo electrónico"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
                 style={{ background: 'rgba(124,58,237,0.15)', color: '#a855f7', border: '1px solid rgba(124,58,237,0.3)' }}
               >
@@ -103,16 +105,16 @@ export default function Footer() {
         <div
           style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '24px', textAlign: 'center' }}
         >
-          <p style={{ fontSize: '0.75rem', color: '#6b5fa0' }}>
+          <p style={{ fontSize: '0.75rem', color: '#9d8fc2' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
           </p>
           {typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches ? (
-            <p style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', userSelect: 'none' }}>
+            <p style={{ fontSize: '0.65rem', color: '#6b5fa0', marginTop: '6px', userSelect: 'none' }}>
               🎮 Psst... toca el logo 5 veces
             </p>
           ) : (
             <p
-              style={{ fontSize: '0.65rem', color: '#3d2f6e', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
+              style={{ fontSize: '0.65rem', color: '#6b5fa0', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
               onMouseEnter={e => e.target.style.color = '#7c3aed'}
               onMouseLeave={e => e.target.style.color = '#3d2f6e'}
               title="↑↑↓↓←→←→BA"

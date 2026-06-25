@@ -68,6 +68,7 @@ export default function CookieBanner() {
               </div>
               <button
                 onClick={reject}
+                aria-label="Cerrar banner de cookies"
                 style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6b5b95', padding: '4px' }}
               >
                 <X size={18} />

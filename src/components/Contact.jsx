@@ -252,16 +252,16 @@ export default function Contact() {
                 {/* Nombre + Teléfono */}
                 <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
                   <div>
-                    <label style={labelStyle}>Nombre *</label>
+                    <label htmlFor="name" style={labelStyle}>Nombre *</label>
                     <input
-                      name="name" required value={form.name} onChange={handleChange}
+                      id="name" name="name" required value={form.name} onChange={handleChange}
                       placeholder="Tu nombre" style={inputStyle}
                     />
                   </div>
                   <div>
-                    <label style={labelStyle}>Teléfono</label>
+                    <label htmlFor="phone" style={labelStyle}>Teléfono</label>
                     <input
-                      name="phone" value={form.phone} onChange={handleChange}
+                      id="phone" name="phone" value={form.phone} onChange={handleChange}
                       placeholder="Tu teléfono" style={inputStyle}
                     />
                   </div>
@@ -269,18 +269,18 @@ export default function Contact() {
 
                 {/* Email */}
                 <div>
-                  <label style={labelStyle}>Correo electrónico *</label>
+                  <label htmlFor="email" style={labelStyle}>Correo electrónico *</label>
                   <input
-                    name="email" type="email" required value={form.email} onChange={handleChange}
+                    id="email" name="email" type="email" required value={form.email} onChange={handleChange}
                     placeholder="tu@correo.com" style={inputStyle}
                   />
                 </div>
 
                 {/* Servicio */}
                 <div>
-                  <label style={labelStyle}>Servicio de interés</label>
+                  <label htmlFor="service" style={labelStyle}>Servicio de interés</label>
                   <select
-                    name="service" value={form.service} onChange={handleChange}
+                    id="service" name="service" value={form.service} onChange={handleChange}
                     style={{ ...inputStyle, cursor: 'pointer' }}
                   >
                     <option value="">Selecciona un servicio</option>
@@ -292,9 +292,9 @@ export default function Contact() {
 
                 {/* Mensaje */}
                 <div>
-                  <label style={labelStyle}>Mensaje *</label>
+                  <label htmlFor="message" style={labelStyle}>Mensaje *</label>
                   <textarea
-                    name="message" required rows={4} value={form.message} onChange={handleChange}
+                    id="message" name="message" required rows={4} value={form.message} onChange={handleChange}
                     placeholder="Cuéntanos sobre tu proyecto..."
                     style={{ ...inputStyle, resize: 'none', lineHeight: 1.6 }}
                   />
