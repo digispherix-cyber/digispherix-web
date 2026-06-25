@@ -17,10 +17,16 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://digispherix.com.mx/og-image.jpg" />
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/logo-horizontal.webp" as="image" type="image/webp" />
+    <!-- DNS prefetch for external services -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcO0-IqAAAAALEEILNOliF4SK9iY4mQXQ13cmcf" async defer></script>
+    <!-- reCAPTCHA cargado dinámicamente desde Contact.jsx para no bloquear el render -->
     <!-- Schema markup LocalBusiness -->
     <script type="application/ld+json">
     {

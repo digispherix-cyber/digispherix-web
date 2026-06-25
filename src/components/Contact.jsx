@@ -88,6 +88,16 @@ export default function Contact() {
 
   const RECAPTCHA_KEY = '6LcO0-IqAAAAALEEILNOliF4SK9iY4mQXQ13cmcf'
 
+  // Load reCAPTCHA only when this section mounts (not blocking initial render)
+  useEffect(() => {
+    if (document.querySelector('script[src*="recaptcha"]')) return
+    const s = document.createElement('script')
+    s.src = `https://www.google.com/recaptcha/enterprise.js?render=${RECAPTCHA_KEY}`
+    s.async = true
+    s.defer = true
+    document.head.appendChild(s)
+  }, [])
+
   const LIMITS = { name: 80, email: 120, phone: 20, service: 60, message: 500 }
   const sanitize = (str) => str.replace(/[<>'"\\]/g, '').trim()
 
