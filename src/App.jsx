@@ -13,10 +13,14 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import CustomCursor from './components/CustomCursor'
 import Particles from './components/Particles'
+import CookieBanner from './components/CookieBanner'
+import LoadingScreen from './components/LoadingScreen'
+import EasterEggGame from './components/EasterEggGame'
 
 export default function App() {
   return (
     <>
+      <LoadingScreen />
       <Particles />
       <CustomCursor />
       <Navbar />
@@ -33,6 +37,8 @@ export default function App() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <CookieBanner />
+      <EasterEggGame />
     </>
   )
 }
