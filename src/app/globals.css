@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Ocultar badge de reCAPTCHA (permitido por Google si se menciona en el sitio) */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
 * {
   margin: 0;
   padding: 0;
