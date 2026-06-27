@@ -333,14 +333,16 @@ body {
   margin: 2.5rem 0;
 }
 .blog-content img { border-radius: 12px; width: 100%; height: auto; margin: 1.5rem 0; }
-.blog-content table {
-  display: block;
+.blog-table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-collapse: collapse;
-  width: 100%;
   margin: 1.5rem 0;
+  max-width: 100%;
+}
+.blog-content table {
+  border-collapse: collapse;
   font-size: 0.9rem;
+  min-width: 100%;
 }
 .blog-content th, .blog-content td {
   padding: 10px 16px;

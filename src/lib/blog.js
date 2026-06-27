@@ -30,7 +30,10 @@ export async function getPost(slug) {
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
     .process(content)
-  return { ...data, slug, content: processed.toString() }
+  const html = processed.toString()
+    .replace(/<table>/g, '<div class="blog-table-wrap"><table>')
+    .replace(/<\/table>/g, '</table></div>')
+  return { ...data, slug, content: html }
 }
 
 export function getRelatedPosts(currentSlug, category, limit = 3) {
