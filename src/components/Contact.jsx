@@ -96,7 +96,8 @@ export default function Contact() {
     setForm({ ...form, [name]: value.slice(0, LIMITS[name] ?? 200) })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (form._trap) return
 
     const clean = {
@@ -109,15 +110,8 @@ export default function Contact() {
     if (!clean.name || !clean.email || !clean.message) return
 
     const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
-
-    const url = `https://wa.me/523320318435?text=${encodeURIComponent(msg)}`
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
     setSent(true)
-    if (isMobile) {
-      window.location.href = url
-    } else {
-      window.open(url, '_blank', 'noopener,noreferrer')
-    }
   }
 
   return (
