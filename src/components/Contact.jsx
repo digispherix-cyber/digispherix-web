@@ -111,8 +111,14 @@ export default function Contact() {
 
     const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
 
+    const url = `https://wa.me/523320318435?text=${encodeURIComponent(msg)}`
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
     setSent(true)
-    window.location.href = `https://wa.me/523320318435?text=${encodeURIComponent(msg)}`
+    if (isMobile) {
+      window.location.href = url
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
