@@ -96,8 +96,7 @@ export default function Contact() {
     setForm({ ...form, [name]: value.slice(0, LIMITS[name] ?? 200) })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     if (form._trap) return
 
     const clean = {
@@ -234,7 +233,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 {/* Honeypot — invisible para humanos, bots lo llenan */}
                 <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
                   <input
@@ -298,20 +297,20 @@ export default function Contact() {
                 </div>
 
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleSubmit}
                   className="btn-primary justify-center"
-                  style={{ padding: '14px', fontSize: '1rem', opacity: sending ? 0.7 : 1 }}
-                  disabled={sending}
+                  style={{ padding: '14px', fontSize: '1rem' }}
                 >
                   <Send size={17} />
-                  {sending ? 'Verificando...' : 'Enviar por WhatsApp'}
+                  Enviar por WhatsApp
                 </button>
 
                 <p style={{ fontSize: '0.75rem', textAlign: 'center', color: '#7c6f9c' }}>
                   Al enviar serás redirigido a WhatsApp para finalizar el contacto.
                   Este formulario está protegido por reCAPTCHA.
                 </p>
-              </form>
+              </div>
             )}
           </motion.div>
         </div>
