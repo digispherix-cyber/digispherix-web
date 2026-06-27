@@ -83,33 +83,35 @@ const labelStyle = {
 
 export default function Contact() {
   const ref = useRef(null)
+  const formRef = useRef(null)
   const inView = useInView(ref, { once: true })
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', _trap: '' })
   const [sent, setSent] = useState(false)
-  const [sending, setSending] = useState(false)
 
-  const LIMITS = { name: 80, email: 120, phone: 20, service: 60, message: 500 }
-  const sanitize = (str) => str.replace(/[<>'"\\]/g, '').trim()
+  const sanitize = (str) => (str || '').replace(/[<>'"\\]/g, '').trim()
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setForm({ ...form, [name]: value.slice(0, LIMITS[name] ?? 200) })
+    setForm(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (form._trap) return
 
-    const clean = {
-      name:    sanitize(form.name),
-      email:   sanitize(form.email),
-      phone:   sanitize(form.phone),
-      service: sanitize(form.service),
-      message: sanitize(form.message),
-    }
-    if (!clean.name || !clean.email || !clean.message) return
+    // Read from DOM directly to capture browser autofill values
+    const fd = new FormData(formRef.current)
+    const trap = fd.get('_trap') || ''
+    if (trap) return
 
-    const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
+    const name    = sanitize(fd.get('name'))
+    const email   = sanitize(fd.get('email'))
+    const phone   = sanitize(fd.get('phone'))
+    const service = sanitize(fd.get('service'))
+    const message = sanitize(fd.get('message'))
+
+    if (!name || !email || !message) return
+
+    const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Teléfono:* ${phone || 'No indicado'}\n*Servicio de interés:* ${service || 'No especificado'}\n\n*Mensaje:*\n${message}`
     window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
     setSent(true)
   }
@@ -227,7 +229,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 {/* Honeypot — invisible para humanos, bots lo llenan */}
                 <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
                   <input
@@ -291,8 +293,7 @@ export default function Contact() {
                 </div>
 
                 <button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
                   className="btn-primary justify-center"
                   style={{ padding: '14px', fontSize: '1rem' }}
                 >
@@ -304,7 +305,7 @@ export default function Contact() {
                   Al enviar serás redirigido a WhatsApp para finalizar el contacto.
                   Este formulario está protegido por reCAPTCHA.
                 </p>
-              </div>
+              </form>
             )}
           </motion.div>
         </div>
