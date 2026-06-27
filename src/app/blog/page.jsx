@@ -46,7 +46,7 @@ export default function BlogPage() {
             <span className="gradient-text">recursos digitales</span>
           </h1>
           <p style={{ color: '#9d8fc2', fontSize: '1.1rem', maxWidth: '580px', margin: '0 auto', lineHeight: 1.7 }}>
-            Artículos sobre diseño web, apps Android y marketing digital para impulsar tu negocio en México.
+            CSS, JavaScript, Linux, redes, diseño web, apps y todo lo que necesitas saber sobre tecnología.
           </p>
         </div>
       </section>

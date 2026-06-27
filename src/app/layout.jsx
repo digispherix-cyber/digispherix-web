@@ -71,6 +71,7 @@ import Footer from '../components/Footer'
 import CustomCursor from '../components/CustomCursor'
 import WhatsAppButton from '../components/WhatsAppButton'
 import CookieBanner from '../components/CookieBanner'
+import EasterEggGame from '../components/EasterEggGame'
 
 export default function RootLayout({ children }) {
   return (
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <WhatsAppButton />
         <CookieBanner />
+        <EasterEggGame />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PHN5G7P9L7"

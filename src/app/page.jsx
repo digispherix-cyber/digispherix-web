@@ -9,7 +9,6 @@ import FAQ from '../components/FAQ'
 import Contact from '../components/Contact'
 import Particles from '../components/Particles'
 import LoadingScreen from '../components/LoadingScreen'
-import EasterEggGame from '../components/EasterEggGame'
 import ExitIntentPopup from '../components/ExitIntentPopup'
 
 export default function HomePage() {
@@ -28,7 +27,6 @@ export default function HomePage() {
         <FAQ />
         <Contact />
       </main>
-      <EasterEggGame />
       <ExitIntentPopup />
     </>
   )
