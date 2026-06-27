@@ -85,7 +85,7 @@ export default function Contact() {
   const ref = useRef(null)
   const formRef = useRef(null)
   const inView = useInView(ref, { once: true })
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', _trap: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
 
@@ -102,8 +102,6 @@ export default function Contact() {
 
     // Read from DOM to capture both typed and autofilled values
     const fd = new FormData(formRef.current)
-    if (fd.get('_trap')) return
-
     const name    = sanitize(fd.get('name'))
     const email   = sanitize(fd.get('email'))
     const phone   = sanitize(fd.get('phone'))
@@ -234,17 +232,6 @@ export default function Contact() {
               </div>
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                {/* Honeypot — invisible para humanos, bots lo llenan */}
-                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
-                  <input
-                    type="text"
-                    name="_trap"
-                    value={form._trap}
-                    onChange={handleChange}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
-                </div>
                 {/* Nombre + Teléfono */}
                 <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
                   <div>
