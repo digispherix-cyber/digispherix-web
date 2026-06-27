@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import About from '../components/About'
 import Services from '../components/Services'
@@ -8,11 +7,7 @@ import Pricing from '../components/Pricing'
 import Testimonials from '../components/Testimonials'
 import FAQ from '../components/FAQ'
 import Contact from '../components/Contact'
-import Footer from '../components/Footer'
-import WhatsAppButton from '../components/WhatsAppButton'
-import CustomCursor from '../components/CustomCursor'
 import Particles from '../components/Particles'
-import CookieBanner from '../components/CookieBanner'
 import LoadingScreen from '../components/LoadingScreen'
 import EasterEggGame from '../components/EasterEggGame'
 import ExitIntentPopup from '../components/ExitIntentPopup'
@@ -22,8 +17,6 @@ export default function HomePage() {
     <>
       <LoadingScreen />
       <Particles />
-      <CustomCursor />
-      <Navbar />
       <main>
         <Hero />
         <About />
@@ -35,9 +28,6 @@ export default function HomePage() {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
-      <WhatsAppButton />
-      <CookieBanner />
       <EasterEggGame />
       <ExitIntentPopup />
     </>

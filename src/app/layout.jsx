@@ -66,6 +66,12 @@ const schemaData = {
   sameAs: [],
 }
 
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import CustomCursor from '../components/CustomCursor'
+import WhatsAppButton from '../components/WhatsAppButton'
+import CookieBanner from '../components/CookieBanner'
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
@@ -76,7 +82,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
+        <CustomCursor />
+        <Navbar />
         {children}
+        <Footer />
+        <WhatsAppButton />
+        <CookieBanner />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PHN5G7P9L7"

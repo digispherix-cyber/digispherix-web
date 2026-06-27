@@ -1,23 +1,31 @@
 ﻿'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
-const links = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Portafolio', href: '#portafolio' },
-  { label: 'Precios', href: '#precios' },
-  { label: 'Testimonios', href: '#testimonios' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contacto', href: '#contacto' },
+const navLinks = [
+  { label: 'Inicio',      hash: '#inicio' },
+  { label: 'Servicios',   hash: '#servicios' },
+  { label: 'Portafolio',  hash: '#portafolio' },
+  { label: 'Precios',     hash: '#precios' },
+  { label: 'Testimonios', hash: '#testimonios' },
+  { label: 'FAQ',         hash: '#faq' },
+  { label: 'Blog',        href: '/blog' },
+  { label: 'Contacto',    hash: '#contacto' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  const links = navLinks.map(l => ({
+    label: l.label,
+    href: l.href ?? (isHome ? l.hash : `/${l.hash}`),
+  }))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -56,7 +64,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a href="#contacto" className="btn-primary nav-cta-desktop text-sm">
+          <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm">
             Cotizar Proyecto
           </a>
 
