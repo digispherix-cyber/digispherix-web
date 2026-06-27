@@ -87,21 +87,22 @@ export default function Contact() {
   const inView = useInView(ref, { once: true })
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', _trap: '' })
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
 
   const sanitize = (str) => (str || '').replace(/[<>'"\\]/g, '').trim()
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm(prev => ({ ...prev, [name]: value }))
+    if (error) setError('')
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Read from DOM directly to capture browser autofill values
+    // Read from DOM to capture both typed and autofilled values
     const fd = new FormData(formRef.current)
-    const trap = fd.get('_trap') || ''
-    if (trap) return
+    if (fd.get('_trap')) return
 
     const name    = sanitize(fd.get('name'))
     const email   = sanitize(fd.get('email'))
@@ -109,7 +110,10 @@ export default function Contact() {
     const service = sanitize(fd.get('service'))
     const message = sanitize(fd.get('message'))
 
-    if (!name || !email || !message) return
+    if (!name || !email || !message) {
+      setError('Por favor completa Nombre, Correo y Mensaje.')
+      return
+    }
 
     const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Teléfono:* ${phone || 'No indicado'}\n*Servicio de interés:* ${service || 'No especificado'}\n\n*Mensaje:*\n${message}`
     window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
@@ -246,8 +250,8 @@ export default function Contact() {
                   <div>
                     <label htmlFor="name" style={labelStyle}>Nombre *</label>
                     <input
-                      id="name" name="name" required value={form.name} onChange={handleChange}
-                      placeholder="Tu nombre" style={inputStyle}
+                      id="name" name="name" value={form.name} onChange={handleChange}
+                      placeholder="Tu nombre" style={inputStyle} autoComplete="name"
                     />
                   </div>
                   <div>
@@ -263,8 +267,8 @@ export default function Contact() {
                 <div>
                   <label htmlFor="email" style={labelStyle}>Correo electrónico *</label>
                   <input
-                    id="email" name="email" type="email" required value={form.email} onChange={handleChange}
-                    placeholder="tu@correo.com" style={inputStyle}
+                    id="email" name="email" value={form.email} onChange={handleChange}
+                    placeholder="tu@correo.com" style={inputStyle} autoComplete="email"
                   />
                 </div>
 
@@ -286,11 +290,17 @@ export default function Contact() {
                 <div>
                   <label htmlFor="message" style={labelStyle}>Mensaje *</label>
                   <textarea
-                    id="message" name="message" required rows={4} value={form.message} onChange={handleChange}
+                    id="message" name="message" rows={4} value={form.message} onChange={handleChange}
                     placeholder="Cuéntanos sobre tu proyecto..."
                     style={{ ...inputStyle, resize: 'none', lineHeight: 1.6 }}
                   />
                 </div>
+
+                {error && (
+                  <p style={{ fontSize: '0.85rem', color: '#f87171', textAlign: 'center', marginTop: '-8px' }}>
+                    {error}
+                  </p>
+                )}
 
                 <button
                   type="submit"
@@ -303,7 +313,6 @@ export default function Contact() {
 
                 <p style={{ fontSize: '0.75rem', textAlign: 'center', color: '#7c6f9c' }}>
                   Al enviar serás redirigido a WhatsApp para finalizar el contacto.
-                  Este formulario está protegido por reCAPTCHA.
                 </p>
               </form>
             )}
