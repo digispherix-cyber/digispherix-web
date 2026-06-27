@@ -88,8 +88,6 @@ export default function Contact() {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
 
-  const RECAPTCHA_KEY = '6LcO0-IqAAAAALEEILNOliF4SK9iY4mQXQ13cmcf'
-
   const LIMITS = { name: 80, email: 120, phone: 20, service: 60, message: 500 }
   const sanitize = (str) => str.replace(/[<>'"\\]/g, '').trim()
 
@@ -98,10 +96,9 @@ export default function Contact() {
     setForm({ ...form, [name]: value.slice(0, LIMITS[name] ?? 200) })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (form._trap) return
-    if (sending) return
 
     const clean = {
       name:    sanitize(form.name),
@@ -113,14 +110,9 @@ export default function Contact() {
     if (!clean.name || !clean.email || !clean.message) return
 
     const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
-    const url = `https://wa.me/523320318435?text=${encodeURIComponent(msg)}`
 
     setSent(true)
-    setSending(false)
-
-    // location.href nunca es bloqueado en móvil — abre WhatsApp app directamente
-    // En desktop abre WhatsApp Web en la misma pestaña
-    setTimeout(() => { window.location.href = url }, 400)
+    window.location.href = `https://wa.me/523320318435?text=${encodeURIComponent(msg)}`
   }
 
   return (
