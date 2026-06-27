@@ -76,7 +76,7 @@ export default async function ArticlePage({ params }) {
 
         {/* Header */}
         <header style={{ padding: '32px 0 48px', borderBottom: '1px solid rgba(124,58,237,0.15)' }}>
-          <div style={{ maxWidth: '780px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
+          <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
             <span className="blog-badge" style={{ background: `${c}20`, color: c, border: `1px solid ${c}40`, display: 'inline-block', marginBottom: '20px' }}>
               {post.category}
             </span>
@@ -106,7 +106,7 @@ export default async function ArticlePage({ params }) {
 
         {/* Content */}
         <article style={{ padding: '60px 0' }}>
-          <div style={{ maxWidth: '780px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
+          <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
 
             {/* AdSense slot — habilitar cuando sea aprobado */}
             {/* <ins className="adsbygoogle" style={{display:'block'}} data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> */}

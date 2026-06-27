@@ -3,26 +3,36 @@
 import { motion } from 'framer-motion'
 import { MessageCircle, Mail } from 'lucide-react'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { easterEggTrigger } from './EasterEggGame'
 
-const links = {
+const navLinks = {
   Servicios: [
-    { label: 'Diseño Web', href: '#servicios' },
-    { label: 'Apps Android', href: '#servicios' },
-    { label: 'Marketing Digital', href: '#servicios' },
-    { label: 'Odoo ERP', href: '#servicios' },
-    { label: 'Soporte Técnico', href: '#servicios' },
+    { label: 'Diseño Web',        hash: '#servicios' },
+    { label: 'Apps Android',      hash: '#servicios' },
+    { label: 'Marketing Digital', hash: '#servicios' },
+    { label: 'Odoo ERP',          hash: '#servicios' },
+    { label: 'Soporte Técnico',   hash: '#servicios' },
   ],
   Empresa: [
-    { label: 'Portafolio', href: '#portafolio' },
-    { label: 'Precios', href: '#precios' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Portafolio', hash: '#portafolio' },
+    { label: 'Precios',    hash: '#precios' },
+    { label: 'Contacto',   hash: '#contacto' },
   ],
 }
 
 export default function Footer() {
   const [tapCount, setTapCount] = useState(0)
   const [showHint, setShowHint] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  const links = Object.fromEntries(
+    Object.entries(navLinks).map(([section, items]) => [
+      section,
+      items.map(item => ({ label: item.label, href: isHome ? item.hash : `/${item.hash}` })),
+    ])
+  )
 
   const handleLogoTap = () => {
     const next = tapCount + 1
