@@ -112,17 +112,19 @@ export default function Contact() {
     }
     if (!clean.name || !clean.email || !clean.message) return
 
+    // Abrir WhatsApp aquí — dentro del gesto del usuario (click), antes de cualquier await
+    // Los navegadores móviles bloquean window.open() si se llama después de un await
+    const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
+    window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
+    setSent(true)
+
     setSending(true)
     try {
       await new Promise((resolve) => window.grecaptcha.enterprise.ready(resolve))
       await window.grecaptcha.enterprise.execute(RECAPTCHA_KEY, { action: 'contact_form' })
     } catch {
-      // reCAPTCHA falló o no cargó — dejamos pasar (ya tenemos honeypot y sanitización)
+      // reCAPTCHA en segundo plano — no bloquea el envío
     }
-
-    const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${clean.name}\n*Email:* ${clean.email}\n*Teléfono:* ${clean.phone || 'No indicado'}\n*Servicio de interés:* ${clean.service || 'No especificado'}\n\n*Mensaje:*\n${clean.message}`
-    window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
-    setSent(true)
     setSending(false)
   }
 
