@@ -33,6 +33,13 @@ export async function generateMetadata({ params }) {
       url: `https://digispherix.com.mx/blog/${slug}`,
       type: 'article',
       publishedTime: post.date,
+      images: post.image
+        ? [{ url: `https://digispherix.com.mx${post.image}`, width: 1200, height: 630 }]
+        : [{ url: 'https://digispherix.com.mx/og-image.jpg', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: post.image ? [`https://digispherix.com.mx${post.image}`] : ['/og-image.jpg'],
     },
   }
 }

@@ -103,11 +103,6 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-PHN5G7P9L7');
           `}
         </Script>
-        {/* reCAPTCHA Enterprise */}
-        <Script
-          src="https://www.google.com/recaptcha/enterprise.js?render=6LcO0-IqAAAAALEEILNOliF4SK9iY4mQXQ13cmcf"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   )
