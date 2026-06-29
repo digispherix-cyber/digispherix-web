@@ -2,6 +2,12 @@
   "framework": "nextjs",
   "buildCommand": "next build",
   "outputDirectory": ".next",
+  "crons": [
+    {
+      "path": "/api/indexnow?secret=digispherix2026",
+      "schedule": "0 10 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

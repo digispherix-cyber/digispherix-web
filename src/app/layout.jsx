@@ -24,6 +24,9 @@ export const metadata = {
   },
   verification: {
     google: 'YnU51Av7jMSPfsvuTQXGZknhH0gxQFuTR8wY0wieDVM',
+    other: {
+      'facebook-domain-verification': 'j9smv6rv81q5j514r2u499dk2hs0if',
+    },
   },
   icons: {
     icon: '/logo-icon.png',

@@ -3,6 +3,25 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Code2, Smartphone, TrendingUp, Award } from 'lucide-react'
+import Image from 'next/image'
+
+const certifications = [
+  {
+    name: 'Google Ads Search Certified',
+    badge: '/badge-google-ads-search.png',
+    url: 'https://skillshop.credential.net/83126914-0b0a-4653-93df-db2d45a8db82',
+  },
+  {
+    name: 'Google Ads Display Certified',
+    badge: '/badge-google-ads-display.png',
+    url: 'https://skillshop.credential.net/7134a508-013f-4dd6-b768-cc826ff2ad96',
+  },
+  {
+    name: 'Google Analytics Certified',
+    badge: '/badge-google-analytics.png',
+    url: 'https://skillshop.credential.net/78775cf8-8a42-47a7-8383-52f96f84fb57',
+  },
+]
 
 const skills = [
   { label: 'React & Vite', pct: 90 },
@@ -131,6 +150,40 @@ export default function About() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
+              {/* Certificaciones Google */}
+              <div style={{ marginTop: '28px' }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9d8fc2', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
+                  Certificaciones Google
+                </p>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  {certifications.map((cert) => (
+                    <a
+                      key={cert.name}
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={cert.name}
+                      style={{
+                        display: 'block', borderRadius: '10px', overflow: 'hidden',
+                        transition: 'transform 0.2s, opacity 0.2s',
+                        flexShrink: 0,
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    >
+                      <Image
+                        src={cert.badge}
+                        alt={cert.name}
+                        width={110}
+                        height={110}
+                        style={{ display: 'block', width: 'clamp(80px, 10vw, 110px)', height: 'auto' }}
+                        sizes="110px"
+                      />
+                    </a>
+                  ))}
+                </div>
               </div>
 
               <div
