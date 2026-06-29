@@ -84,23 +84,8 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-      </head>
-      <body className={inter.className}>
-        <noscript>
-          <img height="1" width="1" style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=3970786243063388&ev=PageView&noscript=1"
-          />
-        </noscript>
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsAppButton />
-        <CookieBanner />
-        <EasterEggGame />
-        {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`
+        <script
+          dangerouslySetInnerHTML={{ __html: `
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -111,8 +96,18 @@ export default function RootLayout({ children }) {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '3970786243063388');
             fbq('track', 'PageView');
-          `}
-        </Script>
+          `}}
+        />
+        <noscript dangerouslySetInnerHTML={{ __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3970786243063388&ev=PageView&noscript=1"/>` }} />
+      </head>
+      <body className={inter.className}>
+        <CustomCursor />
+        <Navbar />
+        {children}
+        <Footer />
+        <WhatsAppButton />
+        <CookieBanner />
+        <EasterEggGame />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PHN5G7P9L7"
