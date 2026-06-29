@@ -77,8 +77,14 @@ export default function Footer() {
 
   return (
     <footer className="relative px-6" style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '72px', paddingBottom: '40px' }}>
+      <style>{`
+        @media (max-width: 640px) {
+          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .footer-social { flex-wrap: wrap; }
+        }
+      `}</style>
       <div className="ds-container">
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '56px' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '56px' }}>
           {/* Brand */}
           <div>
             <div style={{ marginBottom: '16px' }}>
@@ -98,7 +104,7 @@ export default function Footer() {
               Transformamos ideas en experiencias digitales. Desarrollo web, apps Android
               y marketing digital para empresas en México.
             </p>
-            <div className="flex gap-3">
+            <div className="footer-social flex gap-3" style={{ flexWrap: 'wrap' }}>
               <a
                 href="https://wa.me/523320318435"
                 target="_blank"
