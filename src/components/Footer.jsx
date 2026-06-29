@@ -2,6 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { MessageCircle, Mail, Facebook, Instagram, Linkedin } from 'lucide-react'
+
+function TikTokIcon({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+    </svg>
+  )
+}
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { easterEggTrigger } from './EasterEggGame'
@@ -86,7 +94,7 @@ export default function Footer() {
                 <Mail size={18} />
               </a>
               <a
-                href="https://www.facebook.com/digispherix"
+                href="https://www.facebook.com/profile.php?id=61591141545596"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Síguenos en Facebook"
@@ -96,7 +104,7 @@ export default function Footer() {
                 <Facebook size={18} />
               </a>
               <a
-                href="https://www.instagram.com/digispherix"
+                href="https://www.instagram.com/digispherix/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Síguenos en Instagram"
@@ -106,7 +114,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/company/digispherix"
+                href="https://www.linkedin.com/company/digispherix/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Síguenos en LinkedIn"
@@ -114,6 +122,16 @@ export default function Footer() {
                 style={{ background: 'rgba(10,102,194,0.15)', color: '#0A66C2', border: '1px solid rgba(10,102,194,0.3)' }}
               >
                 <Linkedin size={18} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@digispherix"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Síguenos en TikTok"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                style={{ background: 'rgba(255,255,255,0.08)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.2)' }}
+              >
+                <TikTokIcon size={18} />
               </a>
             </div>
           </div>
