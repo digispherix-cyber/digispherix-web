@@ -18,6 +18,12 @@ const categoryColor = {
   'Marketing Digital': '#d946ef',
   'SEO':               '#059669',
   'Negocios':          '#d97706',
+  'CSS':               '#e11d48',
+  'JavaScript':        '#ca8a04',
+  'Linux':             '#16a34a',
+  'React':             '#0ea5e9',
+  'Next.js':           '#6366f1',
+  'Python':            '#7c3aed',
 }
 
 function color(cat) { return categoryColor[cat] || '#6b7280' }
