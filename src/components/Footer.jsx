@@ -79,8 +79,10 @@ export default function Footer() {
     <footer className="relative px-6" style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '72px', paddingBottom: '40px' }}>
       <style>{`
         @media (max-width: 640px) {
-          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .footer-social { flex-wrap: wrap; }
+          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
+          .footer-social { flex-wrap: wrap; justify-content: center; }
+          .footer-grid p { max-width: 100% !important; }
+          .footer-grid picture { display: flex; justify-content: center; }
         }
       `}</style>
       <div className="ds-container">
