@@ -86,6 +86,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
+        <noscript>
+          <img height="1" width="1" style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=3970786243063388&ev=PageView&noscript=1"
+          />
+        </noscript>
         <CustomCursor />
         <Navbar />
         {children}
