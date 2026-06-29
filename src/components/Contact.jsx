@@ -114,6 +114,7 @@ export default function Contact() {
     }
 
     const msg = `Hola DigiSpherix! 👋\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Teléfono:* ${phone || 'No indicado'}\n*Servicio de interés:* ${service || 'No especificado'}\n\n*Mensaje:*\n${message}`
+    if (typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead')
     window.open(`https://wa.me/523320318435?text=${encodeURIComponent(msg)}`, '_blank')
     setSent(true)
   }
