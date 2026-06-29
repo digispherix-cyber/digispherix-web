@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { motion } from 'framer-motion'
-import { MessageCircle, Mail } from 'lucide-react'
+import { MessageCircle, Mail, Facebook, Instagram, Linkedin } from 'lucide-react'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { easterEggTrigger } from './EasterEggGame'
@@ -84,6 +84,36 @@ export default function Footer() {
                 style={{ background: 'rgba(124,58,237,0.15)', color: '#a855f7', border: '1px solid rgba(124,58,237,0.3)' }}
               >
                 <Mail size={18} />
+              </a>
+              <a
+                href="https://www.facebook.com/digispherix"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Síguenos en Facebook"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                style={{ background: 'rgba(24,119,242,0.15)', color: '#1877F2', border: '1px solid rgba(24,119,242,0.3)' }}
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://www.instagram.com/digispherix"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Síguenos en Instagram"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                style={{ background: 'rgba(225,48,108,0.15)', color: '#E1306C', border: '1px solid rgba(225,48,108,0.3)' }}
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/digispherix"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Síguenos en LinkedIn"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                style={{ background: 'rgba(10,102,194,0.15)', color: '#0A66C2', border: '1px solid rgba(10,102,194,0.3)' }}
+              >
+                <Linkedin size={18} />
               </a>
             </div>
           </div>
