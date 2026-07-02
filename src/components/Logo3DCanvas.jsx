@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, Suspense, useEffect } from 'react'
+import { useRef, Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -43,6 +43,16 @@ function LogoModel() {
 }
 
 export default function Logo3DCanvas() {
+  const [isTouch, setIsTouch] = useState(false)
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
+
+  const hint = isTouch
+    ? 'Desliza para rotar · Pellizca para zoom'
+    : 'Arrastra para rotar · Scroll para zoom'
+
   return (
     <div style={{ width: '100%', height: '420px', cursor: 'grab' }}>
       <Canvas
@@ -64,10 +74,11 @@ export default function Logo3DCanvas() {
           enablePan={false}
           minDistance={2}
           maxDistance={10}
+          zoomSpeed={0.4}
         />
       </Canvas>
       <p style={{ textAlign: 'center', fontSize: '0.78rem', color: '#9d8fc2', marginTop: '-8px' }}>
-        Arrastra para rotar · Scroll para zoom
+        {hint}
       </p>
     </div>
   )
