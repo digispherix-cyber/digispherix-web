@@ -79,8 +79,8 @@ export default function About() {
             </h2>
             <p className="text-purple-300 leading-relaxed mb-6 text-lg">
               Somos una agencia de diseño web y desarrollo de apps Android con sede en Guadalajara,
-              México. Con más de 5 años de experiencia, hemos ayudado a empresas de México,
-              Estados Unidos y Europa a construir su presencia digital desde cero.
+              México. Con más de 5 años de experiencia, hemos ayudado a empresas mexicanas
+              a construir su presencia digital desde cero.
             </p>
             <p className="text-purple-400 leading-relaxed mb-8">
               Combinamos diseño atractivo, código limpio y estrategias de marketing digital
