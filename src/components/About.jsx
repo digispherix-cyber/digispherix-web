@@ -70,7 +70,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
-              Quién soy
+              Quiénes somos
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
               Agencia de Diseño Web
