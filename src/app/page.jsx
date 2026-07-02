@@ -1,6 +1,5 @@
 import Hero from '../components/Hero'
 import About from '../components/About'
-import Logo3DSection from '../components/Logo3DSection'
 import Services from '../components/Services'
 import Process from '../components/Process'
 import Portfolio from '../components/Portfolio'
@@ -20,8 +19,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <About />
-        <Logo3DSection />
-        <Services />
+<Services />
         <Process />
         <Portfolio />
         <Pricing />
