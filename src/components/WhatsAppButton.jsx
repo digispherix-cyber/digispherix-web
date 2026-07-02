@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="rounded-2xl px-6 py-5 w-72 shadow-2xl"
+            className="rounded-2xl px-8 py-6 w-72 shadow-2xl"
             style={{
               background: 'rgba(17,13,48,0.97)',
               border: '1px solid rgba(37,211,102,0.3)',
