@@ -24,7 +24,7 @@ export default function WhatsAppButton() {
               padding: '24px 28px',
             }}
           >
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-3" style={{ marginBottom: '16px' }}>
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
                 style={{ background: 'rgba(37,211,102,0.2)' }}
@@ -36,15 +36,15 @@ export default function WhatsAppButton() {
                 <div className="text-xs" style={{ color: '#25D366' }}>● En línea</div>
               </div>
             </div>
-            <p className="text-sm text-purple-300 mb-4 leading-relaxed">
+            <p className="text-sm text-purple-300 leading-relaxed" style={{ marginBottom: '20px' }}>
               ¡Hola! 👋 ¿Tienes un proyecto en mente? Escríbenos y te respondemos al instante.
             </p>
             <a
               href="https://wa.me/523320318435?text=Hola%20DigiSpherix!%20Me%20interesa%20conocer%20sus%20servicios."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90"
-              style={{ background: '#25D366' }}
+              className="flex items-center justify-center gap-2 w-full rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90"
+              style={{ background: '#25D366', padding: '12px 0' }}
             >
               <MessageCircle size={16} />
               Chatear ahora
