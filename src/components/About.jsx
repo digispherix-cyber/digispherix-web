@@ -73,18 +73,19 @@ export default function About() {
               Quién soy
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-              Luis Hernández
+              Agencia de Diseño Web
               <br />
-              <span className="gradient-text">Desarrollador & Creativo</span>
+              <span className="gradient-text">en Guadalajara</span>
             </h2>
             <p className="text-purple-300 leading-relaxed mb-6 text-lg">
-              Soy el fundador de DigiSpherix, especializado en diseño de sitios web modernos
-              y desarrollo de aplicaciones Android. Con más de 5 años de experiencia,
-              he ayudado a empresas de México a establecer y fortalecer su presencia digital.
+              Somos una agencia de diseño web y desarrollo de apps Android con sede en Guadalajara,
+              México. Con más de 5 años de experiencia, hemos ayudado a empresas de México,
+              Estados Unidos y Europa a construir su presencia digital desde cero.
             </p>
             <p className="text-purple-400 leading-relaxed mb-8">
-              Mi enfoque combina diseño atractivo con código limpio y estrategias de marketing
-              efectivas para que cada proyecto no solo se vea bien, sino que también genere resultados.
+              Combinamos diseño atractivo, código limpio y estrategias de marketing digital
+              para que cada proyecto no solo se vea bien, sino que también genere resultados
+              reales para tu negocio.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '32px' }}>
