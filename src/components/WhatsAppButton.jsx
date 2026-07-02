@@ -15,11 +15,13 @@ export default function WhatsAppButton() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="rounded-2xl px-8 py-6 w-72 shadow-2xl"
+            className="rounded-2xl shadow-2xl"
             style={{
               background: 'rgba(17,13,48,0.97)',
               border: '1px solid rgba(37,211,102,0.3)',
               backdropFilter: 'blur(20px)',
+              width: '288px',
+              padding: '24px 28px',
             }}
           >
             <div className="flex items-center gap-3 mb-3">
