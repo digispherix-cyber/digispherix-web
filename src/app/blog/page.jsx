@@ -1,6 +1,7 @@
 import { getAllPosts } from '../../lib/blog'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowRight, Rss } from 'lucide-react'
+import Particles from '../../components/Particles'
 
 export const metadata = {
   title: 'Blog – DigiSpherix | Diseño Web, Apps Android y Marketing Digital en México',
@@ -38,6 +39,7 @@ export default function BlogPage() {
 
   return (
     <main style={{ background: '#0c0923', minHeight: '100vh' }}>
+      <Particles />
 
       {/* ── Hero ── */}
       <section style={{ paddingTop: '140px', paddingBottom: '60px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>

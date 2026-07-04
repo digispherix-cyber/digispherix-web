@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowLeft, Tag, ArrowRight } from 'lucide-react'
 import ReadingProgress from '../../../components/ReadingProgress'
+import Particles from '../../../components/Particles'
 
 const categoryColor = {
   'Diseño Web':        '#7c3aed',
@@ -78,6 +79,7 @@ export default async function ArticlePage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <ReadingProgress />
 
+      <Particles />
       <main style={{ background: '#0c0923', minHeight: '100vh', paddingTop: '100px' }}>
 
         {/* Back */}
