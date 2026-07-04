@@ -1,11 +1,14 @@
----
+﻿---
 title: "Cómo elegir una agencia de diseño web en Guadalajara sin cometer errores"
 date: "2026-07-02"
 category: "Diseño Web"
 excerpt: "Contratar a la agencia equivocada puede costarte tiempo, dinero y frustraciones. Aquí te explicamos qué revisar, qué preguntar y qué señales de alerta evitar al buscar una agencia de diseño web en Guadalajara."
 readTime: "8 min"
+image: "/blog/elegir-agencia-diseno-web-cover.jpg"
 tags: ["Diseño Web", "Guadalajara", "Agencia Digital", "Negocios", "México"]
 ---
+
+![Cómo elegir una agencia de diseño web en Guadalajara](/blog/elegir-agencia-diseno-web-cover.jpg)
 
 Guadalajara es la capital tecnológica de México. La ciudad concentra cientos de agencias de diseño web, desarrolladores freelance y estudios digitales — lo cual es buena noticia para ti como cliente, pero también significa que el mercado es desigual en calidad.
 
@@ -26,6 +29,8 @@ Una mala elección puede significar pagar dos veces: una por el sitio malo, y ot
 Si aún no tienes claro cuánto debería costarte un sitio web, primero lee nuestra guía sobre [cuánto cuesta hacer una página web en México](/blog/cuanto-cuesta-hacer-pagina-web-mexico).
 
 ---
+
+![Checklist para elegir una agencia de diseño web profesional](/blog/elegir-agencia-diseno-web-checklist.jpg)
 
 ## 1. Revisa su portafolio con ojo crítico
 
@@ -123,6 +128,8 @@ La forma en que te atienden antes de ser cliente dice mucho de cómo te atender�
 Una buena agencia quiere entender tu negocio antes de proponer soluciones. Si alguien te da precio sin hacerte ninguna pregunta, desconfía.
 
 ---
+
+![Señales de alerta al contratar una agencia web — red flags](/blog/elegir-agencia-diseno-web-red-flags.jpg)
 
 ## 8. Señales de alerta que debes evitar
 

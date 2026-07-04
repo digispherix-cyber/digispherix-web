@@ -1,11 +1,14 @@
----
+﻿---
 title: "AWS vs Azure vs GCP: ¿qué plataforma en la nube elegir en 2026?"
 date: "2026-07-02"
 category: "Negocios"
 excerpt: "Amazon Web Services, Microsoft Azure y Google Cloud Platform dominan el mercado de la nube. Cada una tiene ventajas distintas según el caso de uso. Aquí te explicamos sus diferencias para que elijas con información real."
 readTime: "12 min"
+image: "/blog/aws-azure-gcp-cover.jpg"
 tags: ["Cloud", "AWS", "Azure", "Google Cloud", "Infraestructura", "Tecnología"]
 ---
+
+![AWS vs Azure vs GCP: ¿qué plataforma en la nube elegir?](/blog/aws-azure-gcp-cover.jpg)
 
 La computación en la nube cambió para siempre la forma en que las empresas construyen y escalan su tecnología. Ya no necesitas comprar servidores físicos — puedes alquilar capacidad de cómputo, almacenamiento y servicios por hora o por segundo desde cualquier lugar del mundo.
 
@@ -24,6 +27,8 @@ Según datos de 2025:
 El resto se reparte entre Oracle Cloud, IBM Cloud, Alibaba Cloud y otros proveedores menores.
 
 ---
+
+![Cuotas de mercado cloud 2026: AWS vs Azure vs Google Cloud](/blog/aws-azure-gcp-cuotas.jpg)
 
 ## ¿Qué ofrece cada uno?
 
@@ -135,6 +140,8 @@ GCP lanzó en 2011 y durante años fue considerado "el tercero" — detrás de A
 - Empresas que quieren precios predecibles y flexibles
 
 ---
+
+![Tabla comparativa completa AWS vs Azure vs GCP](/blog/aws-azure-gcp-comparativa.jpg)
 
 ## Comparativa directa
 

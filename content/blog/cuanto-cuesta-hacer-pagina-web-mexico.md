@@ -1,11 +1,14 @@
----
+﻿---
 title: "¿Cuánto cuesta hacer una página web en México?"
 date: "2026-07-02"
 category: "Diseño Web"
 excerpt: "El precio de una página web en México varía enormemente según el tipo de sitio, quién la hace y qué funciones necesita. Aquí te explicamos todos los factores para que no pagues de más ni te lleves sorpresas."
 readTime: "9 min"
+image: "/blog/costo-pagina-web-mexico-cover.jpg"
 tags: ["Diseño Web", "Precios", "México", "WordPress", "Negocios"]
 ---
+
+![¿Cuánto cuesta hacer una página web en México?](/blog/costo-pagina-web-mexico-cover.jpg)
 
 Una de las preguntas más frecuentes que recibimos en DigiSpherix es: **¿cuánto cuesta hacer una página web?** La respuesta honesta es: depende. Pero eso no te ayuda mucho, así que en este artículo vamos a desglosar todos los factores que influyen en el precio para que puedas tomar una decisión informada.
 
@@ -20,6 +23,8 @@ Puedes encontrar páginas web desde 500 pesos hasta 500,000 pesos. La diferencia
 - El **mantenimiento** posterior
 
 Vamos por partes.
+
+![Tipos de páginas web y rangos de precio en México](/blog/costo-pagina-web-mexico-tipos.jpg)
 
 ## Tipos de página web y sus costos aproximados en México
 
@@ -90,6 +95,8 @@ Plataformas como Wix, Squarespace o Shopify permiten crear sitios sin saber prog
 **Costo mensual:** $200 – $800 MXN/mes en suscripción
 
 ---
+
+![Qué incluye y qué no incluye el precio de una página web](/blog/costo-pagina-web-mexico-incluye.jpg)
 
 ## ¿Qué incluye (y qué NO incluye) el precio?
 

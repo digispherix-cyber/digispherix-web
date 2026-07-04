@@ -1,11 +1,14 @@
----
+﻿---
 title: "¿Qué distribución de Linux es mejor? Ubuntu, Fedora, Arch y más"
 date: "2026-07-02"
 category: "Linux"
 excerpt: "No existe una distribución de Linux perfecta para todos. La mejor depende de tu experiencia, tus objetivos y cómo usas tu computadora. En esta guía comparamos las más populares para que elijas con conocimiento."
 readTime: "11 min"
+image: "/blog/distribuciones-linux-cover.jpg"
 tags: ["Linux", "Ubuntu", "Fedora", "Arch Linux", "Debian", "Open Source"]
 ---
+
+![¿Qué distribución de Linux es mejor? Ubuntu, Fedora, Arch y más](/blog/distribuciones-linux-cover.jpg)
 
 Cuando alguien decide dar el salto a Linux, inevitablemente llega la pregunta: **¿cuál distribución uso?** La respuesta no es única — Linux tiene cientos de distribuciones (o "distros"), cada una con filosofía, público y características distintas.
 
@@ -18,6 +21,8 @@ Linux es el **kernel** (núcleo) del sistema operativo. Una distribución empaqu
 Todas usan el mismo kernel de Linux. La diferencia está en cómo lo envuelven, qué tan fácil lo hacen y a quién va dirigido.
 
 ---
+
+![Comparativa visual de las distribuciones de Linux más populares](/blog/distribuciones-linux-comparativa.jpg)
 
 ## Las distribuciones más importantes
 
@@ -189,6 +194,8 @@ openSUSE tiene dos versiones: **Leap** (estable, similar a Debian) y **Tumblewee
 - Menos recursos de tutoriales comparado con Ubuntu
 
 ---
+
+![Comandos para identificar tu distribución de Linux en terminal](/blog/distribuciones-linux-comandos.jpg)
 
 ## Comparativa rápida
 

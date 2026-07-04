@@ -1,17 +1,22 @@
----
+﻿---
 title: "Google Ads vs Facebook Ads: ¿cuál convierte mejor para negocios en México?"
 date: "2026-07-02"
 category: "Marketing Digital"
 excerpt: "Google Ads y Facebook Ads son las dos plataformas de publicidad digital más usadas en México. Funcionan diferente, sirven para distintos objetivos y tienen ventajas según el tipo de negocio. Aquí te explicamos cuándo usar cada una."
 readTime: "10 min"
+image: "/blog/google-ads-vs-facebook-ads-cover.jpg"
 tags: ["Google Ads", "Facebook Ads", "Marketing Digital", "Publicidad", "México"]
 ---
+
+![Google Ads vs Facebook Ads: ¿cuál convierte mejor para negocios en México?](/blog/google-ads-vs-facebook-ads-cover.jpg)
 
 Cuando un negocio decide invertir en publicidad digital, generalmente surge la misma duda: **¿pongo mi dinero en Google Ads o en Facebook Ads?** La respuesta honesta es que depende de tu negocio, tu producto y el objetivo de la campaña.
 
 En esta guía te explicamos cómo funciona cada plataforma, para qué sirve mejor y cómo decidir cuál usar — o si conviene combinar las dos.
 
 ---
+
+![Google Ads captura búsquedas activas — Facebook Ads interrumpe con anuncios visuales](/blog/google-ads-vs-facebook-ads-diferencia.jpg)
 
 ## La diferencia fundamental: intención vs. interrupción
 
@@ -175,6 +180,8 @@ Este funnel es muy efectivo: Google te trae tráfico calificado, Facebook "persi
 **Usar los mismos anuncios durante meses:** los usuarios se cansan de ver lo mismo. Rota creatividades regularmente.
 
 ---
+
+![Presupuestos mínimos recomendados para Google Ads y Facebook Ads en México](/blog/google-ads-vs-facebook-ads-presupuesto.jpg)
 
 ## ¿Cuánto debería invertir?
 

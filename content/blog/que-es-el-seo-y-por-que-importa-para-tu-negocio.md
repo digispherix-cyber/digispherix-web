@@ -1,11 +1,14 @@
----
+﻿---
 title: "Qué es el SEO y por qué importa para tu negocio"
 date: "2026-07-02"
 category: "SEO"
 excerpt: "El SEO determina si tu negocio aparece cuando alguien te busca en Google o se pierde entre miles de resultados. Aquí explicamos qué es, cómo funciona y por qué ignorarlo puede costarte clientes todos los días."
 readTime: "9 min"
+image: "/blog/seo-que-es-cover.jpg"
 tags: ["SEO", "Marketing Digital", "Google", "Posicionamiento", "Negocios"]
 ---
+
+![Qué es el SEO y por qué importa para tu negocio](/blog/seo-que-es-cover.jpg)
 
 Cada día, millones de personas en México buscan en Google cosas como "agencia de diseño web Guadalajara", "cuánto cuesta una app Android" o "mejor restaurante cerca de mí". La pregunta es: **¿aparece tu negocio en esos resultados o aparece el de tu competencia?**
 
@@ -38,6 +41,8 @@ Cuando alguien hace una búsqueda, Google consulta ese índice y usa su algoritm
 **Intención de búsqueda:** Google intenta entender qué quiere realmente el usuario. No es lo mismo buscar "qué es el SEO" (quiere aprender) que "contratar SEO Guadalajara" (quiere comprar).
 
 ---
+
+![Los 3 pilares del SEO: On-Page, Off-Page y Técnico](/blog/seo-tres-pilares.jpg)
 
 ## Los tres pilares del SEO
 
@@ -116,6 +121,8 @@ Factores que afectan el tiempo:
 - Qué tan bien esté construido técnicamente tu sitio
 
 ---
+
+![Comparativa SEO vs Google Ads: diferencias clave](/blog/seo-vs-google-ads.jpg)
 
 ## SEO vs Google Ads: ¿son lo mismo?
 

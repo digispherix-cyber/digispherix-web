@@ -1,11 +1,14 @@
----
+﻿---
 title: "5 señales de que tu sitio web está perdiendo clientes (y cómo arreglarlo)"
 date: "2026-07-02"
 category: "Diseño Web"
 excerpt: "Tu sitio web puede estar ahuyentando clientes sin que te des cuenta. Estas son las 5 señales más claras de que algo está fallando — y qué hacer para corregirlo antes de seguir perdiendo dinero."
 readTime: "7 min"
+image: "/blog/senales-sitio-web-cover.jpg"
 tags: ["Diseño Web", "Conversión", "SEO", "Negocios", "UX"]
 ---
+
+![5 señales de que tu sitio web está perdiendo clientes](/blog/senales-sitio-web-cover.jpg)
 
 Tienes un sitio web, pagas el hosting, a veces lo mencionas en tus redes sociales — y aun así no recibes contactos ni ventas a través de él. ¿Qué está pasando?
 
@@ -14,6 +17,8 @@ La realidad es que un sitio web mal optimizado no solo no ayuda — activamente 
 Aquí te mostramos las 5 señales más claras de que tu sitio web está perdiendo clientes, y cómo arreglarlo.
 
 ---
+
+![Captura de PageSpeed Insights mostrando puntaje bajo en sitio lento](/blog/senales-sitio-web-pagespeed.jpg)
 
 ## Señal 1: Tu sitio tarda más de 3 segundos en cargar
 
@@ -114,6 +119,8 @@ En internet, la primera impresión lo es todo. Un visitante decide en segundos s
 - Actualiza el diseño si tiene más de 5 años
 
 ---
+
+![Checklist de diagnóstico rápido para tu sitio web](/blog/senales-sitio-web-checklist.jpg)
 
 ## Diagnóstico rápido: auditoría de 5 minutos
 
