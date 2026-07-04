@@ -33,6 +33,7 @@ export const metadata = {
   },
   other: {
     'theme-color': '#0c0923',
+    'google-adsense-account': 'ca-pub-7425317474892420',
   },
 }
 
@@ -108,6 +109,13 @@ export default function RootLayout({ children }) {
         <WhatsAppButton />
         <CookieBanner />
         <EasterEggGame />
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7425317474892420"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PHN5G7P9L7"
