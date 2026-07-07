@@ -29,6 +29,7 @@ const plans = {
     },
     {
       name: 'Enterprise Engine',
+      desde: true,
       price: '$18,000',
       period: 'pago único',
       renewal: '+ $3,500/año renovación',
@@ -39,6 +40,7 @@ const plans = {
     },
     {
       name: 'E-Commerce',
+      desde: true,
       price: '$30,000',
       period: 'pago único',
       renewal: '+ $3,500/año renovación',
@@ -51,6 +53,7 @@ const plans = {
   Android: [
     {
       name: 'Basic Builder',
+      desde: true,
       price: '$25,000',
       period: 'pago único',
       desc: 'App funcional con características básicas para startups.',
@@ -60,6 +63,7 @@ const plans = {
     },
     {
       name: 'Advanced Architect',
+      desde: true,
       price: '$45,000',
       period: 'pago único',
       desc: 'App compleja con base de datos y funciones avanzadas.',
@@ -159,6 +163,9 @@ function PlanCard({ plan, index }) {
       <p style={{ fontSize: '0.85rem', color: '#c4b5fd', marginBottom: '18px', lineHeight: 1.5 }}>{plan.desc}</p>
 
       <div style={{ marginBottom: '20px' }}>
+        {plan.desde && (
+          <div style={{ fontSize: '0.72rem', color: '#9d8fc2', fontWeight: 600, marginBottom: '2px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Desde</div>
+        )}
         <span
           className="gradient-text"
           style={{ fontSize: plan.price.startsWith('$') ? '1.75rem' : '1.2rem', fontWeight: 900 }}
