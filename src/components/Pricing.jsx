@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Check, MessageCircle } from 'lucide-react'
 
-const categories = ['Web', 'Android', 'Marketing', 'Soporte']
+const categories = ['Web', 'Android', 'Marketing', 'Odoo', 'Soporte']
 
 const plans = {
   Web: [
@@ -46,6 +46,16 @@ const plans = {
       renewal: '+ $3,500/año renovación',
       desc: 'Tienda en línea completa para vender productos.',
       features: ['Tienda en línea', 'Pasarela de pago', 'Gestión de inventario', 'Carrito de compras', 'Panel de administración'],
+      cta: 'Cotizar',
+      highlight: false,
+    },
+    {
+      name: 'Web App',
+      desde: true,
+      price: '$35,000',
+      period: 'pago único',
+      desc: 'Aplicación web a la medida para automatizar procesos de tu negocio.',
+      features: ['Login y gestión de usuarios', 'Base de datos en la nube', 'Panel de administración', 'Diseño responsivo', 'Integración con APIs', 'Soporte 60 días'],
       cta: 'Cotizar',
       highlight: false,
     },
@@ -107,6 +117,54 @@ const plans = {
       desc: 'Estrategia integral de marketing digital y social media.',
       features: ['Todas las plataformas', 'Contenido ilimitado', 'SEO + Ads + Email', 'Estrategia de marca', 'Reportes semanales', 'Soporte prioritario'],
       cta: 'Cotizar',
+      highlight: false,
+    },
+    {
+      name: 'SEO Starter',
+      price: '$6,000',
+      period: 'pago único',
+      desc: 'Optimización inicial para mejorar tu posición en buscadores.',
+      features: ['Investigación de palabras clave', 'Optimización de metadatos', 'SEO técnico básico', 'Reporte de posición inicial'],
+      cta: 'Cotizar',
+      highlight: false,
+    },
+    {
+      name: 'SEO Pro',
+      price: '$10,000',
+      period: 'por mes',
+      desc: 'Optimización avanzada y estrategia de contenido continua.',
+      features: ['Todo lo de SEO Starter', 'Optimización de contenido existente', 'Construcción de enlaces internos', 'Estrategia de contenido mensual', 'Reportes de posicionamiento'],
+      cta: 'Cotizar',
+      highlight: false,
+    },
+  ],
+  Odoo: [
+    {
+      name: 'Odoo Esencial',
+      price: '$35,000',
+      period: 'pago único',
+      desc: 'La base para organizar tu negocio desde el primer día.',
+      features: ['CRM (Gestión de Clientes)', 'Ventas (Cotizaciones y Pedidos)', 'Facturación', 'Implementación incluida', 'Capacitación inicial'],
+      cta: 'Cotizar',
+      highlight: false,
+    },
+    {
+      name: 'Odoo Comercial',
+      desde: true,
+      price: '$75,000',
+      period: 'pago único',
+      desc: 'Control total sobre tus ventas, inventario y compras.',
+      features: ['Todo lo de Odoo Esencial', 'Gestión de Inventario', 'Compras', 'Visión 360° de tu operación', 'Soporte incluido'],
+      cta: 'Cotizar',
+      highlight: true,
+    },
+    {
+      name: 'Solución Integral Odoo',
+      price: 'Personalizado',
+      period: 'consultar',
+      desc: 'Sistema de gestión empresarial totalmente a la medida.',
+      features: ['Contabilidad', 'Proyectos', 'Fabricación', 'Recursos Humanos', 'Sitio Web / E-commerce', 'Módulos personalizables'],
+      cta: 'Contactar ventas',
       highlight: false,
     },
   ],
