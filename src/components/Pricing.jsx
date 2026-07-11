@@ -259,10 +259,29 @@ function PlanCard({ plan, index }) {
   )
 }
 
+const gridColsByCount = {
+  1: '',
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+  5: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5',
+}
+
+// Cap width and center the grid for the low-count tabs (Tailwind max-w utilities
+// aren't generated in this setup, so we use inline styles here).
+const gridMaxWidthByCount = {
+  1: '360px',
+  2: '760px',
+}
+
 export default function Pricing() {
   const [activeTab, setActiveTab] = useState('Web')
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+
+  const activePlans = plans[activeTab]
+  const gridCols = gridColsByCount[activePlans.length] || 'sm:grid-cols-2 lg:grid-cols-4'
+  const gridMaxWidth = gridMaxWidthByCount[activePlans.length]
 
   return (
     <section id="precios" className="ds-section relative">
@@ -333,10 +352,10 @@ export default function Pricing() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          style={{ paddingTop: '16px' }}
+          className={`grid grid-cols-1 ${gridCols} gap-6`}
+          style={{ paddingTop: '16px', maxWidth: gridMaxWidth, marginInline: gridMaxWidth ? 'auto' : undefined }}
         >
-          {plans[activeTab].map((plan, i) => (
+          {activePlans.map((plan, i) => (
             <PlanCard key={plan.name} plan={plan} index={i} />
           ))}
         </motion.div>
