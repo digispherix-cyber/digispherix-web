@@ -57,6 +57,7 @@ export const tools = [
     icon: 'KeyRound',
     accent: '#059669',
     ready: true,
+    privacyNote: 'se genera en tu dispositivo y nunca se guarda',
     howItWorks: [
       'Elige la longitud de la contraseña con el deslizador.',
       'Selecciona qué incluir: mayúsculas, minúsculas, números y símbolos.',
@@ -78,7 +79,20 @@ export const tools = [
       'Genera códigos QR para tu web, WhatsApp, redes sociales o menú digital. Descárgalos en alta calidad.',
     icon: 'QrCode',
     accent: '#2563eb',
-    ready: false,
+    ready: true,
+    privacyNote: 'se genera en tu dispositivo, sin subir nada',
+    howItWorks: [
+      'Escribe el texto o enlace que quieres convertir en QR (una URL, tu WhatsApp, redes sociales, etc.).',
+      'Personaliza el tamaño y los colores si quieres.',
+      'Descarga tu código QR en PNG, listo para imprimir o compartir.',
+    ],
+    faqs: [
+      { q: '¿Para qué sirve un código QR?', a: 'Permite que cualquiera abra tu enlace, tu WhatsApp, tu menú o tus redes con solo escanearlo con la cámara del celular. Ideal para negocios, menús, tarjetas y publicidad.' },
+      { q: '¿Los códigos QR que genero caducan?', a: 'No. Son códigos QR estáticos: apuntan directamente a tu enlace o texto y funcionan para siempre, sin depender de ningún servicio.' },
+      { q: '¿Puedo poner mi enlace de WhatsApp?', a: 'Sí. Usa un enlace tipo https://wa.me/52TUNUMERO y al escanear el QR se abrirá un chat contigo directamente.' },
+      { q: '¿Se sube mi información a internet?', a: 'No. El código QR se genera dentro de tu navegador; tu texto o enlace nunca sale de tu dispositivo.' },
+      { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis, en alta calidad y sin marcas de agua.' },
+    ],
   },
   {
     slug: 'imagen-a-pdf',
@@ -88,7 +102,19 @@ export const tools = [
       'Convierte una o varias imágenes en un solo archivo PDF, listo para compartir o imprimir.',
     icon: 'FileImage',
     accent: '#d97706',
-    ready: false,
+    ready: true,
+    howItWorks: [
+      'Sube o arrastra una o varias imágenes (JPG o PNG).',
+      'Ordénalas como quieras que aparezcan; cada imagen será una página.',
+      'Descarga tu PDF con todas las imágenes, listo para compartir o imprimir.',
+    ],
+    faqs: [
+      { q: '¿Puedo unir varias imágenes en un solo PDF?', a: 'Sí. Sube todas las imágenes que necesites y se combinan en un único archivo PDF, una imagen por página.' },
+      { q: '¿Qué formatos de imagen acepta?', a: 'Puedes usar imágenes JPG y PNG.' },
+      { q: '¿Se suben mis imágenes a internet?', a: 'No. Todo se procesa dentro de tu navegador; tus archivos no salen de tu dispositivo.' },
+      { q: '¿Sirve para digitalizar documentos?', a: 'Sí. Toma fotos de tus hojas y conviértelas en un PDF ordenado, ideal para enviar por correo o WhatsApp.' },
+      { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis y sin marcas de agua.' },
+    ],
   },
   {
     slug: 'comprimir-pdf',
@@ -99,6 +125,18 @@ export const tools = [
     icon: 'FileArchive',
     accent: '#e11d48',
     ready: false,
+    howItWorks: [
+      'Sube o arrastra tu archivo PDF.',
+      'Elige el nivel de compresión según el equilibrio que quieras entre peso y calidad.',
+      'Descarga tu PDF más ligero, listo para enviar por correo o WhatsApp.',
+    ],
+    faqs: [
+      { q: '¿Cómo reduce el peso del PDF?', a: 'Vuelve a procesar las páginas del PDF como imágenes optimizadas y las recomprime, bajando el tamaño del archivo manteniendo una buena calidad visual.' },
+      { q: '¿Pierde calidad al comprimir?', a: 'A mayor compresión, un poco menos de nitidez. Puedes elegir el nivel que mejor equilibre peso y calidad para tu caso.' },
+      { q: '¿Funciona con PDFs de texto?', a: 'Funciona mejor con PDFs con imágenes o escaneados. En documentos de solo texto la reducción puede ser menor, ya que el texto se convierte a imagen optimizada.' },
+      { q: '¿Se sube mi PDF a algún servidor?', a: 'No. La compresión ocurre 100% en tu navegador; tu archivo no sale de tu dispositivo.' },
+      { q: '¿Hay límite de tamaño?', a: 'Al procesarse en tu dispositivo, los PDF muy grandes pueden tardar más o depender de la memoria de tu equipo. Funciona mejor con archivos de tamaño moderado.' },
+    ],
   },
 ]
 

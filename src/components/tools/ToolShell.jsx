@@ -8,6 +8,7 @@ import ToolContent from './ToolContent'
 // (children), el CTA hacia WhatsApp y la sección de contenido (cómo funciona + FAQ).
 export default function ToolShell({ tool, children }) {
   const { name, description: tagline, accent = '#7c3aed', howItWorks, faqs } = tool
+  const privacyNote = tool.privacyNote || 'tus archivos no salen de tu dispositivo'
   const waMsg = encodeURIComponent(
     `Hola DigiSpherix! Estuve usando sus herramientas gratis y me gustaría cotizar un proyecto.`,
   )
@@ -44,7 +45,7 @@ export default function ToolShell({ tool, children }) {
                 border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.8rem', fontWeight: 600,
               }}
             >
-              <ShieldCheck size={15} /> 100% privado — tus archivos no salen de tu dispositivo
+              <ShieldCheck size={15} /> 100% privado — {privacyNote}
             </div>
           </div>
         </div>

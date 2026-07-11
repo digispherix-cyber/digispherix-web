@@ -209,6 +209,10 @@ body {
   background: linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent);
 }
 
+/* ── Tool spinner ── */
+@keyframes tool-spin { to { transform: rotate(360deg); } }
+.spin { animation: tool-spin 0.8s linear infinite; }
+
 /* ── Tool FAQ accordion ── */
 .tool-faq summary::-webkit-details-marker { display: none; }
 .tool-faq summary::marker { content: ''; }
