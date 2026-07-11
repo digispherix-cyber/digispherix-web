@@ -125,7 +125,7 @@ export const tools = [
       'Baja el tamaño de tus archivos PDF para enviarlos más fácil por correo o WhatsApp.',
     icon: 'FileArchive',
     accent: '#e11d48',
-    ready: false,
+    ready: true,
     howItWorks: [
       'Sube o arrastra tu archivo PDF.',
       'Elige el nivel de compresión según el equilibrio que quieras entre peso y calidad.',

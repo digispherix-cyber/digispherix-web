@@ -44,7 +44,12 @@ export default function PdfCompressor() {
     setProgress('Cargando PDF…')
     try {
       const pdfjsLib = await import('pdfjs-dist')
-      pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString()
+      if (!pdfjsLib.GlobalWorkerOptions.workerPort) {
+        pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(
+          new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url),
+          { type: 'module' },
+        )
+      }
       const { PDFDocument } = await import('pdf-lib')
 
       const cfg = LEVELS.find((l) => l.key === level)
@@ -62,7 +67,9 @@ export default function PdfCompressor() {
         const ctx = canvas.getContext('2d')
         ctx.fillStyle = '#ffffff'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
-        await page.render({ canvasContext: ctx, viewport, canvas }).promise
+        // intent 'print' evita requestAnimationFrame (que se pausa en pestañas
+        // en segundo plano), así el render siempre completa.
+        await page.render({ canvasContext: ctx, viewport, canvas, intent: 'print' }).promise
         const blob = await new Promise((res) => canvas.toBlob(res, 'image/jpeg', cfg.quality))
         const jpegBytes = await blob.arrayBuffer()
         const img = await outPdf.embedJpg(jpegBytes)
