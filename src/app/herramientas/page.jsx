@@ -49,7 +49,7 @@ export default function HerramientasPage() {
       <section style={{ padding: '60px 0 100px' }}>
         <div className="ds-container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
-            {tools.map((tool) => {
+            {tools.filter((tool) => !tool.hidden).map((tool) => {
               const Icon = icons[tool.icon] || Wrench
               const inner = (
                 <article

@@ -79,6 +79,7 @@ export const tools = [
     icon: 'Wand2',
     accent: '#7c3aed',
     ready: false,
+    hidden: true, // en pausa: onnxruntime requiere SharedArrayBuffer (COOP/COEP), choca con AdSense
     privacyNote: 'la IA corre en tu navegador; tus fotos no se suben',
     howItWorks: [
       'Sube o arrastra la imagen a la que quieres quitarle el fondo.',
