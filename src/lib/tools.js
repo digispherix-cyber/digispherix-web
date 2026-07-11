@@ -89,6 +89,7 @@ export const tools = [
     faqs: [
       { q: '¿Para qué sirve un código QR?', a: 'Permite que cualquiera abra tu enlace, tu WhatsApp, tu menú o tus redes con solo escanearlo con la cámara del celular. Ideal para negocios, menús, tarjetas y publicidad.' },
       { q: '¿Los códigos QR que genero caducan?', a: 'No. Son códigos QR estáticos: apuntan directamente a tu enlace o texto y funcionan para siempre, sin depender de ningún servicio.' },
+      { q: '¿Puedo ponerle mi logo al código QR?', a: 'Sí. Puedes agregar un logo al centro, una leyenda como "Escanéame" y un borde. El QR usa alta corrección de errores, así que sigue funcionando aunque tenga el logo encima.' },
       { q: '¿Puedo poner mi enlace de WhatsApp?', a: 'Sí. Usa un enlace tipo https://wa.me/52TUNUMERO y al escanear el QR se abrirá un chat contigo directamente.' },
       { q: '¿Se sube mi información a internet?', a: 'No. El código QR se genera dentro de tu navegador; tu texto o enlace nunca sale de tu dispositivo.' },
       { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis, en alta calidad y sin marcas de agua.' },
