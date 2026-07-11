@@ -1,16 +1,51 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import { Reorder, useDragControls } from 'framer-motion'
 import { Upload, Download, X, GripVertical, Loader2 } from 'lucide-react'
 
 let idCounter = 0
 
+function SortableRow({ item, index, onRemove }) {
+  const controls = useDragControls()
+  return (
+    <Reorder.Item
+      value={item}
+      as="div"
+      dragListener={false}
+      dragControls={controls}
+      whileDrag={{ scale: 1.03, boxShadow: '0 16px 36px rgba(0,0,0,0.45)', zIndex: 20, cursor: 'grabbing' }}
+      style={{
+        display: 'flex', alignItems: 'center', gap: '10px',
+        background: 'rgba(12,9,35,0.85)', border: '1px solid rgba(124,58,237,0.25)',
+        borderRadius: '12px', padding: '8px 10px',
+      }}
+    >
+      <button
+        onPointerDown={(e) => controls.start(e)}
+        aria-label="Arrastrar para reordenar"
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+          width: '34px', height: '40px', background: 'none', border: 'none',
+          color: '#9d8fc2', cursor: 'grab', touchAction: 'none',
+        }}
+      >
+        <GripVertical size={18} />
+      </button>
+      <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{index + 1}</span>
+      <img src={item.url} alt="" draggable={false} style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }} />
+      <span style={{ color: '#c4b5fd', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.file.name}</span>
+      <button onClick={() => onRemove(item.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', color: '#c4b5fd', cursor: 'pointer' }}>
+        <X size={16} />
+      </button>
+    </Reorder.Item>
+  )
+}
+
 export default function ImageToPdf() {
   const [items, setItems] = useState([]) // { id, file, url }
   const [busy, setBusy] = useState(false)
-  const [dragId, setDragId] = useState(null)
   const inputRef = useRef(null)
-  const listRef = useRef(null)
 
   const addFiles = useCallback((fileList) => {
     const files = Array.from(fileList || []).filter((f) => f.type === 'image/jpeg' || f.type === 'image/png')
@@ -27,37 +62,6 @@ export default function ImageToPdf() {
       if (it) URL.revokeObjectURL(it.url)
       return prev.filter((p) => p.id !== id)
     })
-  }
-
-  // ── Reordenar arrastrando (mouse + touch mediante Pointer Events) ──
-  const onDragStart = (e, id) => {
-    try { e.currentTarget.setPointerCapture(e.pointerId) } catch { /* noop */ }
-    setDragId(id)
-  }
-
-  const onDragMove = (e) => {
-    if (dragId == null || !listRef.current) return
-    e.preventDefault() // evita el scroll de la página mientras se arrastra
-    const rows = Array.from(listRef.current.children)
-    const y = e.clientY
-    let target = rows.length - 1
-    for (let k = 0; k < rows.length; k++) {
-      const r = rows[k].getBoundingClientRect()
-      if (y < r.top + r.height / 2) { target = k; break }
-    }
-    setItems((prev) => {
-      const from = prev.findIndex((p) => p.id === dragId)
-      if (from === -1 || from === target) return prev
-      const next = [...prev]
-      const [moved] = next.splice(from, 1)
-      next.splice(target, 0, moved)
-      return next
-    })
-  }
-
-  const onDragEnd = (e) => {
-    try { e.currentTarget.releasePointerCapture(e.pointerId) } catch { /* noop */ }
-    setDragId(null)
   }
 
   const generate = async () => {
@@ -115,45 +119,11 @@ export default function ImageToPdf() {
           <p style={{ color: '#9d8fc2', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>
             Arrastra las imágenes para cambiar el orden
           </p>
-          <div ref={listRef} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {items.map((it, i) => {
-              const dragging = it.id === dragId
-              return (
-                <div
-                  key={it.id}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '10px',
-                    background: dragging ? 'rgba(124,58,237,0.25)' : 'rgba(12,9,35,0.6)',
-                    border: `1px solid ${dragging ? 'rgba(217,70,239,0.5)' : 'rgba(124,58,237,0.2)'}`,
-                    borderRadius: '12px', padding: '8px 10px',
-                    boxShadow: dragging ? '0 12px 30px rgba(0,0,0,0.4)' : 'none',
-                    transition: dragging ? 'none' : 'background 0.15s, border-color 0.15s',
-                  }}
-                >
-                  <button
-                    onPointerDown={(e) => onDragStart(e, it.id)}
-                    onPointerMove={onDragMove}
-                    onPointerUp={onDragEnd}
-                    onPointerCancel={onDragEnd}
-                    aria-label="Arrastrar para reordenar"
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                      width: '34px', height: '40px', background: 'none', border: 'none',
-                      color: '#9d8fc2', cursor: dragging ? 'grabbing' : 'grab', touchAction: 'none',
-                    }}
-                  >
-                    <GripVertical size={18} />
-                  </button>
-                  <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{i + 1}</span>
-                  <img src={it.url} alt="" draggable={false} style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }} />
-                  <span style={{ color: '#c4b5fd', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{it.file.name}</span>
-                  <button onClick={() => remove(it.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', color: '#c4b5fd', cursor: 'pointer' }}>
-                    <X size={16} />
-                  </button>
-                </div>
-              )
-            })}
-          </div>
+          <Reorder.Group axis="y" values={items} onReorder={setItems} as="div" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {items.map((it, i) => (
+              <SortableRow key={it.id} item={it} index={i} onRemove={remove} />
+            ))}
+          </Reorder.Group>
         </>
       )}
 
