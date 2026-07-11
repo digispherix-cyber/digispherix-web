@@ -206,6 +206,74 @@ export const tools = [
       { q: '¿Hay límite de tamaño?', a: 'Al procesarse en tu dispositivo, los PDF muy grandes pueden tardar más o depender de la memoria de tu equipo. Funciona mejor con archivos de tamaño moderado.' },
     ],
   },
+  {
+    slug: 'paleta-colores',
+    name: 'Paleta de Colores',
+    tagline: 'Elige colores y genera paletas',
+    description:
+      'Elige un color y obtén sus códigos HEX, RGB y HSL, además de una paleta de tonos y colores armónicos lista para copiar.',
+    icon: 'Palette',
+    accent: '#d946ef',
+    ready: true,
+    privacyNote: 'todo se genera en tu navegador',
+    howItWorks: [
+      'Elige un color con el selector o pega un código HEX.',
+      'Copia sus valores en HEX, RGB o HSL con un clic.',
+      'Usa la paleta de tonos y armónicos que se genera automáticamente.',
+    ],
+    faqs: [
+      { q: '¿Qué son HEX, RGB y HSL?', a: 'Son tres formas de escribir un color. HEX (#RRGGBB) se usa en la web, RGB en pantallas y HSL es útil para ajustar tono, saturación y brillo.' },
+      { q: '¿Qué es una paleta armónica?', a: 'Es un conjunto de colores que combinan bien entre sí (análogos, complementarios y variaciones de tono) para diseñar con buen gusto.' },
+      { q: '¿Para qué me sirve esta herramienta?', a: 'Para elegir los colores de tu marca, tu web o tus publicaciones, y obtener los códigos exactos para usarlos.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registros.' },
+    ],
+  },
+  {
+    slug: 'base64',
+    name: 'Codificar / Decodificar Base64',
+    tagline: 'Texto a Base64 y viceversa',
+    description:
+      'Convierte texto a Base64 y de Base64 a texto al instante. Útil para desarrolladores y para transportar datos de forma segura.',
+    icon: 'Binary',
+    accent: '#0891b2',
+    ready: true,
+    privacyNote: 'todo se procesa en tu navegador',
+    howItWorks: [
+      'Pega tu texto o tu código Base64.',
+      'Elige si quieres codificar o decodificar.',
+      'Copia el resultado con un clic.',
+    ],
+    faqs: [
+      { q: '¿Qué es Base64?', a: 'Es una forma de representar datos (texto, imágenes, etc.) usando solo letras, números y algunos símbolos, muy usada para transportar información en la web y el correo.' },
+      { q: '¿Base64 es cifrado o seguridad?', a: 'No. Base64 solo codifica los datos para transportarlos; cualquiera puede decodificarlo. No sirve para proteger información sensible.' },
+      { q: '¿Funciona con acentos y emojis?', a: 'Sí. Maneja correctamente caracteres en español (acentos, ñ) y emojis gracias a la codificación UTF-8.' },
+      { q: '¿Se suben mis datos a internet?', a: 'No. Todo se procesa en tu navegador; tu texto no sale de tu dispositivo.' },
+      { q: '¿Es gratis?', a: 'Sí, gratis y sin límite de uso.' },
+    ],
+  },
+  {
+    slug: 'contador-palabras',
+    name: 'Contador de Palabras',
+    tagline: 'Palabras, caracteres y más',
+    description:
+      'Cuenta palabras, caracteres, párrafos y el tiempo de lectura de cualquier texto, en tiempo real mientras escribes.',
+    icon: 'Type',
+    accent: '#7c3aed',
+    ready: true,
+    privacyNote: 'todo se cuenta en tu navegador',
+    howItWorks: [
+      'Escribe o pega tu texto en el cuadro.',
+      'Verás al instante palabras, caracteres, párrafos y tiempo de lectura.',
+      'Úsalo para respetar límites de redes sociales, ensayos o descripciones.',
+    ],
+    faqs: [
+      { q: '¿Cuenta caracteres con y sin espacios?', a: 'Sí, te muestra ambos: el total de caracteres y también cuántos hay sin contar los espacios.' },
+      { q: '¿Cómo calcula el tiempo de lectura?', a: 'Estima el tiempo con base en un promedio de lectura de unas 200 palabras por minuto.' },
+      { q: '¿Sirve para límites de Twitter/X o Instagram?', a: 'Sí. Te ayuda a no pasarte de los límites de caracteres de redes sociales, títulos SEO o descripciones.' },
+      { q: '¿Se guarda o se sube mi texto?', a: 'No. Todo se cuenta en tu navegador; tu texto nunca se sube ni se guarda.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis.' },
+    ],
+  },
 ]
 
 export function getTool(slug) {
