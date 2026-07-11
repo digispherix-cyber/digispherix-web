@@ -49,6 +49,51 @@ export const tools = [
     ],
   },
   {
+    slug: 'comprimir-imagen',
+    name: 'Comprimir Imagen',
+    tagline: 'Reduce el peso de tus fotos',
+    description:
+      'Baja el peso de tus imágenes JPG, PNG o WebP sin que se vean mal. Ideal para que tu web cargue más rápido o enviarlas por correo y WhatsApp.',
+    icon: 'ImageDown',
+    accent: '#0891b2',
+    ready: true,
+    howItWorks: [
+      'Sube o arrastra tu imagen (JPG, PNG o WebP).',
+      'Ajusta el nivel de compresión hasta lograr el equilibrio entre peso y calidad que quieras.',
+      'Descarga tu imagen más ligera. Todo ocurre en tu navegador, sin subir nada.',
+    ],
+    faqs: [
+      { q: '¿Cuánto puedo reducir el peso de mi imagen?', a: 'Depende de la imagen, pero suele bajar entre 40% y 80% manteniendo buena calidad, sobre todo en fotografías.' },
+      { q: '¿Se pierde calidad al comprimir?', a: 'A mayor compresión, un poco menos de nitidez. Puedes elegir el nivel que mejor equilibre peso y calidad para tu caso.' },
+      { q: '¿Se suben mis imágenes a internet?', a: 'No. Todo el proceso ocurre dentro de tu navegador; tus archivos no salen de tu dispositivo.' },
+      { q: '¿Para qué me sirve comprimir imágenes?', a: 'Para que tu página web cargue más rápido (mejor SEO) y para enviar fotos por correo o WhatsApp sin que pesen tanto.' },
+      { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis y sin marcas de agua.' },
+    ],
+  },
+  {
+    slug: 'quitar-fondo',
+    name: 'Quitar Fondo',
+    tagline: 'Elimina el fondo de tus fotos con IA',
+    description:
+      'Quita el fondo de cualquier imagen automáticamente y descárgala con fondo transparente. Perfecto para fotos de producto, catálogos y logos.',
+    icon: 'Wand2',
+    accent: '#7c3aed',
+    ready: false,
+    privacyNote: 'la IA corre en tu navegador; tus fotos no se suben',
+    howItWorks: [
+      'Sube o arrastra la imagen a la que quieres quitarle el fondo.',
+      'Espera unos segundos mientras la inteligencia artificial detecta el objeto principal.',
+      'Descarga tu imagen con el fondo eliminado (PNG transparente).',
+    ],
+    faqs: [
+      { q: '¿Cómo quita el fondo sin subir mi foto?', a: 'Usa un modelo de inteligencia artificial que corre dentro de tu propio navegador. Tu imagen nunca se sube a ningún servidor.' },
+      { q: '¿Por qué tarda la primera vez?', a: 'La primera vez descarga el modelo de IA (unos MB) y queda guardado en tu navegador; las siguientes veces es mucho más rápido.' },
+      { q: '¿Con qué imágenes funciona mejor?', a: 'Con fotos donde el objeto o la persona se distingue bien del fondo, como fotos de producto o retratos.' },
+      { q: '¿Sirve para fotos de producto?', a: 'Sí, es ideal para dejar tus productos con fondo transparente o blanco, listos para tu tienda en línea o catálogo.' },
+      { q: '¿Es gratis?', a: 'Sí, gratis y sin marcas de agua.' },
+    ],
+  },
+  {
     slug: 'generador-contrasena',
     name: 'Generador de Contraseñas',
     tagline: 'Contraseñas seguras al instante',
@@ -115,6 +160,51 @@ export const tools = [
       { q: '¿Se suben mis imágenes a internet?', a: 'No. Todo se procesa dentro de tu navegador; tus archivos no salen de tu dispositivo.' },
       { q: '¿Sirve para digitalizar documentos?', a: 'Sí. Toma fotos de tus hojas y conviértelas en un PDF ordenado, ideal para enviar por correo o WhatsApp.' },
       { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis y sin marcas de agua.' },
+    ],
+  },
+  {
+    slug: 'unir-pdf',
+    name: 'Unir PDF',
+    tagline: 'Combina varios PDF en uno',
+    description:
+      'Junta varios archivos PDF en un solo documento, en el orden que tú elijas. Rápido y sin subir nada a internet.',
+    icon: 'FileStack',
+    accent: '#0d9488',
+    ready: true,
+    howItWorks: [
+      'Sube o arrastra los PDF que quieres combinar.',
+      'Ordénalos arrastrándolos como quieras que aparezcan.',
+      'Descarga tu PDF unificado, listo para compartir o imprimir.',
+    ],
+    faqs: [
+      { q: '¿Cuántos PDF puedo unir?', a: 'Los que necesites. Se combinan en un solo archivo en el orden que definas.' },
+      { q: '¿Puedo cambiar el orden de los archivos?', a: 'Sí. Solo arrástralos en la lista para acomodarlos antes de unirlos.' },
+      { q: '¿Se suben mis PDF a algún servidor?', a: 'No. Todo se procesa dentro de tu navegador; tus archivos no salen de tu dispositivo.' },
+      { q: '¿Se conserva la calidad de los PDF?', a: 'Sí. Unir PDF no recomprime nada: mantiene las páginas tal cual, solo las junta en un archivo.' },
+      { q: '¿Es gratis y sin marcas de agua?', a: 'Sí, totalmente gratis y sin marcas de agua.' },
+    ],
+  },
+  {
+    slug: 'extraer-texto',
+    name: 'Extraer Texto (OCR)',
+    tagline: 'Saca el texto de imágenes y PDF',
+    description:
+      'Convierte fotos de documentos o PDF escaneados en texto que puedes copiar y editar. Reconocimiento en español, directo en tu navegador.',
+    icon: 'ScanText',
+    accent: '#0891b2',
+    ready: false,
+    privacyNote: 'el reconocimiento corre en tu navegador; tus archivos no se suben',
+    howItWorks: [
+      'Sube o arrastra una imagen (foto de un documento) o un PDF escaneado.',
+      'Espera unos segundos mientras se reconoce el texto.',
+      'Copia el texto extraído y úsalo donde lo necesites.',
+    ],
+    faqs: [
+      { q: '¿Qué es el OCR?', a: 'Es una tecnología que "lee" el texto dentro de una imagen o PDF escaneado y lo convierte en texto que puedes copiar y editar.' },
+      { q: '¿Se sube mi documento a internet?', a: 'No. El reconocimiento ocurre 100% dentro de tu navegador; tu archivo no sale de tu dispositivo.' },
+      { q: '¿Reconoce texto en español?', a: 'Sí, está optimizado para español, incluyendo acentos y la ñ.' },
+      { q: '¿Con qué documentos funciona mejor?', a: 'Con imágenes claras y bien iluminadas, texto legible y buen contraste. Los documentos borrosos o torcidos dan menos precisión.' },
+      { q: '¿Es gratis?', a: 'Sí, gratis y sin límite de uso.' },
     ],
   },
   {
