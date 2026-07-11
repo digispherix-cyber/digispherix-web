@@ -71,30 +71,6 @@ export const tools = [
     ],
   },
   {
-    slug: 'quitar-fondo',
-    name: 'Quitar Fondo',
-    tagline: 'Elimina el fondo de tus fotos con IA',
-    description:
-      'Quita el fondo de cualquier imagen automáticamente y descárgala con fondo transparente. Perfecto para fotos de producto, catálogos y logos.',
-    icon: 'Wand2',
-    accent: '#7c3aed',
-    ready: false,
-    hidden: true, // en pausa: onnxruntime requiere SharedArrayBuffer (COOP/COEP), choca con AdSense
-    privacyNote: 'la IA corre en tu navegador; tus fotos no se suben',
-    howItWorks: [
-      'Sube o arrastra la imagen a la que quieres quitarle el fondo.',
-      'Espera unos segundos mientras la inteligencia artificial detecta el objeto principal.',
-      'Descarga tu imagen con el fondo eliminado (PNG transparente).',
-    ],
-    faqs: [
-      { q: '¿Cómo quita el fondo sin subir mi foto?', a: 'Usa un modelo de inteligencia artificial que corre dentro de tu propio navegador. Tu imagen nunca se sube a ningún servidor.' },
-      { q: '¿Por qué tarda la primera vez?', a: 'La primera vez descarga el modelo de IA (unos MB) y queda guardado en tu navegador; las siguientes veces es mucho más rápido.' },
-      { q: '¿Con qué imágenes funciona mejor?', a: 'Con fotos donde el objeto o la persona se distingue bien del fondo, como fotos de producto o retratos.' },
-      { q: '¿Sirve para fotos de producto?', a: 'Sí, es ideal para dejar tus productos con fondo transparente o blanco, listos para tu tienda en línea o catálogo.' },
-      { q: '¿Es gratis?', a: 'Sí, gratis y sin marcas de agua.' },
-    ],
-  },
-  {
     slug: 'generador-contrasena',
     name: 'Generador de Contraseñas',
     tagline: 'Contraseñas seguras al instante',

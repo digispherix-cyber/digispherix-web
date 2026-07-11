@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Maximize2, Repeat, KeyRound, QrCode, FileImage, FileArchive, Wrench, ArrowRight, ShieldCheck, ImageDown, Wand2, FileStack, ScanText } from 'lucide-react'
+import { Maximize2, Repeat, KeyRound, QrCode, FileImage, FileArchive, Wrench, ArrowRight, ShieldCheck, ImageDown, FileStack, ScanText } from 'lucide-react'
 import Particles from '../../components/Particles'
 import { tools } from '../../lib/tools'
 
@@ -14,7 +14,7 @@ export const metadata = {
   },
 }
 
-const icons = { Maximize2, Repeat, KeyRound, QrCode, FileImage, FileArchive, ImageDown, Wand2, FileStack, ScanText }
+const icons = { Maximize2, Repeat, KeyRound, QrCode, FileImage, FileArchive, ImageDown, FileStack, ScanText }
 
 export default function HerramientasPage() {
   return (
