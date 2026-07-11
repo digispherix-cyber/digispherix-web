@@ -1,14 +1,16 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { Upload, Download, X, ArrowUp, ArrowDown, Loader2 } from 'lucide-react'
+import { Upload, Download, X, GripVertical, Loader2 } from 'lucide-react'
 
 let idCounter = 0
 
 export default function ImageToPdf() {
   const [items, setItems] = useState([]) // { id, file, url }
   const [busy, setBusy] = useState(false)
+  const [dragId, setDragId] = useState(null)
   const inputRef = useRef(null)
+  const listRef = useRef(null)
 
   const addFiles = useCallback((fileList) => {
     const files = Array.from(fileList || []).filter((f) => f.type === 'image/jpeg' || f.type === 'image/png')
@@ -27,14 +29,35 @@ export default function ImageToPdf() {
     })
   }
 
-  const move = (index, dir) => {
+  // ── Reordenar arrastrando (mouse + touch mediante Pointer Events) ──
+  const onDragStart = (e, id) => {
+    try { e.currentTarget.setPointerCapture(e.pointerId) } catch { /* noop */ }
+    setDragId(id)
+  }
+
+  const onDragMove = (e) => {
+    if (dragId == null || !listRef.current) return
+    e.preventDefault() // evita el scroll de la página mientras se arrastra
+    const rows = Array.from(listRef.current.children)
+    const y = e.clientY
+    let target = rows.length - 1
+    for (let k = 0; k < rows.length; k++) {
+      const r = rows[k].getBoundingClientRect()
+      if (y < r.top + r.height / 2) { target = k; break }
+    }
     setItems((prev) => {
+      const from = prev.findIndex((p) => p.id === dragId)
+      if (from === -1 || from === target) return prev
       const next = [...prev]
-      const target = index + dir
-      if (target < 0 || target >= next.length) return prev
-      ;[next[index], next[target]] = [next[target], next[index]]
+      const [moved] = next.splice(from, 1)
+      next.splice(target, 0, moved)
       return next
     })
+  }
+
+  const onDragEnd = (e) => {
+    try { e.currentTarget.releasePointerCapture(e.pointerId) } catch { /* noop */ }
+    setDragId(null)
   }
 
   const generate = async () => {
@@ -86,20 +109,52 @@ export default function ImageToPdf() {
         <input ref={inputRef} type="file" accept="image/jpeg,image/png" multiple onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       </label>
 
-      {/* Lista de imágenes */}
+      {/* Lista de imágenes (arrastra para reordenar) */}
       {items.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {items.map((it, i) => (
-            <div key={it.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(12,9,35,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '12px', padding: '8px 10px' }}>
-              <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '20px', textAlign: 'center', flexShrink: 0 }}>{i + 1}</span>
-              <img src={it.url} alt="" style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }} />
-              <span style={{ color: '#c4b5fd', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{it.file.name}</span>
-              <button onClick={() => move(i, -1)} disabled={i === 0} aria-label="Subir" style={iconBtn(i === 0)}><ArrowUp size={16} /></button>
-              <button onClick={() => move(i, 1)} disabled={i === items.length - 1} aria-label="Bajar" style={iconBtn(i === items.length - 1)}><ArrowDown size={16} /></button>
-              <button onClick={() => remove(it.id)} aria-label="Quitar" style={iconBtn(false)}><X size={16} /></button>
-            </div>
-          ))}
-        </div>
+        <>
+          <p style={{ color: '#9d8fc2', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>
+            Arrastra las imágenes para cambiar el orden
+          </p>
+          <div ref={listRef} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {items.map((it, i) => {
+              const dragging = it.id === dragId
+              return (
+                <div
+                  key={it.id}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '10px',
+                    background: dragging ? 'rgba(124,58,237,0.25)' : 'rgba(12,9,35,0.6)',
+                    border: `1px solid ${dragging ? 'rgba(217,70,239,0.5)' : 'rgba(124,58,237,0.2)'}`,
+                    borderRadius: '12px', padding: '8px 10px',
+                    boxShadow: dragging ? '0 12px 30px rgba(0,0,0,0.4)' : 'none',
+                    transition: dragging ? 'none' : 'background 0.15s, border-color 0.15s',
+                  }}
+                >
+                  <button
+                    onPointerDown={(e) => onDragStart(e, it.id)}
+                    onPointerMove={onDragMove}
+                    onPointerUp={onDragEnd}
+                    onPointerCancel={onDragEnd}
+                    aria-label="Arrastrar para reordenar"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      width: '34px', height: '40px', background: 'none', border: 'none',
+                      color: '#9d8fc2', cursor: dragging ? 'grabbing' : 'grab', touchAction: 'none',
+                    }}
+                  >
+                    <GripVertical size={18} />
+                  </button>
+                  <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{i + 1}</span>
+                  <img src={it.url} alt="" draggable={false} style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }} />
+                  <span style={{ color: '#c4b5fd', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{it.file.name}</span>
+                  <button onClick={() => remove(it.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', color: '#c4b5fd', cursor: 'pointer' }}>
+                    <X size={16} />
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        </>
       )}
 
       <button onClick={generate} disabled={items.length === 0 || busy} className="btn-primary justify-center" style={{ width: '100%', opacity: items.length === 0 || busy ? 0.5 : 1 }}>
@@ -107,12 +162,4 @@ export default function ImageToPdf() {
       </button>
     </div>
   )
-}
-
-function iconBtn(disabled) {
-  return {
-    display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0,
-    background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px',
-    color: disabled ? '#4c4470' : '#c4b5fd', cursor: disabled ? 'default' : 'pointer',
-  }
 }
