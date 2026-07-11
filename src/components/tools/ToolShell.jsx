@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import { ChevronLeft, ShieldCheck, MessageCircle } from 'lucide-react'
 import Particles from '../Particles'
+import ToolContent from './ToolContent'
 
 // Wrapper compartido para todas las páginas de herramientas.
 // Renderiza el encabezado, la nota de privacidad, el contenido interactivo
-// (children) y un CTA final hacia WhatsApp.
-export default function ToolShell({ name, tagline, accent = '#7c3aed', children }) {
+// (children), el CTA hacia WhatsApp y la sección de contenido (cómo funciona + FAQ).
+export default function ToolShell({ tool, children }) {
+  const { name, description: tagline, accent = '#7c3aed', howItWorks, faqs } = tool
   const waMsg = encodeURIComponent(
     `Hola DigiSpherix! Estuve usando sus herramientas gratis y me gustaría cotizar un proyecto.`,
   )
@@ -75,6 +77,8 @@ export default function ToolShell({ name, tagline, accent = '#7c3aed', children 
               <MessageCircle size={16} /> Cotiza tu proyecto gratis
             </a>
           </div>
+
+          <ToolContent howItWorks={howItWorks} faqs={faqs} accent={accent} />
         </div>
       </section>
     </main>

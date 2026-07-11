@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <ToolShell name={tool.name} tagline={tool.description} accent={tool.accent}>
+    <ToolShell tool={tool}>
       <PasswordGenerator />
     </ToolShell>
   )

@@ -209,6 +209,12 @@ body {
   background: linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent);
 }
 
+/* ── Tool FAQ accordion ── */
+.tool-faq summary::-webkit-details-marker { display: none; }
+.tool-faq summary::marker { content: ''; }
+.tool-faq-chevron { transition: transform 0.2s ease; }
+.tool-faq[open] .tool-faq-chevron { transform: rotate(180deg); }
+
 /* ── Navbar dropdown ── */
 .nav-dropdown-item {
   transition: background 0.15s ease;
