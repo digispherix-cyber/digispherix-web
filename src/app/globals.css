@@ -209,6 +209,33 @@ body {
   background: linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent);
 }
 
+/* ── Navbar dropdown ── */
+.nav-dropdown-item {
+  transition: background 0.15s ease;
+}
+.nav-dropdown-item:hover {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+/* ── Password generator actions ── */
+.pw-actions {
+  display: flex;
+  gap: 10px;
+}
+.pw-action-btn {
+  min-height: 54px;
+  min-width: 58px;
+}
+@media (max-width: 540px) {
+  .pw-actions {
+    flex: 1 1 100%;
+  }
+  .pw-action-btn {
+    flex: 1;
+    min-height: 58px;
+  }
+}
+
 /* ── Tool cards ── */
 .tool-card {
   transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;

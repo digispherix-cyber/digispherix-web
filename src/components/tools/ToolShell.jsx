@@ -29,24 +29,26 @@ export default function ToolShell({ name, tagline, accent = '#7c3aed', children 
             <ChevronLeft size={16} /> Todas las herramientas
           </Link>
 
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '12px' }}>
-            {name}
-          </h1>
-          <p style={{ color: '#9d8fc2', fontSize: '1.05rem', maxWidth: '560px', lineHeight: 1.6 }}>{tagline}</p>
+          <div style={{ textAlign: 'center', maxWidth: '620px', margin: '0 auto' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '14px' }}>
+              {name}
+            </h1>
+            <p style={{ color: '#9d8fc2', fontSize: '1.05rem', lineHeight: 1.6, margin: '0 auto' }}>{tagline}</p>
 
-          <div
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '20px',
-              padding: '7px 16px', borderRadius: '99px', background: 'rgba(5,150,105,0.12)',
-              border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.8rem', fontWeight: 600,
-            }}
-          >
-            <ShieldCheck size={15} /> 100% privado — tus archivos no salen de tu dispositivo
+            <div
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '22px',
+                padding: '7px 16px', borderRadius: '99px', background: 'rgba(5,150,105,0.12)',
+                border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.8rem', fontWeight: 600,
+              }}
+            >
+              <ShieldCheck size={15} /> 100% privado — tus archivos no salen de tu dispositivo
+            </div>
           </div>
         </div>
       </section>
 
-      <section style={{ paddingBottom: '80px', position: 'relative', zIndex: 1 }}>
+      <section style={{ paddingTop: '24px', paddingBottom: '80px', position: 'relative', zIndex: 1 }}>
         <div className="ds-container">
           <div
             style={{

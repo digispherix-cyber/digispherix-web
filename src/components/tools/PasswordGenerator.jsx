@@ -96,12 +96,12 @@ export default function PasswordGenerator() {
         >
           {password || '—'}
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button onClick={generate} className="btn-secondary" style={{ padding: '0 18px' }} aria-label="Generar otra">
-            <RefreshCw size={18} />
+        <div className="pw-actions">
+          <button onClick={generate} className="btn-secondary pw-action-btn justify-center" style={{ padding: '0 20px' }} aria-label="Generar otra contraseña">
+            <RefreshCw size={20} />
           </button>
-          <button onClick={copy} className="btn-primary" style={{ padding: '0 20px' }} aria-label="Copiar">
-            {copied ? <Check size={18} /> : <Copy size={18} />}
+          <button onClick={copy} className="btn-primary pw-action-btn justify-center" style={{ padding: '0 22px' }} aria-label="Copiar contraseña">
+            {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
         </div>
       </div>

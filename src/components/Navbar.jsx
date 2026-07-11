@@ -3,7 +3,10 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
+import { tools } from '../lib/tools'
+
+const readyTools = tools.filter((t) => t.ready)
 
 const navLinks = [
   { label: 'Inicio',      hash: '#inicio' },
@@ -20,6 +23,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [toolsOpen, setToolsOpen] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
 
@@ -53,16 +57,76 @@ export default function Navbar() {
           </a>
 
           <ul className="hidden lg:flex items-center gap-8">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="text-sm text-purple-200 hover:text-pink-400 transition-colors font-medium"
+            {links.map((l) =>
+              l.label === 'Herramientas' ? (
+                <li
+                  key={l.href}
+                  style={{ position: 'relative' }}
+                  onMouseEnter={() => setToolsOpen(true)}
+                  onMouseLeave={() => setToolsOpen(false)}
                 >
-                  {l.label}
-                </a>
-              </li>
-            ))}
+                  <a
+                    href={l.href}
+                    className="text-sm text-purple-200 hover:text-pink-400 transition-colors font-medium"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                  >
+                    {l.label}
+                    <ChevronDown size={14} style={{ transform: toolsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                  </a>
+
+                  <AnimatePresence>
+                    {toolsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.18 }}
+                        style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', paddingTop: '16px', zIndex: 60 }}
+                      >
+                        <div
+                          style={{
+                            width: '300px', background: 'rgba(17,13,48,0.98)', backdropFilter: 'blur(20px)',
+                            border: '1px solid rgba(124,58,237,0.3)', borderRadius: '16px', padding: '8px',
+                            boxShadow: '0 20px 48px rgba(0,0,0,0.4)',
+                          }}
+                        >
+                          {readyTools.map((t) => (
+                            <a
+                              key={t.slug}
+                              href={`/herramientas/${t.slug}`}
+                              style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', borderRadius: '10px', textDecoration: 'none' }}
+                              className="nav-dropdown-item"
+                            >
+                              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: t.accent, flexShrink: 0 }} />
+                              <span>
+                                <span style={{ display: 'block', color: 'white', fontSize: '0.88rem', fontWeight: 600 }}>{t.name}</span>
+                                <span style={{ display: 'block', color: '#9d8fc2', fontSize: '0.75rem' }}>{t.tagline}</span>
+                              </span>
+                            </a>
+                          ))}
+                          <a
+                            href="/herramientas"
+                            className="nav-dropdown-item"
+                            style={{ display: 'block', padding: '10px 12px', borderRadius: '10px', textDecoration: 'none', color: '#e879f9', fontSize: '0.82rem', fontWeight: 700, marginTop: '4px', borderTop: '1px solid rgba(124,58,237,0.2)' }}
+                          >
+                            Ver todas las herramientas →
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              ) : (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-sm text-purple-200 hover:text-pink-400 transition-colors font-medium"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
 
           <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm">
