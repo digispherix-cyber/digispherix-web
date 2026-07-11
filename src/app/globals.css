@@ -209,6 +209,16 @@ body {
   background: linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent);
 }
 
+/* ── Tool cards ── */
+.tool-card {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tool-card:hover {
+  border-color: rgba(124,58,237,0.55) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(124,58,237,0.15);
+}
+
 /* ── Blog cards ── */
 .blog-card {
   position: relative;
