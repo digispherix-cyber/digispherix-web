@@ -192,7 +192,7 @@ export const tools = [
       'Convierte fotos de documentos o PDF escaneados en texto que puedes copiar y editar. Reconocimiento en español, directo en tu navegador.',
     icon: 'ScanText',
     accent: '#0891b2',
-    ready: false,
+    ready: true,
     privacyNote: 'el reconocimiento corre en tu navegador; tus archivos no se suben',
     howItWorks: [
       'Sube o arrastra una imagen (foto de un documento) o un PDF escaneado.',
