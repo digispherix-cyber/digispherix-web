@@ -280,7 +280,7 @@ export default function Pricing() {
   const inView = useInView(ref, { once: true })
 
   const activePlans = plans[activeTab]
-  const gridCols = gridColsByCount[activePlans.length] || 'sm:grid-cols-2 lg:grid-cols-4'
+  const gridCols = gridColsByCount[activePlans.length] ?? 'sm:grid-cols-2 lg:grid-cols-4'
   const gridMaxWidth = gridMaxWidthByCount[activePlans.length]
 
   return (
