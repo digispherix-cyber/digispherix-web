@@ -1,4 +1,6 @@
 import { ChevronDown } from 'lucide-react'
+import AdSlot from '../AdSlot'
+import { AD_SLOTS } from '../../lib/adsense'
 
 // Renderiza la sección "¿Cómo funciona?" + preguntas frecuentes de cada
 // herramienta, más el schema FAQPage (JSON-LD) para SEO / resultados
@@ -49,6 +51,9 @@ export default function ToolContent({ howItWorks = [], faqs = [], accent = '#7c3
           </div>
         </section>
       )}
+
+      {/* Espacio AdSense. Se activa al poner AD_SLOTS.toolInline en src/lib/adsense.js */}
+      <AdSlot slot={AD_SLOTS.toolInline} />
 
       {/* Preguntas frecuentes */}
       {faqs.length > 0 && (

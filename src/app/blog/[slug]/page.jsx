@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Calendar, Clock, ArrowLeft, Tag, ArrowRight } from 'lucide-react'
 import ReadingProgress from '../../../components/ReadingProgress'
 import Particles from '../../../components/Particles'
+import AdSlot from '../../../components/AdSlot'
+import { AD_SLOTS } from '../../../lib/adsense'
 
 const categoryColor = {
   'Diseño Web':        '#7c3aed',
@@ -123,10 +125,10 @@ export default async function ArticlePage({ params }) {
         <article style={{ padding: '60px 0' }}>
           <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
 
-            {/* AdSense slot — habilitar cuando sea aprobado */}
-            {/* <ins className="adsbygoogle" style={{display:'block'}} data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> */}
-
             <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+            {/* Espacio AdSense in-article. Se activa al poner AD_SLOTS.blogInArticle en src/lib/adsense.js */}
+            <AdSlot slot={AD_SLOTS.blogInArticle} />
 
             {/* Tags */}
             {post.tags?.length > 0 && (
