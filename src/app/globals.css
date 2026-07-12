@@ -77,7 +77,7 @@ body {
 }
 .process-title { font-size: 3rem; }
 .process-desc  { font-size: 0.9rem; }
-.process-cards { position: relative; height: 400px; }
+.process-cards { position: relative; height: 560px; }
 
 @media (max-width: 768px) {
   .process-grid {

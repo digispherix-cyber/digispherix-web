@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
-import { MessageSquare, Palette, Code2, Rocket } from 'lucide-react'
+import { MessageSquare, Palette, Code2, Rocket, Check } from 'lucide-react'
 
 const steps = [
   {
@@ -10,8 +10,13 @@ const steps = [
     icon: <MessageSquare size={32} />,
     title: 'Consulta',
     subtitle: 'Escuchamos tu idea',
-    desc: 'Platicamos sobre tu proyecto, objetivos y presupuesto. Sin compromiso. Entendemos qué necesitas y cómo podemos ayudarte a lograrlo.',
+    desc: 'Nos sentamos contigo, en persona o por videollamada, para entender a fondo tu negocio, tus objetivos y tu presupuesto. Analizamos a tu competencia y a tu cliente ideal para proponerte la solución que de verdad te conviene. Todo sin compromiso y sin costo: primero nos aseguramos de que seamos el equipo correcto para ti.',
     color: '#7c3aed',
+    details: [
+      'Reunión inicial sin costo ni compromiso',
+      'Análisis de tu competencia y público objetivo',
+      'Cotización detallada y clara, sin sorpresas',
+    ],
     tags: ['Reunión inicial', 'Propuesta', 'Cotización'],
   },
   {
@@ -19,8 +24,13 @@ const steps = [
     icon: <Palette size={32} />,
     title: 'Diseño',
     subtitle: 'Damos forma visual',
-    desc: 'Creamos el diseño visual de tu proyecto para que lo apruebes antes de desarrollar. Responsivo, moderno y alineado con tu marca.',
+    desc: 'Diseñamos la imagen visual completa de tu proyecto —colores, tipografías y estructura de cada pantalla— y te la mostramos antes de programar una sola línea. Ajustamos juntos hasta que quede exactamente como la imaginas. Todo pensado para verse increíble tanto en celular como en computadora, y siempre alineado con la identidad de tu marca.',
     color: '#d946ef',
+    details: [
+      'Diseño 100% responsivo: móvil y escritorio',
+      'Prototipo navegable para que lo apruebes',
+      'Rondas de ajustes incluidas hasta que te encante',
+    ],
     tags: ['UI/UX', 'Prototipo', 'Revisión'],
   },
   {
@@ -28,8 +38,13 @@ const steps = [
     icon: <Code2 size={32} />,
     title: 'Desarrollo',
     subtitle: 'Construimos tu visión',
-    desc: 'Programamos tu proyecto con las últimas tecnologías. Código limpio, rápido y seguro. Entregamos avances en cada etapa para tu revisión.',
+    desc: 'Convertimos el diseño en un producto real usando las últimas tecnologías. Escribimos código limpio, rápido y seguro, optimizado para cargar en segundos y para posicionarse en Google. Te entregamos avances en cada etapa para que veas el progreso y des tu visto bueno antes de continuar.',
     color: '#a855f7',
+    details: [
+      'Código optimizado para velocidad y SEO',
+      'Avances y revisiones contigo en cada etapa',
+      'Pruebas de calidad antes de publicar',
+    ],
     tags: ['React / Kotlin', 'API REST', 'Testing'],
   },
   {
@@ -37,8 +52,13 @@ const steps = [
     icon: <Rocket size={32} />,
     title: 'Lanzamiento',
     subtitle: 'Salimos al mundo',
-    desc: 'Publicamos tu proyecto y te damos soporte durante los primeros 30 días. Tu negocio disponible 24/7 con hosting, SSL y respaldo incluido.',
+    desc: 'Publicamos tu proyecto y lo dejamos funcionando 24/7 con hosting, certificado SSL y respaldos automáticos. Te capacitamos para que sepas administrarlo con confianza y te acompañamos con soporte durante los primeros 30 días. Tu negocio, listo para recibir clientes desde el primer momento.',
     color: '#7c3aed',
+    details: [
+      'Hosting, certificado SSL y respaldos incluidos',
+      'Capacitación para que lo administres tú mismo',
+      'Soporte gratis durante los primeros 30 días',
+    ],
     tags: ['Deploy', 'Soporte 30 días', 'Capacitación'],
   },
 ]
@@ -47,14 +67,14 @@ function CardContent({ step, large = false }) {
   return (
     <div style={{
       borderRadius: '20px',
-      padding: large ? '40px 44px' : '24px',
+      padding: large ? '48px 52px' : '26px',
       background: 'linear-gradient(135deg, rgba(17,13,48,0.95), rgba(12,9,35,0.9))',
       border: `1px solid ${step.color}44`,
       boxShadow: `0 0 60px ${step.color}18`,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: large ? '24px' : '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: large ? '26px' : '18px' }}>
         <div style={{
-          width: large ? '72px' : '56px', height: large ? '72px' : '56px',
+          width: large ? '76px' : '58px', height: large ? '76px' : '58px',
           borderRadius: '16px', flexShrink: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: `${step.color}22`, color: step.color,
@@ -65,13 +85,29 @@ function CardContent({ step, large = false }) {
           <div style={{ fontSize: '0.75rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '4px' }}>
             PASO {step.num}
           </div>
-          <h3 style={{ fontSize: large ? '1.8rem' : '1.3rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
-          <p style={{ fontSize: large ? '0.95rem' : '0.82rem', color: step.color, marginTop: '4px' }}>{step.subtitle}</p>
+          <h3 style={{ fontSize: large ? '2rem' : '1.35rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
+          <p style={{ fontSize: large ? '1rem' : '0.85rem', color: step.color, marginTop: '4px' }}>{step.subtitle}</p>
         </div>
       </div>
-      <p style={{ fontSize: large ? '1.05rem' : '0.9rem', color: '#c4b5fd', lineHeight: 1.8, marginBottom: large ? '28px' : '16px' }}>
+      <p style={{ fontSize: large ? '1.12rem' : '0.92rem', color: '#c4b5fd', lineHeight: 1.75, marginBottom: large ? '26px' : '18px' }}>
         {step.desc}
       </p>
+      {step.details && (
+        <ul style={{ listStyle: 'none', margin: large ? '0 0 30px' : '0 0 18px', padding: 0, display: 'flex', flexDirection: 'column', gap: large ? '13px' : '10px' }}>
+          {step.details.map((d) => (
+            <li key={d} style={{ display: 'flex', alignItems: 'flex-start', gap: '11px', color: '#e9e2ff', fontSize: large ? '1.02rem' : '0.85rem', lineHeight: 1.5 }}>
+              <span style={{
+                width: large ? '22px' : '19px', height: large ? '22px' : '19px', borderRadius: '50%', flexShrink: 0, marginTop: '1px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: `${step.color}25`, color: step.color,
+              }}>
+                <Check size={large ? 13 : 12} strokeWidth={3} />
+              </span>
+              <span>{d}</span>
+            </li>
+          ))}
+        </ul>
+      )}
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         {step.tags.map(t => (
           <span key={t} style={{
