@@ -15,7 +15,7 @@
     "next": "^15.3.4",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^4.8.69",
-    "qrcode": "^1.5.4",
+    "qr-code-styling": "^1.9.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "remark": "^15.0.1",
