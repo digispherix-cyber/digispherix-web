@@ -231,20 +231,20 @@ export const tools = [
   {
     slug: 'base64',
     name: 'Codificador / Decodificador',
-    tagline: 'Base64, Hexadecimal, Binario y URL',
+    tagline: 'Base64, Hexadecimal, Binario y Decimal',
     description:
-      'Convierte texto a Base64, Hexadecimal, Binario o URL y viceversa al instante. Útil para desarrolladores y para transportar datos.',
+      'Convierte entre Texto, Base64, Hexadecimal, Binario y Decimal en cualquier dirección: texto a Base64, Base64 a hexadecimal, etc. Útil para desarrolladores y para transportar datos.',
     icon: 'Binary',
     accent: '#0891b2',
     ready: true,
     privacyNote: 'todo se procesa en tu navegador',
     howItWorks: [
-      'Elige el formato: Base64, Hexadecimal, Binario o URL.',
-      'Pega tu texto (o el código a decodificar) y elige la dirección.',
-      'Copia el resultado con un clic.',
+      'Elige el formato de origen y el de destino (Texto, Base64, Hexadecimal, Binario o Decimal).',
+      'Pega tu contenido; la conversión aparece al instante.',
+      'Copia el resultado con un clic, o pulsa Invertir para hacer la conversión contraria.',
     ],
     faqs: [
-      { q: '¿Qué formatos puedo convertir?', a: 'Base64, Hexadecimal, Binario y codificación de URL. Puedes ir de texto a cualquiera de ellos y de vuelta a texto.' },
+      { q: '¿Qué formatos puedo convertir?', a: 'Texto, Base64, Hexadecimal, Binario y Decimal. Puedes convertir de cualquiera a cualquiera: texto a Base64, Base64 a hexadecimal, binario a texto, etc.' },
       { q: '¿Qué es Base64?', a: 'Es una forma de representar datos usando solo letras, números y algunos símbolos, muy usada para transportar información en la web y el correo.' },
       { q: '¿Para qué sirve el hexadecimal o el binario?', a: 'Se usan mucho en programación y electrónica para representar datos byte por byte. Aquí puedes ver cómo se ve tu texto en esos formatos.' },
       { q: '¿Esto cifra o protege mi información?', a: 'No. Codificar (Base64, hex, etc.) no es cifrado: cualquiera puede revertirlo. No sirve para proteger datos sensibles.' },

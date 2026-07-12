@@ -30,11 +30,21 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath()
 }
 
+function loadImage(src) {
+  return new Promise((res, rej) => {
+    const img = new Image()
+    img.onload = () => res(img)
+    img.onerror = rej
+    img.src = src
+  })
+}
+
+const LIGHT = '#ffffff' // fondo siempre blanco para garantizar la lectura
+
 export default function QrGenerator() {
   const [text, setText] = useState('https://digispherix.com.mx')
   const [size, setSize] = useState(1024)
   const [dark, setDark] = useState('#0c0923')
-  const [light, setLight] = useState('#ffffff')
   const [style, setStyle] = useState('cuadrado')
   const [caption, setCaption] = useState('')
   const [frame, setFrame] = useState(false)
@@ -49,6 +59,8 @@ export default function QrGenerator() {
       const QRCodeStyling = (await import('qr-code-styling')).default
       const st = STYLES[style]
       const base = 1000
+      // El QR se genera sin logo; el logo lo dibujamos nosotros sobre el
+      // canvas para evitar el cuelgue de la carga de imagen de la librería.
       const qr = new QRCodeStyling({
         width: base,
         height: base,
@@ -59,17 +71,10 @@ export default function QrGenerator() {
         dotsOptions: { type: st.dots, color: dark },
         cornersSquareOptions: { type: st.corner, color: dark },
         cornersDotOptions: { color: dark },
-        backgroundOptions: { color: light },
-        image: logoUrl || undefined,
-        imageOptions: { margin: 6, imageSize: 0.32, hideBackgroundDots: true },
+        backgroundOptions: { color: LIGHT },
       })
       const blob = await qr.getRawData('png')
-      const qrImg = await new Promise((res, rej) => {
-        const img = new Image()
-        img.onload = () => res(img)
-        img.onerror = rej
-        img.src = URL.createObjectURL(blob)
-      })
+      const qrImg = await loadImage(URL.createObjectURL(blob))
 
       const pad = frame ? 70 : 24
       const capH = caption.trim() ? 130 : 0
@@ -77,7 +82,7 @@ export default function QrGenerator() {
       canvas.width = base + pad * 2
       canvas.height = base + pad * 2 + capH
       const ctx = canvas.getContext('2d')
-      ctx.fillStyle = light
+      ctx.fillStyle = LIGHT
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       if (frame) {
         ctx.strokeStyle = dark; ctx.lineWidth = 14
@@ -85,6 +90,26 @@ export default function QrGenerator() {
       }
       ctx.drawImage(qrImg, pad, pad, base, base)
       URL.revokeObjectURL(qrImg.src)
+
+      // Logo al centro (dibujado por nosotros, con recuadro blanco de respaldo)
+      if (logoUrl) {
+        try {
+          const logoImg = await loadImage(logoUrl)
+          const ls = Math.round(base * 0.22)
+          const cx = pad + base / 2
+          const cy = pad + base / 2
+          const boxPad = Math.round(ls * 0.14)
+          ctx.fillStyle = LIGHT
+          roundRect(ctx, cx - ls / 2 - boxPad, cy - ls / 2 - boxPad, ls + boxPad * 2, ls + boxPad * 2, Math.round(ls * 0.2))
+          ctx.fill()
+          // dibujar el logo manteniendo su proporción (contain)
+          const ratio = Math.min(ls / logoImg.width, ls / logoImg.height)
+          const lw = logoImg.width * ratio
+          const lh = logoImg.height * ratio
+          ctx.drawImage(logoImg, cx - lw / 2, cy - lh / 2, lw, lh)
+        } catch { /* si el logo falla, se ignora y el QR queda sin logo */ }
+      }
+
       if (caption.trim()) {
         ctx.fillStyle = dark
         ctx.font = `bold ${Math.round(base * 0.075)}px system-ui, sans-serif`
@@ -97,7 +122,7 @@ export default function QrGenerator() {
       setError('No se pudo generar el código QR. Revisa el texto.')
       setDataUrl('')
     }
-  }, [text, dark, light, style, caption, frame, logoUrl])
+  }, [text, dark, style, caption, frame, logoUrl])
 
   useEffect(() => { generate() }, [generate])
 
@@ -194,16 +219,13 @@ export default function QrGenerator() {
         </label>
       </div>
 
-      {/* Colores */}
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+      {/* Color */}
+      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
         <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#c4b5fd', fontSize: '0.85rem' }}>
           Color del código
           <input type="color" value={dark} onChange={(e) => setDark(e.target.value)} style={colorInput} />
         </label>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#c4b5fd', fontSize: '0.85rem' }}>
-          Fondo
-          <input type="color" value={light} onChange={(e) => setLight(e.target.value)} style={colorInput} />
-        </label>
+        <span style={{ color: '#6b5fa0', fontSize: '0.78rem' }}>El fondo es blanco para asegurar que el código se escanee siempre.</span>
       </div>
 
       {/* Tamaño */}
