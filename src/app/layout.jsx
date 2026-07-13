@@ -29,7 +29,13 @@ export const metadata = {
     },
   },
   icons: {
-    icon: '/logo-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-96.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: '/apple-icon.png',
+    shortcut: '/favicon.ico',
   },
   other: {
     'theme-color': '#0c0923',
