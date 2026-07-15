@@ -51,25 +51,38 @@ export default function NosotrosPage() {
 
         {/* Historia */}
         <section style={{ marginBottom: '64px' }}>
-          <h2 style={{ fontSize: '1.7rem', fontWeight: 800, color: 'white', marginBottom: '18px' }}>Nuestra historia</h2>
-          <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9, marginBottom: '16px' }}>
-            DigiSpherix nació de una idea simple: muchos negocios excelentes se quedan invisibles en internet
-            por no tener quién les construya las herramientas correctas. Un buen producto o servicio no basta
-            si tus clientes no te encuentran, o si al encontrarte tu sitio carga lento, se ve mal en el celular
-            o no invita a contactarte.
-          </p>
-          <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9, marginBottom: '16px' }}>
-            Por eso combinamos diseño, desarrollo y marketing en un solo lugar. No solo entregamos un sitio o
-            una app y desaparecemos: te acompañamos para que esa inversión se traduzca en más visibilidad,
-            más contactos y más ventas. Trabajamos con la misma dedicación para un pequeño emprendimiento que
-            para una empresa establecida.
-          </p>
-          <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9 }}>
-            Hoy ayudamos a clientes de distintos giros con sitios web, aplicaciones, estrategias de redes
-            sociales, posicionamiento en Google y sistemas de gestión. Y para regresar algo a la comunidad,
-            publicamos artículos y herramientas gratuitas en nuestro sitio, pensadas para que cualquier
-            persona pueda usarlas sin costo.
-          </p>
+          <h2 style={{ fontSize: '1.7rem', fontWeight: 800, color: 'white', marginBottom: '28px' }}>Nuestra historia</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9, marginBottom: '16px' }}>
+                DigiSpherix nació de una idea simple: muchos negocios excelentes se quedan invisibles en internet
+                por no tener quién les construya las herramientas correctas. Un buen producto o servicio no basta
+                si tus clientes no te encuentran, o si al encontrarte tu sitio carga lento, se ve mal en el celular
+                o no invita a contactarte.
+              </p>
+              <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9, marginBottom: '16px' }}>
+                Por eso combinamos diseño, desarrollo y marketing en un solo lugar. No solo entregamos un sitio o
+                una app y desaparecemos: te acompañamos para que esa inversión se traduzca en más visibilidad,
+                más contactos y más ventas.
+              </p>
+              <p style={{ color: '#9d8fc2', fontSize: '1rem', lineHeight: 1.9 }}>
+                Hoy ayudamos a clientes de distintos giros con sitios web, aplicaciones, estrategias de redes
+                sociales, posicionamiento en Google y sistemas de gestión. Y para regresar algo a la comunidad,
+                publicamos artículos y herramientas gratuitas, pensadas para que cualquier persona pueda usarlas
+                sin costo.
+              </p>
+            </div>
+            <div>
+              <img
+                src="/equipo.jpg"
+                alt="Desarrollo de software y programación en DigiSpherix"
+                width="1200"
+                height="800"
+                loading="lazy"
+                style={{ width: '100%', height: 'auto', borderRadius: '18px', border: '1px solid rgba(124,58,237,0.3)', boxShadow: '0 20px 50px rgba(124,58,237,0.18)', display: 'block' }}
+              />
+            </div>
+          </div>
         </section>
 
         {/* Qué hacemos */}
