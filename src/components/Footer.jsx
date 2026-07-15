@@ -47,6 +47,7 @@ const navLinks = {
     { label: 'Soporte Técnico',   hash: '#servicios' },
   ],
   Empresa: [
+    { label: 'Nosotros',   href: '/nosotros' },
     { label: 'Portafolio', hash: '#portafolio' },
     { label: 'Precios',    hash: '#precios' },
     { label: 'Contacto',   hash: '#contacto' },
@@ -62,7 +63,7 @@ export default function Footer() {
   const links = Object.fromEntries(
     Object.entries(navLinks).map(([section, items]) => [
       section,
-      items.map(item => ({ label: item.label, href: isHome ? item.hash : `/${item.hash}` })),
+      items.map(item => ({ label: item.label, href: item.href ?? (isHome ? item.hash : `/${item.hash}`) })),
     ])
   )
 
@@ -193,6 +194,24 @@ export default function Footer() {
         <div
           style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '24px', textAlign: 'center' }}
         >
+          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '14px' }}>
+            <a
+              href="/aviso-de-privacidad"
+              style={{ fontSize: '0.78rem', color: '#9d8fc2', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = '#e879f9'}
+              onMouseLeave={e => e.target.style.color = '#9d8fc2'}
+            >
+              Aviso de Privacidad
+            </a>
+            <a
+              href="/terminos"
+              style={{ fontSize: '0.78rem', color: '#9d8fc2', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = '#e879f9'}
+              onMouseLeave={e => e.target.style.color = '#9d8fc2'}
+            >
+              Términos y Condiciones
+            </a>
+          </div>
           <p style={{ fontSize: '0.75rem', color: '#9d8fc2' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
           </p>

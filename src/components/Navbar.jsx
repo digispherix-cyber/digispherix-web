@@ -10,6 +10,7 @@ const readyTools = tools.filter((t) => t.ready)
 
 const navLinks = [
   { label: 'Inicio',      hash: '#inicio' },
+  { label: 'Nosotros',    href: '/nosotros' },
   { label: 'Servicios',   hash: '#servicios' },
   { label: 'Portafolio',  hash: '#portafolio' },
   { label: 'Precios',     hash: '#precios' },
