@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Particles from '../../components/Particles'
-import { ArrowRight, Rocket, Target, HeartHandshake, Globe, Smartphone, Megaphone, Database } from 'lucide-react'
+import { ArrowRight, Rocket, Target, HeartHandshake, Globe, Smartphone, Megaphone, Database, Compass, Check } from 'lucide-react'
 
 export const metadata = {
   title: 'Nosotros - DigiSpherix | Agencia Digital en Guadalajara',
@@ -85,6 +85,55 @@ export default function NosotrosPage() {
                 <p style={{ color: '#9d8fc2', fontSize: '0.9rem', lineHeight: 1.65 }}>{s.desc}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Misión, Visión y Valores */}
+        <section style={{ marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.7rem', fontWeight: 800, color: 'white', marginBottom: '28px' }}>Misión, visión y valores</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px', marginBottom: '18px' }}>
+            <div style={{ background: 'rgba(17,13,48,0.75)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '16px', padding: '28px' }}>
+              <div style={{ width: '46px', height: '46px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(124,58,237,0.18)', color: '#c084fc', marginBottom: '16px' }}>
+                <Target size={22} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '8px' }}>Misión</h3>
+              <p style={{ color: '#9d8fc2', fontSize: '0.95rem', lineHeight: 1.75 }}>
+                Ayudar a negocios y emprendedores de México a crecer con herramientas digitales bien hechas,
+                que les traigan más clientes y les faciliten el día a día.
+              </p>
+            </div>
+            <div style={{ background: 'rgba(17,13,48,0.75)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '16px', padding: '28px' }}>
+              <div style={{ width: '46px', height: '46px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(217,70,239,0.18)', color: '#e879f9', marginBottom: '16px' }}>
+                <Compass size={22} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '8px' }}>Visión</h3>
+              <p style={{ color: '#9d8fc2', fontSize: '0.95rem', lineHeight: 1.75 }}>
+                Ser la agencia digital de confianza para las pequeñas y medianas empresas de México,
+                reconocida por hacer bien las cosas y por tratar cada proyecto como si fuera nuestro.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ background: 'rgba(17,13,48,0.6)', border: '1px solid rgba(124,58,237,0.18)', borderRadius: '16px', padding: '28px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '18px' }}>Nuestros valores</h3>
+            <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', listStyle: 'none', padding: 0 }}>
+              {[
+                ['Honestidad', 'Te decimos lo que necesitas, no lo que más nos conviene vender.'],
+                ['Compromiso', 'Tu proyecto lo tratamos como propio, de principio a fin.'],
+                ['Calidad', 'Entregamos trabajo del que nos sentimos orgullosos.'],
+                ['Cercanía', 'Hablas directo con quien hace tu proyecto, sin intermediarios.'],
+              ].map(([titulo, texto]) => (
+                <li key={titulo} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <span style={{ width: '22px', height: '22px', borderRadius: '50%', flexShrink: 0, marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(217,70,239,0.2)', color: '#e879f9' }}>
+                    <Check size={13} strokeWidth={3} />
+                  </span>
+                  <span style={{ color: '#9d8fc2', fontSize: '0.92rem', lineHeight: 1.55 }}>
+                    <span style={{ color: 'white', fontWeight: 700 }}>{titulo}.</span> {texto}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

@@ -57,7 +57,7 @@ export default function Navbar() {
             </picture>
           </a>
 
-          <ul className="hidden lg:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-6">
             {links.map((l) =>
               l.label === 'Herramientas' ? (
                 <li
@@ -130,7 +130,7 @@ export default function Navbar() {
             )}
           </ul>
 
-          <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm">
+          <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm" style={{ marginLeft: '28px' }}>
             Cotizar Proyecto
           </a>
 
