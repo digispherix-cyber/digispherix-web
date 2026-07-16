@@ -35,7 +35,7 @@ export default function NosotrosPage() {
       <div style={{ position: 'absolute', top: '5%', left: '15%', width: '420px', height: '420px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.16), transparent 70%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', top: '10%', right: '10%', width: '320px', height: '320px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(217,70,239,0.12), transparent 70%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: '860px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div style={{ width: '85%', maxWidth: '1300px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         {/* Hero */}
         <p style={{ textAlign: 'center', color: '#d946ef', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '16px' }}>

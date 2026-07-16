@@ -17,7 +17,7 @@ export default function TerminosPage() {
   return (
     <main style={{ background: '#0c0923', minHeight: '100vh', paddingTop: '120px', paddingBottom: '90px', position: 'relative', overflow: 'hidden' }}>
       <Particles />
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div style={{ width: '85%', maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         <h1 style={{ fontSize: 'clamp(1.9rem, 5vw, 2.8rem)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '10px' }}>
           Términos y <span className="gradient-text">Condiciones</span>
