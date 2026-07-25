@@ -308,8 +308,8 @@ export default function SubtitleGeneratorTool() {
         </label>
       ) : (
         <>
-          <div style={{ position: 'relative', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }}>
-            <video ref={videoRef} src={videoUrl} controls style={{ width: '100%', display: 'block', maxHeight: '420px', margin: '0 auto' }} />
+          <div style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '0 auto', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }}>
+            <video ref={videoRef} src={videoUrl} controls style={{ display: 'block', maxHeight: '460px', maxWidth: '100%', height: 'auto', width: 'auto' }} />
             <div style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', padding: '0 5%', pointerEvents: 'none', ...subPos }}>
               <span ref={subRef} style={{ display: 'inline-block' }} />
             </div>
