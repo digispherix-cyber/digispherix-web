@@ -344,6 +344,30 @@ export const tools = [
       { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
     ],
   },
+  {
+    slug: 'grabador-pantalla',
+    name: 'Grabador de Pantalla',
+    tagline: 'Graba tu pantalla y micrófono, sin instalar nada',
+    description:
+      'Graba tu pantalla completa, una ventana o una pestaña, con audio del micrófono o del sistema, y descarga el video. Ideal para tutoriales, demos y presentaciones.',
+    icon: 'MonitorPlay',
+    accent: '#0891b2',
+    ready: true,
+    privacyNote: 'la grabación se queda en tu navegador',
+    howItWorks: [
+      'Elige si quieres incluir tu micrófono o el audio del sistema.',
+      'Pulsa Grabar y selecciona la pantalla, ventana o pestaña a capturar.',
+      'Al terminar, revisa el video y descárgalo. Nada se sube a internet.',
+    ],
+    faqs: [
+      { q: '¿Necesito instalar algo?', a: 'No. Funciona directo en tu navegador (Chrome, Edge o Firefox de escritorio), sin instalar programas ni extensiones.' },
+      { q: '¿Puedo grabar con mi voz?', a: 'Sí. Puedes activar el micrófono para narrar mientras grabas, y también capturar el audio del sistema.' },
+      { q: '¿En qué formato se descarga?', a: 'El video se descarga en formato WebM, compatible con la mayoría de reproductores y editores.' },
+      { q: '¿La grabación se sube a algún servidor?', a: 'No. Todo ocurre en tu navegador y el video se queda en tu dispositivo; no se sube a ningún lado.' },
+      { q: '¿Funciona en el celular?', a: 'La grabación de pantalla del navegador está pensada para computadora. En celular es mejor usar el grabador de pantalla propio del sistema.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
+    ],
+  },
 ]
 
 export function getTool(slug) {
