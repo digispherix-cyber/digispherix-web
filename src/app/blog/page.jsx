@@ -2,6 +2,7 @@ import { getAllPosts } from '../../lib/blog'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowRight, Rss } from 'lucide-react'
 import Particles from '../../components/Particles'
+import NewsletterForm from '../../components/NewsletterForm'
 
 export const metadata = {
   title: 'Blog – DigiSpherix | Diseño Web, Apps Android y Marketing Digital en México',
@@ -136,6 +137,10 @@ export default function BlogPage() {
 
             </div>
           )}
+
+          <div style={{ marginTop: '64px' }}>
+            <NewsletterForm variant="card" />
+          </div>
         </div>
       </section>
     </main>

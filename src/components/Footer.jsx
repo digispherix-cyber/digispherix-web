@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MessageCircle, Mail } from 'lucide-react'
+import NewsletterForm from './NewsletterForm'
 
 function FacebookIcon({ size = 18 }) {
   return (
@@ -87,6 +88,9 @@ export default function Footer() {
         }
       `}</style>
       <div className="ds-container">
+        <div style={{ maxWidth: '460px', margin: '0 auto 48px', paddingBottom: '48px', borderBottom: '1px solid rgba(124,58,237,0.15)' }}>
+          <NewsletterForm variant="footer" />
+        </div>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '56px' }}>
           {/* Brand */}
           <div>
