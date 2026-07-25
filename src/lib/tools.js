@@ -368,6 +368,30 @@ export const tools = [
       { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
     ],
   },
+  {
+    slug: 'recortar-video',
+    name: 'Recortar Video',
+    tagline: 'Corta un tramo de tu video o extrae su audio',
+    description:
+      'Recorta tu video para quedarte solo con el tramo que quieres, o extrae su audio, directo en tu navegador. Sin instalar programas y sin subir tu video a internet.',
+    icon: 'Scissors',
+    accent: '#e11d48',
+    ready: true,
+    privacyNote: 'tu video se procesa en tu navegador',
+    howItWorks: [
+      'Sube tu video (MP4, WebM, MOV y más).',
+      'Marca el inicio y el fin del tramo que quieres conservar.',
+      'Recorta o extrae el audio y descarga el resultado.',
+    ],
+    faqs: [
+      { q: '¿Mi video se sube a internet?', a: 'No. Todo el proceso ocurre en tu navegador con tecnología ffmpeg; tu video nunca sale de tu dispositivo.' },
+      { q: '¿Por qué la primera vez tarda?', a: 'La primera vez se descarga el motor de edición (unos 30 MB) a tu navegador. Después queda en caché y es más rápido.' },
+      { q: '¿Qué formatos acepta?', a: 'Acepta la mayoría de los formatos de video comunes (MP4, WebM, MOV, MKV y otros).' },
+      { q: '¿El recorte pierde calidad?', a: 'No. El recorte copia el video sin volver a comprimirlo, así que conserva la calidad original y es muy rápido.' },
+      { q: '¿Puedo unir varios videos o convertir formatos?', a: 'Por ahora la herramienta recorta y extrae audio. Unir clips y convertir formatos llegarán más adelante.' },
+      { q: '¿Funciona en el celular?', a: 'Funciona mejor en computadora. En celulares con poca memoria, videos grandes pueden fallar por el tamaño del motor de edición.' },
+    ],
+  },
 ]
 
 export function getTool(slug) {
