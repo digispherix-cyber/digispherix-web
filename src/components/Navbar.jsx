@@ -91,6 +91,8 @@ export default function Navbar() {
                             boxShadow: '0 20px 48px rgba(0,0,0,0.4)',
                           }}
                         >
+                          {/* Lista desplazable: muestra ~10 y hace scroll */}
+                          <div className="tools-dd-scroll" style={{ maxHeight: '480px', overflowY: 'auto', overflowX: 'hidden' }}>
                           {readyTools.map((t) => (
                             <a
                               key={t.slug}
@@ -105,6 +107,7 @@ export default function Navbar() {
                               </span>
                             </a>
                           ))}
+                          </div>
                           <a
                             href="/herramientas"
                             className="nav-dropdown-item"
