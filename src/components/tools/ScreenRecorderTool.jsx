@@ -92,6 +92,21 @@ export default function ScreenRecorderTool() {
     if (recorderRef.current && recorderRef.current.state !== 'inactive') recorderRef.current.stop()
   }
 
+  // Las grabaciones WebM de MediaRecorder salen sin duración en la cabecera,
+  // así que el <video> no muestra vista previa ni barra de tiempo. Este truco
+  // fuerza al navegador a calcular la duración y a renderizar el primer cuadro.
+  const fixWebmDuration = (e) => {
+    const v = e.currentTarget
+    if (v.duration === Infinity || isNaN(v.duration)) {
+      const onUpdate = () => {
+        v.removeEventListener('timeupdate', onUpdate)
+        v.currentTime = 0
+      }
+      v.addEventListener('timeupdate', onUpdate)
+      v.currentTime = 1e101
+    }
+  }
+
   const download = () => {
     if (!videoUrl) return
     const a = document.createElement('a')
@@ -132,7 +147,7 @@ export default function ScreenRecorderTool() {
         </div>
       ) : videoUrl ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <video src={videoUrl} controls style={{ width: '100%', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }} />
+          <video src={videoUrl} controls preload="metadata" onLoadedMetadata={fixWebmDuration} style={{ width: '100%', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }} />
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <button onClick={download} className="btn-primary justify-center" style={{ flex: '1 1 180px' }}>
               <Download size={16} /> Descargar video
