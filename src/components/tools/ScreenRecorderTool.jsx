@@ -21,6 +21,7 @@ export default function ScreenRecorderTool() {
   const chunksRef = useRef([])
   const streamsRef = useRef([])
   const timerRef = useRef(null)
+  const startTsRef = useRef(0)
 
   useEffect(() => () => stopEverything(), []) // limpiar al desmontar
 
@@ -62,14 +63,25 @@ export default function ScreenRecorderTool() {
       const rec = new MediaRecorder(mixed, { mimeType: mime })
       chunksRef.current = []
       rec.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunksRef.current.push(e.data) }
-      rec.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'video/webm' })
+      rec.onstop = async () => {
+        let blob = new Blob(chunksRef.current, { type: 'video/webm' })
+        // Escribir la duración en la cabecera del WebM para que la vista previa
+        // se muestre y el archivo sea seekable (aquí y en el editor de video).
+        const durMs = startTsRef.current ? Date.now() - startTsRef.current : 0
+        if (durMs > 0) {
+          try {
+            const mod = await import('fix-webm-duration')
+            const fixWebmDuration = mod.default || mod
+            blob = await fixWebmDuration(blob, durMs, { logger: false })
+          } catch { /* si falla, se usa el blob original */ }
+        }
         setVideoUrl(URL.createObjectURL(blob))
         stopEverything()
         setRecording(false)
       }
       recorderRef.current = rec
       rec.start()
+      startTsRef.current = Date.now()
 
       // si el usuario detiene el compartir desde el navegador, paramos
       display.getVideoTracks()[0].addEventListener('ended', () => {
