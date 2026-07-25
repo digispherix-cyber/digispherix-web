@@ -16,6 +16,7 @@ export default function ScreenRecorderTool() {
   const [seconds, setSeconds] = useState(0)
   const [videoUrl, setVideoUrl] = useState('')
   const [error, setError] = useState('')
+  const [supported, setSupported] = useState(true)
 
   const recorderRef = useRef(null)
   const chunksRef = useRef([])
@@ -24,6 +25,11 @@ export default function ScreenRecorderTool() {
   const startTsRef = useRef(0)
 
   useEffect(() => () => stopEverything(), []) // limpiar al desmontar
+
+  // Detectar si el navegador soporta grabar pantalla (no disponible en móvil)
+  useEffect(() => {
+    setSupported(!!(navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia === 'function'))
+  }, [])
 
   const stopEverything = () => {
     if (timerRef.current) clearInterval(timerRef.current)
@@ -128,6 +134,25 @@ export default function ScreenRecorderTool() {
   }
 
   const toggle = (setter) => (e) => setter(e.target.checked)
+
+  if (!supported) {
+    return (
+      <div style={{ textAlign: 'center', padding: '40px 24px', borderRadius: '16px', border: '1px solid rgba(124,58,237,0.25)', background: 'rgba(12,9,35,0.5)' }}>
+        <div style={{ fontSize: '2.2rem', marginBottom: '12px' }}>📱💻</div>
+        <h3 style={{ color: 'white', fontWeight: 800, fontSize: '1.15rem', marginBottom: '12px' }}>Esta herramienta funciona en computadora</h3>
+        <p style={{ color: '#9d8fc2', fontSize: '0.92rem', lineHeight: 1.7, maxWidth: '440px', margin: '0 auto' }}>
+          Grabar la pantalla desde el navegador no está disponible en celulares. Es una limitación del sistema (iPhone y Android), no de la herramienta.
+        </p>
+        <p style={{ color: '#c4b5fd', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: '440px', margin: '16px auto 0' }}>
+          En tu teléfono usa el grabador de pantalla que ya trae integrado:<br />
+          <strong>iPhone:</strong> Centro de Control · <strong>Android:</strong> ajustes rápidos.
+        </p>
+        <p style={{ color: '#6b5fa0', fontSize: '0.82rem', marginTop: '18px' }}>
+          Abre esta página en tu computadora para grabar aquí.
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
