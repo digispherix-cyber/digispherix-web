@@ -25,6 +25,8 @@ const categoryColor = {
   'React':             '#0ea5e9',
   'Next.js':           '#6366f1',
   'Python':            '#7c3aed',
+  'Windows':           '#0078d4',
+  'Redes':             '#0891b2',
 }
 
 function color(cat) { return categoryColor[cat] || '#6b7280' }
