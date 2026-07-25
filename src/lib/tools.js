@@ -275,6 +275,75 @@ export const tools = [
       { q: '¿Es gratis?', a: 'Sí, totalmente gratis.' },
     ],
   },
+  {
+    slug: 'firma-correo',
+    name: 'Firma de Correo',
+    tagline: 'Firma profesional para Gmail y Outlook',
+    description:
+      'Crea una firma de correo profesional con tus datos, logo y redes sociales. Cópiala y pégala directo en Gmail, Outlook o el correo que uses.',
+    icon: 'Signature',
+    accent: '#2563eb',
+    ready: true,
+    privacyNote: 'todo se genera en tu navegador',
+    howItWorks: [
+      'Llena tus datos: nombre, puesto, empresa, teléfono, correo y redes.',
+      'Mira la vista previa en vivo y ajústala a tu gusto.',
+      'Copia la firma y pégala en la configuración de tu correo.',
+    ],
+    faqs: [
+      { q: '¿Sirve para Gmail y Outlook?', a: 'Sí. La firma se copia con formato y puedes pegarla en la sección de firma de Gmail, Outlook y la mayoría de los correos.' },
+      { q: '¿Puedo agregar mi logo?', a: 'Sí, puedes subir el logo de tu negocio y aparecerá en la firma junto a tus datos.' },
+      { q: '¿Cómo la pego en Gmail?', a: 'Copia la firma con el botón, entra a Configuración de Gmail, busca la sección Firma y pégala ahí con Ctrl+V.' },
+      { q: '¿Se suben mis datos a internet?', a: 'No. La firma se arma en tu navegador; tus datos no se envían ni se guardan en ningún servidor.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
+    ],
+  },
+  {
+    slug: 'mayusculas-minusculas',
+    name: 'Mayúsculas y Minúsculas',
+    tagline: 'Convierte texto entre mayúsculas, minúsculas y más',
+    description:
+      'Convierte cualquier texto a MAYÚSCULAS, minúsculas, Tipo Título o tipo oración con un clic. Ideal para títulos, publicaciones y corregir textos.',
+    icon: 'CaseSensitive',
+    accent: '#7c3aed',
+    ready: true,
+    privacyNote: 'todo se convierte en tu navegador',
+    howItWorks: [
+      'Escribe o pega tu texto en el cuadro.',
+      'Elige el formato: MAYÚSCULAS, minúsculas, Tipo Título o tipo oración.',
+      'Copia el resultado con un clic.',
+    ],
+    faqs: [
+      { q: '¿Qué formatos puedo aplicar?', a: 'MAYÚSCULAS, minúsculas, Tipo Título (primera letra de cada palabra), tipo oración (primera letra del texto) y alternado.' },
+      { q: '¿Respeta los acentos y la ñ?', a: 'Sí. Convierte correctamente caracteres en español, incluyendo acentos y la ñ.' },
+      { q: '¿Sirve para títulos y publicaciones?', a: 'Claro. Es muy útil para dar formato a títulos, encabezados y publicaciones de redes sociales rápidamente.' },
+      { q: '¿Se guarda mi texto?', a: 'No. Todo se procesa en tu navegador; tu texto no se sube ni se guarda.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis.' },
+    ],
+  },
+  {
+    slug: 'sorteo-ganador',
+    name: 'Sorteos',
+    tagline: 'Elige un ganador al azar para tus dinámicas',
+    description:
+      'Sortea un ganador (o varios) de forma justa y aleatoria a partir de una lista de participantes. Perfecto para rifas y concursos en redes sociales.',
+    icon: 'Trophy',
+    accent: '#d946ef',
+    ready: true,
+    privacyNote: 'el sorteo ocurre en tu navegador',
+    howItWorks: [
+      'Pega la lista de participantes, uno por línea (nombres o usuarios).',
+      'Elige cuántos ganadores quieres y si quitas duplicados.',
+      'Pulsa Sortear y se elige al ganador al azar de forma justa.',
+    ],
+    faqs: [
+      { q: '¿El sorteo es realmente aleatorio?', a: 'Sí. Usamos el generador de números aleatorios seguro del navegador (crypto), que no se puede predecir ni manipular.' },
+      { q: '¿Puedo elegir más de un ganador?', a: 'Sí. Puedes indicar cuántos ganadores quieres y se eligen sin repetir.' },
+      { q: '¿Sirve para rifas de Instagram o Facebook?', a: 'Claro. Copia los nombres o usuarios de los participantes, pégalos y realiza el sorteo. Puedes copiar el resultado para publicarlo.' },
+      { q: '¿Se guardan los participantes?', a: 'No. Todo ocurre en tu navegador; la lista no se sube ni se guarda en ningún lado.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
+    ],
+  },
 ]
 
 export function getTool(slug) {
