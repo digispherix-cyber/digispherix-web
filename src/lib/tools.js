@@ -392,6 +392,30 @@ export const tools = [
       { q: '¿Funciona en el celular?', a: 'Funciona mejor en computadora. En celulares con poca memoria, videos grandes pueden fallar por el tamaño del motor de edición.' },
     ],
   },
+  {
+    slug: 'subtitulos-video',
+    name: 'Subtítulos para Video',
+    tagline: 'Subtítulos automáticos con IA, con estilo, para tus videos',
+    description:
+      'Sube un video (hasta 60s), genera subtítulos automáticos con inteligencia artificial, dales estilo (color, borde, fuente, posición) y descarga el video con los subtítulos ya puestos. Ideal para Reels, TikTok y Shorts.',
+    icon: 'Captions',
+    accent: '#8b5cf6',
+    ready: true,
+    privacyNote: 'todo se procesa en tu navegador',
+    howItWorks: [
+      'Sube tu video (máximo 60 segundos) y elige el idioma.',
+      'La IA transcribe el audio y crea los subtítulos con sus tiempos. Edítalos si hace falta.',
+      'Dale estilo y descarga el video con los subtítulos incrustados (o el archivo .SRT).',
+    ],
+    faqs: [
+      { q: '¿Mi video se sube a internet?', a: 'No. La transcripción con IA y el video final se generan en tu navegador; tu video nunca sale de tu dispositivo.' },
+      { q: '¿Por qué la primera vez tarda?', a: 'La primera vez se descarga el modelo de inteligencia artificial (~40 MB) a tu navegador. Después queda en caché y es más rápido.' },
+      { q: '¿Puedo corregir los subtítulos?', a: 'Sí. La IA es muy buena pero no perfecta; puedes editar el texto de cada subtítulo antes de generar el video.' },
+      { q: '¿En qué formato queda el video?', a: 'El video con subtítulos se descarga en formato WebM, que aceptan TikTok, Instagram y YouTube. También puedes descargar el archivo .SRT por separado.' },
+      { q: '¿Por qué el máximo es 60 segundos?', a: 'Porque todo se procesa en tu navegador. Limitarlo a un minuto mantiene el proceso rápido y estable.' },
+      { q: '¿Es gratis?', a: 'Sí, totalmente gratis y sin registro.' },
+    ],
+  },
 ]
 
 export function getTool(slug) {
