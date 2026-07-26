@@ -401,7 +401,7 @@ export default function SubtitleGeneratorTool() {
               {result && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: 'rgba(5,150,105,0.08)', border: '1px solid rgba(5,150,105,0.3)', borderRadius: '14px', padding: '18px' }}>
                   <div style={{ color: '#34d399', fontWeight: 700, fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}><Sparkles size={16} /> ¡Video con subtítulos listo!</div>
-                  <video src={result} controls style={{ width: '100%', borderRadius: '10px', background: '#000', maxHeight: '320px' }} />
+                  <video src={result} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '340px', width: 'auto', height: 'auto', borderRadius: '10px', background: '#000' }} />
                   <a href={result} download="video-subtitulado.webm" className="btn-primary justify-center" style={{ width: '100%' }}><Download size={16} /> Descargar video</a>
                 </div>
               )}

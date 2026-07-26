@@ -113,7 +113,7 @@ export default function VideoTrimmerTool() {
         </label>
       ) : (
         <>
-          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ width: '100%', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000', maxHeight: '360px' }} />
+          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '380px', width: 'auto', height: 'auto', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }} />
 
           {/* Modo */}
           <div style={{ display: 'flex', gap: '10px' }}>
@@ -177,7 +177,7 @@ export default function VideoTrimmerTool() {
                 <Film size={16} /> ¡Listo!
               </div>
               {result.type.startsWith('video') ? (
-                <video src={result.url} controls style={{ width: '100%', borderRadius: '10px', background: '#000', maxHeight: '280px' }} />
+                <video src={result.url} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '300px', width: 'auto', height: 'auto', borderRadius: '10px', background: '#000' }} />
               ) : (
                 <audio src={result.url} controls style={{ width: '100%' }} />
               )}
