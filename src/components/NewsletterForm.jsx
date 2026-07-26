@@ -23,7 +23,7 @@ export default function NewsletterForm({ variant = 'card' }) {
       })
       const data = await r.json().catch(() => ({}))
       if (r.ok && data.ok) {
-        setState('ok'); setMsg('¡Listo! Revisa tu correo para confirmar la suscripción.'); setEmail(''); setConsent(false)
+        setState('ok'); setMsg('¡Listo! Ya estás suscrito a nuestro boletín. ¡Gracias!'); setEmail(''); setConsent(false)
       } else {
         setState('error'); setMsg(data.error || 'No se pudo suscribir. Intenta de nuevo.')
       }

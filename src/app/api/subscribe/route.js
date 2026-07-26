@@ -17,6 +17,11 @@ export async function POST(req) {
   const key = process.env.MAILERLITE_API_KEY
   if (!key) return json({ error: 'El boletín no está configurado. Intenta más tarde.' }, 500)
 
+  // Opt-in simple: el suscriptor entra directo como activo. La casilla de
+  // consentimiento del formulario es la base legal; guardamos la fecha/IP del
+  // consentimiento. (MailerLite no envía correo de confirmación por API.)
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || undefined
+
   try {
     const r = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
@@ -25,7 +30,7 @@ export async function POST(req) {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, status: 'active', ...(ip ? { ip_address: ip, optin_ip: ip } : {}) }),
     })
     if (r.ok) return json({ ok: true })
     // 422 suele ser correo ya suscrito: lo tratamos como éxito silencioso.
