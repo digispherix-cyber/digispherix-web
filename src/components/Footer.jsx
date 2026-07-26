@@ -48,10 +48,14 @@ const navLinks = {
     { label: 'Soporte Técnico',   hash: '#servicios' },
   ],
   Empresa: [
-    { label: 'Nosotros',   href: '/nosotros' },
-    { label: 'Portafolio', hash: '#portafolio' },
-    { label: 'Precios',    hash: '#precios' },
-    { label: 'Contacto',   hash: '#contacto' },
+    { label: 'Nosotros',     href: '/nosotros' },
+    { label: 'Portafolio',   hash: '#portafolio' },
+    { label: 'Precios',      hash: '#precios' },
+    { label: 'Testimonios',  hash: '#testimonios' },
+    { label: 'FAQ',          hash: '#faq' },
+    { label: 'Blog',         href: '/blog' },
+    { label: 'Herramientas', href: '/herramientas' },
+    { label: 'Contacto',     hash: '#contacto' },
   ],
 }
 
@@ -80,6 +84,9 @@ export default function Footer() {
   return (
     <footer className="relative px-6" style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '72px', paddingBottom: '40px' }}>
       <style>{`
+        @media (max-width: 1024px) and (min-width: 641px) {
+          .footer-grid { grid-template-columns: 1fr 1fr !important; }
+        }
         @media (max-width: 640px) {
           .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
           .footer-social { flex-wrap: wrap; justify-content: center; }
@@ -88,10 +95,7 @@ export default function Footer() {
         }
       `}</style>
       <div className="ds-container">
-        <div style={{ maxWidth: '460px', margin: '0 auto 48px', paddingBottom: '48px', borderBottom: '1px solid rgba(124,58,237,0.15)' }}>
-          <NewsletterForm variant="footer" />
-        </div>
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '56px' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr 1fr 1.6fr', gap: '40px', marginBottom: '56px' }}>
           {/* Brand */}
           <div>
             <div style={{ marginBottom: '16px' }}>
@@ -193,6 +197,11 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Boletín (4a columna) */}
+          <div>
+            <NewsletterForm variant="footer" />
+          </div>
         </div>
 
         <div

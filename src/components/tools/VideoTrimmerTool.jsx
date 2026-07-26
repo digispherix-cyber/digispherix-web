@@ -21,6 +21,7 @@ export default function VideoTrimmerTool() {
   const [progress, setProgress] = useState(0)
   const [result, setResult] = useState(null) // { url, name, type }
   const [error, setError] = useState('')
+  const [dragging, setDragging] = useState(false)
 
   const videoRef = useRef(null)
   const ffmpegRef = useRef(null)
@@ -99,9 +100,14 @@ export default function VideoTrimmerTool() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {!file ? (
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: '2px dashed rgba(124,58,237,0.4)', background: 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center' }}>
+        <label
+          onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files?.[0]) }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? '#e879f9' : 'rgba(124,58,237,0.4)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
+        >
           <Upload size={30} style={{ color: '#e879f9' }} />
-          <span style={{ color: 'white', fontWeight: 700 }}>Sube tu video</span>
+          <span style={{ color: 'white', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
           <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>MP4, WebM, MOV… Se procesa en tu navegador, no se sube a internet.</span>
           <input ref={inputRef} type="file" accept="video/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
         </label>

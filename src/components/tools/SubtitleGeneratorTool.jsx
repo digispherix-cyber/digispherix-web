@@ -134,6 +134,7 @@ export default function SubtitleGeneratorTool() {
   const [style, setStyle] = useState(DEFAULT_STYLE)
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
+  const [dragging, setDragging] = useState(false)
 
   const videoRef = useRef(null)
   const inputRef = useRef(null)
@@ -242,19 +243,15 @@ export default function SubtitleGeneratorTool() {
       canvas.width = video.videoWidth || 720
       canvas.height = video.videoHeight || 1280
       const ctx = canvas.getContext('2d')
-      if (!audioCtxRef.current) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext
-        audioCtxRef.current = new AudioCtx()
-        sourceRef.current = audioCtxRef.current.createMediaElementSource(video)
-      }
-      const actx = audioCtxRef.current
-      if (actx.state === 'suspended') await actx.resume()
-      const dest = actx.createMediaStreamDestination()
-      sourceRef.current.connect(dest)
-      sourceRef.current.connect(actx.destination)
 
+      // Audio: se toma directo del elemento con captureStream (conserva el audio).
       const canvasStream = canvas.captureStream(30)
-      const mixed = new MediaStream([...canvasStream.getVideoTracks(), ...dest.stream.getAudioTracks()])
+      let audioTracks = []
+      try {
+        const cap = typeof video.captureStream === 'function' ? video.captureStream() : (video.mozCaptureStream ? video.mozCaptureStream() : null)
+        if (cap) audioTracks = cap.getAudioTracks()
+      } catch { audioTracks = [] }
+      const mixed = new MediaStream([...canvasStream.getVideoTracks(), ...audioTracks])
       const mime = MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus') ? 'video/webm;codecs=vp9,opus' : 'video/webm'
       const rec = new MediaRecorder(mixed, { mimeType: mime })
       const chunks = []
@@ -271,13 +268,11 @@ export default function SubtitleGeneratorTool() {
         if (!video.paused && !video.ended) raf = requestAnimationFrame(draw)
       }
       video.currentTime = 0
-      video.muted = true
       await video.play()
       rec.start()
       draw()
       video.onended = () => { cancelAnimationFrame(raf); if (rec.state !== 'inactive') rec.stop() }
       await stopped
-      video.muted = false
       let blob = new Blob(chunks, { type: 'video/webm' })
       try { const mod = await import('fix-webm-duration'); const fix = mod.default || mod; blob = await fix(blob, Math.round((video.duration || 0) * 1000), { logger: false }) } catch { /* noop */ }
       setResult(URL.createObjectURL(blob)); setProgress(100); setPhase('ready')
@@ -300,10 +295,15 @@ export default function SubtitleGeneratorTool() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {!file ? (
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: '2px dashed rgba(124,58,237,0.4)', background: 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center' }}>
+        <label
+          onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files?.[0]) }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? '#e879f9' : 'rgba(124,58,237,0.4)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
+        >
           <Upload size={30} style={{ color: '#e879f9' }} />
-          <span style={{ color: 'white', fontWeight: 700 }}>Sube tu video (máximo 60 segundos)</span>
-          <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>Se procesa en tu navegador; tu video no se sube a internet.</span>
+          <span style={{ color: 'white', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
+          <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>Máximo 60 segundos. Se procesa en tu navegador; tu video no se sube a internet.</span>
           <input ref={inputRef} type="file" accept="video/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
         </label>
       ) : (

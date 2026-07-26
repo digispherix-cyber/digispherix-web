@@ -50,7 +50,10 @@ export default function NewsletterForm({ variant = 'card' }) {
         </>
       )}
       {variant === 'footer' && (
-        <h4 style={{ color: 'white', fontWeight: 600, marginBottom: '12px', fontSize: '0.95rem' }}>Boletín</h4>
+        <>
+          <h4 style={{ color: 'white', fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>Suscríbete al boletín de noticias</h4>
+          <p style={{ color: '#9d8fc2', fontSize: '0.8rem', lineHeight: 1.5, marginBottom: '14px' }}>Nuevos artículos, herramientas y consejos. Sin spam.</p>
+        </>
       )}
 
       {state === 'ok' ? (
