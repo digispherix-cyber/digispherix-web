@@ -5,13 +5,17 @@ import { FileVideo, Upload, Download, RotateCcw, Zap, Clock } from 'lucide-react
 
 const MAX_SECONDS = 60
 
-// reencode = argumentos si hay que recomprimir. forceReencode = siempre recomprime (webm).
+// reencode = argumentos si hay que recomprimir (cuando la copia directa no aplica).
+// previewable = el navegador puede reproducirlo en un <video>. .ts y .mkv no se
+// pueden previsualizar en el navegador (pero se convierten y descargan bien).
+// Nota: no ofrecemos WebM como destino porque el motor ligero (self-hosted) no
+// incluye el codificador libvpx. Los WebM sí se pueden convertir a estos formatos.
+const REENC = ['-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac']
 const FORMATS = [
-  { ext: 'mp4',  label: 'MP4',  mime: 'video/mp4',          reencode: ['-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac'], fast: true },
-  { ext: 'mov',  label: 'MOV',  mime: 'video/quicktime',    reencode: ['-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac'], fast: true },
-  { ext: 'mkv',  label: 'MKV',  mime: 'video/x-matroska',   reencode: ['-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac'], fast: true },
-  { ext: 'ts',   label: 'TS',   mime: 'video/mp2t',         reencode: ['-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-bsf:v', 'h264_mp4toannexb'], fast: true },
-  { ext: 'webm', label: 'WebM', mime: 'video/webm',         reencode: ['-c:v', 'libvpx-vp9', '-b:v', '1M', '-row-mt', '1', '-c:a', 'libopus'], fast: false, forceReencode: true },
+  { ext: 'mp4', label: 'MP4', mime: 'video/mp4',        reencode: REENC, previewable: true },
+  { ext: 'mov', label: 'MOV', mime: 'video/quicktime',  reencode: REENC, previewable: false },
+  { ext: 'mkv', label: 'MKV', mime: 'video/x-matroska', reencode: REENC, previewable: false },
+  { ext: 'ts',  label: 'TS',  mime: 'video/mp2t',       reencode: [...REENC, '-bsf:v', 'h264_mp4toannexb'], previewable: false },
 ]
 
 export default function VideoConverterTool() {
@@ -84,17 +88,15 @@ export default function VideoConverterTool() {
 
       let ok = false
       // 1) intento rápido: solo cambiar contenedor (sin recomprimir)
-      if (!fmt.forceReencode) {
-        try {
-          const args = ['-i', inName, '-c', 'copy']
-          if (fmt.ext === 'ts') args.push('-bsf:v', 'h264_mp4toannexb')
-          if (fmt.ext === 'mp4' || fmt.ext === 'mov') args.push('-movflags', 'faststart')
-          args.push(outName)
-          await ffmpeg.exec(args)
-          ok = await fileExists(ffmpeg, outName)
-        } catch { ok = false }
-      }
-      // 2) si no funcionó (o es webm): recomprimir
+      try {
+        const args = ['-i', inName, '-c', 'copy']
+        if (fmt.ext === 'ts') args.push('-bsf:v', 'h264_mp4toannexb')
+        if (fmt.ext === 'mp4' || fmt.ext === 'mov') args.push('-movflags', 'faststart')
+        args.push(outName)
+        await ffmpeg.exec(args)
+        ok = await fileExists(ffmpeg, outName)
+      } catch { ok = false }
+      // 2) si no funcionó (códecs incompatibles con el contenedor): recomprimir
       if (!ok) {
         try { await ffmpeg.deleteFile(outName) } catch {}
         setProgress(0)
@@ -109,9 +111,12 @@ export default function VideoConverterTool() {
       const data = await ffmpeg.readFile(outName)
       const blob = new Blob([data.buffer], { type: fmt.mime })
       const base = (file.name.replace(/\.[a-z0-9]+$/i, '') || 'video')
-      setResult({ url: URL.createObjectURL(blob), name: `${base}.${fmt.ext}`, mime: fmt.mime })
+      setResult({ url: URL.createObjectURL(blob), name: `${base}.${fmt.ext}`, mime: fmt.mime, previewable: fmt.previewable })
       setPhase('idle')
     } catch (e) {
+      // El motor puede quedar en mal estado tras un fallo: lo reiniciamos para
+      // que el siguiente intento arranque limpio (y no se cuelgue).
+      ffmpegRef.current = null
       setError('No se pudo convertir el video a ' + fmt.label + '. Prueba con otro formato de destino o un video distinto.')
       setPhase('idle')
     }
@@ -124,7 +129,10 @@ export default function VideoConverterTool() {
 
   const busy = phase !== 'idle'
   const targetFmt = FORMATS.find((f) => f.ext === target)
-  const slow = targetFmt && (targetFmt.forceReencode || srcExt === 'webm')
+  // Un WebM de origen no se puede copiar directo a estos contenedores, así que
+  // hay que recomprimirlo (lento). Cualquier otro origen suele ir por copia (rápido).
+  const fromWebm = srcExt === 'webm'
+  const slow = fromWebm
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -159,8 +167,8 @@ export default function VideoConverterTool() {
                     color: active ? 'white' : '#9d8fc2', border: `1px solid ${active ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
                   }}>
                     {f.label}
-                    <span style={{ fontSize: '0.62rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '3px', color: active ? 'rgba(255,255,255,0.85)' : (f.fast ? '#34d399' : '#fbbf24') }}>
-                      {f.fast ? <><Zap size={9} /> rápido</> : <><Clock size={9} /> lento</>}
+                    <span style={{ fontSize: '0.62rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '3px', color: active ? 'rgba(255,255,255,0.85)' : (fromWebm ? '#fbbf24' : '#34d399') }}>
+                      {fromWebm ? <><Clock size={9} /> lento</> : <><Zap size={9} /> rápido</>}
                     </span>
                   </button>
                 )
@@ -169,7 +177,7 @@ export default function VideoConverterTool() {
             {slow && (
               <p style={{ color: '#fbbf24', fontSize: '0.78rem', lineHeight: 1.5, margin: '12px 0 0', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
                 <Clock size={13} style={{ flexShrink: 0, marginTop: '2px' }} />
-                Este destino recomprime el video, así que puede tardar varios minutos (todo ocurre en tu navegador).
+                Tu video es WebM, así que hay que recomprimirlo y puede tardar varios minutos (todo ocurre en tu navegador).
               </p>
             )}
           </div>
@@ -204,7 +212,13 @@ export default function VideoConverterTool() {
               <div style={{ color: '#34d399', fontWeight: 700, fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <FileVideo size={16} /> ¡Listo! {result.name}
               </div>
-              <video src={result.url} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '300px', width: 'auto', height: 'auto', borderRadius: '10px', background: '#000' }} />
+              {result.previewable ? (
+                <video src={result.url} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '300px', width: 'auto', height: 'auto', borderRadius: '10px', background: '#000' }} />
+              ) : (
+                <p style={{ color: '#c4b5fd', fontSize: '0.82rem', lineHeight: 1.5, margin: 0, textAlign: 'center' }}>
+                  Tu navegador no puede reproducir el formato {targetFmt?.label} aquí, pero el video se convirtió correctamente. Descárgalo para verlo o usarlo.
+                </p>
+              )}
               <a href={result.url} download={result.name} className="btn-primary justify-center" style={{ width: '100%' }}>
                 <Download size={16} /> Descargar {result.name}
               </a>
