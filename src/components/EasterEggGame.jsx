@@ -10,7 +10,6 @@ const H = 460
 const PLAYER_W = 44
 const MAX_LIVES = 3
 const INVINCIBLE_MS = 1800
-const IS_TOUCH = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
 
 // Dificultad definida por oleada — interval(ms entre disparos), shooters(cuántos disparan), bSpeed(vel bala), eSpeed(vel enemigos)
 const WAVES = [
@@ -49,6 +48,7 @@ export default function EasterEggGame() {
   const [countdown, setCountdown]   = useState(3)
   const [, forceRender]             = useState(0)
   const [scale, setScale]           = useState(1)
+  const [isTouch, setIsTouch]       = useState(false)
 
   // Game refs
   const pxRef          = useRef(W / 2 - PLAYER_W / 2)
@@ -68,6 +68,10 @@ export default function EasterEggGame() {
   const gameStateRef   = useRef('idle')
 
   useEffect(() => { gameStateRef.current = gameState }, [gameState])
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
 
   // Scale canvas to fit mobile screens
   useEffect(() => {
@@ -339,7 +343,7 @@ export default function EasterEggGame() {
               <p style={{ color: '#c4b5fd', fontSize: '0.88rem', textAlign: 'center', lineHeight: 1.8, margin: 0 }}>
                 ¡Encontraste el Easter Egg!<br />
                 <span style={{ color: '#9d8fc2', fontSize: '0.76rem' }}>
-                  {IS_TOUCH ? 'Usa los botones ◀ 🔥 ▶' : '← → mover · Espacio disparar'}<br />
+                  {isTouch ? 'Usa los botones ◀ 🔥 ▶' : '← → mover · Espacio disparar'}<br />
                   <span style={{ color: '#5b4a8a' }}>8 oleadas · 👾→🛸→👽→💀</span>
                 </span>
               </p>
@@ -461,7 +465,7 @@ export default function EasterEggGame() {
         </div>
 
         <p style={{ color: '#3d2f6e', fontSize: '0.68rem', margin: 0 }}>
-          {IS_TOUCH ? 'Toca ◀ ▶ para mover · 🔥 para disparar' : 'Teclado: ← → mover · Espacio disparar'}
+          {isTouch ? 'Toca ◀ ▶ para mover · 🔥 para disparar' : 'Teclado: ← → mover · Espacio disparar'}
         </p>
       </motion.div>
     </div>

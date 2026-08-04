@@ -7,6 +7,7 @@ export default function CustomCursor() {
   const [visible, setVisible] = useState(false)
   const [clicking, setClicking] = useState(false)
   const [hovering, setHovering] = useState(false)
+  const [coarsePointer, setCoarsePointer] = useState(false)
 
   const mx = useMotionValue(-100)
   const my = useMotionValue(-100)
@@ -51,7 +52,11 @@ export default function CustomCursor() {
     }
   }, [mx, my])
 
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return null
+  useEffect(() => {
+    setCoarsePointer(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
+
+  if (coarsePointer) return null
 
   return (
     <>

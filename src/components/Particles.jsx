@@ -1,7 +1,6 @@
 ﻿'use client'
 
-const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-const COUNT = isMobile ? 0 : 60
+const COUNT = 60
 
 const DOTS = Array.from({ length: COUNT }, (_, i) => ({
   id: i,
@@ -14,9 +13,9 @@ const DOTS = Array.from({ length: COUNT }, (_, i) => ({
 }))
 
 export default function Particles() {
-  if (COUNT === 0) return null
   return (
     <div
+      className="hidden md:block"
       style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}
       aria-hidden="true"
     >

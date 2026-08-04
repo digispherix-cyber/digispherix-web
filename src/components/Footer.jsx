@@ -35,7 +35,7 @@ function TikTokIcon({ size = 18 }) {
     </svg>
   )
 }
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { easterEggTrigger } from './EasterEggGame'
 
@@ -62,8 +62,13 @@ const navLinks = {
 export default function Footer() {
   const [tapCount, setTapCount] = useState(0)
   const [showHint, setShowHint] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
 
   const links = Object.fromEntries(
     Object.entries(navLinks).map(([section, items]) => [
@@ -228,7 +233,7 @@ export default function Footer() {
           <p style={{ fontSize: '0.75rem', color: '#9d8fc2' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
           </p>
-          {typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches ? (
+          {isTouch ? (
             <p style={{ fontSize: '0.65rem', color: '#6b5fa0', marginTop: '6px', userSelect: 'none' }}>
               🎮 Psst... toca el logo 5 veces
             </p>
