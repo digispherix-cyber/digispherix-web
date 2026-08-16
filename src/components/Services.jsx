@@ -2,7 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { Globe, Smartphone, Megaphone, Database, LifeBuoy, Search } from 'lucide-react'
+import { Globe, Smartphone, Megaphone, Server, LifeBuoy, Search } from 'lucide-react'
 
 const services = [
   {
@@ -34,10 +34,10 @@ const services = [
     color: '#7c3aed',
   },
   {
-    icon: <Database size={28} />,
-    title: 'Soluciones Odoo ERP',
-    desc: 'Implementación del sistema empresarial Odoo para gestionar CRM, ventas, inventario, facturación y más desde un solo lugar.',
-    tags: ['CRM', 'Inventario', 'Facturación', 'Reportes'],
+    icon: <Server size={28} />,
+    title: 'Soluciones TI',
+    desc: 'Desarrollo de software a la medida: sistemas B2B, plataformas SaaS, integraciones y cualquier solución que tu negocio necesite programar o instalar en un servidor.',
+    tags: ['SaaS', 'Software a Medida', 'Integraciones', 'B2B'],
     color: '#d946ef',
   },
   {

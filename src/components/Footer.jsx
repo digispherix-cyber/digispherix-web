@@ -44,7 +44,7 @@ const navLinks = {
     { label: 'Diseño Web',        hash: '#servicios' },
     { label: 'Apps Android',      hash: '#servicios' },
     { label: 'Marketing Digital', hash: '#servicios' },
-    { label: 'Odoo ERP',          hash: '#servicios' },
+    { label: 'Soluciones TI',     hash: '#servicios' },
     { label: 'Soporte Técnico',   hash: '#servicios' },
   ],
   Empresa: [

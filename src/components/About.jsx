@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { Code2, Smartphone, TrendingUp, Award } from 'lucide-react'
+import { Code2, Smartphone, TrendingUp, Server } from 'lucide-react'
 import Image from 'next/image'
 
 const certifications = [
@@ -28,7 +28,7 @@ const skills = [
   { label: 'Android / Kotlin', pct: 85 },
   { label: 'WordPress / Divi', pct: 95 },
   { label: 'Marketing Digital', pct: 80 },
-  { label: 'Odoo ERP', pct: 75 },
+  { label: 'Soluciones TI', pct: 75 },
   { label: 'SEO & Google Ads', pct: 82 },
 ]
 
@@ -36,7 +36,7 @@ const highlights = [
   { icon: <Code2 size={20} />, label: 'Desarrollo Web', sub: 'React · WordPress · PHP' },
   { icon: <Smartphone size={20} />, label: 'Apps Android', sub: 'Kotlin · Firebase · APIs' },
   { icon: <TrendingUp size={20} />, label: 'Marketing Digital', sub: 'SEO · Ads · Social Media' },
-  { icon: <Award size={20} />, label: 'Odoo ERP', sub: 'CRM · Ventas · Inventario' },
+  { icon: <Server size={20} />, label: 'Soluciones TI', sub: 'SaaS · Software a Medida · Integraciones' },
 ]
 
 export default function About() {

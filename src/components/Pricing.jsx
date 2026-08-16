@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Check, MessageCircle } from 'lucide-react'
 
-const categories = ['Web', 'Android', 'Marketing', 'Odoo', 'Soporte']
+const categories = ['Web', 'Android', 'Marketing', 'TI', 'Soporte']
 
 const plans = {
   Web: [
@@ -140,32 +140,31 @@ const plans = {
       highlight: false,
     },
   ],
-  Odoo: [
+  TI: [
     {
-      name: 'Odoo Esencial',
-      price: '$35,000',
-      period: 'pago único',
-      desc: 'La base para organizar tu negocio desde el primer día.',
-      features: ['CRM (Gestión de Clientes)', 'Ventas (Cotizaciones y Pedidos)', 'Facturación', 'Implementación incluida', 'Capacitación inicial'],
+      name: 'Automatización',
+      price: 'Personalizado',
+      period: 'consultar',
+      desc: 'Conecta tus herramientas y automatiza tareas repetitivas.',
+      features: ['Integración entre plataformas', 'Automatización de procesos', 'Scripts a medida', 'Implementación incluida', 'Soporte inicial'],
       cta: 'Cotizar',
       highlight: false,
     },
     {
-      name: 'Odoo Comercial',
-      desde: true,
-      price: '$75,000',
-      period: 'pago único',
-      desc: 'Control total sobre tus ventas, inventario y compras.',
-      features: ['Todo lo de Odoo Esencial', 'Gestión de Inventario', 'Compras', 'Visión 360° de tu operación', 'Soporte incluido'],
+      name: 'Sistema a la Medida',
+      price: 'Personalizado',
+      period: 'consultar',
+      desc: 'Software propio para controlar tu operación sin depender de terceros.',
+      features: ['Panel de administración', 'Base de datos propia', 'Roles y permisos de usuario', 'Reportes personalizados', 'Soporte incluido'],
       cta: 'Cotizar',
       highlight: true,
     },
     {
-      name: 'Solución Integral Odoo',
+      name: 'Plataforma SaaS / Empresarial',
       price: 'Personalizado',
       period: 'consultar',
-      desc: 'Sistema de gestión empresarial totalmente a la medida.',
-      features: ['Contabilidad', 'Proyectos', 'Fabricación', 'Recursos Humanos', 'Sitio Web / E-commerce', 'Módulos personalizables'],
+      desc: 'Sistemas complejos multiusuario, listos para escalar o vender como servicio.',
+      features: ['Arquitectura escalable en la nube', 'Múltiples módulos e integraciones', 'Modelo SaaS multiusuario', 'Consultoría técnica incluida', 'Soporte extendido'],
       cta: 'Contactar ventas',
       highlight: false,
     },

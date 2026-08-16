@@ -47,7 +47,7 @@ const services = [
   'App Android',
   'Marketing Digital',
   'SEO / Publicidad',
-  'Odoo ERP',
+  'Soluciones TI',
   'Soporte Técnico',
   'Otro',
 ]

@@ -19,14 +19,14 @@ function CountUp({ to, suffix = '' }) {
     </span>
   )
 }
-import { ArrowRight, Code2, Smartphone, TrendingUp, Globe, Database, Award, Shield, Layers } from 'lucide-react'
+import { ArrowRight, Code2, Smartphone, TrendingUp, Globe, Server, Award, Shield, Layers } from 'lucide-react'
 
 const floatingBadges = [
   { icon: <Code2 size={15} />,      label: 'Sitios Web',           right: '8%',  top: '24%', depth: 0.04 },
   { icon: <Smartphone size={15} />, label: 'Apps Android',         right: '6%',  top: '46%', depth: 0.06 },
   { icon: <Globe size={15} />,      label: 'Google Workspace',     right: '9%',  top: '66%', depth: 0.03 },
   { icon: <TrendingUp size={15} />, label: 'Marketing Digital',    left: '5%',   top: '28%', depth: 0.05 },
-  { icon: <Database size={15} />,   label: 'Odoo ERP',             left: '4%',   top: '50%', depth: 0.07 },
+  { icon: <Server size={15} />,     label: 'Soluciones TI',        left: '4%',   top: '50%', depth: 0.07 },
   { icon: <Layers size={15} />,     label: 'Soluciones Digitales', left: '5%',   top: '68%', depth: 0.04 },
   { icon: <Shield size={15} />,     label: 'Soporte 24/7',         right: '8%',  top: '82%', depth: 0.06 },
   { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '6%',   top: '84%', depth: 0.05 },

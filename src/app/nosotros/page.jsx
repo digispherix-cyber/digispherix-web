@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import Particles from '../../components/Particles'
-import { ArrowRight, Rocket, Target, HeartHandshake, Globe, Smartphone, Megaphone, Database, Compass, Check } from 'lucide-react'
+import { ArrowRight, Rocket, Target, HeartHandshake, Globe, Smartphone, Megaphone, Server, Compass, Check } from 'lucide-react'
 
 export const metadata = {
   title: 'Nosotros - DigiSpherix | Agencia Digital en Guadalajara',
   description:
-    'Conoce a DigiSpherix: agencia digital en Guadalajara especializada en sitios web, apps Android, marketing digital y soluciones Odoo para empresas y emprendedores en México.',
+    'Conoce a DigiSpherix: agencia digital en Guadalajara especializada en sitios web, apps Android, marketing digital y soluciones TI para empresas y emprendedores en México.',
   alternates: { canonical: 'https://www.digispherix.com.mx/nosotros' },
   openGraph: {
     title: 'Nosotros - DigiSpherix',
-    description: 'Agencia digital en Guadalajara. Sitios web, apps, marketing y Odoo para tu negocio.',
+    description: 'Agencia digital en Guadalajara. Sitios web, apps, marketing y soluciones TI para tu negocio.',
     url: 'https://www.digispherix.com.mx/nosotros',
   },
 }
@@ -24,7 +24,7 @@ const servicios = [
   { icon: Globe, title: 'Sitios web y tiendas en línea', desc: 'Desde una landing page hasta un e-commerce completo, listos para vender.' },
   { icon: Smartphone, title: 'Apps para Android', desc: 'Aplicaciones a la medida para llevar tu negocio al celular de tus clientes.' },
   { icon: Megaphone, title: 'Marketing digital', desc: 'Redes sociales, campañas de anuncios y SEO para que te encuentren y te compren.' },
-  { icon: Database, title: 'Soluciones Odoo ERP', desc: 'Ordena ventas, inventario y facturación de tu empresa en un solo sistema.' },
+  { icon: Server, title: 'Soluciones TI', desc: 'Software a la medida, sistemas B2B y plataformas SaaS para tu empresa.' },
 ]
 
 export default function NosotrosPage() {
