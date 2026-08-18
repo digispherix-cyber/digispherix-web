@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Upload, Download, Type, Sparkles, Film, RotateCcw, Wand2, Captions } from 'lucide-react'
+import { Upload, Download, Type, Sparkles, Film, RotateCcw, Wand2, Captions, Play, Wand } from 'lucide-react'
 
 const MAX_SECONDS = 60
 
@@ -18,6 +18,7 @@ const EFFECTS = [
   { value: 'scroll', label: 'Aparece desde abajo' },
   { value: 'word', label: 'Palabra por palabra' },
   { value: 'karaoke', label: 'Coloreado progresivo (karaoke)' },
+  { value: 'highlight', label: 'Caja en la palabra actual' },
 ]
 
 const DEFAULT_STYLE = {
@@ -27,10 +28,20 @@ const DEFAULT_STYLE = {
   outlineColor: '#000000',
   bgColor: '#000000',
   bgOpacity: 0,        // 0 = transparente
+  highlightColor: '#d946ef',
   position: 'bottom',
   font: FONTS[0].value,
   effect: 'normal',
 }
+
+// Presets de un clic: combinan fuente + color + borde + fondo + posición + efecto.
+const PRESETS = [
+  { label: 'TikTok', style: { size: 0.09, color: '#ffffff', outline: true, outlineColor: '#000000', bgColor: '#000000', bgOpacity: 0, highlightColor: '#25F4EE', position: 'bottom', font: FONTS[1].value, effect: 'word' } },
+  { label: 'Podcast', style: { size: 0.06, color: '#ffffff', outline: false, outlineColor: '#000000', bgColor: '#000000', bgOpacity: 0.55, highlightColor: '#d946ef', position: 'bottom', font: FONTS[0].value, effect: 'karaoke' } },
+  { label: 'Noticiero', style: { size: 0.05, color: '#ffffff', outline: false, outlineColor: '#000000', bgColor: '#7c1d3f', bgOpacity: 0.92, highlightColor: '#d946ef', position: 'bottom', font: FONTS[0].value, effect: 'normal' } },
+  { label: 'Minimalista', style: { size: 0.055, color: '#ffffff', outline: false, outlineColor: '#000000', bgColor: '#000000', bgOpacity: 0, highlightColor: '#d946ef', position: 'center', font: FONTS[2].value, effect: 'normal' } },
+  { label: 'DigiSpherix', style: { size: 0.075, color: '#ffffff', outline: true, outlineColor: '#1a0b2e', bgColor: '#000000', bgOpacity: 0, highlightColor: '#d946ef', position: 'bottom', font: FONTS[1].value, effect: 'highlight' } },
+]
 
 function hexToRgba(hex, a) {
   const h = (hex || '#000000').replace('#', '')
@@ -130,6 +141,16 @@ function effectState(seg, t, effect) {
     }
   } else if (effect === 'karaoke') {
     words = karaokeWords(seg, t) // cada palabra ya dicha o no, en vez de un barrido parejo
+  } else if (effect === 'highlight') {
+    // Todas las palabras visibles; la que se está diciendo ahora lleva una caja de color.
+    if (realWords) {
+      const idx = seg.words.findIndex((w) => t >= w.start && t < w.end)
+      words = seg.words.map((w, i) => ({ text: w.text, hi: i === idx }))
+    } else {
+      const timeline = wordTimeline(seg.text, dur)
+      const idx = timeline.findIndex((w) => into >= w.start && into < w.end)
+      words = timeline.map((w, i) => ({ text: w.word, hi: i === idx }))
+    }
   }
   return { text, alpha, dyFrac, scale, words }
 }
@@ -236,20 +257,34 @@ function wrapWordsByWidth(ctx, texts, maxW) {
   return ranges
 }
 
+// Si el texto no cabe en maxLines líneas al tamaño base, encoge la fuente hasta que quepa
+// (con un mínimo), en vez de dejar que los subtítulos largos salgan enormes y desbordados.
+function fitFontSize(measureCtx, wordTexts, font, baseFontSize, maxW, maxLines) {
+  let fontSize = baseFontSize
+  const minFontSize = baseFontSize * 0.55
+  while (fontSize > minFontSize) {
+    measureCtx.font = `bold ${Math.round(fontSize)}px ${font}`
+    if (wrapWordsByWidth(measureCtx, wordTexts, maxW).length <= maxLines) break
+    fontSize *= 0.92
+  }
+  return Math.round(fontSize)
+}
+
 // Dibuja el subtítulo sobre el canvas (para el video exportado)
 function drawSubtitle(ctx, seg, t, W, H, style) {
   const { text, alpha, dyFrac, scale, words } = effectState(seg, t, style.effect)
   if (!text) return
-  const fontSize = Math.round(style.size * H)
+  const maxW = W * 0.9
+  const wordTexts = words ? words.map((w) => w.text) : text.split(/\s+/)
+  const fontSize = fitFontSize(ctx, wordTexts, style.font, style.size * H, maxW, 2)
   ctx.save()
   ctx.globalAlpha = alpha
   ctx.font = `bold ${fontSize}px ${style.font}`
   ctx.textAlign = 'center'
   ctx.textBaseline = 'alphabetic'
 
-  const maxW = W * 0.9
   const spaceW = ctx.measureText(' ').width
-  const lineRanges = wrapWordsByWidth(ctx, words ? words.map((w) => w.text) : text.split(/\s+/), maxW)
+  const lineRanges = wrapWordsByWidth(ctx, wordTexts, maxW)
   const lines = words
     ? lineRanges.map(([a, b]) => words.slice(a, b))
     : lineRanges.map(([a, b]) => text.split(/\s+/).slice(a, b).join(' '))
@@ -289,7 +324,7 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
     if (!words) {
       ctx.fillStyle = style.color
       ctx.fillText(lineText, cx, ly)
-    } else {
+    } else if (style.effect === 'karaoke') {
       // Karaoke: cada palabra se dibuja en el color activo si ya se dijo, o apagado si no.
       ctx.textAlign = 'left'
       let x = cx - tw / 2
@@ -297,6 +332,23 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
         ctx.fillStyle = w.lit ? style.color : hexToRgba(style.color, 0.35)
         ctx.fillText(w.text, x, ly)
         x += ctx.measureText(w.text).width + spaceW
+      })
+      ctx.textAlign = 'center'
+    } else {
+      // Resaltado: todas las palabras en su color normal, con una caja detrás de la que se dice ahora.
+      ctx.textAlign = 'left'
+      let x = cx - tw / 2
+      line.forEach((w) => {
+        const ww = ctx.measureText(w.text).width
+        if (w.hi) {
+          ctx.fillStyle = style.highlightColor
+          ctx.beginPath()
+          ctx.roundRect(x - fontSize * 0.12, ly - fontSize * 0.86, ww + fontSize * 0.24, fontSize * 1.08, fontSize * 0.18)
+          ctx.fill()
+        }
+        ctx.fillStyle = style.color
+        ctx.fillText(w.text, x, ly)
+        x += ww + spaceW
       })
       ctx.textAlign = 'center'
     }
@@ -323,6 +375,7 @@ export default function SubtitleGeneratorTool() {
   const audioCtxRef = useRef(null)
   const sourceRef = useRef(null)
   const rafRef = useRef(null)
+  const measureCtxRef = useRef(null) // canvas oculto solo para medir texto (ajuste de tamaño)
   const segmentsRef = useRef(segments)
   const styleRef = useRef(style)
   segmentsRef.current = segments
@@ -340,7 +393,10 @@ export default function SubtitleGeneratorTool() {
         if (seg) {
           const { text, alpha, dyFrac, scale, words } = effectState(seg, t, st.effect)
           const ph = video.clientHeight || 240
-          const fontPx = Math.round(st.size * ph)
+          const pw = video.clientWidth || 240
+          if (!measureCtxRef.current) measureCtxRef.current = document.createElement('canvas').getContext('2d')
+          const wordTexts = words ? words.map((w) => w.text) : text.split(/\s+/)
+          const fontPx = fitFontSize(measureCtxRef.current, wordTexts, st.font, st.size * ph, pw * 0.9, 2)
           node.style.fontFamily = st.font
           node.style.fontWeight = 'bold'
           node.style.fontSize = fontPx + 'px'
@@ -354,11 +410,20 @@ export default function SubtitleGeneratorTool() {
           node.style.background = st.bgOpacity > 0 ? hexToRgba(st.bgColor, st.bgOpacity) : 'transparent'
           node.style.display = 'inline-block'
 
-          if (words) {
+          const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          if (words && st.effect === 'karaoke') {
             // Karaoke: cada palabra se pinta en el color activo si ya se dijo, apagada si no.
             node.textContent = ''
             node.innerHTML = words
-              .map((w) => `<span style="color:${w.lit ? st.color : hexToRgba(st.color, 0.35)}">${w.text.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span>`)
+              .map((w) => `<span style="color:${w.lit ? st.color : hexToRgba(st.color, 0.35)}">${esc(w.text)}</span>`)
+              .join(' ')
+          } else if (words) {
+            // Resaltado: todas las palabras en su color normal, con una caja en la que se dice ahora.
+            node.textContent = ''
+            node.innerHTML = words
+              .map((w) => w.hi
+                ? `<span style="color:${st.color};background:${st.highlightColor};padding:0.05em 0.28em;border-radius:0.25em;">${esc(w.text)}</span>`
+                : `<span style="color:${st.color}">${esc(w.text)}</span>`)
               .join(' ')
           } else {
             node.textContent = text
@@ -537,6 +602,21 @@ export default function SubtitleGeneratorTool() {
               {/* Estilos */}
               <div style={{ background: 'rgba(17,13,48,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '14px', padding: '18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Type size={15} /> Estilo de los subtítulos</div>
+
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <span style={{ color: '#6b5fa0', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '5px' }}><Wand size={13} /> Presets:</span>
+                  {PRESETS.map((p) => (
+                    <button
+                      key={p.label}
+                      onClick={() => setStyle((s) => ({ ...s, ...p.style }))}
+                      className="btn-secondary"
+                      style={{ padding: '6px 12px', fontSize: '0.78rem' }}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+
                 <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', alignItems: 'center' }}>
                   <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Efecto
                     <select value={style.effect} onChange={setSt('effect')} style={selectS}>{EFFECTS.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}</select>
@@ -562,6 +642,9 @@ export default function SubtitleGeneratorTool() {
                     <input type="range" min="0" max="1" step="0.05" value={style.bgOpacity} onChange={setSt('bgOpacity')} style={{ accentColor: '#d946ef', width: '90px' }} />
                     <span style={{ color: '#9d8fc2', minWidth: '34px' }}>{Math.round(style.bgOpacity * 100)}%</span>
                   </label>
+                  {style.effect === 'highlight' && (
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Caja <input type="color" value={style.highlightColor} onChange={setSt('highlightColor')} style={colorInput} /></label>
+                  )}
                 </div>
               </div>
 
@@ -570,6 +653,13 @@ export default function SubtitleGeneratorTool() {
                 <div style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Captions size={15} /> Subtítulos (edítalos si hace falta)</div>
                 {segments.map((seg, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                    <button
+                      onClick={() => { if (videoRef.current) videoRef.current.currentTime = seg.start }}
+                      title="Ir a este subtítulo en la vista previa"
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, width: '26px', height: '26px', marginTop: '6px', borderRadius: '6px', border: '1px solid rgba(124,58,237,0.3)', background: 'rgba(124,58,237,0.15)', color: '#e879f9', cursor: 'pointer' }}
+                    >
+                      <Play size={11} fill="currentColor" />
+                    </button>
                     <span style={{ color: '#6b5fa0', fontSize: '0.72rem', fontFamily: 'monospace', paddingTop: '10px', flexShrink: 0, width: '44px' }}>{fmtSrt(seg.start).slice(3, 8)}</span>
                     <input value={seg.text} onChange={(e) => editSeg(i, e.target.value)} style={{ flex: 1, background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '8px', padding: '8px 10px', color: 'white', fontSize: '0.88rem', outline: 'none' }} />
                   </div>
