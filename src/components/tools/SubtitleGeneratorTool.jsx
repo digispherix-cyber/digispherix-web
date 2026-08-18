@@ -16,6 +16,8 @@ const EFFECTS = [
   { value: 'normal', label: 'Normal (sin efecto)' },
   { value: 'typewriter', label: 'Escribiéndose' },
   { value: 'scroll', label: 'Aparece desde abajo' },
+  { value: 'word', label: 'Palabra por palabra' },
+  { value: 'karaoke', label: 'Coloreado progresivo (karaoke)' },
 ]
 
 const DEFAULT_STYLE = {
@@ -47,9 +49,23 @@ function segmentsToSrt(segments) {
   return segments.map((seg, i) => `${i + 1}\n${fmtSrt(seg.start)} --> ${fmtSrt(seg.end)}\n${seg.text}\n`).join('\n')
 }
 
-// Devuelve el texto visible y el estado del efecto (opacidad/desplazamiento) según el tiempo
+// Reparte las palabras de un texto en una línea de tiempo dentro de [0, dur], dando
+// más tiempo a las palabras largas (aproximación: Whisper no da tiempos por palabra).
+function wordTimeline(text, dur) {
+  const words = text.split(/\s+/).filter(Boolean)
+  const weights = words.map((w) => w.length + 1)
+  const total = weights.reduce((a, b) => a + b, 0) || 1
+  let acc = 0
+  return words.map((w, i) => {
+    const start = (acc / total) * dur
+    acc += weights[i]
+    return { word: w, start, end: (acc / total) * dur }
+  })
+}
+
+// Devuelve el texto visible y el estado del efecto (opacidad/desplazamiento/escala/avance) según el tiempo
 function effectState(seg, t, effect) {
-  let text = seg.text, alpha = 1, dyFrac = 0
+  let text = seg.text, alpha = 1, dyFrac = 0, scale = 1, progress = null
   const dur = Math.max(0.01, seg.end - seg.start)
   const into = t - seg.start
   if (effect === 'typewriter') {
@@ -59,8 +75,66 @@ function effectState(seg, t, effect) {
     const rf = Math.min(1, Math.max(0, into / 0.35))
     alpha = rf
     dyFrac = (1 - rf) * 0.04 // se desplaza hacia arriba al aparecer
+  } else if (effect === 'word') {
+    const timeline = wordTimeline(seg.text, dur)
+    const cur = timeline.find((w) => into >= w.start && into < w.end) || timeline[timeline.length - 1]
+    text = cur ? cur.word : ''
+    const wordInto = cur ? into - cur.start : 0
+    scale = 0.82 + 0.18 * Math.min(1, wordInto / 0.09) // "pop" al aparecer cada palabra
+  } else if (effect === 'karaoke') {
+    progress = Math.min(1, Math.max(0, into / dur)) // 0..1, para colorear el texto de izquierda a derecha
   }
-  return { text, alpha, dyFrac }
+  return { text, alpha, dyFrac, scale, progress }
+}
+
+// Detección simple de inicio de habla por energía (RMS en ventanas de 20ms). Sirve para
+// corregir el caso en que Whisper reporta el inicio de un segmento antes de que la persona
+// realmente empiece a hablar (muy frecuente en el primer segmento, con silencio al inicio).
+function computeEnergyProfile(audio, sampleRate) {
+  const frameSize = Math.round(sampleRate * 0.02)
+  const frames = Math.floor(audio.length / frameSize)
+  const energies = new Float32Array(frames)
+  for (let i = 0; i < frames; i++) {
+    let sum = 0
+    const base = i * frameSize
+    for (let j = 0; j < frameSize; j++) { const v = audio[base + j]; sum += v * v }
+    energies[i] = Math.sqrt(sum / frameSize)
+  }
+  return { energies, frameDur: frameSize / sampleRate }
+}
+
+function energyThreshold(energies) {
+  if (!energies.length) return 0
+  const sorted = Array.from(energies).sort((a, b) => a - b)
+  const pct = (p) => sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))]
+  const noiseFloor = pct(0.2), speechLevel = pct(0.85)
+  return noiseFloor + (speechLevel - noiseFloor) * 0.25
+}
+
+function findSpeechOnset(energies, frameDur, threshold, fromT, toT) {
+  const fromI = Math.max(0, Math.floor(fromT / frameDur))
+  const toI = Math.min(energies.length - 1, Math.ceil(toT / frameDur))
+  const need = 3 // ~60ms sostenidos, para no disparar con un pico de ruido aislado
+  let run = 0
+  for (let i = fromI; i <= toI; i++) {
+    if (energies[i] >= threshold) { run++; if (run >= need) return Math.max(fromT, (i - need + 1) * frameDur) }
+    else run = 0
+  }
+  return null
+}
+
+// Ajusta el inicio de cada segmento al momento real en que empieza a hablarse (con 1s de
+// margen antes), en vez de confiar ciegamente en el timestamp de Whisper.
+function fixSegmentStarts(segs, audio, sampleRate) {
+  const { energies, frameDur } = computeEnergyProfile(audio, sampleRate)
+  if (!energies.length) return segs
+  const threshold = energyThreshold(energies)
+  return segs.map((s) => {
+    const onset = findSpeechOnset(energies, frameDur, threshold, s.start, s.end)
+    if (onset == null) return s
+    const start = Math.min(Math.max(s.start, onset - 1), Math.max(s.start, s.end - 0.05))
+    return { ...s, start }
+  })
 }
 
 async function decodeAudio(file) {
@@ -81,7 +155,7 @@ async function decodeAudio(file) {
 
 // Dibuja el subtítulo sobre el canvas (para el video exportado)
 function drawSubtitle(ctx, seg, t, W, H, style) {
-  const { text, alpha, dyFrac } = effectState(seg, t, style.effect)
+  const { text, alpha, dyFrac, scale, progress } = effectState(seg, t, style.effect)
   if (!text) return
   const fontSize = Math.round(style.size * H)
   ctx.save()
@@ -107,6 +181,20 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
   y += dy
 
   const cx = W / 2
+
+  // Efecto "palabra por palabra": pequeño "pop" de escala centrado en el texto.
+  if (scale !== 1) {
+    const pivotY = y - fontSize * 0.35
+    ctx.translate(cx, pivotY)
+    ctx.scale(scale, scale)
+    ctx.translate(-cx, -pivotY)
+  }
+
+  // Para el karaoke: reparte el avance (0..1) entre las líneas según su longitud.
+  const totalChars = progress != null ? lines.reduce((a, l) => a + l.length + 1, 0) || 1 : 0
+  const soughtChar = progress != null ? progress * totalChars : 0
+  let charsSoFar = 0
+
   lines.forEach((line, i) => {
     const ly = y + i * lineH
     if (style.bgOpacity > 0) {
@@ -118,8 +206,34 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
       ctx.lineWidth = Math.max(2, fontSize * 0.12); ctx.strokeStyle = style.outlineColor; ctx.lineJoin = 'round'
       ctx.strokeText(line, cx, ly)
     }
-    ctx.fillStyle = style.color
-    ctx.fillText(line, cx, ly)
+
+    if (progress == null) {
+      ctx.fillStyle = style.color
+      ctx.fillText(line, cx, ly)
+    } else {
+      // Karaoke: la línea completa se dibuja "apagada" y, encima, la misma línea recortada
+      // según el avance se dibuja con el color activo, como letras de karaoke.
+      const tw = ctx.measureText(line).width
+      const left = cx - tw / 2
+      const lineStart = charsSoFar, lineEnd = charsSoFar + line.length
+      charsSoFar = lineEnd + 1
+      let frac = 0
+      if (soughtChar >= lineEnd) frac = 1
+      else if (soughtChar > lineStart) frac = (soughtChar - lineStart) / Math.max(1, line.length)
+
+      ctx.fillStyle = hexToRgba(style.color, 0.35)
+      ctx.fillText(line, cx, ly)
+
+      if (frac > 0) {
+        ctx.save()
+        ctx.beginPath()
+        ctx.rect(left, ly - fontSize * 1.1, tw * frac, fontSize * 1.5)
+        ctx.clip()
+        ctx.fillStyle = style.color
+        ctx.fillText(line, cx, ly)
+        ctx.restore()
+      }
+    }
   })
   ctx.restore()
 }
@@ -138,7 +252,8 @@ export default function SubtitleGeneratorTool() {
 
   const videoRef = useRef(null)
   const inputRef = useRef(null)
-  const subRef = useRef(null)          // nodo del subtítulo en la vista previa
+  const subRef = useRef(null)          // nodo del subtítulo en la vista previa (capa base)
+  const fillRef = useRef(null)         // capa superpuesta para el efecto karaoke
   const transcriberRef = useRef(null)
   const audioCtxRef = useRef(null)
   const sourceRef = useRef(null)
@@ -152,30 +267,49 @@ export default function SubtitleGeneratorTool() {
   useEffect(() => {
     if (!videoUrl) return
     const tick = () => {
-      const video = videoRef.current, node = subRef.current
-      if (video && node) {
+      const video = videoRef.current, node = subRef.current, fill = fillRef.current
+      if (video && node && fill) {
         const t = video.currentTime
         const seg = segmentsRef.current.find((s) => t >= s.start && t <= s.end)
         const st = styleRef.current
         if (seg) {
-          const { text, alpha, dyFrac } = effectState(seg, t, st.effect)
+          const { text, alpha, dyFrac, scale, progress } = effectState(seg, t, st.effect)
           const ph = video.clientHeight || 240
+          const fontPx = Math.round(st.size * ph)
+          const applyCommon = (n) => {
+            n.style.fontFamily = st.font
+            n.style.fontWeight = 'bold'
+            n.style.fontSize = fontPx + 'px'
+            n.style.lineHeight = '1.25'
+            n.style.WebkitTextStroke = st.outline ? `${Math.max(1, fontPx * 0.06)}px ${st.outlineColor}` : '0'
+            n.style.paintOrder = 'stroke fill'
+            n.style.padding = st.bgOpacity > 0 ? '0.1em 0.35em' : '0'
+            n.style.borderRadius = '6px'
+          }
+          applyCommon(node)
+          applyCommon(fill)
           node.textContent = text
           node.style.opacity = alpha
-          node.style.transform = `translateY(${dyFrac * ph}px)`
-          node.style.fontFamily = st.font
-          node.style.fontWeight = 'bold'
-          node.style.fontSize = Math.round(st.size * ph) + 'px'
-          node.style.lineHeight = '1.25'
-          node.style.color = st.color
+          node.style.transform = `translateY(${dyFrac * ph}px) scale(${scale})`
+          node.style.color = progress != null ? hexToRgba(st.color, 0.35) : st.color
           node.style.background = st.bgOpacity > 0 ? hexToRgba(st.bgColor, st.bgOpacity) : 'transparent'
-          node.style.padding = st.bgOpacity > 0 ? '0.1em 0.35em' : '0'
-          node.style.borderRadius = '6px'
-          node.style.WebkitTextStroke = st.outline ? `${Math.max(1, st.size * ph * 0.06)}px ${st.outlineColor}` : '0'
-          node.style.paintOrder = 'stroke fill'
           node.style.display = 'inline-block'
+
+          // Karaoke: capa superpuesta con el mismo texto, recortada según el avance,
+          // en el color activo (se ve como si se "coloreara" conforme se habla).
+          fill.style.transform = node.style.transform
+          fill.style.background = 'transparent'
+          if (progress != null) {
+            fill.textContent = text
+            fill.style.color = st.color
+            fill.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0)`
+            fill.style.display = 'inline-block'
+          } else {
+            fill.textContent = ''
+          }
         } else {
           node.textContent = ''
+          fill.textContent = ''
         }
       }
       rafRef.current = requestAnimationFrame(tick)
@@ -224,7 +358,7 @@ export default function SubtitleGeneratorTool() {
       const out = await transcriberRef.current(audio, { language: language === 'auto' ? null : language, task: 'transcribe', return_timestamps: true, chunk_length_s: 30, stride_length_s: 5 })
       const segs = (out.chunks || []).map((c) => ({ start: c.timestamp?.[0] ?? 0, end: c.timestamp?.[1] ?? 0, text: (c.text || '').trim() })).filter((s) => s.text)
       if (!segs.length && out.text) segs.push({ start: 0, end: videoRef.current?.duration || MAX_SECONDS, text: out.text.trim() })
-      setSegments(segs)
+      setSegments(fixSegmentStarts(segs, audio, 16000))
       setPhase('ready')
     } catch (e) {
       setError('No se pudo transcribir. Revisa que el video tenga audio claro y vuelve a intentar.')
@@ -311,7 +445,10 @@ export default function SubtitleGeneratorTool() {
           <div style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '0 auto', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }}>
             <video ref={videoRef} src={videoUrl} controls style={{ display: 'block', maxHeight: '460px', maxWidth: '100%', height: 'auto', width: 'auto' }} />
             <div style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', padding: '0 5%', pointerEvents: 'none', ...subPos }}>
-              <span ref={subRef} style={{ display: 'inline-block' }} />
+              <span style={{ position: 'relative', display: 'inline-block' }}>
+                <span ref={subRef} style={{ display: 'inline-block' }} />
+                <span ref={fillRef} style={{ position: 'absolute', left: 0, top: 0, display: 'inline-block', overflow: 'hidden' }} />
+              </span>
             </div>
           </div>
 
