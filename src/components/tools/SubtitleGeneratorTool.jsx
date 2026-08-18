@@ -49,8 +49,9 @@ function segmentsToSrt(segments) {
   return segments.map((seg, i) => `${i + 1}\n${fmtSrt(seg.start)} --> ${fmtSrt(seg.end)}\n${seg.text}\n`).join('\n')
 }
 
-// Reparte las palabras de un texto en una línea de tiempo dentro de [0, dur], dando
-// más tiempo a las palabras largas (aproximación: Whisper no da tiempos por palabra).
+// Reparte las palabras de un texto en una línea de tiempo dentro de [0, dur], dando más
+// tiempo a las palabras largas. Se usa solo como respaldo cuando no hay tiempos reales por
+// palabra (por ejemplo, si el usuario editó el texto del segmento a mano).
 function wordTimeline(text, dur) {
   const words = text.split(/\s+/).filter(Boolean)
   const weights = words.map((w) => w.length + 1)
@@ -63,26 +64,60 @@ function wordTimeline(text, dur) {
   })
 }
 
+// True si seg.words (tiempos reales por palabra de Whisper) sigue correspondiendo al texto
+// actual del segmento. Si el usuario editó el texto a mano, dejan de coincidir.
+function hasRealWords(seg) {
+  if (!seg.words || !seg.words.length) return false
+  const current = seg.text.split(/\s+/).filter(Boolean)
+  return current.length === seg.words.length
+}
+
+// Avance (0..1) de "cuánto ya se habló" del segmento, usando los tiempos reales por palabra:
+// cada palabra se llena mientras se está hablando (start..end) y queda llena una vez pasada,
+// respetando pausas entre palabras (no es un barrido lineal parejo).
+function realWordProgress(words, t) {
+  const totalLen = words.reduce((a, w) => a + w.text.length + 1, 0) || 1
+  let acc = 0
+  for (const w of words) {
+    const wLen = w.text.length + 1
+    if (t >= w.end) { acc += wLen; continue }
+    if (t >= w.start) acc += wLen * Math.min(1, Math.max(0, (t - w.start) / Math.max(0.01, w.end - w.start)))
+    break
+  }
+  return Math.min(1, acc / totalLen)
+}
+
 // Devuelve el texto visible y el estado del efecto (opacidad/desplazamiento/escala/avance) según el tiempo
 function effectState(seg, t, effect) {
   let text = seg.text, alpha = 1, dyFrac = 0, scale = 1, progress = null
   const dur = Math.max(0.01, seg.end - seg.start)
   const into = t - seg.start
+  const realWords = hasRealWords(seg)
   if (effect === 'typewriter') {
-    const rf = Math.min(1, into / (dur * 0.6))
+    // Con tiempos reales, el texto se va revelando al ritmo real de cada palabra hablada
+    // (en vez de un avance parejo estimado sobre el 60% de la duración del segmento).
+    const rf = realWords ? realWordProgress(seg.words, t) : Math.min(1, into / (dur * 0.6))
     text = seg.text.slice(0, Math.ceil(rf * seg.text.length))
   } else if (effect === 'scroll') {
     const rf = Math.min(1, Math.max(0, into / 0.35))
     alpha = rf
     dyFrac = (1 - rf) * 0.04 // se desplaza hacia arriba al aparecer
   } else if (effect === 'word') {
-    const timeline = wordTimeline(seg.text, dur)
-    const cur = timeline.find((w) => into >= w.start && into < w.end) || timeline[timeline.length - 1]
-    text = cur ? cur.word : ''
-    const wordInto = cur ? into - cur.start : 0
-    scale = 0.82 + 0.18 * Math.min(1, wordInto / 0.09) // "pop" al aparecer cada palabra
+    if (realWords) {
+      const cur = seg.words.find((w) => t >= w.start && t < w.end) || seg.words[seg.words.length - 1]
+      text = cur ? cur.text : ''
+      const wordInto = cur ? t - cur.start : 0
+      scale = 0.82 + 0.18 * Math.min(1, wordInto / 0.09)
+    } else {
+      const timeline = wordTimeline(seg.text, dur)
+      const cur = timeline.find((w) => into >= w.start && into < w.end) || timeline[timeline.length - 1]
+      text = cur ? cur.word : ''
+      const wordInto = cur ? into - cur.start : 0
+      scale = 0.82 + 0.18 * Math.min(1, wordInto / 0.09) // "pop" al aparecer cada palabra
+    }
   } else if (effect === 'karaoke') {
-    progress = Math.min(1, Math.max(0, into / dur)) // 0..1, para colorear el texto de izquierda a derecha
+    // 0..1, para colorear el texto de izquierda a derecha conforme se va hablando
+    progress = realWords ? realWordProgress(seg.words, t) : Math.min(1, Math.max(0, into / dur))
   }
   return { text, alpha, dyFrac, scale, progress }
 }
@@ -121,6 +156,28 @@ function findSpeechOnset(energies, frameDur, threshold, fromT, toT) {
     else run = 0
   }
   return null
+}
+
+// Agrupa palabras (con tiempos reales) en segmentos/frases editables: corta al terminar una
+// oración, tras una pausa notable entre palabras, o si el segmento ya se hizo muy largo.
+function groupWordsIntoSegments(words) {
+  const MAX_WORDS = 14, MAX_DUR = 6, PAUSE_GAP = 0.6
+  const segments = []
+  let cur = []
+  const flush = () => {
+    if (!cur.length) return
+    segments.push({ start: cur[0].start, end: cur[cur.length - 1].end, text: cur.map((w) => w.text).join(' '), words: cur })
+    cur = []
+  }
+  words.forEach((w, i) => {
+    cur.push(w)
+    const dur = w.end - cur[0].start
+    const endsSentence = /[.!?]$/.test(w.text)
+    const nextGap = i + 1 < words.length ? words[i + 1].start - w.end : 0
+    if (endsSentence || cur.length >= MAX_WORDS || dur >= MAX_DUR || nextGap >= PAUSE_GAP) flush()
+  })
+  flush()
+  return segments
 }
 
 // Ajusta el inicio de cada segmento al momento real en que empieza a hablarse (con 1s de
@@ -355,8 +412,11 @@ export default function SubtitleGeneratorTool() {
       }
       setPhase('transcribing')
       const audio = await decodeAudio(file)
-      const out = await transcriberRef.current(audio, { language: language === 'auto' ? null : language, task: 'transcribe', return_timestamps: true, chunk_length_s: 30, stride_length_s: 5 })
-      const segs = (out.chunks || []).map((c) => ({ start: c.timestamp?.[0] ?? 0, end: c.timestamp?.[1] ?? 0, text: (c.text || '').trim() })).filter((s) => s.text)
+      // 'word' pide tiempos reales por palabra (no solo por frase), necesarios para que los
+      // efectos "palabra por palabra" y "karaoke" vayan sincronizados con el audio.
+      const out = await transcriberRef.current(audio, { language: language === 'auto' ? null : language, task: 'transcribe', return_timestamps: 'word', chunk_length_s: 30, stride_length_s: 5 })
+      const words = (out.chunks || []).map((c) => ({ start: c.timestamp?.[0] ?? 0, end: c.timestamp?.[1] ?? 0, text: (c.text || '').trim() })).filter((w) => w.text)
+      let segs = groupWordsIntoSegments(words)
       if (!segs.length && out.text) segs.push({ start: 0, end: videoRef.current?.duration || MAX_SECONDS, text: out.text.trim() })
       setSegments(fixSegmentStarts(segs, audio, 16000))
       setPhase('ready')
