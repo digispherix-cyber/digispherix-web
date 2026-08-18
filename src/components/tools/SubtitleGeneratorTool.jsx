@@ -87,9 +87,22 @@ function realWordProgress(words, t) {
   return Math.min(1, acc / totalLen)
 }
 
-// Devuelve el texto visible y el estado del efecto (opacidad/desplazamiento/escala/avance) según el tiempo
+// Para el karaoke: cada palabra del segmento con su estado "ya dicha" (lit) en el momento t.
+// Una palabra se enciende en cuanto empieza a decirse y queda encendida (como letras de
+// karaoke reales), en vez de un barrido de color parejo sobre todo el texto.
+function karaokeWords(seg, t) {
+  if (hasRealWords(seg)) {
+    return seg.words.map((w) => ({ text: w.text, lit: t >= w.start }))
+  }
+  const dur = Math.max(0.01, seg.end - seg.start)
+  const into = t - seg.start
+  const timeline = wordTimeline(seg.text, dur)
+  return timeline.map((w) => ({ text: w.word, lit: into >= w.start }))
+}
+
+// Devuelve el texto visible y el estado del efecto (opacidad/desplazamiento/escala/palabras) según el tiempo
 function effectState(seg, t, effect) {
-  let text = seg.text, alpha = 1, dyFrac = 0, scale = 1, progress = null
+  let text = seg.text, alpha = 1, dyFrac = 0, scale = 1, words = null
   const dur = Math.max(0.01, seg.end - seg.start)
   const into = t - seg.start
   const realWords = hasRealWords(seg)
@@ -116,10 +129,9 @@ function effectState(seg, t, effect) {
       scale = 0.82 + 0.18 * Math.min(1, wordInto / 0.09) // "pop" al aparecer cada palabra
     }
   } else if (effect === 'karaoke') {
-    // 0..1, para colorear el texto de izquierda a derecha conforme se va hablando
-    progress = realWords ? realWordProgress(seg.words, t) : Math.min(1, Math.max(0, into / dur))
+    words = karaokeWords(seg, t) // cada palabra ya dicha o no, en vez de un barrido parejo
   }
-  return { text, alpha, dyFrac, scale, progress }
+  return { text, alpha, dyFrac, scale, words }
 }
 
 // Detección simple de inicio de habla por energía (RMS en ventanas de 20ms). Sirve para
@@ -210,9 +222,23 @@ async function decodeAudio(file) {
   return out
 }
 
+// Agrupa una lista de palabras (strings) en líneas que quepan en maxW, midiendo con ctx.
+// Devuelve arreglos de índices [desde, hasta) de `items` por línea, sin reordenar nada.
+function wrapWordsByWidth(ctx, texts, maxW) {
+  const ranges = []
+  let start = 0, curText = ''
+  for (let i = 0; i < texts.length; i++) {
+    const test = curText ? curText + ' ' + texts[i] : texts[i]
+    if (ctx.measureText(test).width > maxW && curText) { ranges.push([start, i]); start = i; curText = texts[i] }
+    else curText = test
+  }
+  ranges.push([start, texts.length])
+  return ranges
+}
+
 // Dibuja el subtítulo sobre el canvas (para el video exportado)
 function drawSubtitle(ctx, seg, t, W, H, style) {
-  const { text, alpha, dyFrac, scale, progress } = effectState(seg, t, style.effect)
+  const { text, alpha, dyFrac, scale, words } = effectState(seg, t, style.effect)
   if (!text) return
   const fontSize = Math.round(style.size * H)
   ctx.save()
@@ -222,11 +248,11 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
   ctx.textBaseline = 'alphabetic'
 
   const maxW = W * 0.9
-  const words = text.split(/\s+/)
-  const lines = []
-  let cur = ''
-  for (const w of words) { const test = cur ? cur + ' ' + w : w; if (ctx.measureText(test).width > maxW && cur) { lines.push(cur); cur = w } else cur = test }
-  if (cur) lines.push(cur)
+  const spaceW = ctx.measureText(' ').width
+  const lineRanges = wrapWordsByWidth(ctx, words ? words.map((w) => w.text) : text.split(/\s+/), maxW)
+  const lines = words
+    ? lineRanges.map(([a, b]) => words.slice(a, b))
+    : lineRanges.map(([a, b]) => text.split(/\s+/).slice(a, b).join(' '))
 
   const lineH = fontSize * 1.25
   const totalH = lines.length * lineH
@@ -247,49 +273,32 @@ function drawSubtitle(ctx, seg, t, W, H, style) {
     ctx.translate(-cx, -pivotY)
   }
 
-  // Para el karaoke: reparte el avance (0..1) entre las líneas según su longitud.
-  const totalChars = progress != null ? lines.reduce((a, l) => a + l.length + 1, 0) || 1 : 0
-  const soughtChar = progress != null ? progress * totalChars : 0
-  let charsSoFar = 0
-
   lines.forEach((line, i) => {
     const ly = y + i * lineH
+    const lineText = words ? line.map((w) => w.text).join(' ') : line
+    const tw = ctx.measureText(lineText).width
     if (style.bgOpacity > 0) {
-      const tw = ctx.measureText(line).width
       ctx.fillStyle = hexToRgba(style.bgColor, style.bgOpacity)
       ctx.fillRect(cx - tw / 2 - fontSize * 0.3, ly - fontSize, tw + fontSize * 0.6, lineH)
     }
     if (style.outline) {
       ctx.lineWidth = Math.max(2, fontSize * 0.12); ctx.strokeStyle = style.outlineColor; ctx.lineJoin = 'round'
-      ctx.strokeText(line, cx, ly)
+      ctx.strokeText(lineText, cx, ly)
     }
 
-    if (progress == null) {
+    if (!words) {
       ctx.fillStyle = style.color
-      ctx.fillText(line, cx, ly)
+      ctx.fillText(lineText, cx, ly)
     } else {
-      // Karaoke: la línea completa se dibuja "apagada" y, encima, la misma línea recortada
-      // según el avance se dibuja con el color activo, como letras de karaoke.
-      const tw = ctx.measureText(line).width
-      const left = cx - tw / 2
-      const lineStart = charsSoFar, lineEnd = charsSoFar + line.length
-      charsSoFar = lineEnd + 1
-      let frac = 0
-      if (soughtChar >= lineEnd) frac = 1
-      else if (soughtChar > lineStart) frac = (soughtChar - lineStart) / Math.max(1, line.length)
-
-      ctx.fillStyle = hexToRgba(style.color, 0.35)
-      ctx.fillText(line, cx, ly)
-
-      if (frac > 0) {
-        ctx.save()
-        ctx.beginPath()
-        ctx.rect(left, ly - fontSize * 1.1, tw * frac, fontSize * 1.5)
-        ctx.clip()
-        ctx.fillStyle = style.color
-        ctx.fillText(line, cx, ly)
-        ctx.restore()
-      }
+      // Karaoke: cada palabra se dibuja en el color activo si ya se dijo, o apagado si no.
+      ctx.textAlign = 'left'
+      let x = cx - tw / 2
+      line.forEach((w) => {
+        ctx.fillStyle = w.lit ? style.color : hexToRgba(style.color, 0.35)
+        ctx.fillText(w.text, x, ly)
+        x += ctx.measureText(w.text).width + spaceW
+      })
+      ctx.textAlign = 'center'
     }
   })
   ctx.restore()
@@ -310,7 +319,6 @@ export default function SubtitleGeneratorTool() {
   const videoRef = useRef(null)
   const inputRef = useRef(null)
   const subRef = useRef(null)          // nodo del subtítulo en la vista previa (capa base)
-  const fillRef = useRef(null)         // capa superpuesta para el efecto karaoke
   const transcriberRef = useRef(null)
   const audioCtxRef = useRef(null)
   const sourceRef = useRef(null)
@@ -324,49 +332,40 @@ export default function SubtitleGeneratorTool() {
   useEffect(() => {
     if (!videoUrl) return
     const tick = () => {
-      const video = videoRef.current, node = subRef.current, fill = fillRef.current
-      if (video && node && fill) {
+      const video = videoRef.current, node = subRef.current
+      if (video && node) {
         const t = video.currentTime
         const seg = segmentsRef.current.find((s) => t >= s.start && t <= s.end)
         const st = styleRef.current
         if (seg) {
-          const { text, alpha, dyFrac, scale, progress } = effectState(seg, t, st.effect)
+          const { text, alpha, dyFrac, scale, words } = effectState(seg, t, st.effect)
           const ph = video.clientHeight || 240
           const fontPx = Math.round(st.size * ph)
-          const applyCommon = (n) => {
-            n.style.fontFamily = st.font
-            n.style.fontWeight = 'bold'
-            n.style.fontSize = fontPx + 'px'
-            n.style.lineHeight = '1.25'
-            n.style.WebkitTextStroke = st.outline ? `${Math.max(1, fontPx * 0.06)}px ${st.outlineColor}` : '0'
-            n.style.paintOrder = 'stroke fill'
-            n.style.padding = st.bgOpacity > 0 ? '0.1em 0.35em' : '0'
-            n.style.borderRadius = '6px'
-          }
-          applyCommon(node)
-          applyCommon(fill)
-          node.textContent = text
+          node.style.fontFamily = st.font
+          node.style.fontWeight = 'bold'
+          node.style.fontSize = fontPx + 'px'
+          node.style.lineHeight = '1.25'
+          node.style.WebkitTextStroke = st.outline ? `${Math.max(1, fontPx * 0.06)}px ${st.outlineColor}` : '0'
+          node.style.paintOrder = 'stroke fill'
+          node.style.padding = st.bgOpacity > 0 ? '0.1em 0.35em' : '0'
+          node.style.borderRadius = '6px'
           node.style.opacity = alpha
           node.style.transform = `translateY(${dyFrac * ph}px) scale(${scale})`
-          node.style.color = progress != null ? hexToRgba(st.color, 0.35) : st.color
           node.style.background = st.bgOpacity > 0 ? hexToRgba(st.bgColor, st.bgOpacity) : 'transparent'
           node.style.display = 'inline-block'
 
-          // Karaoke: capa superpuesta con el mismo texto, recortada según el avance,
-          // en el color activo (se ve como si se "coloreara" conforme se habla).
-          fill.style.transform = node.style.transform
-          fill.style.background = 'transparent'
-          if (progress != null) {
-            fill.textContent = text
-            fill.style.color = st.color
-            fill.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0)`
-            fill.style.display = 'inline-block'
+          if (words) {
+            // Karaoke: cada palabra se pinta en el color activo si ya se dijo, apagada si no.
+            node.textContent = ''
+            node.innerHTML = words
+              .map((w) => `<span style="color:${w.lit ? st.color : hexToRgba(st.color, 0.35)}">${w.text.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span>`)
+              .join(' ')
           } else {
-            fill.textContent = ''
+            node.textContent = text
+            node.style.color = st.color
           }
         } else {
           node.textContent = ''
-          fill.textContent = ''
         }
       }
       rafRef.current = requestAnimationFrame(tick)
@@ -405,7 +404,7 @@ export default function SubtitleGeneratorTool() {
         env.localModelPath = '/models/'
         env.backends.onnx.wasm.wasmPaths = '/ort/'
         env.backends.onnx.wasm.numThreads = 1
-        transcriberRef.current = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny', {
+        transcriberRef.current = await pipeline('automatic-speech-recognition', 'Xenova/whisper-base', {
           quantized: true,
           progress_callback: (p) => { if (p.status === 'progress' && p.progress) setProgress(Math.round(p.progress)) },
         })
@@ -505,10 +504,7 @@ export default function SubtitleGeneratorTool() {
           <div style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '0 auto', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }}>
             <video ref={videoRef} src={videoUrl} controls style={{ display: 'block', maxHeight: '460px', maxWidth: '100%', height: 'auto', width: 'auto' }} />
             <div style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', padding: '0 5%', pointerEvents: 'none', ...subPos }}>
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                <span ref={subRef} style={{ display: 'inline-block' }} />
-                <span ref={fillRef} style={{ position: 'absolute', left: 0, top: 0, display: 'inline-block', overflow: 'hidden' }} />
-              </span>
+              <span ref={subRef} style={{ display: 'inline-block' }} />
             </div>
           </div>
 
@@ -610,7 +606,7 @@ export default function SubtitleGeneratorTool() {
       {error && <p style={{ color: '#f87171', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{error}</p>}
 
       <p style={{ color: '#6b5fa0', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
-        La primera vez se descarga el modelo de IA (~40 MB). Todo ocurre en tu navegador; tu video nunca se sube a internet.
+        La primera vez se descarga el modelo de IA (~80 MB). Todo ocurre en tu navegador; tu video nunca se sube a internet.
       </p>
     </div>
   )
