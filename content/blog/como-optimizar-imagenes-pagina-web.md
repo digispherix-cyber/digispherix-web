@@ -30,7 +30,7 @@ Los estudios son contundentes: **si una página tarda más de 3 segundos en carg
 
 ### Consumes datos de tus visitantes
 
-En México, muchísima gente navega desde el celular con planes de datos limitados. Una página ligera se agradece — y se recuerda. Una que se come sus megas, no.
+En México, muchísima gente navega desde el celular con planes de datos limitados. Una página ligera se agradece, y se recuerda. Una que se come sus megas, no.
 
 ---
 
@@ -54,7 +54,7 @@ Si tienes imágenes en el formato equivocado, puedes cambiarlas en segundos con 
 
 ### 2. Ajusta el tamaño real (las dimensiones)
 
-Este es el error más común: subir una foto de **4000 × 3000 píxeles** directo de la cámara del celular para mostrarla en un espacio de 800 píxeles de ancho. El navegador tiene que descargar toda esa imagen gigante para luego encogerla — un desperdicio enorme.
+Este es el error más común: subir una foto de **4000 × 3000 píxeles** directo de la cámara del celular para mostrarla en un espacio de 800 píxeles de ancho. El navegador tiene que descargar toda esa imagen gigante para luego encogerla, un desperdicio enorme.
 
 **La regla es simple:** una imagen no debería ser mucho más grande de como se va a mostrar. Si tu contenido tiene 800 px de ancho, tu imagen no necesita más de 1600 px (el doble, para pantallas de alta resolución tipo Retina).
 
@@ -84,7 +84,7 @@ Cada vez que vayas a subir una imagen a tu sitio, sigue esta rutina:
 2. **Convierte** a WebP (o JPG si es foto y no puedes usar WebP). → [Convertir imagen](/herramientas/convertir-imagen)
 3. **Comprime** buscando el equilibrio entre peso y calidad. → [Comprimir imagen](/herramientas/comprimir-imagen)
 
-Con esos tres pasos, una imagen de varios megas termina pesando unos cientos de kilobytes — y tu página carga varias veces más rápido.
+Con esos tres pasos, una imagen de varios megas termina pesando unos cientos de kilobytes, y tu página carga varias veces más rápido.
 
 > **Dato de privacidad:** todas nuestras herramientas procesan las imágenes **dentro de tu navegador**. Tus archivos nunca se suben a ningún servidor, así que puedes optimizar fotos de clientes o de productos con total tranquilidad.
 
@@ -111,10 +111,10 @@ Optimizar las imágenes suele ser **la mejora de rendimiento más rentable** que
 
 ## Conclusión
 
-Las imágenes hacen tu sitio atractivo, pero mal optimizadas lo vuelven lento — y un sitio lento pierde clientes y posiciones en Google todos los días. La buena noticia es que optimizarlas es rápido, gratuito y no requiere conocimientos técnicos.
+Las imágenes hacen tu sitio atractivo, pero mal optimizadas lo vuelven lento, y un sitio lento pierde clientes y posiciones en Google todos los días. La buena noticia es que optimizarlas es rápido, gratuito y no requiere conocimientos técnicos.
 
 Elige el formato correcto, ajusta el tamaño, comprime con criterio y describe cada imagen. Es una rutina de un par de minutos que se paga sola.
 
-¿Quieres empezar ahora mismo? Prueba nuestras herramientas gratuitas de [comprimir](/herramientas/comprimir-imagen), [convertir](/herramientas/convertir-imagen) y [redimensionar imágenes](/herramientas/redimensionar-imagen) — todo privado y dentro de tu navegador.
+¿Quieres empezar ahora mismo? Prueba nuestras herramientas gratuitas de [comprimir](/herramientas/comprimir-imagen), [convertir](/herramientas/convertir-imagen) y [redimensionar imágenes](/herramientas/redimensionar-imagen), todo privado y dentro de tu navegador.
 
 ¿Prefieres que lo hagamos por ti? En DigiSpherix construimos sitios web rápidos y optimizados desde el primer día. Contáctanos y hacemos que tu página vuele.

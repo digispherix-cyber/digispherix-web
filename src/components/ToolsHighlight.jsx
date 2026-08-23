@@ -65,7 +65,7 @@ function Header() {
       <h2 className="section-title gradient-text">Herramientas gratis</h2>
       <p className="section-subtitle">
         Utilidades rápidas para tu día a día: imágenes, PDF, códigos QR y más.
-        Funcionan en tu navegador — tus archivos nunca se suben a internet.
+        Funcionan en tu navegador, tus archivos nunca se suben a internet.
       </p>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '7px 16px', borderRadius: '99px', background: 'rgba(5,150,105,0.12)', border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.82rem', fontWeight: 600 }}>

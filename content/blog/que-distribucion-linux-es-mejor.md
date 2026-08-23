@@ -10,7 +10,7 @@ tags: ["Linux", "Ubuntu", "Fedora", "Arch Linux", "Debian", "Open Source"]
 
 ![¿Qué distribución de Linux es mejor? Ubuntu, Fedora, Arch y más](/blog/distribuciones-linux-cover.jpg)
 
-Cuando alguien decide dar el salto a Linux, inevitablemente llega la pregunta: **¿cuál distribución uso?** La respuesta no es única — Linux tiene cientos de distribuciones (o "distros"), cada una con filosofía, público y características distintas.
+Cuando alguien decide dar el salto a Linux, inevitablemente llega la pregunta: **¿cuál distribución uso?** La respuesta no es única, Linux tiene cientos de distribuciones (o "distros"), cada una con filosofía, público y características distintas.
 
 En esta guía comparamos las más populares para que puedas elegir con información real, no con opiniones de foro de internet.
 
@@ -54,7 +54,7 @@ Ubuntu es la distribución más popular del mundo y es la puerta de entrada de m
 
 **Ideal para:** usuarios intermedios, servidores, quienes priorizan la estabilidad sobre todo
 
-Debian es la madre de Ubuntu y de muchas otras distros. Es conocida por ser extremadamente estable — tanto que su rama `stable` a veces tiene software con 1 o 2 años de antigüedad, porque se prueba muy a fondo antes de incluirse.
+Debian es la madre de Ubuntu y de muchas otras distros. Es conocida por ser extremadamente estable, tanto que su rama `stable` a veces tiene software con 1 o 2 años de antigüedad, porque se prueba muy a fondo antes de incluirse.
 
 **Pros:**
 - Estabilidad legendaria
@@ -123,10 +123,10 @@ Linux Mint está basado en Ubuntu pero con un enfoque diferente: ser lo más fá
 
 Arch Linux es la distribución más conocida en el mundo del usuario avanzado. No tiene instalador gráfico oficial (aunque existe `archinstall`), no viene con entorno de escritorio preinstalado y requiere configurar manualmente casi todo desde la terminal.
 
-¿Por qué alguien querría eso? Porque así aprendes **exactamente** cómo funciona Linux, y construyes un sistema que tiene únicamente lo que tú quieres — nada más.
+¿Por qué alguien querría eso? Porque así aprendes **exactamente** cómo funciona Linux, y construyes un sistema que tiene únicamente lo que tú quieres, nada más.
 
 **Pros:**
-- Software siempre actualizado (modelo rolling release — no hay versiones, solo actualizaciones continuas)
+- Software siempre actualizado (modelo rolling release, no hay versiones, solo actualizaciones continuas)
 - AUR (Arch User Repository): el repositorio de paquetes más grande que existe
 - Sistema extremadamente ligero si sabes configurarlo
 - Documentación de Arch Wiki: la mejor wiki de Linux en el mundo
@@ -216,9 +216,9 @@ openSUSE tiene dos versiones: **Leap** (estable, similar a Debian) y **Tumblewee
 
 Si eres desarrollador o quieres aprender a programar, estas son las opciones más populares:
 
-1. **Ubuntu / Pop!_OS** — las más usadas en el mundo del desarrollo. Casi todo el software y los tutoriales asumen que usas Ubuntu.
-2. **Fedora** — favorita de muchos desarrolladores profesionales por sus herramientas modernas.
-3. **Arch Linux** — para quienes quieren entender el sistema a fondo.
+1. **Ubuntu / Pop!_OS**: las más usadas en el mundo del desarrollo. Casi todo el software y los tutoriales asumen que usas Ubuntu.
+2. **Fedora**: favorita de muchos desarrolladores profesionales por sus herramientas modernas.
+3. **Arch Linux**: para quienes quieren entender el sistema a fondo.
 
 Si te interesa el mundo de los comandos de terminal en Linux, tenemos un artículo completo sobre [los comandos de Linux esenciales que debes dominar](/blog/linux-comandos-esenciales-que-debes-dominar).
 
@@ -228,9 +228,9 @@ Si te interesa el mundo de los comandos de terminal en Linux, tenemos un artícu
 
 Para servidores en producción, la elección cambia:
 
-- **Debian / Ubuntu Server** — las más usadas en hosting y VPS
-- **RHEL / AlmaLinux / Rocky Linux** — entorno empresarial, compatible con Red Hat
-- **openSUSE Leap** — buena opción empresarial
+- **Debian / Ubuntu Server**: las más usadas en hosting y VPS
+- **RHEL / AlmaLinux / Rocky Linux**: entorno empresarial, compatible con Red Hat
+- **openSUSE Leap**: buena opción empresarial
 
 Si estás evaluando plataformas en la nube y no sabes qué sistema operativo usar en tu servidor, también puede interesarte nuestra comparativa [AWS vs Azure vs GCP](/blog/aws-vs-azure-vs-gcp-que-nube-elegir).
 
@@ -240,16 +240,16 @@ Si estás evaluando plataformas en la nube y no sabes qué sistema operativo usa
 
 Linux gaming mejoró enormemente gracias a Proton (de Valve/Steam). Las mejores opciones son:
 
-1. **Pop!_OS** — soporte NVIDIA de primera clase
-2. **Manjaro** o **Garuda Linux** — rolling release con optimizaciones para juegos
-3. **Ubuntu** — gran compatibilidad y soporte de la comunidad
+1. **Pop!_OS**: soporte NVIDIA de primera clase
+2. **Manjaro** o **Garuda Linux**: rolling release con optimizaciones para juegos
+3. **Ubuntu**: gran compatibilidad y soporte de la comunidad
 
 ---
 
 ## Preguntas frecuentes
 
 **¿Puedo probar Linux sin instalarlo?**  
-Sí. Casi todas las distribuciones tienen un **Live USB** — puedes arrancar desde una USB y probar el sistema sin tocar tu disco duro.
+Sí. Casi todas las distribuciones tienen un **Live USB**: puedes arrancar desde una USB y probar el sistema sin tocar tu disco duro.
 
 **¿Puedo tener Windows y Linux al mismo tiempo?**  
 Sí, se llama **dual boot**. Puedes elegir al encender la computadora cuál sistema iniciar.
@@ -271,4 +271,4 @@ No directamente, pero muchos pueden ejecutarse con Wine o Proton. Para videojueg
 - **Quieres aprender de verdad:** Arch Linux (cuando tengas experiencia previa)
 - **Control total desde el inicio:** Arch Linux o Gentoo (para los más valientes)
 
-No existe la distribución perfecta — existe la que mejor se adapta a **tu** caso de uso. Lo mejor es probar con un Live USB y quedarte con la que se sienta más cómoda.
+No existe la distribución perfecta, existe la que mejor se adapta a **tu** caso de uso. Lo mejor es probar con un Live USB y quedarte con la que se sienta más cómoda.

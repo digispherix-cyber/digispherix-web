@@ -857,7 +857,7 @@ export default function SiteBuilder() {
           </p>
           <h2 className="section-title gradient-text">Arma tu sitio</h2>
           <p className="section-subtitle">
-            Arrastra o toca los bloques para armar una vista previa de tu sitio ideal — puedes repetirlos
+            Arrastra o toca los bloques para armar una vista previa de tu sitio ideal, puedes repetirlos
             las veces que quieras. Cuando quede como te gusta, descarga la imagen y te cotizamos gratis.
           </p>
         </motion.div>

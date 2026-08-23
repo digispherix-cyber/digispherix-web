@@ -108,7 +108,7 @@ export default function ImageToPdf() {
         </div>
         <div>
           <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>Toca para agregar imágenes</p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>o arrástralas aquí — JPG o PNG</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>o arrástralas aquí - JPG o PNG</p>
         </div>
         <input ref={inputRef} type="file" accept="image/jpeg,image/png" multiple onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       </label>

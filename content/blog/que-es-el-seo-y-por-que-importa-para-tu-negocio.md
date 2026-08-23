@@ -16,7 +16,7 @@ De eso trata el SEO.
 
 ## ¿Qué significa SEO?
 
-SEO son las siglas de **Search Engine Optimization** (Optimización para Motores de Búsqueda). Es el conjunto de técnicas y estrategias que se aplican a un sitio web para que aparezca en los primeros resultados de Google — y otros buscadores — cuando alguien busca algo relacionado con tu negocio.
+SEO son las siglas de **Search Engine Optimization** (Optimización para Motores de Búsqueda). Es el conjunto de técnicas y estrategias que se aplican a un sitio web para que aparezca en los primeros resultados de Google, y otros buscadores, cuando alguien busca algo relacionado con tu negocio.
 
 La clave está en que el SEO genera tráfico **orgánico**: personas que llegan a tu sitio sin que tú hayas pagado por ese clic. A diferencia de los anuncios de Google Ads donde pagas por cada visita, el tráfico orgánico es gratuito y sostenible a largo plazo.
 
@@ -26,7 +26,7 @@ La clave está en que el SEO genera tráfico **orgánico**: personas que llegan 
 
 Para entender el SEO, primero hay que entender cómo Google decide qué mostrar.
 
-Google tiene programas llamados **crawlers** (rastreadores) que navegan constantemente por toda la web, leyendo el contenido de millones de páginas. Ese contenido se guarda en el **índice** de Google — una base de datos gigante.
+Google tiene programas llamados **crawlers** (rastreadores) que navegan constantemente por toda la web, leyendo el contenido de millones de páginas. Ese contenido se guarda en el **índice** de Google, una base de datos gigante.
 
 Cuando alguien hace una búsqueda, Google consulta ese índice y usa su algoritmo para decidir qué resultados mostrar primero. Ese algoritmo considera más de 200 factores diferentes.
 
@@ -109,7 +109,7 @@ Si tienes un negocio físico o atiendes a clientes en una ciudad específica, el
 
 ## ¿Cuánto tiempo tarda en funcionar el SEO?
 
-Esta es la pregunta más frecuente — y la respuesta honesta es: **entre 3 y 12 meses** para ver resultados significativos en sitios nuevos o poco optimizados.
+Esta es la pregunta más frecuente, y la respuesta honesta es: **entre 3 y 12 meses** para ver resultados significativos en sitios nuevos o poco optimizados.
 
 El SEO no es publicidad inmediata. Es más parecido a plantar un árbol: requiere tiempo, pero una vez que crece, da frutos constantemente.
 
@@ -155,7 +155,7 @@ La estrategia ideal combina ambos: Google Ads para resultados inmediatos mientra
 
 Un buen punto de partida:
 
-1. **Asegúrate de que tu sitio sea técnicamente correcto** — rápido, seguro y bien estructurado. Si aún no tienes sitio o el tuyo está mal hecho, revisa [cuánto cuesta hacer una página web en México](/blog/cuanto-cuesta-hacer-pagina-web-mexico).
+1. **Asegúrate de que tu sitio sea técnicamente correcto**: rápido, seguro y bien estructurado. Si aún no tienes sitio o el tuyo está mal hecho, revisa [cuánto cuesta hacer una página web en México](/blog/cuanto-cuesta-hacer-pagina-web-mexico).
 2. **Crea tu ficha en Google Business Profile** y complétala al 100%
 3. **Identifica las palabras clave** que tu cliente potencial usaría para encontrarte
 4. **Crea contenido útil y original** que responda las preguntas de tus clientes
@@ -165,7 +165,7 @@ Un buen punto de partida:
 
 ## Conclusión
 
-El SEO no es una moda ni un lujo — es una parte fundamental de tener presencia digital efectiva en 2026. Ignorarlo significa dejarle clientes a tu competencia todos los días.
+El SEO no es una moda ni un lujo, es una parte fundamental de tener presencia digital efectiva en 2026. Ignorarlo significa dejarle clientes a tu competencia todos los días.
 
 La buena noticia es que el SEO bien hecho desde el inicio, combinado con un sitio web de calidad, puede ser uno de los canales de adquisición de clientes más rentables que existen.
 

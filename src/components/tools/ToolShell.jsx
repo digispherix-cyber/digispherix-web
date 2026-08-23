@@ -45,7 +45,7 @@ export default function ToolShell({ tool, children }) {
                 border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.8rem', fontWeight: 600,
               }}
             >
-              <ShieldCheck size={15} /> 100% privado — {privacyNote}
+              <ShieldCheck size={15} /> 100% privado - {privacyNote}
             </div>
           </div>
         </div>

@@ -38,7 +38,7 @@ export default function HerramientasPage() {
             así que tus archivos nunca se suben a internet.
           </p>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '7px 16px', borderRadius: '99px', background: 'rgba(5,150,105,0.12)', border: '1px solid rgba(5,150,105,0.3)', color: '#34d399', fontSize: '0.82rem', fontWeight: 600 }}>
-            <ShieldCheck size={15} /> Privado y seguro — sin registros ni subidas
+            <ShieldCheck size={15} /> Privado y seguro, sin registros ni subidas
           </div>
         </div>
       </section>

@@ -20,7 +20,7 @@ Con WordPress puedes crear desde un blog sencillo hasta una tienda en línea com
 
 ## ¿Qué es Next.js?
 
-Next.js es un **framework de JavaScript** basado en React, desarrollado por Vercel. A diferencia de WordPress, Next.js es una herramienta para desarrolladores — no tiene panel de administración de serie ni instalación con un clic.
+Next.js es un **framework de JavaScript** basado en React, desarrollado por Vercel. A diferencia de WordPress, Next.js es una herramienta para desarrolladores, no tiene panel de administración de serie ni instalación con un clic.
 
 Con Next.js los desarrolladores construyen sitios web a medida con mayor control sobre el rendimiento, la arquitectura y las funcionalidades. El resultado puede ser más rápido y flexible que WordPress, pero requiere más tiempo de desarrollo y conocimiento técnico.
 
@@ -34,7 +34,7 @@ Con Next.js los desarrolladores construyen sitios web a medida con mayor control
 
 **WordPress** gana por amplio margen aquí. Puedes instalar WordPress, elegir un tema y tener un sitio funcionando en horas. Además, con constructores visuales como Divi, Elementor o Gutenberg, puedes diseñar páginas sin escribir código.
 
-**Next.js** requiere un desarrollador. No hay panel de administración visual de serie, no hay temas para instalar — todo se construye desde código. Esto lo hace poderoso pero inaccesible para el usuario promedio.
+**Next.js** requiere un desarrollador. No hay panel de administración visual de serie, no hay temas para instalar, todo se construye desde código. Esto lo hace poderoso pero inaccesible para el usuario promedio.
 
 **¿Para quién?** WordPress para quien quiera autonomía. Next.js para quien contrata un equipo técnico.
 
@@ -94,13 +94,13 @@ Para entender mejor qué impacta el SEO de tu negocio, lee [qué es el SEO y por
 
 ### Seguridad
 
-**WordPress** es el CMS más atacado del mundo — precisamente porque es el más popular. Sin embargo, manteniéndolo actualizado con plugins de seguridad y un buen hosting, el riesgo es manejable.
+**WordPress** es el CMS más atacado del mundo, precisamente porque es el más popular. Sin embargo, manteniéndolo actualizado con plugins de seguridad y un buen hosting, el riesgo es manejable.
 
 **Next.js** tiene una superficie de ataque menor porque no hay base de datos expuesta ni panel de administración accesible. Es inherentemente más seguro en ese sentido.
 
 ---
 
-![Tabla comparativa WordPress vs Next.js — cuándo elegir cada uno](/blog/wordpress-vs-nextjs-tabla.jpg)
+![Tabla comparativa WordPress vs Next.js: cuándo elegir cada uno](/blog/wordpress-vs-nextjs-tabla.jpg)
 
 ## Comparativa rápida
 
@@ -165,7 +165,7 @@ Para nada. Sitios de marcas globales usan WordPress. La calidad depende de cómo
 
 ## Conclusión
 
-No hay una respuesta universal. Para la mayoría de los negocios en México — desde restaurantes hasta despachos jurídicos o empresas de servicios — **WordPress es suficientemente bueno, más económico y más fácil de mantener**.
+No hay una respuesta universal. Para la mayoría de los negocios en México, desde restaurantes hasta despachos jurídicos o empresas de servicios, **WordPress es suficientemente bueno, más económico y más fácil de mantener**.
 
 Next.js brilla en proyectos donde el rendimiento técnico y la personalización extrema son prioritarios y hay presupuesto para sustentarlo.
 

@@ -94,7 +94,7 @@ export default function CookieBanner() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {[
                       { name: 'Esenciales', desc: 'Necesarias para que el sitio funcione.', required: true },
-                      { name: 'Analíticas', desc: 'Google Analytics — mide visitas y comportamiento.', required: false },
+                      { name: 'Analíticas', desc: 'Google Analytics, mide visitas y comportamiento.', required: false },
                     ].map(c => (
                       <div key={c.name} style={{
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',

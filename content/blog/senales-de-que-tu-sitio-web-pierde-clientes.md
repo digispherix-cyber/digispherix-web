@@ -2,7 +2,7 @@
 title: "5 señales de que tu sitio web está perdiendo clientes (y cómo arreglarlo)"
 date: "2026-07-02"
 category: "Diseño Web"
-excerpt: "Tu sitio web puede estar ahuyentando clientes sin que te des cuenta. Estas son las 5 señales más claras de que algo está fallando — y qué hacer para corregirlo antes de seguir perdiendo dinero."
+excerpt: "Tu sitio web puede estar ahuyentando clientes sin que te des cuenta. Estas son las 5 señales más claras de que algo está fallando, y qué hacer para corregirlo antes de seguir perdiendo dinero."
 readTime: "7 min"
 image: "/blog/senales-sitio-web-cover.jpg"
 tags: ["Diseño Web", "Conversión", "SEO", "Negocios", "UX"]
@@ -10,9 +10,9 @@ tags: ["Diseño Web", "Conversión", "SEO", "Negocios", "UX"]
 
 ![5 señales de que tu sitio web está perdiendo clientes](/blog/senales-sitio-web-cover.jpg)
 
-Tienes un sitio web, pagas el hosting, a veces lo mencionas en tus redes sociales — y aun así no recibes contactos ni ventas a través de él. ¿Qué está pasando?
+Tienes un sitio web, pagas el hosting, a veces lo mencionas en tus redes sociales, y aun así no recibes contactos ni ventas a través de él. ¿Qué está pasando?
 
-La realidad es que un sitio web mal optimizado no solo no ayuda — activamente aleja a los clientes. Y lo peor es que muchas veces ni te das cuenta porque los visitantes simplemente se van sin decirte nada.
+La realidad es que un sitio web mal optimizado no solo no ayuda, activamente aleja a los clientes. Y lo peor es que muchas veces ni te das cuenta porque los visitantes simplemente se van sin decirte nada.
 
 Aquí te mostramos las 5 señales más claras de que tu sitio web está perdiendo clientes, y cómo arreglarlo.
 
@@ -22,7 +22,7 @@ Aquí te mostramos las 5 señales más claras de que tu sitio web está perdiend
 
 ## Señal 1: Tu sitio tarda más de 3 segundos en cargar
 
-Según estudios de Google, **el 53% de los usuarios en móvil abandona un sitio si tarda más de 3 segundos en cargar**. No importa qué tan bueno sea tu producto o servicio — si el sitio es lento, el usuario se va.
+Según estudios de Google, **el 53% de los usuarios en móvil abandona un sitio si tarda más de 3 segundos en cargar**. No importa qué tan bueno sea tu producto o servicio, si el sitio es lento, el usuario se va.
 
 Y no solo eso: Google también penaliza los sitios lentos en su algoritmo de búsqueda, lo que significa menos visibilidad orgánica.
 
@@ -100,7 +100,7 @@ Para entender el SEO a fondo, lee [qué es el SEO y por qué importa para tu neg
 
 ## Señal 5: Tu sitio no transmite confianza
 
-En internet, la primera impresión lo es todo. Un visitante decide en segundos si tu negocio le parece confiable o no — y ese juicio se basa en gran medida en cómo se ve tu sitio.
+En internet, la primera impresión lo es todo. Un visitante decide en segundos si tu negocio le parece confiable o no, y ese juicio se basa en gran medida en cómo se ve tu sitio.
 
 **Señales de un sitio que no genera confianza:**
 - Diseño desactualizado o genérico (parece de 2010)
@@ -152,7 +152,7 @@ Si decides rehacerlo, asegúrate de elegir bien a quien lo haga. Lee nuestra gu�
 
 ## Conclusión
 
-Tu sitio web debería ser tu mejor vendedor — trabajando las 24 horas, los 365 días del año. Si no está generando contactos o ventas, algo está fallando.
+Tu sitio web debería ser tu mejor vendedor, trabajando las 24 horas, los 365 días del año. Si no está generando contactos o ventas, algo está fallando.
 
 La buena noticia es que estos problemas tienen solución. Y detectarlos a tiempo puede significar la diferencia entre un sitio que genera negocio y uno que solo te cuesta dinero.
 

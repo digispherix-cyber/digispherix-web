@@ -24,7 +24,7 @@ const steps = [
     icon: <Palette size={32} />,
     title: 'Diseño',
     subtitle: 'Damos forma visual',
-    desc: 'Diseñamos la imagen visual completa de tu proyecto —colores, tipografías y estructura de cada pantalla— y te la mostramos antes de programar una sola línea. Ajustamos juntos hasta que quede exactamente como la imaginas. Todo pensado para verse increíble tanto en celular como en computadora, y siempre alineado con la identidad de tu marca.',
+    desc: 'Diseñamos la imagen visual completa de tu proyecto: colores, tipografías y estructura de cada pantalla, y te la mostramos antes de programar una sola línea. Ajustamos juntos hasta que quede exactamente como la imaginas. Todo pensado para verse increíble tanto en celular como en computadora, y siempre alineado con la identidad de tu marca.',
     color: '#d946ef',
     details: [
       'Diseño 100% responsivo: móvil y escritorio',

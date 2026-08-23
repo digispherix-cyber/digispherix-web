@@ -167,7 +167,7 @@ export default async function ArticlePage({ params }) {
                 ¿Tienes un proyecto digital?
               </h3>
               <p style={{ color: 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.7, fontSize: '0.95rem', maxWidth: '480px', margin: '0 auto 24px' }}>
-                Diseñamos sitios web, apps Android y estrategias de marketing digital. Cuéntanos tu idea — cotización gratis en menos de 24 horas.
+                Diseñamos sitios web, apps Android y estrategias de marketing digital. Cuéntanos tu idea, cotización gratis en menos de 24 horas.
               </p>
               <Link href="/#contacto" className="btn-primary" style={{ display: 'inline-flex' }}>
                 Cotizar gratis <ArrowRight size={16} />

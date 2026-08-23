@@ -10,7 +10,7 @@ tags: ["Cloud", "AWS", "Azure", "Google Cloud", "Infraestructura", "Tecnología"
 
 ![AWS vs Azure vs GCP: ¿qué plataforma en la nube elegir?](/blog/aws-azure-gcp-cover.jpg)
 
-La computación en la nube cambió para siempre la forma en que las empresas construyen y escalan su tecnología. Ya no necesitas comprar servidores físicos — puedes alquilar capacidad de cómputo, almacenamiento y servicios por hora o por segundo desde cualquier lugar del mundo.
+La computación en la nube cambió para siempre la forma en que las empresas construyen y escalan su tecnología. Ya no necesitas comprar servidores físicos, puedes alquilar capacidad de cómputo, almacenamiento y servicios por hora o por segundo desde cualquier lugar del mundo.
 
 Tres proveedores dominan el mercado global: **Amazon Web Services (AWS)**, **Microsoft Azure** y **Google Cloud Platform (GCP)**. Juntos controlan más del 65% del mercado de nube. La pregunta es: **¿cuál conviene para tu proyecto?**
 
@@ -20,9 +20,9 @@ Tres proveedores dominan el mercado global: **Amazon Web Services (AWS)**, **Mic
 
 Según datos de 2025:
 
-- **AWS:** ~31% del mercado — el líder indiscutible
-- **Azure:** ~24% del mercado — fuerte en empresas con productos Microsoft
-- **GCP:** ~12% del mercado — fuerte en IA, big data y startups tecnológicas
+- **AWS:** ~31% del mercado, el líder indiscutible
+- **Azure:** ~24% del mercado, fuerte en empresas con productos Microsoft
+- **GCP:** ~12% del mercado, fuerte en IA, big data y startups tecnológicas
 
 El resto se reparte entre Oracle Cloud, IBM Cloud, Alibaba Cloud y otros proveedores menores.
 
@@ -44,7 +44,7 @@ AWS lanzó en 2006 y tiene casi una década de ventaja sobre sus competidores. F
 
 ### Fortalezas
 
-**Mayor catálogo de servicios:** AWS tiene más de 200 servicios distintos — más que cualquier competidor. Si existe una necesidad técnica, probablemente AWS tiene un servicio para ella.
+**Mayor catálogo de servicios:** AWS tiene más de 200 servicios distintos, más que cualquier competidor. Si existe una necesidad técnica, probablemente AWS tiene un servicio para ella.
 
 **Mayor comunidad y documentación:** hay más tutoriales, cursos, foros y profesionales certificados en AWS que en las otras dos plataformas combinadas.
 
@@ -81,7 +81,7 @@ Azure lanzó en 2010 y creció rápidamente gracias a la base de clientes corpor
 
 **Soporte empresarial:** Microsoft tiene relaciones comerciales establecidas con miles de grandes empresas. Su equipo de ventas y soporte enterprise es muy fuerte.
 
-**Híbrido y on-premise:** Azure es el mejor proveedor para empresas que necesitan un modelo híbrido — parte de la infraestructura en la nube y parte en sus propios servidores (on-premise).
+**Híbrido y on-premise:** Azure es el mejor proveedor para empresas que necesitan un modelo híbrido, parte de la infraestructura en la nube y parte en sus propios servidores (on-premise).
 
 **Azure Active Directory:** el servicio de identidad y gestión de accesos más usado en entornos corporativos, integrado directamente con la nube.
 
@@ -108,7 +108,7 @@ Azure lanzó en 2010 y creció rápidamente gracias a la base de clientes corpor
 
 ### Historia y posición
 
-GCP lanzó en 2011 y durante años fue considerado "el tercero" — detrás de AWS y Azure. Sin embargo, en los últimos años Google ha invertido masivamente en la plataforma, especialmente en inteligencia artificial y análisis de datos, convirtiéndose en la opción favorita de muchos equipos de ingeniería avanzada.
+GCP lanzó en 2011 y durante años fue considerado "el tercero", detrás de AWS y Azure. Sin embargo, en los últimos años Google ha invertido masivamente en la plataforma, especialmente en inteligencia artificial y análisis de datos, convirtiéndose en la opción favorita de muchos equipos de ingeniería avanzada.
 
 ### Fortalezas
 
@@ -120,7 +120,7 @@ GCP lanzó en 2011 y durante años fue considerado "el tercero" — detrás de A
 
 **Precios competitivos:** GCP ofrece precios por segundo (no por hora como algunos competidores) y descuentos automáticos por uso sostenido sin necesidad de comprometerse con contratos.
 
-**Red propia de Google:** el tráfico entre regiones de GCP viaja por la red privada de fibra óptica de Google — la misma que usa YouTube, Gmail y Search. Esto garantiza latencia muy baja.
+**Red propia de Google:** el tráfico entre regiones de GCP viaja por la red privada de fibra óptica de Google, la misma que usa YouTube, Gmail y Search. Esto garantiza latencia muy baja.
 
 ### Debilidades
 
@@ -165,7 +165,7 @@ GCP lanzó en 2011 y durante años fue considerado "el tercero" — detrás de A
 
 ### Si eres startup o empresa sin preferencia previa
 
-**AWS** es la elección más segura. Mayor comunidad, más documentación, más ingenieros disponibles en el mercado que saben AWS. El mayor riesgo es el costo — gestiona tus gastos con alertas de facturación desde el primer día.
+**AWS** es la elección más segura. Mayor comunidad, más documentación, más ingenieros disponibles en el mercado que saben AWS. El mayor riesgo es el costo, gestiona tus gastos con alertas de facturación desde el primer día.
 
 **GCP** es una excelente alternativa si tu proyecto tiene componente de IA, datos o contenedores. Sus créditos para startups son generosos.
 

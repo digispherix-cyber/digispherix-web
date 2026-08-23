@@ -129,7 +129,7 @@ export default function ExitIntentPopup() {
                   ¡Te contactamos pronto!
                 </h3>
                 <p style={{ color: '#9d8fc2', fontSize: '0.875rem', lineHeight: 1.6 }}>
-                  Revisa tu WhatsApp — te respondemos en menos de 24 horas.
+                  Revisa tu WhatsApp, te respondemos en menos de 24 horas.
                 </p>
                 <button
                   onClick={close}
@@ -151,7 +151,7 @@ export default function ExitIntentPopup() {
                   ¿Te vas sin cotizar?
                 </h3>
                 <p style={{ color: '#c4b5fd', fontSize: '0.875rem', marginBottom: '22px', lineHeight: 1.65 }}>
-                  Deja tu WhatsApp y te contactamos —{' '}
+                  Deja tu WhatsApp y te contactamos,{' '}
                   <span style={{ color: 'white', fontWeight: 600 }}>
                     cotización gratis en menos de 24 h.
                   </span>

@@ -1,5 +1,5 @@
 ---
-title: "CSS :has() — El selector que cambió el desarrollo web para siempre"
+title: "CSS :has() - El selector que cambió el desarrollo web para siempre"
 date: "2026-06-27"
 category: "CSS"
 excerpt: "Durante décadas, CSS careció de un selector padre. En 2023 llegó :has() a todos los navegadores y redefinió lo que es posible hacer con CSS puro, sin una sola línea de JavaScript."
@@ -8,11 +8,11 @@ image: "/blog/has-selector-css.jpg"
 tags: ["CSS", "Frontend", "Desarrollo Web", "Novedades"]
 ---
 
-![CSS :has() — El selector padre que CSS nunca tuvo](/blog/has-selector-css.jpg)
+![CSS :has() - El selector padre que CSS nunca tuvo](/blog/has-selector-css.jpg)
 
 Durante más de 20 años, los desarrolladores web vivieron con una limitación frustrante: CSS no podía seleccionar un elemento basado en lo que contenía. Si querías cambiar el estilo de un `<div>` cuando uno de sus hijos tenía cierta clase, necesitabas JavaScript obligatoriamente.
 
-Eso cambió con **CSS `:has()`** — el selector que la comunidad esperó dos décadas y que finalmente llegó con soporte completo en todos los navegadores modernos.
+Eso cambió con **CSS `:has()`**, el selector que la comunidad esperó dos décadas y que finalmente llegó con soporte completo en todos los navegadores modernos.
 
 ## ¿Qué es :has() y por qué es tan importante?
 
@@ -132,7 +132,7 @@ Esta fue la razón principal por la que los navegadores tardaron tanto en implem
 
 En la práctica, el impacto es mínimo para la mayoría de los casos de uso. Las recomendaciones son:
 
-- **Evita** selectores demasiado genéricos como `*:has(div)` — aplícalos siempre a clases o elementos específicos
+- **Evita** selectores demasiado genéricos como `*:has(div)`, aplícalos siempre a clases o elementos específicos
 - **Úsalo con moderación** en listas muy largas (miles de elementos)
 - Para los casos normales de UI: úsalo sin miedo, el impacto es insignificante
 
@@ -153,7 +153,7 @@ Para Internet Explorer y versiones muy antiguas de Firefox (pre-121), `:has()` n
 }
 ```
 
-La directiva `@supports selector()` verifica soporte antes de aplicar los estilos — el fallback perfecto y limpio.
+La directiva `@supports selector()` verifica soporte antes de aplicar los estilos, el fallback perfecto y limpio.
 
 ## Conclusión
 

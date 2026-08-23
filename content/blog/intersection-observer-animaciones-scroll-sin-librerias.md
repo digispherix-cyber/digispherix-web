@@ -1,5 +1,5 @@
 ---
-title: "Intersection Observer API — Animaciones al scroll sin librerías ni jQuery"
+title: "Intersection Observer API: Animaciones al scroll sin librerías ni jQuery"
 date: "2026-06-27"
 category: "JavaScript"
 excerpt: "¿Sigues usando librerías pesadas para animar elementos al hacer scroll? La Intersection Observer API lleva años en todos los navegadores y hace lo mismo de forma nativa, más rápida y sin dependencias."
@@ -8,17 +8,17 @@ image: "/blog/intersection-observer-cover.jpg"
 tags: ["JavaScript", "Performance", "Animaciones", "Frontend"]
 ---
 
-![Intersection Observer API — Animaciones al scroll sin librerías](/blog/intersection-observer-cover.jpg)
+![Intersection Observer API: Animaciones al scroll sin librerías](/blog/intersection-observer-cover.jpg)
 
-Uno de los efectos más comunes en sitios web modernos es que los elementos aparezcan con una animación cuando el usuario hace scroll y llegan a la pantalla. Durante años, esto se resolvía con librerías como **AOS**, **ScrollReveal** o incluso jQuery — añadiendo kilobytes de código solo para detectar si un elemento es visible.
+Uno de los efectos más comunes en sitios web modernos es que los elementos aparezcan con una animación cuando el usuario hace scroll y llegan a la pantalla. Durante años, esto se resolvía con librerías como **AOS**, **ScrollReveal** o incluso jQuery, añadiendo kilobytes de código solo para detectar si un elemento es visible.
 
 Hay una forma mejor, nativa y gratuita: la **Intersection Observer API**.
 
 ## ¿Qué es Intersection Observer?
 
-Es una API de JavaScript que permite detectar de forma eficiente cuándo un elemento **entra o sale del viewport** (la parte visible de la pantalla), o de cualquier otro contenedor. El navegador hace el trabajo pesado — tú solo defines qué hacer cuando ocurre.
+Es una API de JavaScript que permite detectar de forma eficiente cuándo un elemento **entra o sale del viewport** (la parte visible de la pantalla), o de cualquier otro contenedor. El navegador hace el trabajo pesado, tú solo defines qué hacer cuando ocurre.
 
-![Cómo funciona Intersection Observer — el elemento entra al viewport](/blog/intersection-observer-como-funciona.jpg)
+![Cómo funciona Intersection Observer: el elemento entra al viewport](/blog/intersection-observer-como-funciona.jpg)
 
 Antes de esta API, la alternativa era escuchar el evento `scroll` y calcular manualmente la posición de cada elemento con `getBoundingClientRect()` en cada frame. Esto es **costoso para el rendimiento** porque bloquea el hilo principal del navegador.
 
@@ -37,7 +37,7 @@ El `callback` se ejecuta cada vez que el elemento observado cambia su estado de 
 
 ![Código de Intersection Observer en acción](/blog/intersection-observer-codigo.jpg)
 
-Primero el CSS — defines el estado inicial (invisible) y el estado final (visible):
+Primero el CSS, defines el estado inicial (invisible) y el estado final (visible):
 
 ```css
 .animate-on-scroll {
@@ -52,7 +52,7 @@ Primero el CSS — defines el estado inicial (invisible) y el estado final (visi
 }
 ```
 
-Luego el JavaScript — observas todos los elementos con esa clase:
+Luego el JavaScript, observas todos los elementos con esa clase:
 
 ```js
 const observer = new IntersectionObserver((entries) => {
@@ -194,16 +194,16 @@ Con más del 96% de cobertura global, puedes usarlo sin ningún polyfill.
 
 ## Consejos de rendimiento
 
-- **Siempre llama a `unobserve()`** cuando ya no necesites seguir observando un elemento — especialmente en animaciones que solo ocurren una vez.
+- **Siempre llama a `unobserve()`** cuando ya no necesites seguir observando un elemento, especialmente en animaciones que solo ocurren una vez.
 - **Agrupa observaciones**: un solo `IntersectionObserver` puede observar múltiples elementos, es más eficiente que crear uno por cada elemento.
 - **Evita callbacks pesados**: el callback debe ser rápido. Si necesitas hacer algo costoso, usa `requestAnimationFrame`.
 
 ```js
-// ✅ Correcto — un observer para todos los elementos
+// ✅ Correcto: un observer para todos los elementos
 const observer = new IntersectionObserver(callback)
 elementos.forEach(el => observer.observe(el))
 
-// ❌ Evitar — un observer por elemento
+// ❌ Evitar: un observer por elemento
 elementos.forEach(el => {
   new IntersectionObserver(callback).observe(el)
 })
@@ -213,6 +213,6 @@ elementos.forEach(el => {
 
 La Intersection Observer API es una de esas herramientas que, una vez que la usas, te preguntas cómo viviste sin ella. Detecta visibilidad de forma eficiente, el código es limpio y legible, y elimina la necesidad de librerías externas para la mayoría de los casos de scroll.
 
-Si tu sitio web todavía usa `scroll` + `getBoundingClientRect()` o depende de AOS y ScrollReveal solo para animar elementos, considera migrar a esta API nativa — tu sitio cargará más rápido y el código será más mantenible.
+Si tu sitio web todavía usa `scroll` + `getBoundingClientRect()` o depende de AOS y ScrollReveal solo para animar elementos, considera migrar a esta API nativa, tu sitio cargará más rápido y el código será más mantenible.
 
 ¿Quieres implementar animaciones al scroll u otras funcionalidades modernas en tu sitio web? En DigiSpherix construimos sitios rápidos con las mejores prácticas actuales. [Contáctanos](/#contacto) y cuéntanos tu proyecto.

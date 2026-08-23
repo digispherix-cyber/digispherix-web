@@ -10,7 +10,7 @@ const FORMATS = [
 ]
 
 function fmtSize(bytes) {
-  if (!bytes) return '—'
+  if (!bytes) return '-'
   if (bytes < 1024) return `${bytes} B`
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
   return `${(bytes / 1024 / 1024).toFixed(2)} MB`
@@ -92,7 +92,7 @@ export default function ImageConverter() {
         </div>
         <div>
           <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir una imagen</p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástrala aquí — JPG, PNG, WebP</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástrala aquí - JPG, PNG, WebP</p>
         </div>
         <input ref={inputRef} type="file" accept="image/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
       </label>

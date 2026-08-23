@@ -94,7 +94,7 @@ export default function PasswordGenerator() {
             color: 'var(--text-strong)', wordBreak: 'break-all', minHeight: '56px', display: 'flex', alignItems: 'center',
           }}
         >
-          {password || '—'}
+          {password || '-'}
         </div>
         <div className="pw-actions">
           <button onClick={generate} className="btn-secondary pw-action-btn justify-center" style={{ padding: '0 20px' }} aria-label="Generar otra contraseña">

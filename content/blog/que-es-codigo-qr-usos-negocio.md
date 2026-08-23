@@ -36,7 +36,7 @@ Prácticamente cualquier información de texto:
 
 ## ¿Cómo funciona un código QR?
 
-Cuando apuntas la cámara, el teléfono detecta los **tres cuadros grandes de las esquinas** — son los que le dicen "aquí hay un QR y esta es su orientación". A partir de ahí, lee el patrón de puntos y lo traduce en la información guardada.
+Cuando apuntas la cámara, el teléfono detecta los **tres cuadros grandes de las esquinas**, son los que le dicen "aquí hay un QR y esta es su orientación". A partir de ahí, lee el patrón de puntos y lo traduce en la información guardada.
 
 Un detalle importante para tu negocio: los códigos QR tienen **corrección de errores**. Esto significa que pueden seguir funcionando aunque una parte esté dañada, tapada o tenga un logo encima. Por eso puedes ponerle el logotipo de tu marca al centro y el código sigue escaneando sin problema.
 
@@ -45,7 +45,7 @@ Un detalle importante para tu negocio: los códigos QR tienen **corrección de e
 1. **Buen contraste:** el código debe ser oscuro sobre fondo claro. Un fondo de color muy fuerte o un código en color claro pueden impedir la lectura. Lo más seguro es **código oscuro sobre fondo blanco**.
 2. **Tamaño suficiente:** si va impreso, no lo hagas diminuto. Una regla útil es mínimo **2 × 2 cm**, y más grande cuanto más lejos se vaya a escanear (un espectacular necesita un QR enorme).
 
-Puedes crear un código con tu logo al centro, colores de marca y una leyenda como "Escanéame" usando nuestro [generador de códigos QR gratuito](/herramientas/generador-qr) — y descargarlo en alta resolución para imprimir.
+Puedes crear un código con tu logo al centro, colores de marca y una leyenda como "Escanéame" usando nuestro [generador de códigos QR gratuito](/herramientas/generador-qr), y descargarlo en alta resolución para imprimir.
 
 ---
 
@@ -88,7 +88,7 @@ Genera un QR con los datos de tu red WiFi y ponlo en la pared. Tus clientes se c
 - **QR estático:** la información va grabada en el propio código. Es gratis y para siempre, pero si el enlace cambia, tienes que generar un código nuevo. Ideal para datos que no cambian: tu WhatsApp, tu web, tu WiFi.
 - **QR dinámico:** el código apunta a un enlace intermedio que puedes redirigir cuando quieras y que suele dar estadísticas de escaneos. Requiere un servicio de pago con suscripción.
 
-Para la gran mayoría de negocios, **un QR estático es más que suficiente** — y no cuesta nada. Solo asegúrate de que el enlace de destino sea estable.
+Para la gran mayoría de negocios, **un QR estático es más que suficiente**, y no cuesta nada. Solo asegúrate de que el enlace de destino sea estable.
 
 ---
 
@@ -106,6 +106,6 @@ Para la gran mayoría de negocios, **un QR estático es más que suficiente** �
 
 Los códigos QR son un puente instantáneo entre el mundo físico y el digital: baratos, versátiles y facilísimos de usar. Ya sea para un menú, tu WhatsApp, tus redes o tus reseñas de Google, hay una forma de que trabajen para tu negocio.
 
-Y crear uno no cuesta nada. Prueba nuestro [generador de códigos QR gratuito](/herramientas/generador-qr): elige el estilo, ponle el logo de tu marca al centro, agrega una leyenda y descárgalo listo para imprimir — todo desde tu navegador y sin registrarte.
+Y crear uno no cuesta nada. Prueba nuestro [generador de códigos QR gratuito](/herramientas/generador-qr): elige el estilo, ponle el logo de tu marca al centro, agrega una leyenda y descárgalo listo para imprimir, todo desde tu navegador y sin registrarte.
 
 ¿Quieres integrar códigos QR en una estrategia de marketing completa? En DigiSpherix te ayudamos a conectar tu negocio físico con tu presencia digital. Contáctanos y platiquemos.

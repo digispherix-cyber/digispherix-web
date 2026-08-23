@@ -87,7 +87,7 @@ export default function ImageResizer() {
         </div>
         <div>
           <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir una imagen</p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástrala aquí — JPG, PNG, WebP</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástrala aquí - JPG, PNG, WebP</p>
         </div>
         <input ref={inputRef} type="file" accept="image/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
       </label>

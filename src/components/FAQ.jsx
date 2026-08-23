@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: '¿El sitio se ve bien en celular?',
-    a: 'Todos nuestros sitios son 100% responsivos — se adaptan perfectamente a móviles, tablets y computadoras. Además los probamos en múltiples dispositivos antes de la entrega para garantizar que todo funcione correctamente.',
+    a: 'Todos nuestros sitios son 100% responsivos, se adaptan perfectamente a móviles, tablets y computadoras. Además los probamos en múltiples dispositivos antes de la entrega para garantizar que todo funcione correctamente.',
     color: '#7c3aed',
   },
   {

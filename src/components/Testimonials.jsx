@@ -27,7 +27,7 @@ const testimonials = [
     name: 'Magdaleno Lopez',
     role: 'Gerente de Operaciones',
     company: 'Termocontroles',
-    text: 'Excelente trabajo. Lograron integrar nuestro catálogo industrial completo con una navegación muy intuitiva. El soporte post-entrega es de primera — responden rápido y resuelven cualquier duda.',
+    text: 'Excelente trabajo. Lograron integrar nuestro catálogo industrial completo con una navegación muy intuitiva. El soporte post-entrega es de primera, responden rápido y resuelven cualquier duda.',
     rating: 5,
     color: '#2563eb',
     initials: 'ML',

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "¿Cuánto cuesta hacer una página web en México?"
 date: "2026-07-02"
 category: "Diseño Web"
@@ -14,7 +14,7 @@ Una de las preguntas más frecuentes que recibimos en DigiSpherix es: **¿cuánt
 
 ## ¿Por qué los precios varían tanto?
 
-Puedes encontrar páginas web desde 500 pesos hasta 500,000 pesos. La diferencia no es aleatoria — depende de:
+Puedes encontrar páginas web desde 500 pesos hasta 500,000 pesos. La diferencia no es aleatoria, depende de:
 
 - El **tipo de sitio** que necesitas
 - Quién lo hace (freelancer, agencia, tú mismo)
@@ -32,7 +32,7 @@ Vamos por partes.
 
 Una landing page es un sitio de una sola página con el objetivo de convertir visitas en clientes o leads. Es ideal para campañas de publicidad, productos específicos o servicios puntuales.
 
-**Precio estimado: $3,000 – $12,000 MXN**
+**Precio estimado: $3,000-$12,000 MXN**
 
 Incluye: diseño, texto, formulario de contacto y optimización básica para móviles.
 
@@ -40,7 +40,7 @@ Incluye: diseño, texto, formulario de contacto y optimización básica para mó
 
 Es el tipo más común: inicio, servicios, quiénes somos, portafolio y contacto. Transmite profesionalismo y es suficiente para la mayoría de los negocios.
 
-**Precio estimado: $8,000 – $35,000 MXN**
+**Precio estimado: $8,000-$35,000 MXN**
 
 Incluye: diseño personalizado o con plantilla premium, SEO básico, formulario de contacto y adaptación a móviles.
 
@@ -48,21 +48,21 @@ Incluye: diseño personalizado o con plantilla premium, SEO básico, formulario 
 
 Requiere catálogo de productos, carrito de compras, pasarela de pago y gestión de inventario. Es considerablemente más compleja.
 
-**Precio estimado: $20,000 – $80,000 MXN**
+**Precio estimado: $20,000-$80,000 MXN**
 
 Incluye: integración con Stripe, PayPal o Mercado Pago, sistema de pedidos y panel de administración.
 
 ### 4. Sitio con WordPress personalizado
 
-WordPress es la plataforma más usada en el mundo — y por buenas razones. Es flexible, fácil de actualizar y tiene miles de plugins. Si quieres saber más sobre cuándo conviene WordPress vs otras opciones, [lee nuestra comparativa entre WordPress y Next.js](/blog/wordpress-vs-nextjs-cual-conviene-para-tu-negocio).
+WordPress es la plataforma más usada en el mundo, y por buenas razones. Es flexible, fácil de actualizar y tiene miles de plugins. Si quieres saber más sobre cuándo conviene WordPress vs otras opciones, [lee nuestra comparativa entre WordPress y Next.js](/blog/wordpress-vs-nextjs-cual-conviene-para-tu-negocio).
 
-**Precio estimado: $10,000 – $50,000 MXN**
+**Precio estimado: $10,000-$50,000 MXN**
 
 ### 5. Aplicación web a medida
 
 Si necesitas algo con lógica de negocio compleja, usuarios registrados, paneles de control o integraciones con sistemas internos, estás hablando de desarrollo a medida.
 
-**Precio estimado: $50,000 – $200,000+ MXN**
+**Precio estimado: $50,000-$200,000+ MXN**
 
 ---
 
@@ -92,7 +92,7 @@ Si estás buscando una [agencia de diseño web en Guadalajara](/blog/como-elegir
 
 Plataformas como Wix, Squarespace o Shopify permiten crear sitios sin saber programar. El costo inicial es bajo, pero hay limitaciones importantes en personalización, velocidad y SEO.
 
-**Costo mensual:** $200 – $800 MXN/mes en suscripción
+**Costo mensual:** $200-$800 MXN/mes en suscripción
 
 ---
 
@@ -104,11 +104,11 @@ Cuando te coticen una página web, asegúrate de preguntar si el precio incluye:
 
 | Concepto | Suele incluirse | Costo adicional |
 |---|---|---|
-| Diseño | ✅ | — |
+| Diseño | ✅ | - |
 | Dominio (.com.mx) | ❌ | ~$250 MXN/año |
-| Hosting | ❌ | $500 – $3,000 MXN/año |
-| Correos corporativos | ❌ | $100 – $300 MXN/usuario/mes |
-| Mantenimiento mensual | ❌ | $500 – $2,500 MXN/mes |
+| Hosting | ❌ | $500-$3,000 MXN/año |
+| Correos corporativos | ❌ | $100-$300 MXN/usuario/mes |
+| Mantenimiento mensual | ❌ | $500-$2,500 MXN/mes |
 | SEO y posicionamiento | ❌ | Variable |
 | Redacción de contenido | ❌ | Variable |
 
@@ -120,11 +120,11 @@ Muchas cotizaciones "baratas" no incluyen dominio ni hosting, así que el costo 
 
 Una página web no es un gasto único. Estos son los costos anuales típicos:
 
-- **Dominio:** $200 – $500 MXN/año
-- **Hosting compartido:** $500 – $2,000 MXN/año
-- **Hosting premium / VPS:** $3,000 – $12,000 MXN/año
+- **Dominio:** $200-$500 MXN/año
+- **Hosting compartido:** $500-$2,000 MXN/año
+- **Hosting premium / VPS:** $3,000-$12,000 MXN/año
 - **Certificado SSL:** generalmente incluido hoy en día
-- **Mantenimiento:** $500 – $3,000 MXN/mes (actualizaciones, backups, seguridad)
+- **Mantenimiento:** $500-$3,000 MXN/mes (actualizaciones, backups, seguridad)
 
 ---
 
@@ -132,11 +132,11 @@ Una página web no es un gasto único. Estos son los costos anuales típicos:
 
 ### Negocio pequeño o emprendedor
 
-Un sitio de 5 páginas con WordPress bien configurado es suficiente. Presupuesto realista: **$12,000 – $25,000 MXN** por el desarrollo inicial, más $500 – $1,000 MXN/mes de mantenimiento.
+Un sitio de 5 páginas con WordPress bien configurado es suficiente. Presupuesto realista: **$12,000-$25,000 MXN** por el desarrollo inicial, más $500-$1,000 MXN/mes de mantenimiento.
 
 ### Empresa mediana
 
-Sitio con más funcionalidades, integración con CRM o sistema de citas, y estrategia SEO incluida. Presupuesto realista: **$30,000 – $70,000 MXN**.
+Sitio con más funcionalidades, integración con CRM o sistema de citas, y estrategia SEO incluida. Presupuesto realista: **$30,000-$70,000 MXN**.
 
 ### Empresa grande o e-commerce
 
@@ -176,7 +176,7 @@ WordPress casi siempre es más económico. Para entender las diferencias a fondo
 
 ## Conclusión
 
-El costo de una página web en México puede ir de $3,000 MXN para algo básico hasta más de $200,000 MXN para un sistema complejo. Lo más importante es que el precio esté alineado con tus objetivos de negocio — una página barata que no convierte clientes es más cara que una inversión bien hecha.
+El costo de una página web en México puede ir de $3,000 MXN para algo básico hasta más de $200,000 MXN para un sistema complejo. Lo más importante es que el precio esté alineado con tus objetivos de negocio, una página barata que no convierte clientes es más cara que una inversión bien hecha.
 
 Lo que sí es cierto: **una página web profesional es uno de los activos con mejor retorno de inversión para cualquier negocio en México**.
 
