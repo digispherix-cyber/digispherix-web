@@ -9,6 +9,7 @@ import BuilderStudio from '../components/BuilderStudio'
 import Pricing from '../components/Pricing'
 import Testimonials from '../components/Testimonials'
 import FAQ from '../components/FAQ'
+import ScratchCard from '../components/ScratchCard'
 import Contact from '../components/Contact'
 import Particles from '../components/Particles'
 import LoadingScreen from '../components/LoadingScreen'
@@ -31,6 +32,7 @@ export default function HomePage() {
         <Testimonials />
         <ToolsHighlight />
         <FAQ />
+        <ScratchCard />
         <Contact />
       </main>
       <ExitIntentPopup />
