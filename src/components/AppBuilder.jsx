@@ -34,6 +34,101 @@ const SCREENS = [
 const byId = Object.fromEntries(SCREENS.map((s) => [s.id, s]))
 const makeUid = () => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`)
 
+function cRoundRect(ctx, x, y, w, h, r) {
+  r = Math.max(0, Math.min(r, w / 2, h / 2))
+  ctx.beginPath(); ctx.moveTo(x + r, y)
+  ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r)
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath()
+}
+
+// Dibuja en el canvas de exportación una mini-vista simplificada de cada
+// pantalla (equivalente a ScreenPreview en pantalla), para que la imagen
+// descargada no se vea vacía sino como el mockup del teléfono.
+function drawScreenPreview(ctx, typeId, color, x, y, w, h) {
+  if (w <= 6 || h <= 6) return
+  const fill = (c) => { ctx.fillStyle = c }
+  const box = (bx, by, bw, bh, r, c) => { if (bw <= 0 || bh <= 0) return; cRoundRect(ctx, bx, by, bw, bh, r); fill(c); ctx.fill() }
+  const bar = (bx, by, bw, bh, c) => box(bx, by, bw, bh, bh / 2, c)
+  const dot = (cx, cy, rad, c) => { if (rad <= 0) return; ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); fill(c); ctx.fill() }
+
+  if (typeId === 'onboarding') {
+    box(x + w / 2 - 20, y, 40, 40, 12, `${color}30`)
+    bar(x + w * 0.15, y + 48, w * 0.7, 9, `${color}70`)
+    bar(x + w * 0.08, y + 62, w * 0.84, 6, `${color}30`)
+    box(x + w * 0.1, y + 78, w * 0.8, 20, 10, color)
+    return
+  }
+  if (typeId === 'login') {
+    box(x, y, w, 20, 6, `${color}16`); box(x, y + 26, w, 20, 6, `${color}16`)
+    box(x, y + 52, w, 22, 8, color)
+    return
+  }
+  if (typeId === 'home') {
+    box(x, y, w, 40, 10, `${color}25`)
+    box(x, y + 48, (w - 8) / 2, 34, 9, `${color}18`); box(x + (w - 8) / 2 + 8, y + 48, (w - 8) / 2, 34, 9, `${color}18`)
+    return
+  }
+  if (typeId === 'search') {
+    box(x, y, w, 22, 11, `${color}16`)
+    for (let i = 0; i < 3; i++) { const ry = y + 30 + i * 20; box(x, ry, 22, 16, 6, `${color}25`); bar(x + 30, ry + 5, w * (0.7 - i * 0.12), 6, `${color}35`) }
+    return
+  }
+  if (typeId === 'catalog') {
+    const cw = (w - 8) / 2
+    for (let i = 0; i < 4; i++) { const cx0 = x + (i % 2) * (cw + 8); const cy0 = y + Math.floor(i / 2) * 46; box(cx0, cy0, cw, 34, 8, `${color}${i % 2 ? '22' : '33'}`); bar(cx0, cy0 + 38, cw * 0.7, 4, `${color}40`) }
+    return
+  }
+  if (typeId === 'detail') {
+    box(x, y, w, 50, 10, `${color}2e`)
+    bar(x, y + 58, w * 0.6, 9, `${color}70`); bar(x, y + 72, w * 0.9, 5, `${color}30`); bar(x, y + 82, w * 0.8, 5, `${color}30`)
+    box(x, y + 94, w, 20, 8, color)
+    return
+  }
+  if (typeId === 'cart') {
+    for (let i = 0; i < 2; i++) { const ry = y + i * 34; box(x, ry, 28, 28, 7, `${color}25`); bar(x + 36, ry + 6, w * 0.5, 5, `${color}45`); bar(x + 36, ry + 16, w * 0.3, 4, `${color}30`) }
+    box(x, y + 74, w, 20, 8, color)
+    return
+  }
+  if (typeId === 'payment') {
+    box(x, y, w, 40, 10, `${color}30`)
+    box(x, y + 48, w, 18, 6, `${color}16`)
+    box(x, y + 72, w, 20, 8, color)
+    return
+  }
+  if (typeId === 'profile') {
+    dot(x + w / 2, y + 22, 22, `${color}45`)
+    bar(x + w * 0.3, y + 50, w * 0.4, 7, `${color}55`); bar(x + w * 0.38, y + 62, w * 0.24, 5, `${color}30`)
+    box(x, y + 74, w, 14, 5, `${color}14`); box(x, y + 92, w, 14, 5, `${color}14`)
+    return
+  }
+  if (typeId === 'notifications') {
+    for (let i = 0; i < 3; i++) { const ry = y + i * 26; box(x, ry, w, 22, 8, `${color}12`); dot(x + 14, ry + 11, 8, `${color}45`); bar(x + 28, ry + 8, w * (0.7 - i * 0.1), 5, `${color}35`) }
+    return
+  }
+  if (typeId === 'chat') {
+    box(x, y, w * 0.7, 20, 10, `${color}20`)
+    box(x + w * 0.4, y + 26, w * 0.6, 20, 10, color)
+    box(x, y + 52, w * 0.55, 20, 10, `${color}20`)
+    return
+  }
+  if (typeId === 'map') {
+    box(x, y, w, h, 10, `${color}16`)
+    ctx.strokeStyle = `${color}40`; ctx.lineWidth = 2
+    ctx.beginPath(); ctx.moveTo(x + w * 0.2, y + h * 0.35); ctx.lineTo(x + w * 0.8, y + h * 0.35); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(x + w * 0.55, y + h * 0.1); ctx.lineTo(x + w * 0.55, y + h * 0.8); ctx.stroke()
+    dot(x + w * 0.5, y + h * 0.5, 6, color)
+    return
+  }
+  if (typeId === 'settings') {
+    for (let i = 0; i < 3; i++) { const ry = y + i * 26; box(x, ry, w, 22, 8, `${color}10`); bar(x + 8, ry + 8, w * 0.5, 6, `${color}40`); box(x + w - 30, ry + 5, 24, 12, 6, `${color}45`) }
+    return
+  }
+  // custom / genérico
+  bar(x + w * 0.2, y, w * 0.55, 7, `${color}45`)
+  bar(x + w * 0.1, y + 16, w * 0.75, 6, `${color}30`)
+  bar(x + w * 0.15, y + 30, w * 0.45, 6, `${color}30`)
+}
+
 const bar = (color, w, h = '8px') => ({ height: h, width: w, borderRadius: '99px', background: color, flexShrink: 0 })
 
 // Mini-mockup por pantalla, pensado para el ancho angosto de un teléfono.
@@ -426,6 +521,9 @@ export default function AppBuilder() {
       ctx.fillStyle = '#1e1533'; ctx.font = '700 13px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'
       ctx.fillText(labelOf(item), x + 38, y + 23, w - 48)
       ctx.textBaseline = 'alphabetic'
+      // mini-vista de la pantalla dentro de la tarjeta
+      const pvX = x + 12, pvY = y + 42, pvW = w - 24, pvH = h - 42 - 12
+      drawScreenPreview(ctx, item.typeId, block.color, pvX, pvY, pvW, pvH)
     })
 
     ctx.fillStyle = '#ece6f8'; ctx.fillRect(0, height - footerH, width, footerH)
