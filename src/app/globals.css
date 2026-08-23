@@ -130,7 +130,8 @@ body {
 /* Margen (en vez de gap) para que translateX(-50%) sea un loop sin costura:
    cada chip —incluido el último de cada mitad— lleva su separación derecha. */
 .tech-chip {
-  margin-right: 28px;
+  margin-right: 22px;
+  cursor: default;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .tech-chip:hover {

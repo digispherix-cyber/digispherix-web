@@ -26,12 +26,12 @@ const TECH = [
   { name: 'Python', icon: siPython, color: '#5b9bd5' },
   { name: 'PHP', icon: siPhp, color: '#9199d6' },
   { name: 'Node.js', icon: siNodedotjs, color: '#6bbf4e' },
+  { name: 'Azure', Lucide: Cloud, color: '#3b9eff' },
   { name: 'Linux', icon: siLinux, color: '#FCC624' },
   { name: 'Google Ads', icon: siGoogleads, color: '#4285F4' },
   { name: 'Google Analytics', icon: siGoogleanalytics, color: '#F0850B' },
   { name: 'Search Console', icon: siGooglesearchconsole, color: '#458CF5' },
   { name: 'Google Cloud', icon: siGooglecloud, color: '#4285F4' },
-  { name: 'Azure', Lucide: Cloud, color: '#3b9eff' },
   { name: 'Shopify', icon: siShopify, color: '#8bc34a' },
   { name: 'Figma', icon: siFigma, color: '#F24E1E' },
   { name: 'Vercel', icon: siVercel, color: '#c026d3' },
@@ -41,12 +41,12 @@ function Chip({ name, icon, Lucide, color }) {
   return (
     <span
       className="tech-chip"
+      title={name}
+      aria-label={name}
       style={{
-        display: 'inline-flex', alignItems: 'center', gap: '11px',
-        padding: '13px 26px', borderRadius: '999px', flexShrink: 0,
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        width: '64px', height: '64px', borderRadius: '50%', flexShrink: 0,
         background: 'var(--bg-card)', border: '1px solid var(--border)',
-        fontSize: '1rem', fontWeight: 700, color: 'var(--text-strong)',
-        whiteSpace: 'nowrap',
       }}
     >
       {icon ? (
@@ -55,8 +55,8 @@ function Chip({ name, icon, Lucide, color }) {
           role="img"
           aria-hidden="true"
           viewBox="0 0 24 24"
-          width="20"
-          height="20"
+          width="26"
+          height="26"
           fill={color}
           style={{ flexShrink: 0, filter: `drop-shadow(0 0 6px ${color}55)` }}
         >
@@ -64,9 +64,8 @@ function Chip({ name, icon, Lucide, color }) {
         </svg>
       ) : (
         // Ícono genérico (lucide) para conceptos sin logo de marca.
-        <Lucide size={20} color={color} style={{ flexShrink: 0, filter: `drop-shadow(0 0 6px ${color}55)` }} />
+        <Lucide size={26} color={color} style={{ flexShrink: 0, filter: `drop-shadow(0 0 6px ${color}55)` }} />
       )}
-      {name}
     </span>
   )
 }
