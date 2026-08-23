@@ -634,7 +634,7 @@ function computeLayout(items) {
 const nextRow = (items) => items.reduce((m, it) => Math.max(m, it.row || 1), 0) + 1
 const usedInRow = (items, row) => items.filter((it) => (it.row || 1) === row).reduce((s, it) => s + Math.min(4, it.span || 4), 0)
 
-export default function SiteBuilder() {
+export default function SiteBuilder({ embedded = false }) {
   const ref = useRef(null)
   const gridRef = useRef(null)
   const inView = useInView(ref, { once: true })
@@ -844,24 +844,7 @@ export default function SiteBuilder() {
     }, 'image/png')
   }
 
-  return (
-    <section id="constructor" ref={ref} className="ds-section relative" style={{ color: 'var(--text)' }}>
-      <div className="ds-container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
-            Pruébalo tú mismo
-          </p>
-          <h2 className="section-title gradient-text">Arma tu sitio</h2>
-          <p className="section-subtitle">
-            Arrastra o toca los bloques para armar una vista previa de tu sitio ideal, puedes repetirlos
-            las veces que quieras. Cuando quede como te gusta, descarga la imagen y te cotizamos gratis.
-          </p>
-        </motion.div>
-
+  const builderUI = (
         <div className="builder-grid">
           {/* Paleta */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -984,6 +967,28 @@ export default function SiteBuilder() {
             )}
           </div>
         </div>
+  )
+
+  if (embedded) return builderUI
+
+  return (
+    <section id="constructor" ref={ref} className="ds-section relative" style={{ color: 'var(--text)' }}>
+      <div className="ds-container">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
+            Pruébalo tú mismo
+          </p>
+          <h2 className="section-title gradient-text">Arma tu sitio</h2>
+          <p className="section-subtitle">
+            Arrastra o toca los bloques para armar una vista previa de tu sitio ideal, puedes repetirlos
+            las veces que quieras. Cuando quede como te gusta, descarga la imagen y te cotizamos gratis.
+          </p>
+        </motion.div>
+        {builderUI}
       </div>
     </section>
   )
