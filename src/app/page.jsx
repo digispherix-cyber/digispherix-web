@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import TechMarquee from '../components/TechMarquee'
 import About from '../components/About'
 import Services from '../components/Services'
 import ToolsHighlight from '../components/ToolsHighlight'
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Particles />
       <main>
         <Hero />
+        <TechMarquee />
         <About />
 <Services />
         <Process />

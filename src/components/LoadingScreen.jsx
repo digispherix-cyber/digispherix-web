@@ -23,6 +23,13 @@ export default function LoadingScreen() {
       }
     }
     requestAnimationFrame(tick)
+
+    // Respaldo: requestAnimationFrame se pausa si la pestaña se carga en
+    // segundo plano, y entonces el loader nunca llegaría al 100%. Este
+    // timeout garantiza que la pantalla de carga siempre se oculte, aunque
+    // el rAF no haya corrido.
+    const fallback = setTimeout(() => { setProgress(100); setVisible(false) }, 1600)
+    return () => clearTimeout(fallback)
   }, [])
 
   return (

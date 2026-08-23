@@ -108,6 +108,44 @@ body {
   100% { transform: translateY(-100vh) scale(0.6); opacity: 0; }
 }
 
+/* ── Marquee de stack tecnológico ── */
+.tech-marquee {
+  overflow: hidden;
+  width: 100%;
+  /* Espacio arriba/abajo para que al hacer hover la cápsula suba y luzca su
+     glow sin que el overflow:hidden la recorte. */
+  padding: 12px 0;
+  /* Difumina los bordes izq/der para que los chips "entren y salgan" suave */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: tech-marquee-scroll 40s linear infinite;
+}
+.tech-marquee:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+/* Margen (en vez de gap) para que translateX(-50%) sea un loop sin costura:
+   cada chip —incluido el último de cada mitad— lleva su separación derecha. */
+.tech-chip {
+  margin-right: 28px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.tech-chip:hover {
+  border-color: var(--accent-2) !important;
+  transform: translateY(-2px);
+}
+@keyframes tech-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track { animation: none; flex-wrap: wrap; justify-content: center; }
+  .tech-marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
 /* Site builder demo responsive */
 .builder-grid {
   display: grid;

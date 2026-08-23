@@ -26,6 +26,7 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
+    "simple-icons": "^16.28.0",
     "tesseract.js": "^7.0.0",
     "tesseract.js-core": "^7.0.0"
   },
