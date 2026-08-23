@@ -17,7 +17,7 @@ function SortableRow({ item, index, onRemove }) {
       whileDrag={{ scale: 1.03, boxShadow: '0 16px 36px rgba(0,0,0,0.45)', zIndex: 20, cursor: 'grabbing' }}
       style={{
         display: 'flex', alignItems: 'center', gap: '10px',
-        background: 'rgba(12,9,35,0.85)', border: '1px solid rgba(124,58,237,0.25)',
+        background: 'var(--bg-card-alt)', border: '1px solid var(--border)',
         borderRadius: '12px', padding: '8px 10px',
       }}
     >
@@ -27,15 +27,15 @@ function SortableRow({ item, index, onRemove }) {
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
           width: '34px', height: '40px', background: 'none', border: 'none',
-          color: '#9d8fc2', cursor: 'grab', touchAction: 'none',
+          color: 'var(--text-muted)', cursor: 'grab', touchAction: 'none',
         }}
       >
         <GripVertical size={18} />
       </button>
-      <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{index + 1}</span>
+      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{index + 1}</span>
       <img src={item.url} alt="" draggable={false} style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '8px', flexShrink: 0 }} />
-      <span style={{ color: '#c4b5fd', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.file.name}</span>
-      <button onClick={() => onRemove(item.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', color: '#c4b5fd', cursor: 'pointer' }}>
+      <span style={{ color: 'var(--text)', fontSize: '0.82rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.file.name}</span>
+      <button onClick={() => onRemove(item.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', cursor: 'pointer' }}>
         <X size={16} />
       </button>
     </Reorder.Item>
@@ -100,15 +100,15 @@ export default function ImageToPdf() {
         style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px',
           padding: '32px 20px', border: '2px dashed rgba(217,119,6,0.4)', borderRadius: '16px', cursor: 'pointer',
-          background: 'rgba(12,9,35,0.4)', textAlign: 'center',
+          background: 'var(--bg-card-alt)', textAlign: 'center',
         }}
       >
         <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: 'rgba(217,119,6,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Upload size={24} style={{ color: '#f59e0b' }} />
         </div>
         <div>
-          <p style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>Toca para agregar imágenes</p>
-          <p style={{ color: '#9d8fc2', fontSize: '0.82rem' }}>o arrástralas aquí — JPG o PNG</p>
+          <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>Toca para agregar imágenes</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>o arrástralas aquí — JPG o PNG</p>
         </div>
         <input ref={inputRef} type="file" accept="image/jpeg,image/png" multiple onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       </label>
@@ -116,7 +116,7 @@ export default function ImageToPdf() {
       {/* Lista de imágenes (arrastra para reordenar) */}
       {items.length > 0 && (
         <>
-          <p style={{ color: '#9d8fc2', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>
             Arrastra las imágenes para cambiar el orden
           </p>
           <Reorder.Group axis="y" values={items} onReorder={setItems} as="div" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

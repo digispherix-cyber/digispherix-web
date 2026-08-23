@@ -7,22 +7,22 @@ export const metadata = {
   robots: { index: true, follow: true },
 }
 
-const h2 = { fontSize: '1.35rem', fontWeight: 800, color: 'white', marginTop: '40px', marginBottom: '14px' }
-const p = { color: '#9d8fc2', fontSize: '0.98rem', lineHeight: 1.85, marginBottom: '14px' }
-const li = { color: '#9d8fc2', fontSize: '0.98rem', lineHeight: 1.75, marginBottom: '8px' }
-const strong = { color: '#c4b5fd', fontWeight: 700 }
-const a = { color: '#e879f9', textDecoration: 'none' }
+const h2 = { fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-strong)', marginTop: '40px', marginBottom: '14px' }
+const p = { color: 'var(--text-muted)', fontSize: '0.98rem', lineHeight: 1.85, marginBottom: '14px' }
+const li = { color: 'var(--text-muted)', fontSize: '0.98rem', lineHeight: 1.75, marginBottom: '8px' }
+const strong = { color: 'var(--text)', fontWeight: 700 }
+const a = { color: 'var(--accent-4)', textDecoration: 'none' }
 
 export default function TerminosPage() {
   return (
-    <main style={{ background: '#0c0923', minHeight: '100vh', paddingTop: '120px', paddingBottom: '90px', position: 'relative', overflow: 'hidden' }}>
+    <main style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '90px', position: 'relative', overflow: 'hidden', color: 'var(--text)' }}>
       <Particles />
       <div style={{ width: '85%', maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
-        <h1 style={{ fontSize: 'clamp(1.9rem, 5vw, 2.8rem)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '10px' }}>
+        <h1 style={{ fontSize: 'clamp(1.9rem, 5vw, 2.8rem)', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.15, marginBottom: '10px' }}>
           Términos y <span className="gradient-text">Condiciones</span>
         </h1>
-        <p style={{ color: '#6b5fa0', fontSize: '0.85rem', marginBottom: '32px' }}>Última actualización: 15 de julio de 2026</p>
+        <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', marginBottom: '32px' }}>Última actualización: 15 de julio de 2026</p>
 
         <p style={p}>
           Estos Términos y Condiciones regulan el uso del sitio web de DigiSpherix (digispherix.com.mx) y de

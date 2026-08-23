@@ -32,9 +32,9 @@ export default function WordCounter() {
       {/* Estadísticas */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '10px' }}>
         {CARDS.map((c) => (
-          <div key={c.key} style={{ background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '12px', padding: '14px 10px', textAlign: 'center' }}>
+          <div key={c.key} style={{ background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '12px', padding: '14px 10px', textAlign: 'center' }}>
             <div className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 900, lineHeight: 1.1 }}>{s[c.key]}</div>
-            <div style={{ color: '#9d8fc2', fontSize: '0.75rem', marginTop: '2px' }}>{c.label}</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '2px' }}>{c.label}</div>
           </div>
         ))}
       </div>
@@ -42,7 +42,7 @@ export default function WordCounter() {
       {/* Texto */}
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <label style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600 }}>Tu texto</label>
+          <label style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600 }}>Tu texto</label>
           {text && (
             <button onClick={() => setText('')} className="btn-secondary" style={{ padding: '5px 12px', fontSize: '0.78rem' }}>Limpiar</button>
           )}
@@ -52,7 +52,7 @@ export default function WordCounter() {
           onChange={(e) => setText(e.target.value)}
           rows={10}
           placeholder="Escribe o pega tu texto aquí…"
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '14px', color: 'white', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px', color: 'var(--text-strong)', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
         />
       </div>
     </div>

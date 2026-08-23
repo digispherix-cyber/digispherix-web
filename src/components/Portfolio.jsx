@@ -91,8 +91,8 @@ function ProjectCard({ p, index }) {
     >
       <motion.div
         style={{
-          background: 'rgba(17,13,48,0.88)',
-          border: '1px solid rgba(124,58,237,0.25)',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border)',
           borderRadius: '16px',
           overflow: 'hidden',
           position: 'relative',
@@ -113,16 +113,16 @@ function ProjectCard({ p, index }) {
 
         {/* Browser chrome */}
         <div style={{
-          background: '#1a1630', padding: '7px 10px',
+          background: 'var(--bg-card-alt)', padding: '7px 10px',
           display: 'flex', alignItems: 'center', gap: '5px',
-          borderBottom: '1px solid rgba(255,255,255,0.07)', flexShrink: 0,
+          borderBottom: '1px solid var(--border)', flexShrink: 0,
         }}>
           <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ff5f57', flexShrink: 0 }} />
           <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#febc2e', flexShrink: 0 }} />
           <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#28c840', flexShrink: 0 }} />
           <div style={{
-            flex: 1, background: 'rgba(255,255,255,0.07)', borderRadius: '4px',
-            padding: '2px 8px', fontSize: '7px', color: '#9d8fc2', marginLeft: '4px',
+            flex: 1, background: 'rgba(124,58,237,0.1)', borderRadius: '4px',
+            padding: '2px 8px', fontSize: '7px', color: 'var(--text-muted)', marginLeft: '4px',
             overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
           }}>
             {p.url.replace('https://', '')}
@@ -189,8 +189,8 @@ function ProjectCard({ p, index }) {
           }}>
             {p.category}
           </span>
-          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'white', marginTop: '10px', marginBottom: '6px' }}>{p.name}</h3>
-          <p style={{ fontSize: '0.82rem', color: '#c4b5fd', lineHeight: 1.6, flex: 1 }}>{p.desc}</p>
+          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-strong)', marginTop: '10px', marginBottom: '6px' }}>{p.name}</h3>
+          <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6, flex: 1 }}>{p.desc}</p>
         </div>
       </motion.div>
     </motion.div>
@@ -202,7 +202,7 @@ export default function Portfolio() {
   const inView = useInView(ref, { once: true })
 
   return (
-    <section id="portafolio" className="ds-section relative" style={{ background: 'rgba(17,13,48,0.4)' }}>
+    <section id="portafolio" className="ds-section relative" style={{ background: 'var(--section-tint)', color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #d946ef, #7c3aed, transparent)' }}
@@ -215,7 +215,7 @@ export default function Portfolio() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Nuestro trabajo
           </p>
           <h2 className="section-title gradient-text">Portafolio</h2>
@@ -257,14 +257,14 @@ export default function Portfolio() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap', flex: 1 }}>
             <div style={{ textAlign: 'center', flexShrink: 0 }}>
               <div className="gradient-text" style={{ fontSize: '2.8rem', fontWeight: 900, lineHeight: 1 }}>+20</div>
-              <div style={{ fontSize: '0.8rem', color: '#9d8fc2', marginTop: '4px' }}>sitios entregados</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>sitios entregados</div>
             </div>
             <div className="portfolio-banner-divider" style={{ width: '1px', height: '50px', background: 'rgba(124,58,237,0.3)', flexShrink: 0 }} />
             <div style={{ flex: 1 }}>
-              <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem', marginBottom: '6px' }}>
+              <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '1rem', marginBottom: '6px' }}>
                 Estos son solo algunos de nuestros proyectos
               </p>
-              <p style={{ color: '#9d8fc2', fontSize: '0.85rem', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.6 }}>
                 Hemos trabajado con empresas de industria, salud, comercio y servicios en toda México. Cada proyecto es único y construido a medida para cumplir los objetivos de nuestros clientes.
               </p>
             </div>
@@ -287,7 +287,7 @@ export default function Portfolio() {
           transition={{ delay: 0.5 }}
           style={{ textAlign: 'center', marginTop: '40px' }}
         >
-          <p style={{ color: '#a78bfa', fontSize: '0.9rem', marginBottom: '20px' }}>¿Quieres un sitio así para tu negocio?</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '20px' }}>¿Quieres un sitio así para tu negocio?</p>
           <a href="#contacto" className="btn-primary">
             Platiquemos tu Proyecto
           </a>

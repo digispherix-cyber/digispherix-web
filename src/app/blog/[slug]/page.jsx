@@ -84,7 +84,7 @@ export default async function ArticlePage({ params }) {
       <ReadingProgress />
 
       <Particles />
-      <main style={{ background: '#0c0923', minHeight: '100vh', paddingTop: '100px' }}>
+      <main style={{ minHeight: '100vh', paddingTop: '100px', color: 'var(--text)' }}>
 
         {/* Back */}
         <div className="ds-container" style={{ paddingTop: '40px', paddingBottom: '8px' }}>
@@ -94,15 +94,15 @@ export default async function ArticlePage({ params }) {
         </div>
 
         {/* Header */}
-        <header style={{ padding: '32px 0 48px', borderBottom: '1px solid rgba(124,58,237,0.15)' }}>
+        <header style={{ padding: '32px 0 48px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 80px' }} className="blog-article-header">
             <span className="blog-badge" style={{ background: `${c}20`, color: c, border: `1px solid ${c}40`, display: 'inline-block', marginBottom: '20px' }}>
               {post.category}
             </span>
-            <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', fontWeight: 900, color: 'white', lineHeight: 1.2, marginBottom: '20px' }}>
+            <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.2, marginBottom: '20px' }}>
               {post.title}
             </h1>
-            <p style={{ color: '#9d8fc2', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '28px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '28px' }}>
               {post.excerpt}
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
@@ -111,11 +111,11 @@ export default async function ArticlePage({ params }) {
                   DS
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white' }}>DigiSpherix</div>
-                  <div style={{ fontSize: '0.75rem', color: '#6b5fa0' }}>Equipo editorial</div>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-strong)' }}>DigiSpherix</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Equipo editorial</div>
                 </div>
               </div>
-              <div style={{ display: 'flex', gap: '16px', color: '#6b5fa0', fontSize: '0.85rem' }}>
+              <div style={{ display: 'flex', gap: '16px', color: 'var(--text-dim)', fontSize: '0.85rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><Calendar size={14} />{fmt(post.date)}</span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><Clock size={14} />{post.readTime} de lectura</span>
               </div>
@@ -134,10 +134,10 @@ export default async function ArticlePage({ params }) {
 
             {/* Tags */}
             {post.tags?.length > 0 && (
-              <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid rgba(124,58,237,0.15)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-                <Tag size={14} style={{ color: '#6b5fa0', flexShrink: 0 }} />
+              <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                <Tag size={14} style={{ color: 'var(--text-dim)', flexShrink: 0 }} />
                 {post.tags.map(tag => (
-                  <span key={tag} style={{ fontSize: '0.8rem', padding: '4px 12px', borderRadius: '99px', background: 'rgba(124,58,237,0.1)', color: '#c4b5fd', border: '1px solid rgba(124,58,237,0.2)' }}>
+                  <span key={tag} style={{ fontSize: '0.8rem', padding: '4px 12px', borderRadius: '99px', background: 'rgba(124,58,237,0.1)', color: 'var(--text)', border: '1px solid var(--border)' }}>
                     {tag}
                   </span>
                 ))}
@@ -147,8 +147,8 @@ export default async function ArticlePage({ params }) {
             {/* Share */}
             <div style={{ marginTop: '40px', padding: '28px 32px', borderRadius: '16px', background: 'rgba(37,211,102,0.06)', border: '1px solid rgba(37,211,102,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div style={{ color: 'white', fontWeight: 700, marginBottom: '4px' }}>¿Te fue útil este artículo?</div>
-                <div style={{ color: '#9d8fc2', fontSize: '0.875rem' }}>Compártelo con alguien que lo necesite</div>
+                <div style={{ color: 'var(--text-strong)', fontWeight: 700, marginBottom: '4px' }}>¿Te fue útil este artículo?</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Compártelo con alguien que lo necesite</div>
               </div>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(`${post.title}\n\nhttps://digispherix.com.mx/blog/${slug}`)}`}
@@ -161,12 +161,12 @@ export default async function ArticlePage({ params }) {
             </div>
 
             {/* CTA */}
-            <div style={{ marginTop: '40px', padding: '40px', borderRadius: '20px', background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(217,70,239,0.08))', border: '1px solid rgba(124,58,237,0.3)', textAlign: 'center' }}>
+            <div style={{ marginTop: '40px', padding: '40px', borderRadius: '20px', background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(217,70,239,0.08))', border: '1px solid var(--border)', textAlign: 'center' }}>
               <div style={{ fontSize: '2.2rem', marginBottom: '14px' }}>🚀</div>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'white', marginBottom: '12px' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-strong)', marginBottom: '12px' }}>
                 ¿Tienes un proyecto digital?
               </h3>
-              <p style={{ color: '#c4b5fd', marginBottom: '24px', lineHeight: 1.7, fontSize: '0.95rem', maxWidth: '480px', margin: '0 auto 24px' }}>
+              <p style={{ color: 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.7, fontSize: '0.95rem', maxWidth: '480px', margin: '0 auto 24px' }}>
                 Diseñamos sitios web, apps Android y estrategias de marketing digital. Cuéntanos tu idea — cotización gratis en menos de 24 horas.
               </p>
               <Link href="/#contacto" className="btn-primary" style={{ display: 'inline-flex' }}>
@@ -179,9 +179,9 @@ export default async function ArticlePage({ params }) {
 
         {/* Related articles */}
         {related.length > 0 && (
-          <section style={{ padding: '20px 0 80px', borderTop: '1px solid rgba(124,58,237,0.15)' }}>
+          <section style={{ padding: '20px 0 80px', borderTop: '1px solid var(--border)' }}>
             <div className="ds-container">
-              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'white', marginBottom: '32px' }}>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-strong)', marginBottom: '32px' }}>
                 Otros artículos
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
@@ -194,14 +194,14 @@ export default async function ArticlePage({ params }) {
                         <span className="blog-badge" style={{ background: `${rc}20`, color: rc, border: `1px solid ${rc}40`, alignSelf: 'flex-start', marginBottom: '12px' }}>
                           {p.category}
                         </span>
-                        <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', lineHeight: 1.35, flexGrow: 1 }}>
+                        <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-strong)', lineHeight: 1.35, flexGrow: 1 }}>
                           {p.title}
                         </h3>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '16px' }}>
-                          <span style={{ fontSize: '0.75rem', color: '#6b5fa0', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                             <Clock size={11} />{p.readTime}
                           </span>
-                          <ArrowRight size={14} style={{ color: '#d946ef' }} />
+                          <ArrowRight size={14} style={{ color: 'var(--accent-2)' }} />
                         </div>
                       </article>
                     </Link>

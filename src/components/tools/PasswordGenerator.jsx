@@ -89,9 +89,9 @@ export default function PasswordGenerator() {
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         <div
           style={{
-            flex: '1 1 240px', minWidth: 0, background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)',
+            flex: '1 1 240px', minWidth: 0, background: 'var(--bg-card-alt)', border: '1px solid var(--border)',
             borderRadius: '12px', padding: '16px 18px', fontFamily: 'monospace', fontSize: '1.1rem',
-            color: 'white', wordBreak: 'break-all', minHeight: '56px', display: 'flex', alignItems: 'center',
+            color: 'var(--text-strong)', wordBreak: 'break-all', minHeight: '56px', display: 'flex', alignItems: 'center',
           }}
         >
           {password || '—'}
@@ -109,10 +109,10 @@ export default function PasswordGenerator() {
       {/* Fuerza */}
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-          <span style={{ color: '#9d8fc2', fontSize: '0.8rem' }}>Seguridad</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Seguridad</span>
           <span style={{ color: strength.color, fontSize: '0.8rem', fontWeight: 700 }}>{strength.label}</span>
         </div>
-        <div style={{ height: '6px', borderRadius: '99px', background: 'rgba(124,58,237,0.15)', overflow: 'hidden' }}>
+        <div style={{ height: '6px', borderRadius: '99px', background: 'var(--border)', overflow: 'hidden' }}>
           <div style={{ height: '100%', width: `${strength.pct}%`, background: strength.color, transition: 'width 0.3s, background 0.3s' }} />
         </div>
       </div>
@@ -120,13 +120,13 @@ export default function PasswordGenerator() {
       {/* Longitud */}
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-          <label htmlFor="len" style={{ color: '#c4b5fd', fontSize: '0.9rem', fontWeight: 600 }}>Longitud</label>
-          <span style={{ color: 'white', fontWeight: 700 }}>{length}</span>
+          <label htmlFor="len" style={{ color: 'var(--text)', fontSize: '0.9rem', fontWeight: 600 }}>Longitud</label>
+          <span style={{ color: 'var(--text-strong)', fontWeight: 700 }}>{length}</span>
         </div>
         <input
           id="len" type="range" min="6" max="40" value={length}
           onChange={(e) => setLength(Number(e.target.value))}
-          style={{ width: '100%', accentColor: '#d946ef', cursor: 'pointer' }}
+          style={{ width: '100%', accentColor: 'var(--accent-2)', cursor: 'pointer' }}
         />
       </div>
 
@@ -138,13 +138,13 @@ export default function PasswordGenerator() {
             style={{
               display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', userSelect: 'none',
               padding: '12px 14px', borderRadius: '10px',
-              background: opts[key] ? 'rgba(124,58,237,0.15)' : 'rgba(12,9,35,0.6)',
-              border: `1px solid ${opts[key] ? 'rgba(217,70,239,0.4)' : 'rgba(124,58,237,0.15)'}`,
+              background: opts[key] ? 'var(--bg-card-alt)' : 'transparent',
+              border: `1px solid ${opts[key] ? 'var(--accent-2)' : 'var(--border)'}`,
               transition: 'all 0.2s',
             }}
           >
-            <input type="checkbox" checked={opts[key]} onChange={() => toggle(key)} style={{ accentColor: '#d946ef', width: '17px', height: '17px' }} />
-            <span style={{ color: opts[key] ? 'white' : '#9d8fc2', fontSize: '0.85rem' }}>{labels[key]}</span>
+            <input type="checkbox" checked={opts[key]} onChange={() => toggle(key)} style={{ accentColor: 'var(--accent-2)', width: '17px', height: '17px' }} />
+            <span style={{ color: opts[key] ? 'var(--text-strong)' : 'var(--text-muted)', fontSize: '0.85rem' }}>{labels[key]}</span>
           </label>
         ))}
       </div>

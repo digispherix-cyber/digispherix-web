@@ -46,9 +46,9 @@ function Swatch({ hex, label }) {
       <div style={{ height: '56px', background: hex, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {copied && <Check size={18} style={{ color: '#fff', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.6))' }} />}
       </div>
-      <div style={{ padding: '6px 4px', background: 'rgba(12,9,35,0.8)', textAlign: 'center' }}>
-        <div style={{ color: '#c4b5fd', fontSize: '0.68rem', fontFamily: 'monospace' }}>{hex}</div>
-        {label && <div style={{ color: '#6b5fa0', fontSize: '0.6rem' }}>{label}</div>}
+      <div style={{ padding: '6px 4px', background: 'var(--bg-card-alt)', textAlign: 'center' }}>
+        <div style={{ color: 'var(--text)', fontSize: '0.68rem', fontFamily: 'monospace' }}>{hex}</div>
+        {label && <div style={{ color: 'var(--text-dim)', fontSize: '0.6rem' }}>{label}</div>}
       </div>
     </button>
   )
@@ -60,9 +60,9 @@ function ValueRow({ label, value }) {
     try { await navigator.clipboard.writeText(value); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch { /* noop */ }
   }
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#0c0923', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '10px', padding: '10px 12px' }}>
-      <span style={{ color: '#9d8fc2', fontSize: '0.78rem', width: '40px', flexShrink: 0 }}>{label}</span>
-      <span style={{ color: 'white', fontFamily: 'monospace', fontSize: '0.9rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{value}</span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '10px 12px' }}>
+      <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem', width: '40px', flexShrink: 0 }}>{label}</span>
+      <span style={{ color: 'var(--text-strong)', fontFamily: 'monospace', fontSize: '0.9rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{value}</span>
       <button onClick={copy} className="btn-secondary" style={{ padding: '6px 12px', fontSize: '0.78rem' }}>
         {copied ? <Check size={14} /> : <Copy size={14} />}
       </button>
@@ -98,12 +98,12 @@ export default function ColorPalette() {
           aria-label="Selector de color"
         />
         <div style={{ flex: '1 1 160px' }}>
-          <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Código HEX</label>
+          <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Código HEX</label>
           <input
             type="text"
             value={hex}
             onChange={(e) => setHex(e.target.value.startsWith('#') ? e.target.value : '#' + e.target.value)}
-            style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '12px 14px', color: 'white', fontSize: '1rem', fontFamily: 'monospace', outline: 'none' }}
+            style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '12px 14px', color: 'var(--text-strong)', fontSize: '1rem', fontFamily: 'monospace', outline: 'none' }}
           />
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function ColorPalette() {
 
       {/* Tonos */}
       <div>
-        <p style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Tonos</p>
+        <p style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Tonos</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
           {shades.map((sw, i) => <Swatch key={i} hex={sw.hex} label={sw.label} />)}
         </div>
@@ -125,13 +125,13 @@ export default function ColorPalette() {
 
       {/* Armónicos */}
       <div>
-        <p style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Colores armónicos</p>
+        <p style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Colores armónicos</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
           {harmonics.map((sw, i) => <Swatch key={i} hex={sw.hex} label={sw.label} />)}
         </div>
       </div>
 
-      <p style={{ color: '#6b5fa0', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>Toca cualquier color para copiar su código.</p>
+      <p style={{ color: 'var(--text-dim)', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>Toca cualquier color para copiar su código.</p>
     </div>
   )
 }

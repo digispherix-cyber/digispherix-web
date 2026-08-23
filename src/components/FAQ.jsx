@@ -56,8 +56,8 @@ function FAQItem({ item, index, isOpen, onToggle }) {
       transition={{ duration: 0.4, delay: index * 0.05 }}
       style={{
         borderRadius: '14px',
-        border: `1px solid ${isOpen ? item.color + '50' : 'rgba(124,58,237,0.2)'}`,
-        background: isOpen ? `${item.color}08` : 'rgba(17,13,48,0.6)',
+        border: `1px solid ${isOpen ? item.color + '50' : 'var(--border)'}`,
+        background: isOpen ? `${item.color}08` : 'var(--bg-card)',
         overflow: 'hidden',
         transition: 'border-color 0.3s, background 0.3s',
       }}
@@ -73,7 +73,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
           cursor: 'pointer', textAlign: 'left',
         }}
       >
-        <span style={{ fontWeight: 600, fontSize: '0.95rem', color: isOpen ? 'white' : '#ddd6fe', lineHeight: 1.4 }}>
+        <span style={{ fontWeight: 600, fontSize: '0.95rem', color: isOpen ? 'var(--text-strong)' : 'var(--text)', lineHeight: 1.4 }}>
           {item.q}
         </span>
         <motion.div
@@ -83,7 +83,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
             flexShrink: 0, width: '32px', height: '32px', borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             background: isOpen ? `${item.color}25` : 'rgba(124,58,237,0.15)',
-            color: isOpen ? item.color : '#a78bfa',
+            color: isOpen ? item.color : 'var(--text-muted)',
           }}
         >
           <Plus size={16} />
@@ -101,7 +101,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
           >
             <div style={{ padding: '0 28px 24px' }}>
               <div style={{ width: '100%', height: '1px', background: `${item.color}25`, marginBottom: '16px' }} />
-              <p style={{ color: '#c4b5fd', fontSize: '0.9rem', lineHeight: 1.8 }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.8 }}>
                 {item.a}
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function FAQ() {
   const right = faqs.slice(half)
 
   return (
-    <section id="faq" className="ds-section relative" style={{ background: 'rgba(12,9,35,0.3)' }}>
+    <section id="faq" className="ds-section relative" style={{ background: 'var(--section-tint)', color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #d946ef, #7c3aed, transparent)' }}
@@ -135,7 +135,7 @@ export default function FAQ() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Preguntas frecuentes
           </p>
           <h2 className="section-title gradient-text">FAQ</h2>
@@ -179,7 +179,7 @@ export default function FAQ() {
           transition={{ delay: 0.3 }}
           style={{ textAlign: 'center', marginTop: '60px' }}
         >
-          <p style={{ color: '#9d8fc2', marginBottom: '20px', fontSize: '0.95rem' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '20px', fontSize: '0.95rem' }}>
             ¿Tienes una pregunta que no está aquí?
           </p>
           <a

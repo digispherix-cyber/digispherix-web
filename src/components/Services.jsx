@@ -63,7 +63,6 @@ function ServiceCard({ s, index }) {
       className="gradient-border rounded-2xl cursor-default group"
       style={{
         padding: '30px 28px 28px',
-        background: 'linear-gradient(135deg, rgba(17,13,48,0.9), rgba(12,9,35,0.9))',
       }}
     >
       <motion.div
@@ -79,8 +78,8 @@ function ServiceCard({ s, index }) {
         {s.icon}
       </motion.div>
 
-      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '12px' }}>{s.title}</h3>
-      <p style={{ color: '#c4b5fd', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '22px' }}>{s.desc}</p>
+      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-strong)', marginBottom: '12px' }}>{s.title}</h3>
+      <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '22px' }}>{s.desc}</p>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
         {s.tags.map((t) => (
@@ -108,7 +107,7 @@ export default function Services() {
   const blobY2 = useTransform(scrollYProgress, [0, 1], ['60px', '-60px'])
 
   return (
-    <section id="servicios" ref={sectionRef} className="ds-section relative overflow-hidden">
+    <section id="servicios" ref={sectionRef} className="ds-section relative overflow-hidden" style={{ color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)' }}
@@ -137,7 +136,7 @@ export default function Services() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Lo que hacemos
           </p>
           <h2 className="section-title gradient-text">Nuestros Servicios</h2>

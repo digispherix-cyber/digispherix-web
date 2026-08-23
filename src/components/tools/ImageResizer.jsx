@@ -78,16 +78,16 @@ export default function ImageResizer() {
         onDrop={(e) => { e.preventDefault(); onFile(e.dataTransfer.files[0]) }}
         style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '14px',
-          padding: '48px 20px', border: '2px dashed rgba(124,58,237,0.4)', borderRadius: '16px', cursor: 'pointer',
-          background: 'rgba(12,9,35,0.4)', textAlign: 'center',
+          padding: '48px 20px', border: '2px dashed var(--border)', borderRadius: '16px', cursor: 'pointer',
+          background: 'var(--bg-card-alt)', textAlign: 'center',
         }}
       >
         <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(124,58,237,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Upload size={26} style={{ color: '#d946ef' }} />
+          <Upload size={26} style={{ color: 'var(--accent-2)' }} />
         </div>
         <div>
-          <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir una imagen</p>
-          <p style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>o arrástrala aquí — JPG, PNG, WebP</p>
+          <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir una imagen</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástrala aquí — JPG, PNG, WebP</p>
         </div>
         <input ref={inputRef} type="file" accept="image/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
       </label>
@@ -97,21 +97,21 @@ export default function ImageResizer() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
       {/* Vista previa */}
-      <div style={{ position: 'relative', borderRadius: '14px', overflow: 'hidden', background: '#0c0923', border: '1px solid rgba(124,58,237,0.2)', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ position: 'relative', borderRadius: '14px', overflow: 'hidden', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', display: 'flex', justifyContent: 'center' }}>
         <img src={src} alt="Vista previa" style={{ maxWidth: '100%', maxHeight: '320px', objectFit: 'contain', display: 'block' }} />
-        <button onClick={reset} aria-label="Quitar imagen" style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(12,9,35,0.85)', border: '1px solid rgba(124,58,237,0.4)', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: '#e9d5ff', display: 'flex' }}>
+        <button onClick={reset} aria-label="Quitar imagen" style={{ position: 'absolute', top: '10px', right: '10px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: 'var(--text)', display: 'flex' }}>
           <X size={16} />
         </button>
       </div>
 
-      <p style={{ color: '#9d8fc2', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
         <ImageIcon size={14} /> Original: {natural.w} × {natural.h} px
       </p>
 
       {/* Presets rápidos */}
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
         {[['100%', 1], ['75%', 0.75], ['50%', 0.5], ['25%', 0.25]].map(([label, f]) => (
-          <button key={label} onClick={() => preset(f)} style={{ padding: '7px 14px', borderRadius: '99px', background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)', color: '#c4b5fd', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}>
+          <button key={label} onClick={() => preset(f)} style={{ padding: '7px 14px', borderRadius: '99px', background: 'rgba(124,58,237,0.12)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}>
             {label}
           </button>
         ))}
@@ -120,17 +120,17 @@ export default function ImageResizer() {
       {/* Inputs de tamaño */}
       <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 120px' }}>
-          <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Ancho (px)</label>
+          <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Ancho (px)</label>
           <input type="number" min="1" value={dims.w} onChange={(e) => setWidth(Number(e.target.value))} style={inputStyle} />
         </div>
         <div style={{ flex: '1 1 120px' }}>
-          <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Alto (px)</label>
+          <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>Alto (px)</label>
           <input type="number" min="1" value={dims.h} onChange={(e) => setHeight(Number(e.target.value))} style={inputStyle} />
         </div>
       </div>
 
-      <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', color: '#c4b5fd', fontSize: '0.88rem' }}>
-        <input type="checkbox" checked={lock} onChange={(e) => setLock(e.target.checked)} style={{ accentColor: '#d946ef', width: '17px', height: '17px' }} />
+      <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', color: 'var(--text)', fontSize: '0.88rem' }}>
+        <input type="checkbox" checked={lock} onChange={(e) => setLock(e.target.checked)} style={{ accentColor: 'var(--accent-2)', width: '17px', height: '17px' }} />
         Mantener proporción
       </label>
 
@@ -142,6 +142,6 @@ export default function ImageResizer() {
 }
 
 const inputStyle = {
-  width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)',
-  borderRadius: '10px', padding: '12px 14px', color: 'white', fontSize: '1rem', outline: 'none',
+  width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)',
+  borderRadius: '10px', padding: '12px 14px', color: 'var(--text-strong)', fontSize: '1rem', outline: 'none',
 }

@@ -18,7 +18,7 @@ const icons = { Maximize2, Repeat, KeyRound, QrCode, FileImage, FileArchive, Ima
 
 export default function HerramientasPage() {
   return (
-    <main style={{ background: '#0c0923', minHeight: '100vh' }}>
+    <main style={{ minHeight: '100vh', color: 'var(--text)' }}>
       <Particles />
 
       {/* Hero */}
@@ -26,14 +26,14 @@ export default function HerramientasPage() {
         <div style={{ position: 'absolute', top: '10%', left: '20%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: '20%', right: '15%', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(217,70,239,0.12), transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div className="ds-container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', borderRadius: '99px', background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.35)', color: '#e879f9', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', borderRadius: '99px', background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.35)', color: 'var(--accent-4)', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px' }}>
             <Wrench size={14} /> Herramientas
           </div>
-          <h1 style={{ fontSize: 'clamp(2.4rem, 6vw, 4rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '20px' }}>
+          <h1 style={{ fontSize: 'clamp(2.4rem, 6vw, 4rem)', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.1, marginBottom: '20px' }}>
             Herramientas web{' '}
             <span className="gradient-text">gratis</span>
           </h1>
-          <p style={{ color: '#9d8fc2', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 24px', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 24px', lineHeight: 1.7 }}>
             Utilidades rápidas para el día a día. Funcionan directo en tu navegador,
             así que tus archivos nunca se suben a internet.
           </p>
@@ -56,7 +56,7 @@ export default function HerramientasPage() {
                   className="tool-card"
                   style={{
                     position: 'relative', height: '100%', display: 'flex', flexDirection: 'column',
-                    background: 'rgba(17,13,48,0.8)', border: '1px solid rgba(124,58,237,0.2)',
+                    background: 'var(--bg-card)', border: '1px solid var(--border)',
                     borderRadius: '18px', padding: '28px', overflow: 'hidden',
                     opacity: tool.ready ? 1 : 0.6,
                   }}
@@ -70,16 +70,16 @@ export default function HerramientasPage() {
                   >
                     <Icon size={24} style={{ color: tool.accent }} />
                   </div>
-                  <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'white', marginBottom: '6px' }}>{tool.name}</h2>
-                  <p style={{ color: '#9d8fc2', fontSize: '0.875rem', lineHeight: 1.6, flexGrow: 1, marginBottom: '18px' }}>
+                  <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-strong)', marginBottom: '6px' }}>{tool.name}</h2>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6, flexGrow: 1, marginBottom: '18px' }}>
                     {tool.description}
                   </p>
                   {tool.ready ? (
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#e879f9', fontSize: '0.85rem', fontWeight: 600 }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--accent-4)', fontSize: '0.85rem', fontWeight: 600 }}>
                       Usar herramienta <ArrowRight size={15} />
                     </span>
                   ) : (
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#6b5fa0', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--text-dim)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                       Próximamente
                     </span>
                   )}

@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             className="rounded-2xl shadow-2xl"
             style={{
-              background: 'rgba(17,13,48,0.97)',
+              background: 'var(--bg-card)',
               border: '1px solid rgba(37,211,102,0.3)',
               backdropFilter: 'blur(20px)',
               width: '288px',
@@ -32,11 +32,11 @@ export default function WhatsAppButton() {
                 <MessageCircle size={20} style={{ color: '#25D366' }} />
               </div>
               <div>
-                <div className="text-sm font-bold text-white">DigiSpherix</div>
+                <div className="text-sm font-bold" style={{ color: 'var(--text-strong)' }}>DigiSpherix</div>
                 <div className="text-xs" style={{ color: '#25D366' }}>● En línea</div>
               </div>
             </div>
-            <p className="text-sm text-purple-300 leading-relaxed" style={{ marginBottom: '20px' }}>
+            <p className="text-sm leading-relaxed" style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>
               ¡Hola! 👋 ¿Tienes un proyecto en mente? Escríbenos y te respondemos al instante.
             </p>
             <a

@@ -107,16 +107,16 @@ export default function Base64Tool() {
 
   const selectStyle = (active) => ({
     padding: '9px 6px', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '0.8rem',
-    background: active ? 'linear-gradient(135deg, #0891b2, #7c3aed)' : 'rgba(12,9,35,0.6)',
-    color: active ? 'white' : '#9d8fc2',
-    border: `1px solid ${active ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+    background: active ? 'linear-gradient(135deg, #0891b2, #7c3aed)' : 'var(--bg-card-alt)',
+    color: active ? 'var(--text-strong)' : 'var(--text-muted)',
+    border: `1px solid ${active ? 'transparent' : 'var(--border)'}`,
   })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
       {/* De */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', fontWeight: 600, marginBottom: '8px' }}>Convertir de</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '8px' }}>Convertir de</label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(78px, 1fr))', gap: '8px' }}>
           {KEYS.map((k) => (
             <button key={k} onClick={() => setFrom(k)} style={selectStyle(from === k)}>{CODECS[k].label}</button>
@@ -126,7 +126,7 @@ export default function Base64Tool() {
 
       {/* A */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', fontWeight: 600, marginBottom: '8px' }}>A</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '8px' }}>A</label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(78px, 1fr))', gap: '8px' }}>
           {KEYS.map((k) => (
             <button key={k} onClick={() => setTo(k)} style={selectStyle(to === k)}>{CODECS[k].label}</button>
@@ -136,7 +136,7 @@ export default function Base64Tool() {
 
       {/* Entrada */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>
           {src.label}
         </label>
         <textarea
@@ -144,7 +144,7 @@ export default function Base64Tool() {
           onChange={(e) => setInput(e.target.value)}
           rows={5}
           placeholder={src.placeholder}
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '14px', color: 'white', fontSize: '0.92rem', lineHeight: 1.5, outline: 'none', resize: 'vertical', fontFamily: src.mono ? 'monospace' : 'inherit' }}
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px', color: 'var(--text-strong)', fontSize: '0.92rem', lineHeight: 1.5, outline: 'none', resize: 'vertical', fontFamily: src.mono ? 'monospace' : 'inherit' }}
         />
       </div>
 
@@ -157,20 +157,20 @@ export default function Base64Tool() {
       {/* Salida */}
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <label style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600 }}>{dst.label}</label>
+          <label style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600 }}>{dst.label}</label>
           <button onClick={copy} disabled={!output} className="btn-secondary" style={{ padding: '6px 14px', fontSize: '0.8rem', opacity: output ? 1 : 0.5 }}>
             {copied ? <><Check size={14} /> Copiado</> : <><Copy size={14} /> Copiar</>}
           </button>
         </div>
         <div
           style={{
-            width: '100%', boxSizing: 'border-box', minHeight: '110px', background: '#0c0923',
-            border: `1px solid ${error ? 'rgba(248,113,113,0.5)' : 'rgba(124,58,237,0.3)'}`, borderRadius: '10px',
-            padding: '14px', color: error ? '#f87171' : 'white', fontSize: '0.92rem', lineHeight: 1.5,
+            width: '100%', boxSizing: 'border-box', minHeight: '110px', background: 'var(--bg-card-alt)',
+            border: `1px solid ${error ? 'rgba(248,113,113,0.5)' : 'var(--border)'}`, borderRadius: '10px',
+            padding: '14px', color: error ? '#f87171' : 'var(--text-strong)', fontSize: '0.92rem', lineHeight: 1.5,
             wordBreak: 'break-all', whiteSpace: 'pre-wrap', fontFamily: dst.mono ? 'monospace' : 'inherit',
           }}
         >
-          {error || output || <span style={{ color: '#6b5fa0' }}>El resultado aparecerá aquí…</span>}
+          {error || output || <span style={{ color: 'var(--text-dim)' }}>El resultado aparecerá aquí…</span>}
         </div>
       </div>
     </div>

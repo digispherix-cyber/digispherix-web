@@ -47,7 +47,7 @@ export default function About() {
   const textY     = useTransform(scrollYProgress, [0, 1], ['-20px', '20px'])
 
   return (
-    <section ref={ref} id="nosotros" className="ds-section relative overflow-hidden">
+    <section ref={ref} id="nosotros" className="ds-section relative overflow-hidden" style={{ color: 'var(--text)' }}>
       {/* Parallax background blob */}
       <motion.div
         style={{ y: blobY, background: 'radial-gradient(circle, #7c3aed, transparent)' }}
@@ -69,7 +69,7 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+            <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
               Quiénes somos
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
@@ -77,12 +77,12 @@ export default function About() {
               <br />
               <span className="gradient-text">en Guadalajara</span>
             </h2>
-            <p className="text-purple-300 leading-relaxed mb-6 text-lg">
+            <p className="leading-relaxed mb-6 text-lg" style={{ color: 'var(--text)' }}>
               Somos una agencia de diseño web y desarrollo de apps Android con sede en Guadalajara,
               México. Con más de 5 años de experiencia, hemos ayudado a empresas mexicanas
               a construir su presencia digital desde cero.
             </p>
-            <p className="text-purple-400 leading-relaxed mb-8">
+            <p className="leading-relaxed mb-8" style={{ color: 'var(--text-muted)' }}>
               Combinamos diseño atractivo, código limpio y estrategias de marketing digital
               para que cada proyecto no solo se vea bien, sino que también genere resultados
               reales para tu negocio.
@@ -98,10 +98,10 @@ export default function About() {
                     background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.2)'
                   }}
                 >
-                  <div style={{ color: '#e879f9', marginTop: '2px', flexShrink: 0 }}>{h.icon}</div>
+                  <div style={{ color: 'var(--accent-2)', marginTop: '2px', flexShrink: 0 }}>{h.icon}</div>
                   <div>
-                    <div style={{ color: 'white', fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{h.label}</div>
-                    <div style={{ color: '#9d8fc2', fontSize: '0.75rem', marginTop: '4px' }}>{h.sub}</div>
+                    <div style={{ color: 'var(--text-strong)', fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{h.label}</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '4px' }}>{h.sub}</div>
                   </div>
                 </div>
               ))}
@@ -119,10 +119,10 @@ export default function About() {
             <div
               style={{
                 borderRadius: '16px', padding: '36px 32px 32px',
-                background: 'rgba(17,13,48,0.8)', border: '1px solid rgba(124,58,237,0.3)'
+                background: 'var(--bg-card)', border: '1px solid var(--border)'
               }}
             >
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '28px' }}>Stack & Habilidades</h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-strong)', marginBottom: '28px' }}>Stack & Habilidades</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {skills.map((s, i) => (
                   <motion.div
@@ -133,8 +133,8 @@ export default function About() {
                     transition={{ delay: i * 0.08 }}
                   >
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-purple-200 font-medium">{s.label}</span>
-                      <span style={{ color: '#d946ef' }}>{s.pct}%</span>
+                      <span className="font-medium" style={{ color: 'var(--text)' }}>{s.label}</span>
+                      <span style={{ color: 'var(--accent-2)' }}>{s.pct}%</span>
                     </div>
                     <div
                       className="h-2 rounded-full overflow-hidden"
@@ -155,7 +155,7 @@ export default function About() {
 
               {/* Certificaciones Google */}
               <div style={{ marginTop: '28px' }}>
-                <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9d8fc2', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
+                <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
                   Certificaciones Google
                 </p>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -193,7 +193,7 @@ export default function About() {
                   background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(217,70,239,0.3)'
                 }}
               >
-                <p style={{ fontSize: '0.875rem', color: '#c4b5fd', marginBottom: '14px' }}>¿Listo para trabajar juntos?</p>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text)', marginBottom: '14px' }}>¿Listo para trabajar juntos?</p>
                 <a href="#contacto" className="btn-primary inline-flex text-sm px-6 py-2.5">
                   Hablemos de tu proyecto
                 </a>

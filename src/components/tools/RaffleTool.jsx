@@ -70,31 +70,31 @@ export default function RaffleTool() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {/* Participantes */}
       <div>
-        <label style={{ display: 'flex', justifyContent: 'space-between', color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>
+        <label style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>
           <span>Participantes (uno por línea)</span>
-          <span style={{ color: '#6b5fa0', fontWeight: 500 }}>{total} en total</span>
+          <span style={{ color: 'var(--text-dim)', fontWeight: 500 }}>{total} en total</span>
         </label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={7}
           placeholder={'@usuario1\n@usuario2\nMaría López\nJuan Pérez\n…'}
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '14px', color: 'white', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical' }}
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px', color: 'var(--text-strong)', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical' }}
         />
       </div>
 
       {/* Opciones */}
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#c4b5fd', fontSize: '0.88rem' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text)', fontSize: '0.88rem' }}>
           Ganadores
           <input
             type="number" min={1} max={maxWinners} value={count}
             onChange={(e) => setCount(Math.max(1, Math.min(maxWinners, Number(e.target.value) || 1)))}
-            style={{ width: '70px', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '8px', padding: '8px 10px', color: 'white', fontSize: '0.95rem', outline: 'none' }}
+            style={{ width: '70px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 10px', color: 'var(--text-strong)', fontSize: '0.95rem', outline: 'none' }}
           />
         </label>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.88rem', cursor: 'pointer' }}>
-          <input type="checkbox" checked={dedupe} onChange={(e) => setDedupe(e.target.checked)} style={{ accentColor: '#d946ef', width: '17px', height: '17px' }} />
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.88rem', cursor: 'pointer' }}>
+          <input type="checkbox" checked={dedupe} onChange={(e) => setDedupe(e.target.checked)} style={{ accentColor: 'var(--accent-2)', width: '17px', height: '17px' }} />
           Quitar duplicados
         </label>
       </div>
@@ -106,18 +106,18 @@ export default function RaffleTool() {
 
       {/* Resultado */}
       {(drawing || winners.length > 0) && (
-        <div style={{ background: 'rgba(217,70,239,0.08)', border: '1px solid rgba(217,70,239,0.3)', borderRadius: '16px', padding: '28px', textAlign: 'center', minHeight: '120px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '16px', padding: '28px', textAlign: 'center', minHeight: '120px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           {drawing ? (
-            <div style={{ color: 'white', fontSize: '1.4rem', fontWeight: 800, opacity: 0.85 }}>{flash || '…'}</div>
+            <div style={{ color: 'var(--text-strong)', fontSize: '1.4rem', fontWeight: 800, opacity: 0.85 }}>{flash || '…'}</div>
           ) : (
             <>
-              <Trophy size={30} style={{ color: '#e879f9', marginBottom: '10px' }} />
-              <div style={{ color: '#c4b5fd', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '14px' }}>
+              <Trophy size={30} style={{ color: 'var(--accent-4)', marginBottom: '10px' }} />
+              <div style={{ color: 'var(--text)', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '14px' }}>
                 {winners.length === 1 ? 'Ganador' : `${winners.length} Ganadores`}
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
                 {winners.map((w, i) => (
-                  <div key={i} style={{ color: 'white', fontSize: '1.25rem', fontWeight: 800, background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '10px 14px' }}>
+                  <div key={i} style={{ color: 'var(--text-strong)', fontSize: '1.25rem', fontWeight: 800, background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '10px 14px' }}>
                     {w}
                   </div>
                 ))}

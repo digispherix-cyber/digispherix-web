@@ -9,7 +9,7 @@ const DOTS = Array.from({ length: COUNT }, (_, i) => ({
   delay: (i * 0.29) % 8,
   duration: ((i * 9) % 16) + 10,
   opacity: ((i * 3) % 6) * 0.08 + 0.18,
-  color: i % 4 === 0 ? '#d946ef' : i % 4 === 1 ? '#a855f7' : i % 4 === 2 ? '#7c3aed' : '#e879f9',
+  color: i % 4 === 0 ? 'var(--accent-2)' : i % 4 === 1 ? 'var(--accent-3)' : i % 4 === 2 ? 'var(--accent-1)' : 'var(--accent-4)',
 }))
 
 export default function Particles() {

@@ -87,7 +87,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative px-6" style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '72px', paddingBottom: '40px' }}>
+    <footer className="relative px-6" style={{ borderTop: '1px solid var(--border)', paddingTop: '72px', paddingBottom: '40px', color: 'var(--text)' }}>
       <style>{`
         @media (max-width: 1024px) and (min-width: 641px) {
           .footer-grid { grid-template-columns: 1fr 1fr !important; }
@@ -116,7 +116,7 @@ export default function Footer() {
                 />
               </picture>
             </div>
-            <p style={{ fontSize: '0.9rem', color: '#9d8fc2', lineHeight: 2, maxWidth: '280px', marginBottom: '24px' }}>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 2, maxWidth: '280px', marginBottom: '24px' }}>
               Transformamos ideas en experiencias digitales. Desarrollo web, apps Android
               y marketing digital para empresas en México.
             </p>
@@ -175,7 +175,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Síguenos en TikTok"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:scale-110"
-                style={{ background: 'rgba(255,255,255,0.08)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.2)' }}
+                style={{ background: 'var(--bg-card-alt)', color: 'var(--text-strong)', border: '1px solid var(--border)' }}
               >
                 <TikTokIcon size={18} />
               </a>
@@ -185,15 +185,15 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([section, items]) => (
             <div key={section}>
-              <h4 style={{ color: 'white', fontWeight: 600, marginBottom: '20px', fontSize: '0.95rem' }}>{section}</h4>
+              <h4 style={{ color: 'var(--text-strong)', fontWeight: 600, marginBottom: '20px', fontSize: '0.95rem' }}>{section}</h4>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 {items.map((item) => (
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      style={{ fontSize: '0.875rem', color: '#9d8fc2', textDecoration: 'none', transition: 'color 0.2s' }}
+                      style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
                       onMouseEnter={e => e.target.style.color = '#e879f9'}
-                      onMouseLeave={e => e.target.style.color = '#9d8fc2'}
+                      onMouseLeave={e => e.target.style.color = 'var(--text-muted)'}
                     >
                       {item.label}
                     </a>
@@ -210,36 +210,36 @@ export default function Footer() {
         </div>
 
         <div
-          style={{ borderTop: '1px solid rgba(124,58,237,0.2)', paddingTop: '24px', textAlign: 'center' }}
+          style={{ borderTop: '1px solid var(--border)', paddingTop: '24px', textAlign: 'center' }}
         >
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '14px' }}>
             <a
               href="/aviso-de-privacidad"
-              style={{ fontSize: '0.78rem', color: '#9d8fc2', textDecoration: 'none', transition: 'color 0.2s' }}
+              style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => e.target.style.color = '#e879f9'}
-              onMouseLeave={e => e.target.style.color = '#9d8fc2'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-muted)'}
             >
               Aviso de Privacidad
             </a>
             <a
               href="/terminos"
-              style={{ fontSize: '0.78rem', color: '#9d8fc2', textDecoration: 'none', transition: 'color 0.2s' }}
+              style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => e.target.style.color = '#e879f9'}
-              onMouseLeave={e => e.target.style.color = '#9d8fc2'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-muted)'}
             >
               Términos y Condiciones
             </a>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#9d8fc2' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
           </p>
           {isTouch ? (
-            <p style={{ fontSize: '0.65rem', color: '#6b5fa0', marginTop: '6px', userSelect: 'none' }}>
+            <p style={{ fontSize: '0.65rem', color: 'var(--text-dim)', marginTop: '6px', userSelect: 'none' }}>
               🎮 Psst... toca el logo 5 veces
             </p>
           ) : (
             <p
-              style={{ fontSize: '0.65rem', color: '#6b5fa0', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
+              style={{ fontSize: '0.65rem', color: 'var(--text-dim)', marginTop: '6px', cursor: 'default', userSelect: 'none' }}
               onMouseEnter={e => e.target.style.color = '#7c3aed'}
               onMouseLeave={e => e.target.style.color = '#3d2f6e'}
               title="↑↑↓↓←→←→BA"

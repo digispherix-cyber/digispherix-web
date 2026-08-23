@@ -58,8 +58,8 @@ const cardStyle = {
   gap: '16px',
   padding: '16px 20px',
   borderRadius: '12px',
-  background: 'rgba(17,13,48,0.8)',
-  border: '1px solid rgba(124,58,237,0.2)',
+  background: 'var(--bg-card)',
+  border: '1px solid var(--border)',
 }
 
 const inputStyle = {
@@ -67,16 +67,16 @@ const inputStyle = {
   padding: '12px 16px',
   borderRadius: '10px',
   fontSize: '0.875rem',
-  color: 'white',
-  background: 'rgba(12,9,35,0.8)',
-  border: '1px solid rgba(124,58,237,0.3)',
+  color: 'var(--text-strong)',
+  background: 'var(--bg-card-alt)',
+  border: '1px solid var(--border)',
   outline: 'none',
 }
 
 const labelStyle = {
   display: 'block',
   fontSize: '0.875rem',
-  color: '#c4b5fd',
+  color: 'var(--text-muted)',
   marginBottom: '8px',
   fontWeight: 500,
 }
@@ -120,7 +120,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contacto" className="ds-section relative" style={{ background: 'rgba(17,13,48,0.4)' }}>
+    <section id="contacto" className="ds-section relative" style={{ background: 'var(--section-tint)', color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #d946ef, #7c3aed, transparent)' }}
@@ -133,7 +133,7 @@ export default function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Hablemos
           </p>
           <h2 className="section-title gradient-text">Contacto</h2>
@@ -151,10 +151,10 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-strong)', marginBottom: '12px' }}>
               ¿Tienes un proyecto en mente?
             </h3>
-            <p style={{ color: '#c4b5fd', marginBottom: '32px', lineHeight: 1.7, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '32px', lineHeight: 1.7, fontSize: '0.95rem' }}>
               Estamos aquí para ayudarte. Desde una landing page hasta una app Android completa,
               trabajamos contigo desde la planeación hasta el lanzamiento.
             </p>
@@ -185,8 +185,8 @@ export default function Contact() {
                         {c.icon}
                       </div>
                       <div>
-                        <div style={{ fontSize: '0.75rem', color: '#9d8fc2', marginBottom: '4px' }}>{c.label}</div>
-                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{c.value}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>{c.label}</div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-strong)' }}>{c.value}</div>
                       </div>
                     </a>
                   ) : (
@@ -199,8 +199,8 @@ export default function Contact() {
                         {c.icon}
                       </div>
                       <div>
-                        <div style={{ fontSize: '0.75rem', color: '#9d8fc2', marginBottom: '4px' }}>{c.label}</div>
-                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{c.value}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>{c.label}</div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-strong)' }}>{c.value}</div>
                       </div>
                     </div>
                   )}
@@ -218,15 +218,15 @@ export default function Contact() {
             style={{
               borderRadius: '16px',
               padding: '40px 36px',
-              background: 'rgba(17,13,48,0.8)',
-              border: '1px solid rgba(124,58,237,0.3)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border)',
             }}
           >
             {sent ? (
               <div style={{ textAlign: 'center', padding: '40px 0' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🚀</div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '8px' }}>¡Mensaje enviado!</h3>
-                <p style={{ color: '#c4b5fd', fontSize: '0.875rem' }}>Te redirigimos a WhatsApp. Te respondemos pronto.</p>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-strong)', marginBottom: '8px' }}>¡Mensaje enviado!</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Te redirigimos a WhatsApp. Te respondemos pronto.</p>
                 <button onClick={() => setSent(false)} className="btn-secondary" style={{ marginTop: '24px' }}>
                   Enviar otro mensaje
                 </button>
@@ -299,7 +299,7 @@ export default function Contact() {
                   Enviar por WhatsApp
                 </button>
 
-                <p style={{ fontSize: '0.75rem', textAlign: 'center', color: '#7c6f9c' }}>
+                <p style={{ fontSize: '0.75rem', textAlign: 'center', color: 'var(--text-dim)' }}>
                   Al enviar serás redirigido a WhatsApp para finalizar el contacto.
                 </p>
               </form>

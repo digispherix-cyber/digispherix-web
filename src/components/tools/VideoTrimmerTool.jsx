@@ -104,16 +104,16 @@ export default function VideoTrimmerTool() {
           onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
           onDragLeave={() => setDragging(false)}
           onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files?.[0]) }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? '#e879f9' : 'rgba(124,58,237,0.4)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? 'var(--accent-4)' : 'var(--border)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'var(--bg-card-alt)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
         >
-          <Upload size={30} style={{ color: '#e879f9' }} />
-          <span style={{ color: 'white', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
-          <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>MP4, WebM, MOV… Se procesa en tu navegador, no se sube a internet.</span>
+          <Upload size={30} style={{ color: 'var(--accent-4)' }} />
+          <span style={{ color: 'var(--text-strong)', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>MP4, WebM, MOV… Se procesa en tu navegador, no se sube a internet.</span>
           <input ref={inputRef} type="file" accept="video/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
         </label>
       ) : (
         <>
-          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '380px', width: 'auto', height: 'auto', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }} />
+          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '380px', width: 'auto', height: 'auto', borderRadius: '14px', border: '1px solid var(--border)', background: '#000' }} />
 
           {/* Modo */}
           <div style={{ display: 'flex', gap: '10px' }}>
@@ -121,8 +121,8 @@ export default function VideoTrimmerTool() {
               <button key={key} onClick={() => setMode(key)} disabled={busy} style={{
                 flex: 1, padding: '12px', borderRadius: '10px', cursor: busy ? 'not-allowed' : 'pointer', fontWeight: 700, fontSize: '0.88rem',
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                background: mode === key ? 'linear-gradient(135deg, #7c3aed, #d946ef)' : 'rgba(12,9,35,0.6)',
-                color: mode === key ? 'white' : '#9d8fc2', border: `1px solid ${mode === key ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+                background: mode === key ? 'linear-gradient(135deg, #7c3aed, #d946ef)' : 'var(--bg-card-alt)',
+                color: mode === key ? 'white' : 'var(--text-muted)', border: `1px solid ${mode === key ? 'transparent' : 'var(--border)'}`,
               }}>
                 <Icon size={16} /> {label}
               </button>
@@ -131,7 +131,7 @@ export default function VideoTrimmerTool() {
 
           {/* Controles de recorte */}
           {mode === 'trim' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: 'rgba(17,13,48,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '14px', padding: '18px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '14px', padding: '18px' }}>
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <button onClick={markStart} disabled={busy} className="btn-secondary" style={{ flex: '1 1 140px', fontSize: '0.82rem', padding: '10px' }}>
                   <Flag size={14} /> Marcar inicio ({fmt(start)})
@@ -140,8 +140,8 @@ export default function VideoTrimmerTool() {
                   <Flag size={14} /> Marcar fin ({fmt(end)})
                 </button>
               </div>
-              <p style={{ color: '#9d8fc2', fontSize: '0.82rem', margin: 0, textAlign: 'center' }}>
-                Mueve el video al punto deseado y marca inicio o fin. Recorte: <strong style={{ color: '#e879f9' }}>{fmt(start)} → {fmt(end)}</strong> ({fmt(Math.max(0, end - start))})
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0, textAlign: 'center' }}>
+                Mueve el video al punto deseado y marca inicio o fin. Recorte: <strong style={{ color: 'var(--accent-4)' }}>{fmt(start)} → {fmt(end)}</strong> ({fmt(Math.max(0, end - start))})
               </p>
             </div>
           )}
@@ -149,10 +149,10 @@ export default function VideoTrimmerTool() {
           {/* Progreso */}
           {busy && (
             <div style={{ textAlign: 'center' }}>
-              <p style={{ color: '#c4b5fd', fontSize: '0.9rem', marginBottom: '8px' }}>
+              <p style={{ color: 'var(--text)', fontSize: '0.9rem', marginBottom: '8px' }}>
                 {phase === 'loading' ? 'Cargando el editor por primera vez (~30 MB)…' : `Procesando… ${progress}%`}
               </p>
-              <div style={{ height: '8px', borderRadius: '99px', background: 'rgba(124,58,237,0.2)', overflow: 'hidden' }}>
+              <div style={{ height: '8px', borderRadius: '99px', background: 'var(--bg-card-alt)', overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: phase === 'loading' ? '100%' : `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #d946ef)', transition: 'width 0.2s', animation: phase === 'loading' ? 'toolpulse 1.2s ease-in-out infinite' : 'none' }} />
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function VideoTrimmerTool() {
 
       {error && <p style={{ color: '#f87171', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{error}</p>}
 
-      <p style={{ color: '#6b5fa0', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
+      <p style={{ color: 'var(--text-dim)', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
         La primera vez se descarga el motor de edición (~30 MB); después es más rápido. Todo el proceso ocurre en tu navegador.
       </p>
     </div>

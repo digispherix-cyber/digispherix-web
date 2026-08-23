@@ -21,22 +21,22 @@ function SortableRow({ item, index, onRemove }) {
       dragListener={false}
       dragControls={controls}
       whileDrag={{ scale: 1.03, boxShadow: '0 16px 36px rgba(0,0,0,0.45)', zIndex: 20, cursor: 'grabbing' }}
-      style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(12,9,35,0.85)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '12px', padding: '10px' }}
+      style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '12px', padding: '10px' }}
     >
       <button
         onPointerDown={(e) => controls.start(e)}
         aria-label="Arrastrar para reordenar"
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, width: '34px', height: '40px', background: 'none', border: 'none', color: '#9d8fc2', cursor: 'grab', touchAction: 'none' }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, width: '34px', height: '40px', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'grab', touchAction: 'none' }}
       >
         <GripVertical size={18} />
       </button>
-      <span style={{ color: '#9d8fc2', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{index + 1}</span>
+      <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontWeight: 700, width: '18px', textAlign: 'center', flexShrink: 0 }}>{index + 1}</span>
       <FileText size={22} style={{ color: '#2dd4bf', flexShrink: 0 }} />
       <span style={{ flex: 1, minWidth: 0 }}>
-        <span style={{ display: 'block', color: '#c4b5fd', fontSize: '0.82rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.file.name}</span>
-        <span style={{ display: 'block', color: '#6b5fa0', fontSize: '0.72rem' }}>{fmtSize(item.file.size)}</span>
+        <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.82rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.file.name}</span>
+        <span style={{ display: 'block', color: 'var(--text-dim)', fontSize: '0.72rem' }}>{fmtSize(item.file.size)}</span>
       </span>
-      <button onClick={() => onRemove(item.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', color: '#c4b5fd', cursor: 'pointer' }}>
+      <button onClick={() => onRemove(item.id)} aria-label="Quitar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', flexShrink: 0, background: 'rgba(124,58,237,0.12)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', cursor: 'pointer' }}>
         <X size={16} />
       </button>
     </Reorder.Item>
@@ -88,21 +88,21 @@ export default function PdfMerger() {
       <label
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => { e.preventDefault(); addFiles(e.dataTransfer.files) }}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', padding: '32px 20px', border: '2px dashed rgba(13,148,136,0.4)', borderRadius: '16px', cursor: 'pointer', background: 'rgba(12,9,35,0.4)', textAlign: 'center' }}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', padding: '32px 20px', border: '2px dashed rgba(13,148,136,0.4)', borderRadius: '16px', cursor: 'pointer', background: 'var(--bg-card-alt)', textAlign: 'center' }}
       >
         <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: 'rgba(13,148,136,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Upload size={24} style={{ color: '#2dd4bf' }} />
         </div>
         <div>
-          <p style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>Toca para agregar PDF</p>
-          <p style={{ color: '#9d8fc2', fontSize: '0.82rem' }}>o arrástralos aquí</p>
+          <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>Toca para agregar PDF</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>o arrástralos aquí</p>
         </div>
         <input ref={inputRef} type="file" accept="application/pdf" multiple onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       </label>
 
       {items.length > 0 && (
         <>
-          <p style={{ color: '#9d8fc2', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>Arrastra los archivos para cambiar el orden</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', textAlign: 'center', margin: 0 }}>Arrastra los archivos para cambiar el orden</p>
           <Reorder.Group axis="y" values={items} onReorder={setItems} as="div" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {items.map((it, i) => (
               <SortableRow key={it.id} item={it} index={i} onRemove={remove} />
@@ -115,7 +115,7 @@ export default function PdfMerger() {
         {busy ? <><Loader2 size={18} className="spin" /> Uniendo…</> : <><Download size={18} /> Unir y descargar {items.length > 0 ? `(${items.length})` : ''}</>}
       </button>
       {items.length === 1 && (
-        <p style={{ color: '#6b5fa0', fontSize: '0.78rem', textAlign: 'center', margin: '-8px 0 0' }}>Agrega al menos 2 PDF para unirlos.</p>
+        <p style={{ color: 'var(--text-dim)', fontSize: '0.78rem', textAlign: 'center', margin: '-8px 0 0' }}>Agrega al menos 2 PDF para unirlos.</p>
       )}
     </div>
   )

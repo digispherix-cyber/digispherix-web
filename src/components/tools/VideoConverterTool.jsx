@@ -141,20 +141,20 @@ export default function VideoConverterTool() {
           onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
           onDragLeave={() => setDragging(false)}
           onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files?.[0]) }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? '#e879f9' : 'rgba(124,58,237,0.4)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? 'var(--accent-4)' : 'var(--border)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'var(--bg-card-alt)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
         >
-          <Upload size={30} style={{ color: '#e879f9' }} />
-          <span style={{ color: 'white', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
-          <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>MP4, WebM, MOV, MKV… Se convierte en tu navegador, no se sube a internet.</span>
+          <Upload size={30} style={{ color: 'var(--accent-4)' }} />
+          <span style={{ color: 'var(--text-strong)', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>MP4, WebM, MOV, MKV… Se convierte en tu navegador, no se sube a internet.</span>
           <input ref={inputRef} type="file" accept="video/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
         </label>
       ) : (
         <>
-          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '340px', width: 'auto', height: 'auto', borderRadius: '14px', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }} />
+          <video ref={videoRef} src={videoUrl} onLoadedMetadata={onMeta} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '340px', width: 'auto', height: 'auto', borderRadius: '14px', border: '1px solid var(--border)', background: '#000' }} />
 
           {/* Formato de destino */}
-          <div style={{ background: 'rgba(17,13,48,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '14px', padding: '18px' }}>
-            <p style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 12px' }}>Convertir a:</p>
+          <div style={{ background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '14px', padding: '18px' }}>
+            <p style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 12px' }}>Convertir a:</p>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {FORMATS.map((f) => {
                 const active = target === f.ext
@@ -163,8 +163,8 @@ export default function VideoConverterTool() {
                   <button key={f.ext} onClick={() => !same && setTarget(f.ext)} disabled={busy || same} title={same ? 'El video ya está en este formato' : ''} style={{
                     flex: '1 1 90px', padding: '11px 10px', borderRadius: '10px', cursor: (busy || same) ? 'not-allowed' : 'pointer', fontWeight: 700, fontSize: '0.9rem',
                     display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '3px', opacity: same ? 0.4 : 1,
-                    background: active ? 'linear-gradient(135deg, #7c3aed, #d946ef)' : 'rgba(12,9,35,0.6)',
-                    color: active ? 'white' : '#9d8fc2', border: `1px solid ${active ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+                    background: active ? 'linear-gradient(135deg, #7c3aed, #d946ef)' : 'var(--bg-card-alt)',
+                    color: active ? 'white' : 'var(--text-muted)', border: `1px solid ${active ? 'transparent' : 'var(--border)'}`,
                   }}>
                     {f.label}
                     <span style={{ fontSize: '0.62rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '3px', color: active ? 'rgba(255,255,255,0.85)' : (fromWebm ? '#fbbf24' : '#34d399') }}>
@@ -185,10 +185,10 @@ export default function VideoConverterTool() {
           {/* Progreso */}
           {busy && (
             <div style={{ textAlign: 'center' }}>
-              <p style={{ color: '#c4b5fd', fontSize: '0.9rem', marginBottom: '8px' }}>
+              <p style={{ color: 'var(--text)', fontSize: '0.9rem', marginBottom: '8px' }}>
                 {phase === 'loading' ? 'Cargando el motor por primera vez (~30 MB)…' : (slow ? `Convirtiendo… ${progress}% (puede tardar)` : `Convirtiendo… ${progress}%`)}
               </p>
-              <div style={{ height: '8px', borderRadius: '99px', background: 'rgba(124,58,237,0.2)', overflow: 'hidden' }}>
+              <div style={{ height: '8px', borderRadius: '99px', background: 'var(--bg-card-alt)', overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: phase === 'loading' ? '100%' : `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #d946ef)', transition: 'width 0.2s', animation: phase === 'loading' ? 'toolpulse 1.2s ease-in-out infinite' : 'none' }} />
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function VideoConverterTool() {
               {result.previewable ? (
                 <video src={result.url} controls style={{ display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '300px', width: 'auto', height: 'auto', borderRadius: '10px', background: '#000' }} />
               ) : (
-                <p style={{ color: '#c4b5fd', fontSize: '0.82rem', lineHeight: 1.5, margin: 0, textAlign: 'center' }}>
+                <p style={{ color: 'var(--text)', fontSize: '0.82rem', lineHeight: 1.5, margin: 0, textAlign: 'center' }}>
                   Tu navegador no puede reproducir el formato {targetFmt?.label} aquí, pero el video se convirtió correctamente. Descárgalo para verlo o usarlo.
                 </p>
               )}
@@ -229,7 +229,7 @@ export default function VideoConverterTool() {
 
       {error && <p style={{ color: '#f87171', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{error}</p>}
 
-      <p style={{ color: '#6b5fa0', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
+      <p style={{ color: 'var(--text-dim)', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
         La primera vez se descarga el motor de conversión (~30 MB); después es más rápido. Ideal para videos de máximo 1 minuto. Todo ocurre en tu navegador, sin subir nada a internet.
       </p>
     </div>

@@ -40,19 +40,19 @@ export default function NewsletterForm({ variant = 'card' }) {
     <div style={wrap}>
       {variant === 'card' && (
         <>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(124,58,237,0.2)', color: '#e879f9', marginBottom: '14px' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(124,58,237,0.2)', color: 'var(--accent-4)', marginBottom: '14px' }}>
             <Mail size={22} />
           </div>
-          <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'white', marginBottom: '8px' }}>Suscríbete a nuestro boletín</h3>
-          <p style={{ color: '#c4b5fd', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '440px', margin: '0 auto 20px' }}>
+          <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-strong)', marginBottom: '8px' }}>Suscríbete a nuestro boletín</h3>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '440px', margin: '0 auto 20px' }}>
             Recibe nuestros nuevos artículos, herramientas y consejos para tu negocio. Sin spam, cancela cuando quieras.
           </p>
         </>
       )}
       {variant === 'footer' && (
         <>
-          <h4 style={{ color: 'white', fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>Suscríbete al boletín de noticias</h4>
-          <p style={{ color: '#9d8fc2', fontSize: '0.8rem', lineHeight: 1.5, marginBottom: '14px' }}>Nuevos artículos, herramientas y consejos. Sin spam.</p>
+          <h4 style={{ color: 'var(--text-strong)', fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>Suscríbete al boletín de noticias</h4>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', lineHeight: 1.5, marginBottom: '14px' }}>Nuevos artículos, herramientas y consejos. Sin spam.</p>
         </>
       )}
 
@@ -68,16 +68,16 @@ export default function NewsletterForm({ variant = 'card' }) {
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             <input
               type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@correo.com"
-              style={{ flex: '1 1 200px', minWidth: 0, boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '12px 14px', color: 'white', fontSize: '0.95rem', outline: 'none' }}
+              style={{ flex: '1 1 200px', minWidth: 0, boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '12px 14px', color: 'var(--text-strong)', fontSize: '0.95rem', outline: 'none' }}
             />
             <button type="submit" disabled={state === 'loading'} className="btn-primary justify-center" style={{ flex: variant === 'card' ? '0 0 auto' : '1 1 100%' }}>
               {state === 'loading' ? <><Loader2 size={16} className="spin" /> Enviando…</> : 'Suscribirme'}
             </button>
           </div>
 
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '12px', color: '#9d8fc2', fontSize: '0.78rem', lineHeight: 1.5, textAlign: 'left', cursor: 'pointer' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '12px', color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.5, textAlign: 'left', cursor: 'pointer' }}>
             <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} style={{ accentColor: '#d946ef', width: '15px', height: '15px', marginTop: '2px', flexShrink: 0 }} />
-            <span>Acepto recibir correos de DigiSpherix y la <a href="/aviso-de-privacidad" style={{ color: '#e879f9', textDecoration: 'none' }}>política de privacidad</a>. Tus datos se gestionan con MailerLite.</span>
+            <span>Acepto recibir correos de DigiSpherix y la <a href="/aviso-de-privacidad" style={{ color: 'var(--accent-4)', textDecoration: 'none' }}>política de privacidad</a>. Tus datos se gestionan con MailerLite.</span>
           </label>
 
           {state === 'error' && <p style={{ color: '#f87171', fontSize: '0.8rem', marginTop: '8px', textAlign: 'left' }}>{msg}</p>}

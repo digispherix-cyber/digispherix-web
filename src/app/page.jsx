@@ -4,6 +4,7 @@ import Services from '../components/Services'
 import ToolsHighlight from '../components/ToolsHighlight'
 import Process from '../components/Process'
 import Portfolio from '../components/Portfolio'
+import SiteBuilder from '../components/SiteBuilder'
 import Pricing from '../components/Pricing'
 import Testimonials from '../components/Testimonials'
 import FAQ from '../components/FAQ'
@@ -23,6 +24,7 @@ export default function HomePage() {
 <Services />
         <Process />
         <Portfolio />
+        <SiteBuilder />
         <Pricing />
         <Testimonials />
         <ToolsHighlight />

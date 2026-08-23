@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { tools } from '../lib/tools'
+import ThemeToggle from './ThemeToggle'
 
 const readyTools = tools.filter((t) => t.ready)
 
@@ -45,9 +46,11 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'backdrop-blur-xl bg-[#0c0923]/80 border-b border-purple-900/30' : ''
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl' : ''}`}
+        style={{
+          background: scrolled ? 'var(--nav-bg-scrolled)' : 'transparent',
+          borderBottom: scrolled ? '1px solid var(--border)' : 'none',
+        }}
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '16px 80px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <a href="/">
@@ -68,7 +71,7 @@ export default function Navbar() {
                 >
                   <a
                     href={l.href}
-                    className="text-sm text-purple-200 hover:text-pink-400 transition-colors font-medium"
+                    className="nav-link text-sm font-medium"
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                   >
                     {l.label}
@@ -86,8 +89,8 @@ export default function Navbar() {
                       >
                         <div
                           style={{
-                            width: '300px', background: 'rgba(17,13,48,0.98)', backdropFilter: 'blur(20px)',
-                            border: '1px solid rgba(124,58,237,0.3)', borderRadius: '16px', padding: '8px',
+                            width: '300px', background: 'var(--dropdown-bg)', backdropFilter: 'blur(20px)',
+                            border: '1px solid var(--border)', borderRadius: '16px', padding: '8px',
                             boxShadow: '0 20px 48px rgba(0,0,0,0.4)',
                           }}
                         >
@@ -102,8 +105,8 @@ export default function Navbar() {
                             >
                               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: t.accent, flexShrink: 0 }} />
                               <span>
-                                <span style={{ display: 'block', color: 'white', fontSize: '0.88rem', fontWeight: 600 }}>{t.name}</span>
-                                <span style={{ display: 'block', color: '#9d8fc2', fontSize: '0.75rem' }}>{t.tagline}</span>
+                                <span style={{ display: 'block', color: 'var(--text-strong)', fontSize: '0.88rem', fontWeight: 600 }}>{t.name}</span>
+                                <span style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.75rem' }}>{t.tagline}</span>
                               </span>
                             </a>
                           ))}
@@ -111,7 +114,7 @@ export default function Navbar() {
                           <a
                             href="/herramientas"
                             className="nav-dropdown-item"
-                            style={{ display: 'block', padding: '10px 12px', borderRadius: '10px', textDecoration: 'none', color: '#e879f9', fontSize: '0.82rem', fontWeight: 700, marginTop: '4px', borderTop: '1px solid rgba(124,58,237,0.2)' }}
+                            style={{ display: 'block', padding: '10px 12px', borderRadius: '10px', textDecoration: 'none', color: 'var(--accent-2)', fontSize: '0.82rem', fontWeight: 700, marginTop: '4px', borderTop: '1px solid var(--border)' }}
                           >
                             Ver todas las herramientas →
                           </a>
@@ -124,7 +127,7 @@ export default function Navbar() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-sm text-purple-200 hover:text-pink-400 transition-colors font-medium"
+                    className="nav-link text-sm font-medium"
                   >
                     {l.label}
                   </a>
@@ -133,19 +136,23 @@ export default function Navbar() {
             )}
           </ul>
 
-          <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm" style={{ marginLeft: '28px' }}>
-            Cotizar Proyecto
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <ThemeToggle />
 
-          <button
-            onClick={() => setOpen(!open)}
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-            aria-expanded={open}
-            className="lg:hidden text-purple-300 hover:text-pink-400 transition-colors"
-            style={{ position: 'relative', zIndex: 60 }}
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <a href={isHome ? '#contacto' : '/#contacto'} className="btn-primary nav-cta-desktop text-sm">
+              Cotizar Proyecto
+            </a>
+
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={open}
+              className="lg:hidden nav-link"
+              style={{ position: 'relative', zIndex: 60 }}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -162,7 +169,7 @@ export default function Navbar() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'rgba(10,7,28,0.98)',
+              background: 'var(--mobile-menu-bg)',
               backdropFilter: 'blur(20px)',
               zIndex: 55,
               display: 'flex',
@@ -178,11 +185,15 @@ export default function Navbar() {
               style={{
                 position: 'absolute', top: '20px', right: '24px',
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: '#e9d5ff', padding: '8px',
+                color: 'var(--text-strong)', padding: '8px',
               }}
             >
               <X size={28} />
             </button>
+
+            <div style={{ position: 'absolute', top: '20px', left: '24px' }}>
+              <ThemeToggle />
+            </div>
 
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
               {links.map((l) => (
@@ -190,7 +201,7 @@ export default function Navbar() {
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e9d5ff', textDecoration: 'none' }}
+                    style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-strong)', textDecoration: 'none' }}
                   >
                     {l.label}
                   </a>

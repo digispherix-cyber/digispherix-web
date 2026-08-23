@@ -47,8 +47,8 @@ export default function CookieBanner() {
           <div style={{
             maxWidth: '620px',
             margin: '0 auto',
-            background: 'rgba(17,13,48,0.97)',
-            border: '1px solid rgba(124,58,237,0.4)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
             borderRadius: '16px 16px 0 0',
             padding: '20px 20px 24px',
             backdropFilter: 'blur(20px)',
@@ -64,21 +64,21 @@ export default function CookieBanner() {
                 }}>
                   <Cookie size={17} />
                 </div>
-                <span style={{ fontWeight: 700, color: 'white', fontSize: '0.9rem' }}>
+                <span style={{ fontWeight: 700, color: 'var(--text-strong)', fontSize: '0.9rem' }}>
                   Usamos cookies 🍪
                 </span>
               </div>
               <button
                 onClick={reject}
                 aria-label="Cerrar banner de cookies"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6b5b95', padding: '4px' }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-dim)', padding: '4px' }}
               >
                 <X size={18} />
               </button>
             </div>
 
             {/* Description */}
-            <p style={{ color: '#9d8fc2', fontSize: '0.8rem', lineHeight: 1.6, marginBottom: '14px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', lineHeight: 1.6, marginBottom: '14px' }}>
               Usamos Google Analytics para mejorar tu experiencia. Puedes aceptar todas o solo las esenciales.
             </p>
 
@@ -103,8 +103,8 @@ export default function CookieBanner() {
                         border: '1px solid rgba(124,58,237,0.2)',
                       }}>
                         <div>
-                          <div style={{ fontWeight: 600, color: '#ddd6fe', fontSize: '0.8rem' }}>{c.name}</div>
-                          <div style={{ color: '#9d8fc2', fontSize: '0.72rem' }}>{c.desc}</div>
+                          <div style={{ fontWeight: 600, color: 'var(--text)', fontSize: '0.8rem' }}>{c.name}</div>
+                          <div style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>{c.desc}</div>
                         </div>
                         <div style={{
                           padding: '2px 8px', borderRadius: '20px', fontSize: '0.68rem', fontWeight: 600,
@@ -138,8 +138,8 @@ export default function CookieBanner() {
                 onClick={reject}
                 style={{
                   padding: '10px 16px', borderRadius: '10px', cursor: 'pointer', flex: 1,
-                  background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)',
-                  color: '#c4b5fd', fontWeight: 600, fontSize: '0.82rem',
+                  background: 'rgba(124,58,237,0.15)', border: '1px solid var(--border)',
+                  color: 'var(--text)', fontWeight: 600, fontSize: '0.82rem',
                   justifyContent: 'center', textAlign: 'center',
                 }}
               >

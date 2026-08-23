@@ -199,10 +199,10 @@ function PlanCard({ plan, index }) {
         padding: '40px 36px 36px',
         background: plan.highlight
           ? 'linear-gradient(135deg, rgba(124,58,237,0.2), rgba(217,70,239,0.1))'
-          : 'rgba(17,13,48,0.8)',
+          : 'var(--bg-card)',
         border: plan.highlight
           ? '1px solid rgba(217,70,239,0.5)'
-          : '1px solid rgba(124,58,237,0.2)',
+          : '1px solid var(--border)',
       }}
     >
       {plan.highlight && (
@@ -218,12 +218,12 @@ function PlanCard({ plan, index }) {
         </div>
       )}
 
-      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '6px', marginTop: plan.highlight ? '8px' : '0' }}>{plan.name}</h3>
-      <p style={{ fontSize: '0.85rem', color: '#c4b5fd', marginBottom: '18px', lineHeight: 1.5 }}>{plan.desc}</p>
+      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-strong)', marginBottom: '6px', marginTop: plan.highlight ? '8px' : '0' }}>{plan.name}</h3>
+      <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '18px', lineHeight: 1.5 }}>{plan.desc}</p>
 
       <div style={{ marginBottom: '20px' }}>
         {plan.desde && (
-          <div style={{ fontSize: '0.72rem', color: '#9d8fc2', fontWeight: 600, marginBottom: '2px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Desde</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '2px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Desde</div>
         )}
         <span
           className="gradient-text"
@@ -231,16 +231,16 @@ function PlanCard({ plan, index }) {
         >
           {plan.price}
         </span>
-        <span style={{ color: '#9d8fc2', fontSize: '0.8rem', marginLeft: '8px' }}>MXN / {plan.period}</span>
+        <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginLeft: '8px' }}>MXN / {plan.period}</span>
         {plan.renewal && (
-          <div style={{ fontSize: '0.72rem', color: '#7c6f9c', marginTop: '4px' }}>{plan.renewal}</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '4px' }}>{plan.renewal}</div>
         )}
       </div>
 
       <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px', flex: 1 }}>
         {plan.features.map((f) => (
-          <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.85rem', color: '#ddd6fe' }}>
-            <Check size={15} style={{ color: '#e879f9', flexShrink: 0, marginTop: '2px' }} />
+          <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.85rem', color: 'var(--text)' }}>
+            <Check size={15} style={{ color: 'var(--accent-4)', flexShrink: 0, marginTop: '2px' }} />
             {f}
           </li>
         ))}
@@ -285,7 +285,7 @@ export default function Pricing() {
   const gridMaxWidth = gridMaxWidthByCount[activePlans.length]
 
   return (
-    <section id="precios" className="ds-section relative">
+    <section id="precios" className="ds-section relative" style={{ color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)' }}
@@ -298,7 +298,7 @@ export default function Pricing() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Planes y Precios
           </p>
           <h2 className="section-title gradient-text">Elige tu Plan</h2>
@@ -314,8 +314,8 @@ export default function Pricing() {
             style={{
               display: 'flex', gap: '4px', padding: '6px',
               borderRadius: '999px',
-              background: 'rgba(17,13,48,0.8)',
-              border: '1px solid rgba(124,58,237,0.3)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border)',
               overflowX: 'auto',
               WebkitOverflowScrolling: 'touch',
               scrollbarWidth: 'none',
@@ -339,7 +339,7 @@ export default function Pricing() {
                   flexShrink: 0,
                   ...(activeTab === cat
                     ? { background: 'linear-gradient(135deg, #7c3aed, #d946ef)', color: 'white' }
-                    : { background: 'transparent', color: '#9d8fc2' }),
+                    : { background: 'transparent', color: 'var(--text-muted)' }),
                 }}
               >
                 {cat}
@@ -365,10 +365,10 @@ export default function Pricing() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', color: '#a78bfa', fontSize: '0.875rem', marginTop: '48px' }}
+          style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.875rem', marginTop: '48px' }}
         >
           ¿Necesitas algo diferente?{' '}
-          <a href="#contacto" className="text-pink-400 hover:underline font-medium">
+          <a href="#contacto" className="hover:underline font-medium" style={{ color: 'var(--accent-2)' }}>
             Cotización personalizada sin compromiso
           </a>
         </motion.p>

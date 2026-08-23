@@ -96,9 +96,9 @@ function TestimonialCard({ t, index, isActive, onClick }) {
         borderRadius: '20px',
         padding: '32px',
         background: isActive
-          ? `linear-gradient(135deg, ${t.color}18, rgba(17,13,48,0.9))`
-          : 'rgba(17,13,48,0.7)',
-        border: `1px solid ${isActive ? t.color + '60' : 'rgba(124,58,237,0.2)'}`,
+          ? `linear-gradient(135deg, ${t.color}18, var(--bg-card))`
+          : 'var(--bg-card)',
+        border: `1px solid ${isActive ? t.color + '60' : 'var(--border)'}`,
         boxShadow: isActive ? `0 0 40px ${t.color}20` : 'none',
         transition: 'all 0.3s ease',
         height: '100%',
@@ -112,7 +112,7 @@ function TestimonialCard({ t, index, isActive, onClick }) {
         </div>
 
         {/* Text */}
-        <p style={{ color: '#ddd6fe', fontSize: '0.92rem', lineHeight: 1.8, flex: 1, fontStyle: 'italic' }}>
+        <p style={{ color: 'var(--text)', fontSize: '0.92rem', lineHeight: 1.8, flex: 1, fontStyle: 'italic' }}>
           "{t.text}"
         </p>
 
@@ -131,8 +131,8 @@ function TestimonialCard({ t, index, isActive, onClick }) {
             {t.initials}
           </div>
           <div>
-            <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>{t.name}</div>
-            <div style={{ fontSize: '0.78rem', color: '#9d8fc2' }}>{t.role} · {t.company}</div>
+            <div style={{ fontWeight: 700, color: 'var(--text-strong)', fontSize: '0.95rem' }}>{t.name}</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{t.role} · {t.company}</div>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function Testimonials() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="testimonios" className="ds-section relative">
+    <section id="testimonios" className="ds-section relative" style={{ color: 'var(--text)' }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)' }}
@@ -159,7 +159,7 @@ export default function Testimonials() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+          <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
             Lo que dicen
           </p>
           <h2 className="section-title gradient-text">Clientes Satisfechos</h2>
@@ -211,7 +211,7 @@ export default function Testimonials() {
               style={{ textAlign: 'center' }}
             >
               <div className="gradient-text" style={{ fontSize: '1.8rem', fontWeight: 900 }}>{s.value}</div>
-              <div style={{ fontSize: '0.78rem', color: '#9d8fc2', marginTop: '4px' }}>{s.label}</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>{s.label}</div>
             </motion.div>
           ))}
         </motion.div>

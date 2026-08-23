@@ -3,8 +3,8 @@
 import { useState, useRef } from 'react'
 import { Copy, Check, ImagePlus, X } from 'lucide-react'
 
-const field = { width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '11px 13px', color: 'white', fontSize: '0.92rem', outline: 'none' }
-const lbl = { display: 'block', color: '#c4b5fd', fontSize: '0.8rem', fontWeight: 600, marginBottom: '6px' }
+const field = { width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '11px 13px', color: 'var(--text-strong)', fontSize: '0.92rem', outline: 'none' }
+const lbl = { display: 'block', color: 'var(--text)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '6px' }
 
 export default function EmailSignatureTool() {
   const [d, setD] = useState({
@@ -62,7 +62,7 @@ export default function EmailSignatureTool() {
       </div>
 
       <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', alignItems: 'center' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#c4b5fd', fontSize: '0.85rem' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text)', fontSize: '0.85rem' }}>
           Color
           <input type="color" value={accent} onChange={(e) => setAccent(e.target.value)} style={{ width: '38px', height: '32px', border: 'none', borderRadius: '8px', background: 'none', cursor: 'pointer' }} />
         </label>
@@ -71,7 +71,7 @@ export default function EmailSignatureTool() {
             <X size={14} /> Quitar logo
           </button>
         ) : (
-          <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', borderRadius: '99px', background: 'rgba(37,99,235,0.12)', border: '1px solid rgba(37,99,235,0.3)', color: '#93c5fd', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}>
+          <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', borderRadius: '99px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', color: 'var(--accent-3)', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}>
             <ImagePlus size={14} /> Agregar logo
             <input ref={logoInputRef} type="file" accept="image/*" onChange={(e) => onLogo(e.target.files[0])} style={{ display: 'none' }} />
           </label>
@@ -111,7 +111,7 @@ export default function EmailSignatureTool() {
         {copied ? <><Check size={16} /> Firma copiada</> : <><Copy size={16} /> Copiar firma</>}
       </button>
 
-      <p style={{ color: '#6b5fa0', fontSize: '0.8rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
+      <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
         Copia la firma y pégala en la sección de firma de tu correo (en Gmail: Configuración → General → Firma).
         Si usas logo y no aparece en Gmail, súbelo como imagen desde el editor de firma de Gmail.
       </p>

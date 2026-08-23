@@ -12,11 +12,11 @@ export default function CustomCursor() {
   const mx = useMotionValue(-100)
   const my = useMotionValue(-100)
 
-  const sx = useSpring(mx, { stiffness: 150, damping: 18, mass: 0.5 })
-  const sy = useSpring(my, { stiffness: 150, damping: 18, mass: 0.5 })
+  const sx = useSpring(mx, { stiffness: 700, damping: 40, mass: 0.3 })
+  const sy = useSpring(my, { stiffness: 700, damping: 40, mass: 0.3 })
 
-  const trailX = useSpring(mx, { stiffness: 60, damping: 16, mass: 0.8 })
-  const trailY = useSpring(my, { stiffness: 60, damping: 16, mass: 0.8 })
+  const trailX = useSpring(mx, { stiffness: 110, damping: 18, mass: 0.6 })
+  const trailY = useSpring(my, { stiffness: 110, damping: 18, mass: 0.6 })
 
   useEffect(() => {
     const move = (e) => {

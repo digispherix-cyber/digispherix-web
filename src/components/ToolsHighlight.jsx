@@ -31,7 +31,7 @@ function ToolCard({ tool }) {
         style={{
           position: 'relative', height: '100%', minHeight: 'clamp(240px, 40vh, 340px)',
           display: 'flex', flexDirection: 'column',
-          background: 'rgba(17,13,48,0.8)', border: '1px solid rgba(124,58,237,0.2)',
+          background: 'var(--bg-card)', border: '1px solid var(--border)',
           borderRadius: '20px', padding: 'clamp(28px, 3vw, 40px)', overflow: 'hidden',
         }}
       >
@@ -44,11 +44,11 @@ function ToolCard({ tool }) {
         >
           <Icon size={28} style={{ color: tool.accent }} />
         </div>
-        <h3 style={{ fontSize: 'clamp(1.2rem, 1.6vw, 1.5rem)', fontWeight: 800, color: 'white', marginBottom: '10px' }}>{tool.name}</h3>
-        <p style={{ color: '#9d8fc2', fontSize: 'clamp(0.9rem, 1.1vw, 1rem)', lineHeight: 1.6, flexGrow: 1, marginBottom: '20px' }}>
+        <h3 style={{ fontSize: 'clamp(1.2rem, 1.6vw, 1.5rem)', fontWeight: 800, color: 'var(--text-strong)', marginBottom: '10px' }}>{tool.name}</h3>
+        <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 1.1vw, 1rem)', lineHeight: 1.6, flexGrow: 1, marginBottom: '20px' }}>
           {tool.tagline || tool.description}
         </p>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#e879f9', fontSize: '0.9rem', fontWeight: 600 }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--accent-4)', fontSize: '0.9rem', fontWeight: 600 }}>
           Usar gratis <ArrowRight size={16} />
         </span>
       </article>
@@ -59,7 +59,7 @@ function ToolCard({ tool }) {
 function Header() {
   return (
     <div className="ds-container">
-      <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: '#d946ef' }}>
+      <p className="text-center text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent-2)' }}>
         Gratis para ti
       </p>
       <h2 className="section-title gradient-text">Herramientas gratis</h2>
@@ -116,7 +116,7 @@ export default function ToolsHighlight() {
       id="herramientas-gratis"
       ref={sectionRef}
       className="relative"
-      style={pin ? { height: `calc(100vh + ${distance}px)` } : undefined}
+      style={{ color: 'var(--text)', ...(pin ? { height: `calc(100vh + ${distance}px)` } : {}) }}
     >
       <div
         className="absolute top-0 left-0 right-0 h-px"
@@ -159,7 +159,7 @@ export default function ToolsHighlight() {
 
         {/* Pista para deslizar (solo cuando NO hay pin: móvil / reduced-motion) */}
         {!pin && (
-          <p style={{ textAlign: 'center', color: '#6b5fa0', fontSize: '0.8rem', marginTop: '14px' }}>
+          <p style={{ textAlign: 'center', color: 'var(--text-dim)', fontSize: '0.8rem', marginTop: '14px' }}>
             Desliza para ver más →
           </p>
         )}

@@ -14,7 +14,7 @@ export default function ToolShell({ tool, children }) {
   )
 
   return (
-    <main style={{ background: '#0c0923', minHeight: '100vh' }}>
+    <main style={{ minHeight: '100vh', color: 'var(--text)' }}>
       <Particles />
 
       <section style={{ paddingTop: '120px', paddingBottom: '40px', position: 'relative', overflow: 'hidden' }}>
@@ -27,16 +27,16 @@ export default function ToolShell({ tool, children }) {
         <div className="ds-container" style={{ position: 'relative', zIndex: 1 }}>
           <Link
             href="/herramientas"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#9d8fc2', fontSize: '0.85rem', textDecoration: 'none', marginBottom: '24px' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: 'var(--text-muted)', fontSize: '0.85rem', textDecoration: 'none', marginBottom: '24px' }}
           >
             <ChevronLeft size={16} /> Todas las herramientas
           </Link>
 
           <div style={{ textAlign: 'center', maxWidth: '620px', margin: '0 auto' }}>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '14px' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.15, marginBottom: '14px' }}>
               {name}
             </h1>
-            <p style={{ color: '#9d8fc2', fontSize: '1.05rem', lineHeight: 1.6, margin: '0 auto' }}>{tagline}</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.6, margin: '0 auto' }}>{tagline}</p>
 
             <div
               style={{
@@ -55,7 +55,7 @@ export default function ToolShell({ tool, children }) {
         <div className="ds-container">
           <div
             style={{
-              background: 'rgba(17,13,48,0.8)', border: '1px solid rgba(124,58,237,0.25)',
+              background: 'var(--bg-card)', border: '1px solid var(--border)',
               borderRadius: '20px', padding: 'clamp(20px, 4vw, 40px)', maxWidth: '760px', margin: '0 auto',
             }}
           >
@@ -64,8 +64,8 @@ export default function ToolShell({ tool, children }) {
 
           {/* CTA final */}
           <div style={{ maxWidth: '760px', margin: '40px auto 0', textAlign: 'center' }}>
-            <p style={{ color: '#c4b5fd', fontSize: '1rem', marginBottom: '16px' }}>
-              ¿Te sirvió? En <strong style={{ color: 'white' }}>DigiSpherix</strong> creamos sitios web, apps y
+            <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginBottom: '16px' }}>
+              ¿Te sirvió? En <strong style={{ color: 'var(--text-strong)' }}>DigiSpherix</strong> creamos sitios web, apps y
               herramientas a la medida de tu negocio.
             </p>
             <a

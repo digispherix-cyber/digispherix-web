@@ -65,9 +65,9 @@ function MouseBadge({ b, index, mouseX, mouseY }) {
         style={{
           display: 'flex', alignItems: 'center', gap: '8px',
           padding: '8px 16px', borderRadius: '999px',
-          background: 'rgba(17,13,48,0.85)',
-          border: '1px solid rgba(124,58,237,0.5)',
-          color: '#e879f9',
+          background: 'var(--dropdown-bg)',
+          border: '1px solid var(--border)',
+          color: 'var(--accent-2)',
           backdropFilter: 'blur(12px)',
           boxShadow: '0 4px 24px rgba(124,58,237,0.2)',
           fontSize: '0.85rem', fontWeight: 500,
@@ -111,7 +111,7 @@ export default function Hero() {
       id="inicio"
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ paddingTop: '100px', paddingBottom: '80px' }}
+      style={{ paddingTop: '100px', paddingBottom: '80px', color: 'var(--text)' }}
     >
       {/* Layer 1 — slowest */}
       <motion.div style={{ y: yBlob1, scale: scaleBg }} className="absolute inset-0 pointer-events-none">
@@ -162,7 +162,7 @@ export default function Hero() {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
             padding: '10px 24px', borderRadius: '999px', fontSize: '0.9rem', fontWeight: 500,
-            background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.4)', color: '#e879f9',
+            background: 'var(--bg-card-alt)', border: '1px solid var(--border)', color: 'var(--accent-2)',
             marginBottom: '28px',
           }}
         >
@@ -190,7 +190,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           style={{
-            fontSize: '1.1rem', color: '#ddd6fe', maxWidth: '640px',
+            fontSize: '1.1rem', color: 'var(--text)', maxWidth: '640px',
             margin: '0 auto', lineHeight: 1.7, textAlign: 'center',
           }}
         >
@@ -230,7 +230,7 @@ export default function Hero() {
               <div className="gradient-text" style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1, display: 'block', textAlign: 'center', overflow: 'visible', whiteSpace: 'nowrap' }}>
                 <CountUp to={s.to} suffix={s.suffix} />
               </div>
-              <div style={{ color: '#9d8fc2', fontSize: '0.75rem', marginTop: '6px' }}>{s.label}</div>
+              <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '6px' }}>{s.label}</div>
             </div>
           ))}
         </motion.div>

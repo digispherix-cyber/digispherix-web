@@ -158,20 +158,20 @@ export default function QrGenerator() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
       {/* Vista previa */}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: '240px', minHeight: '240px', borderRadius: '16px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.2)', padding: '8px' }}>
+        <div style={{ width: '240px', minHeight: '240px', borderRadius: '16px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '1px solid var(--border)', padding: '8px' }}>
           {dataUrl ? (
             <img src={dataUrl} alt="Código QR" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           ) : (
-            <span style={{ color: '#9d8fc2', fontSize: '0.85rem', padding: '16px', textAlign: 'center' }}>{error || 'Escribe algo para generar tu QR'}</span>
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', padding: '16px', textAlign: 'center' }}>{error || 'Escribe algo para generar tu QR'}</span>
           )}
         </div>
       </div>
 
       {/* Texto */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.88rem', fontWeight: 600, marginBottom: '8px' }}>Texto o enlace</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.88rem', fontWeight: 600, marginBottom: '8px' }}>Texto o enlace</label>
         <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2} placeholder="https://tu-sitio.com o cualquier texto"
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '12px 14px', color: 'white', fontSize: '0.95rem', outline: 'none', resize: 'vertical' }} />
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '12px 14px', color: 'var(--text-strong)', fontSize: '0.95rem', outline: 'none', resize: 'vertical' }} />
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
           {EXAMPLES.map((ex) => (
             <button key={ex.label} onClick={() => setText(ex.value)} style={chip}><ex.icon size={13} /> {ex.label}</button>
@@ -181,14 +181,14 @@ export default function QrGenerator() {
 
       {/* Estilo */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Estilo</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Estilo</label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '8px' }}>
           {Object.entries(STYLES).map(([key, s]) => (
             <button key={key} onClick={() => setStyle(key)} style={{
               padding: '11px', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem',
-              background: style === key ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'rgba(12,9,35,0.6)',
-              color: style === key ? 'white' : '#9d8fc2',
-              border: `1px solid ${style === key ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+              background: style === key ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'var(--bg-card-alt)',
+              color: style === key ? 'var(--text-strong)' : 'var(--text-muted)',
+              border: `1px solid ${style === key ? 'transparent' : 'var(--border)'}`,
             }}>{s.label}</button>
           ))}
         </div>
@@ -196,9 +196,9 @@ export default function QrGenerator() {
 
       {/* Leyenda */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.88rem', fontWeight: 600, marginBottom: '8px' }}>Leyenda (opcional)</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.88rem', fontWeight: 600, marginBottom: '8px' }}>Leyenda (opcional)</label>
         <input type="text" value={caption} maxLength={30} onChange={(e) => setCaption(e.target.value)} placeholder="Ej. Escanéame"
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '12px 14px', color: 'white', fontSize: '0.95rem', outline: 'none' }} />
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '12px 14px', color: 'var(--text-strong)', fontSize: '0.95rem', outline: 'none' }} />
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
           {['Escanéame', 'Síguenos', 'Menú'].map((c) => (<button key={c} onClick={() => setCaption(c)} style={chip}>{c}</button>))}
         </div>
@@ -214,30 +214,30 @@ export default function QrGenerator() {
             <input ref={logoInputRef} type="file" accept="image/*" onChange={(e) => onLogo(e.target.files[0])} style={{ display: 'none' }} />
           </label>
         )}
-        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.85rem', cursor: 'pointer' }}>
-          <input type="checkbox" checked={frame} onChange={(e) => setFrame(e.target.checked)} style={{ accentColor: '#d946ef', width: '17px', height: '17px' }} /> Borde
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.85rem', cursor: 'pointer' }}>
+          <input type="checkbox" checked={frame} onChange={(e) => setFrame(e.target.checked)} style={{ accentColor: 'var(--accent-2)', width: '17px', height: '17px' }} /> Borde
         </label>
       </div>
 
       {/* Color */}
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#c4b5fd', fontSize: '0.85rem' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text)', fontSize: '0.85rem' }}>
           Color del código
           <input type="color" value={dark} onChange={(e) => setDark(e.target.value)} style={colorInput} />
         </label>
-        <span style={{ color: '#6b5fa0', fontSize: '0.78rem' }}>El fondo es blanco para asegurar que el código se escanee siempre.</span>
+        <span style={{ color: 'var(--text-dim)', fontSize: '0.78rem' }}>El fondo es blanco para asegurar que el código se escanee siempre.</span>
       </div>
 
       {/* Tamaño */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Tamaño de descarga</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Tamaño de descarga</label>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           {SIZES.map((s) => (
             <button key={s.px} onClick={() => setSize(s.px)} style={{
               flex: '1 1 90px', padding: '12px', borderRadius: '10px', cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem',
-              background: size === s.px ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'rgba(12,9,35,0.6)',
-              color: size === s.px ? 'white' : '#9d8fc2',
-              border: `1px solid ${size === s.px ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+              background: size === s.px ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'var(--bg-card-alt)',
+              color: size === s.px ? 'var(--text-strong)' : 'var(--text-muted)',
+              border: `1px solid ${size === s.px ? 'transparent' : 'var(--border)'}`,
             }}>
               {s.label}<span style={{ display: 'block', fontSize: '0.7rem', fontWeight: 500, opacity: 0.8 }}>{s.px}px</span>
             </button>

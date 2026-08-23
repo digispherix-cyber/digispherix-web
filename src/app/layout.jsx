@@ -79,14 +79,28 @@ const schemaData = {
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import CustomCursor from '../components/CustomCursor'
+import MagneticButtons from '../components/MagneticButtons'
 import WhatsAppButton from '../components/WhatsAppButton'
 import CookieBanner from '../components/CookieBanner'
 import EasterEggGame from '../components/EasterEggGame'
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
+        {/* Aplica el tema guardado ANTES de pintar, para que no haya parpadeo
+            entre oscuro (default) y el tema que el usuario eligió antes.
+            suppressHydrationWarning en <html> es necesario porque este script
+            cambia un atributo del servidor (que no sabe del localStorage) antes
+            de que React hidrate; es el patrón oficial para esto, no un parche. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: `
+            try {
+              var t = localStorage.getItem('theme');
+              if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+            } catch (e) {}
+          ` }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -109,6 +123,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <CustomCursor />
+        <MagneticButtons />
         <Navbar />
         {children}
         <Footer />

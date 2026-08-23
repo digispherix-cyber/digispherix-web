@@ -548,7 +548,7 @@ export default function SubtitleGeneratorTool() {
   const busy = phase === 'model' || phase === 'transcribing' || phase === 'exporting'
   const subPos = style.position === 'top' ? { top: '8%' } : style.position === 'center' ? { top: '50%', transform: 'translateY(-50%)' } : { bottom: '8%' }
   const colorInput = { width: '34px', height: '28px', border: 'none', borderRadius: '6px', background: 'none', cursor: 'pointer' }
-  const selectS = { background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '8px', padding: '6px 8px', color: 'white', outline: 'none' }
+  const selectS = { background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '8px', padding: '6px 8px', color: 'var(--text-strong)', outline: 'none' }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -557,16 +557,16 @@ export default function SubtitleGeneratorTool() {
           onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
           onDragLeave={() => setDragging(false)}
           onDrop={(e) => { e.preventDefault(); setDragging(false); onFile(e.dataTransfer.files?.[0]) }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? '#e879f9' : 'rgba(124,58,237,0.4)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'rgba(12,9,35,0.5)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '48px 24px', borderRadius: '16px', border: `2px dashed ${dragging ? 'var(--accent-4)' : 'var(--border)'}`, background: dragging ? 'rgba(124,58,237,0.12)' : 'var(--bg-card-alt)', cursor: 'pointer', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
         >
-          <Upload size={30} style={{ color: '#e879f9' }} />
-          <span style={{ color: 'white', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
-          <span style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>Máximo 60 segundos. Se procesa en tu navegador; tu video no se sube a internet.</span>
+          <Upload size={30} style={{ color: 'var(--accent-4)' }} />
+          <span style={{ color: 'var(--text-strong)', fontWeight: 700 }}>Arrastra tu video aquí o haz clic para subirlo</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Máximo 60 segundos. Se procesa en tu navegador; tu video no se sube a internet.</span>
           <input ref={inputRef} type="file" accept="video/*" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
         </label>
       ) : (
         <>
-          <div style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '0 auto', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(124,58,237,0.3)', background: '#000' }}>
+          <div style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '0 auto', borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--border)', background: '#000' }}>
             <video ref={videoRef} src={videoUrl} controls style={{ display: 'block', maxHeight: '460px', maxWidth: '100%', height: 'auto', width: 'auto' }} />
             <div style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', padding: '0 5%', pointerEvents: 'none', ...subPos }}>
               <span ref={subRef} style={{ display: 'inline-block' }} />
@@ -576,7 +576,7 @@ export default function SubtitleGeneratorTool() {
           {segments.length === 0 ? (
             <>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.88rem' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.88rem' }}>
                   Idioma
                   <select value={language} onChange={(e) => setLanguage(e.target.value)} disabled={busy} style={selectS}>
                     <option value="spanish">Español</option>
@@ -588,8 +588,8 @@ export default function SubtitleGeneratorTool() {
               </div>
               {busy ? (
                 <div style={{ textAlign: 'center' }}>
-                  <p style={{ color: '#c4b5fd', fontSize: '0.9rem', marginBottom: '8px' }}>{phase === 'model' ? `Descargando el modelo de IA por primera vez… ${progress}%` : 'Transcribiendo tu video con IA…'}</p>
-                  <div style={{ height: '8px', borderRadius: '99px', background: 'rgba(124,58,237,0.2)', overflow: 'hidden' }}>
+                  <p style={{ color: 'var(--text)', fontSize: '0.9rem', marginBottom: '8px' }}>{phase === 'model' ? `Descargando el modelo de IA por primera vez… ${progress}%` : 'Transcribiendo tu video con IA…'}</p>
+                  <div style={{ height: '8px', borderRadius: '99px', background: 'var(--bg-card-alt)', overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: phase === 'model' ? `${progress}%` : '100%', background: 'linear-gradient(90deg, #7c3aed, #d946ef)', transition: 'width 0.2s', animation: phase === 'transcribing' ? 'toolpulse 1.2s ease-in-out infinite' : 'none' }} />
                   </div>
                 </div>
@@ -600,11 +600,11 @@ export default function SubtitleGeneratorTool() {
           ) : (
             <>
               {/* Estilos */}
-              <div style={{ background: 'rgba(17,13,48,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '14px', padding: '18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                <div style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Type size={15} /> Estilo de los subtítulos</div>
+              <div style={{ background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '14px', padding: '18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Type size={15} /> Estilo de los subtítulos</div>
 
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <span style={{ color: '#6b5fa0', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '5px' }}><Wand size={13} /> Presets:</span>
+                  <span style={{ color: 'var(--text-dim)', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '5px' }}><Wand size={13} /> Presets:</span>
                   {PRESETS.map((p) => (
                     <button
                       key={p.label}
@@ -618,58 +618,58 @@ export default function SubtitleGeneratorTool() {
                 </div>
 
                 <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Efecto
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Efecto
                     <select value={style.effect} onChange={setSt('effect')} style={selectS}>{EFFECTS.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}</select>
                   </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Fuente
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Fuente
                     <select value={style.font} onChange={setSt('font')} style={selectS}>{FONTS.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}</select>
                   </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Posición
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Posición
                     <select value={style.position} onChange={setSt('position')} style={selectS}><option value="bottom">Abajo</option><option value="center">Centro</option><option value="top">Arriba</option></select>
                   </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Tamaño
-                    <input type="range" min="0.04" max="0.14" step="0.005" value={style.size} onChange={setSt('size')} style={{ accentColor: '#d946ef' }} />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Tamaño
+                    <input type="range" min="0.04" max="0.14" step="0.005" value={style.size} onChange={setSt('size')} style={{ accentColor: 'var(--accent-2)' }} />
                   </label>
                 </div>
                 <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Texto <input type="color" value={style.color} onChange={setSt('color')} style={colorInput} /></label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>
-                    <input type="checkbox" checked={style.outline} onChange={setSt('outline')} style={{ accentColor: '#d946ef', width: '16px', height: '16px' }} /> Borde <input type="color" value={style.outlineColor} onChange={setSt('outlineColor')} style={colorInput} />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Texto <input type="color" value={style.color} onChange={setSt('color')} style={colorInput} /></label>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>
+                    <input type="checkbox" checked={style.outline} onChange={setSt('outline')} style={{ accentColor: 'var(--accent-2)', width: '16px', height: '16px' }} /> Borde <input type="color" value={style.outlineColor} onChange={setSt('outlineColor')} style={colorInput} />
                   </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>
                     Fondo <input type="color" value={style.bgColor} onChange={setSt('bgColor')} style={colorInput} />
-                    <span style={{ color: '#6b5fa0' }}>opacidad</span>
-                    <input type="range" min="0" max="1" step="0.05" value={style.bgOpacity} onChange={setSt('bgOpacity')} style={{ accentColor: '#d946ef', width: '90px' }} />
-                    <span style={{ color: '#9d8fc2', minWidth: '34px' }}>{Math.round(style.bgOpacity * 100)}%</span>
+                    <span style={{ color: 'var(--text-dim)' }}>opacidad</span>
+                    <input type="range" min="0" max="1" step="0.05" value={style.bgOpacity} onChange={setSt('bgOpacity')} style={{ accentColor: 'var(--accent-2)', width: '90px' }} />
+                    <span style={{ color: 'var(--text-muted)', minWidth: '34px' }}>{Math.round(style.bgOpacity * 100)}%</span>
                   </label>
                   {style.effect === 'highlight' && (
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c4b5fd', fontSize: '0.82rem' }}>Caja <input type="color" value={style.highlightColor} onChange={setSt('highlightColor')} style={colorInput} /></label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text)', fontSize: '0.82rem' }}>Caja <input type="color" value={style.highlightColor} onChange={setSt('highlightColor')} style={colorInput} /></label>
                   )}
                 </div>
               </div>
 
               {/* Segmentos editables */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '260px', overflowY: 'auto' }}>
-                <div style={{ color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Captions size={15} /> Subtítulos (edítalos si hace falta)</div>
+                <div style={{ color: 'var(--text)', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}><Captions size={15} /> Subtítulos (edítalos si hace falta)</div>
                 {segments.map((seg, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                     <button
                       onClick={() => { if (videoRef.current) videoRef.current.currentTime = seg.start }}
                       title="Ir a este subtítulo en la vista previa"
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, width: '26px', height: '26px', marginTop: '6px', borderRadius: '6px', border: '1px solid rgba(124,58,237,0.3)', background: 'rgba(124,58,237,0.15)', color: '#e879f9', cursor: 'pointer' }}
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, width: '26px', height: '26px', marginTop: '6px', borderRadius: '6px', border: '1px solid var(--border)', background: 'rgba(124,58,237,0.15)', color: 'var(--accent-4)', cursor: 'pointer' }}
                     >
                       <Play size={11} fill="currentColor" />
                     </button>
-                    <span style={{ color: '#6b5fa0', fontSize: '0.72rem', fontFamily: 'monospace', paddingTop: '10px', flexShrink: 0, width: '44px' }}>{fmtSrt(seg.start).slice(3, 8)}</span>
-                    <input value={seg.text} onChange={(e) => editSeg(i, e.target.value)} style={{ flex: 1, background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '8px', padding: '8px 10px', color: 'white', fontSize: '0.88rem', outline: 'none' }} />
+                    <span style={{ color: 'var(--text-dim)', fontSize: '0.72rem', fontFamily: 'monospace', paddingTop: '10px', flexShrink: 0, width: '44px' }}>{fmtSrt(seg.start).slice(3, 8)}</span>
+                    <input value={seg.text} onChange={(e) => editSeg(i, e.target.value)} style={{ flex: 1, background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 10px', color: 'var(--text-strong)', fontSize: '0.88rem', outline: 'none' }} />
                   </div>
                 ))}
               </div>
 
               {phase === 'exporting' ? (
                 <div style={{ textAlign: 'center' }}>
-                  <p style={{ color: '#c4b5fd', fontSize: '0.9rem', marginBottom: '8px' }}>Generando video con subtítulos… {progress}% (se procesa en tiempo real)</p>
-                  <div style={{ height: '8px', borderRadius: '99px', background: 'rgba(124,58,237,0.2)', overflow: 'hidden' }}>
+                  <p style={{ color: 'var(--text)', fontSize: '0.9rem', marginBottom: '8px' }}>Generando video con subtítulos… {progress}% (se procesa en tiempo real)</p>
+                  <div style={{ height: '8px', borderRadius: '99px', background: 'var(--bg-card-alt)', overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #d946ef)', transition: 'width 0.2s' }} />
                   </div>
                 </div>
@@ -695,7 +695,7 @@ export default function SubtitleGeneratorTool() {
 
       {error && <p style={{ color: '#f87171', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{error}</p>}
 
-      <p style={{ color: '#6b5fa0', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
+      <p style={{ color: 'var(--text-dim)', fontSize: '0.78rem', lineHeight: 1.6, textAlign: 'center', margin: 0 }}>
         La primera vez se descarga el modelo de IA (~80 MB). Todo ocurre en tu navegador; tu video nunca se sube a internet.
       </p>
     </div>

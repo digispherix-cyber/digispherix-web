@@ -38,22 +38,22 @@ export default function CaseConverterTool() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>Tu texto</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>Tu texto</label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={7}
           placeholder="Escribe o pega tu texto aquí…"
-          style={{ width: '100%', boxSizing: 'border-box', background: '#0c0923', border: '1px solid rgba(124,58,237,0.3)', borderRadius: '10px', padding: '14px', color: 'white', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical' }}
+          style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px', color: 'var(--text-strong)', fontSize: '0.95rem', lineHeight: 1.6, outline: 'none', resize: 'vertical' }}
         />
-        <div style={{ display: 'flex', gap: '14px', marginTop: '8px', color: '#6b5fa0', fontSize: '0.78rem' }}>
+        <div style={{ display: 'flex', gap: '14px', marginTop: '8px', color: 'var(--text-dim)', fontSize: '0.78rem' }}>
           <span>{words} palabras</span>
           <span>{chars} caracteres</span>
         </div>
       </div>
 
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Convertir a</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '10px' }}>Convertir a</label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px' }}>
           {FORMATS.map((f) => (
             <button
@@ -62,8 +62,8 @@ export default function CaseConverterTool() {
               disabled={!input}
               style={{
                 padding: '12px', borderRadius: '10px', cursor: input ? 'pointer' : 'not-allowed', fontWeight: 700, fontSize: '0.85rem',
-                background: 'rgba(12,9,35,0.6)', color: input ? 'white' : '#6b5fa0',
-                border: '1px solid rgba(124,58,237,0.25)', opacity: input ? 1 : 0.6,
+                background: 'var(--bg-card-alt)', color: input ? 'var(--text-strong)' : 'var(--text-dim)',
+                border: '1px solid var(--border)', opacity: input ? 1 : 0.6,
               }}
             >
               {f.label}

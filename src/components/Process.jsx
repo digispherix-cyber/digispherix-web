@@ -68,7 +68,7 @@ function CardContent({ step, large = false }) {
     <div style={{
       borderRadius: '20px',
       padding: large ? '48px 52px' : '26px',
-      background: 'linear-gradient(135deg, rgba(17,13,48,0.95), rgba(12,9,35,0.9))',
+      background: 'var(--bg-card)',
       border: `1px solid ${step.color}44`,
       boxShadow: `0 0 60px ${step.color}18`,
     }}>
@@ -85,17 +85,17 @@ function CardContent({ step, large = false }) {
           <div style={{ fontSize: '0.75rem', color: step.color, fontWeight: 700, letterSpacing: '0.12em', marginBottom: '4px' }}>
             PASO {step.num}
           </div>
-          <h3 style={{ fontSize: large ? '2rem' : '1.35rem', fontWeight: 900, color: 'white', lineHeight: 1.1 }}>{step.title}</h3>
+          <h3 style={{ fontSize: large ? '2rem' : '1.35rem', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.1 }}>{step.title}</h3>
           <p style={{ fontSize: large ? '1rem' : '0.85rem', color: step.color, marginTop: '4px' }}>{step.subtitle}</p>
         </div>
       </div>
-      <p style={{ fontSize: large ? '1.12rem' : '0.92rem', color: '#c4b5fd', lineHeight: 1.75, marginBottom: large ? '26px' : '18px' }}>
+      <p style={{ fontSize: large ? '1.12rem' : '0.92rem', color: 'var(--text-muted)', lineHeight: 1.75, marginBottom: large ? '26px' : '18px' }}>
         {step.desc}
       </p>
       {step.details && (
         <ul style={{ listStyle: 'none', margin: large ? '0 0 30px' : '0 0 18px', padding: 0, display: 'flex', flexDirection: 'column', gap: large ? '13px' : '10px' }}>
           {step.details.map((d) => (
-            <li key={d} style={{ display: 'flex', alignItems: 'flex-start', gap: '11px', color: '#e9e2ff', fontSize: large ? '1.02rem' : '0.85rem', lineHeight: 1.5 }}>
+            <li key={d} style={{ display: 'flex', alignItems: 'flex-start', gap: '11px', color: 'var(--text)', fontSize: large ? '1.02rem' : '0.85rem', lineHeight: 1.5 }}>
               <span style={{
                 width: large ? '22px' : '19px', height: large ? '22px' : '19px', borderRadius: '50%', flexShrink: 0, marginTop: '1px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -127,19 +127,19 @@ function CardContent({ step, large = false }) {
 /* Mobile: tarjetas apiladas, sin sticky */
 function ProcessMobile() {
   return (
-    <div style={{ padding: '80px 0 60px', position: 'relative' }}>
+    <div style={{ padding: '80px 0 60px', position: 'relative', color: 'var(--text)' }}>
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
         background: 'linear-gradient(90deg, transparent, #7c3aed, #d946ef, transparent)',
       }} />
       <div className="ds-container">
-        <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: '#d946ef', textTransform: 'uppercase', marginBottom: '12px' }}>
+        <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: 'var(--accent-2)', textTransform: 'uppercase', marginBottom: '12px' }}>
           Cómo trabajamos
         </p>
-        <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'white', lineHeight: 1.05, marginBottom: '14px' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.05, marginBottom: '14px' }}>
           Nuestro<br /><span className="gradient-text">Proceso</span>
         </h2>
-        <p style={{ fontSize: '0.85rem', color: '#9d8fc2', lineHeight: 1.7, marginBottom: '32px' }}>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '32px' }}>
           De la idea al lanzamiento en 4 pasos claros. Contigo en cada etapa para que el resultado supere tus expectativas.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -184,7 +184,7 @@ function StepLabel({ step, index, total, progress }) {
       <div style={{ fontSize: '0.65rem', color: step.color, fontWeight: 700, letterSpacing: '0.1em' }}>
         {step.num}
       </div>
-      <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'white' }}>{step.title}</div>
+      <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-strong)' }}>{step.title}</div>
     </motion.div>
   )
 }
@@ -199,7 +199,7 @@ function ProcessDesktop() {
       <div style={{
         position: 'sticky', top: 0, height: '100vh',
         overflow: 'hidden', display: 'flex', alignItems: 'center',
-        background: 'transparent',
+        color: 'var(--text)',
       }}>
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
@@ -212,13 +212,13 @@ function ProcessDesktop() {
         <div className="ds-container" style={{ width: '100%' }}>
           <div className="process-grid">
             <div>
-              <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: '#d946ef', textTransform: 'uppercase', marginBottom: '14px' }}>
+              <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.16em', color: 'var(--accent-2)', textTransform: 'uppercase', marginBottom: '14px' }}>
                 Cómo trabajamos
               </p>
-              <h2 className="process-title" style={{ fontWeight: 900, color: 'white', lineHeight: 1.05, marginBottom: '18px' }}>
+              <h2 className="process-title" style={{ fontWeight: 900, color: 'var(--text-strong)', lineHeight: 1.05, marginBottom: '18px' }}>
                 Nuestro<br /><span className="gradient-text">Proceso</span>
               </h2>
-              <p className="process-desc" style={{ color: '#9d8fc2', lineHeight: 1.75, marginBottom: '32px' }}>
+              <p className="process-desc" style={{ color: 'var(--text-muted)', lineHeight: 1.75, marginBottom: '32px' }}>
                 De la idea al lanzamiento en 4 pasos claros. Contigo en cada etapa para que el resultado supere tus expectativas.
               </p>
               <div style={{ display: 'flex', gap: '20px' }}>

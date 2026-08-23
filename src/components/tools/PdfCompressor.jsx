@@ -107,15 +107,15 @@ export default function PdfCompressor() {
         style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '14px',
           padding: '48px 20px', border: '2px dashed rgba(225,29,72,0.4)', borderRadius: '16px', cursor: 'pointer',
-          background: 'rgba(12,9,35,0.4)', textAlign: 'center',
+          background: 'var(--bg-card-alt)', textAlign: 'center',
         }}
       >
         <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(225,29,72,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Upload size={26} style={{ color: '#f43f5e' }} />
         </div>
         <div>
-          <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir un PDF</p>
-          <p style={{ color: '#9d8fc2', fontSize: '0.85rem' }}>o arrástralo aquí</p>
+          <p style={{ color: 'var(--text-strong)', fontWeight: 700, fontSize: '1rem', marginBottom: '4px' }}>Toca para elegir un PDF</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>o arrástralo aquí</p>
         </div>
         <input ref={inputRef} type="file" accept="application/pdf" onChange={(e) => onFile(e.target.files[0])} style={{ display: 'none' }} />
       </label>
@@ -125,20 +125,20 @@ export default function PdfCompressor() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
       {/* Archivo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(12,9,35,0.6)', border: '1px solid rgba(124,58,237,0.2)', borderRadius: '12px', padding: '14px 16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'var(--bg-card-alt)', border: '1px solid var(--border)', borderRadius: '12px', padding: '14px 16px' }}>
         <FileText size={22} style={{ color: '#f43f5e', flexShrink: 0 }} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ color: 'white', fontSize: '0.9rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', margin: 0 }}>{file.name}</p>
-          <p style={{ color: '#9d8fc2', fontSize: '0.78rem', margin: 0 }}>{fmtSize(file.size)}</p>
+          <p style={{ color: 'var(--text-strong)', fontSize: '0.9rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', margin: 0 }}>{file.name}</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', margin: 0 }}>{fmtSize(file.size)}</p>
         </div>
-        <button onClick={reset} aria-label="Quitar" style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: '#c4b5fd', display: 'flex' }}>
+        <button onClick={reset} aria-label="Quitar" style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid var(--border)', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: 'var(--text)', display: 'flex' }}>
           <X size={16} />
         </button>
       </div>
 
       {/* Nivel */}
       <div>
-        <label style={{ display: 'block', color: '#c4b5fd', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Nivel de compresión</label>
+        <label style={{ display: 'block', color: 'var(--text)', fontSize: '0.88rem', fontWeight: 600, marginBottom: '10px' }}>Nivel de compresión</label>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           {LEVELS.map((l) => (
             <button
@@ -147,9 +147,9 @@ export default function PdfCompressor() {
               disabled={busy}
               style={{
                 flex: '1 1 90px', padding: '12px', borderRadius: '10px', cursor: busy ? 'default' : 'pointer', fontWeight: 700, fontSize: '0.88rem',
-                background: level === l.key ? 'linear-gradient(135deg, #e11d48, #7c3aed)' : 'rgba(12,9,35,0.6)',
-                color: level === l.key ? 'white' : '#9d8fc2',
-                border: `1px solid ${level === l.key ? 'transparent' : 'rgba(124,58,237,0.25)'}`,
+                background: level === l.key ? 'linear-gradient(135deg, #e11d48, #7c3aed)' : 'var(--bg-card-alt)',
+                color: level === l.key ? 'var(--text-strong)' : 'var(--text-muted)',
+                border: `1px solid ${level === l.key ? 'transparent' : 'var(--border)'}`,
               }}
             >
               {l.label}
@@ -162,7 +162,7 @@ export default function PdfCompressor() {
       {/* Resultado */}
       {result && (
         <div style={{ background: 'rgba(5,150,105,0.1)', border: '1px solid rgba(5,150,105,0.3)', borderRadius: '12px', padding: '16px', textAlign: 'center' }}>
-          <p style={{ color: '#9d8fc2', fontSize: '0.85rem', margin: '0 0 6px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '0 0 6px' }}>
             {fmtSize(result.originalSize)} → <strong style={{ color: '#34d399' }}>{fmtSize(result.size)}</strong>
           </p>
           <p style={{ color: '#34d399', fontSize: '0.95rem', fontWeight: 700, margin: 0 }}>
