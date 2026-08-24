@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView, animate } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useInView, animate } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
 function CountUp({ to, suffix = '' }) {
@@ -35,34 +35,35 @@ const floatingBadges = [
   { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '7%',  top: '80%', depth: 0.05, color: '#f43f5e' },
 ]
 
-function MouseBadge({ b, index, mouseX, mouseY }) {
-  const x = useTransform(mouseX, (v) => v * b.depth * (b.left ? -1 : 1))
-  const y = useTransform(mouseY, (v) => v * b.depth)
-  const springX = useSpring(x, { stiffness: 60, damping: 20 })
-  const springY = useSpring(y, { stiffness: 60, damping: 20 })
-
+function MouseBadge({ b, index }) {
   return (
+    // Nivel A: posición + animación de entrada.
     <motion.div
       initial={{ opacity: 0, scale: 0.4 }}
-      animate={{
-        opacity: 1, scale: 1,
-        y: [0, -(6 + index * 1.5), 0],
-      }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{
         opacity: { duration: 0.5, delay: 0.8 + index * 0.15 },
         scale:   { duration: 0.5, delay: 0.8 + index * 0.15, type: 'spring' },
-        y: { duration: 3.5 + index * 0.4, repeat: Infinity, ease: 'easeInOut', delay: 1.2 + index * 0.2 },
       }}
-      className="absolute hidden lg:block cursor-default select-none"
-      style={{
-        x: springX,
-        y: springY,
-        right: b.right,
-        left: b.left,
-        top: b.top,
-      }}
-      whileHover={{ scale: 1.12, transition: { duration: 0.15 } }}
+      className="absolute hidden lg:block select-none"
+      style={{ right: b.right, left: b.left, top: b.top }}
     >
+      {/* Nivel B: flotación suave en loop. */}
+      <motion.div
+        animate={{ y: [0, -(6 + index * 1.5), 0] }}
+        transition={{ duration: 3.5 + index * 0.4, repeat: Infinity, ease: 'easeInOut', delay: 1.2 + index * 0.2 }}
+      >
+        {/* Nivel C: arrastrable — la agarras, la avientas y regresa con rebote. */}
+        <motion.div
+          drag
+          dragSnapToOrigin
+          dragElastic={0.6}
+          dragMomentum={false}
+          whileHover={{ scale: 1.12 }}
+          whileDrag={{ scale: 1.15, zIndex: 50 }}
+          style={{ cursor: 'grab' }}
+          whileTap={{ cursor: 'grabbing' }}
+        >
       {/* inner styled wrapper to avoid style conflict */}
       <div
         className="hero-badge"
@@ -109,6 +110,8 @@ function MouseBadge({ b, index, mouseX, mouseY }) {
         </span>
         {b.label}
       </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   )
 }
@@ -122,21 +125,6 @@ export default function Hero() {
   const yBlob3    = useTransform(scrollYProgress, [0, 1], ['0%', '85%'])
   const yContent  = useTransform(scrollYProgress, [0, 1], ['0px', '60px'])
   const scaleBg   = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-
-  // Mouse tracking for badge parallax
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const cx = window.innerWidth / 2
-      const cy = window.innerHeight / 2
-      mouseX.set(e.clientX - cx)
-      mouseY.set(e.clientY - cy)
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouseX, mouseY])
 
   return (
     <section
@@ -263,9 +251,9 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Mouse-reactive floating badges */}
+      {/* Badges flotantes arrastrables */}
       {floatingBadges.map((b, i) => (
-        <MouseBadge key={b.label} b={b} index={i} mouseX={mouseX} mouseY={mouseY} />
+        <MouseBadge key={b.label} b={b} index={i} />
       ))}
     </section>
   )
