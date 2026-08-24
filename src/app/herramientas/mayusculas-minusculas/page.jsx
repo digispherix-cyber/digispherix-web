@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Convertir a Mayúsculas y Minúsculas Online Gratis – DigiSpherix',
   description:
     'Convierte texto a MAYÚSCULAS, minúsculas, Tipo Título o tipo oración con un clic. Respeta acentos y ñ. Gratis y en tu navegador, sin subir nada.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/mayusculas-minusculas' },
   openGraph: {
     title: 'Convertir Mayúsculas y Minúsculas – DigiSpherix',
     description: 'Cambia el formato de tu texto al instante, de forma privada en tu navegador.',

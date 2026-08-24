@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Herramientas Web Gratis – DigiSpherix | Imágenes, QR, PDF y más',
   description:
     'Herramientas web gratuitas y seguras: redimensionar imágenes, convertir formatos, generar códigos QR, contraseñas y PDF. Todo funciona en tu navegador, sin subir archivos.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas' },
   openGraph: {
     title: 'Herramientas Web Gratis – DigiSpherix',
     description: 'Utilidades gratis que funcionan en tu navegador, sin subir tus archivos a ningún servidor.',

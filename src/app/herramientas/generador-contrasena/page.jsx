@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Generador de Contraseñas Seguras Gratis – DigiSpherix',
   description:
     'Crea contraseñas fuertes y aleatorias gratis. Elige longitud, mayúsculas, números y símbolos. Se generan en tu navegador y nunca se guardan.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/generador-contrasena' },
   openGraph: {
     title: 'Generador de Contraseñas Seguras – DigiSpherix',
     description: 'Contraseñas fuertes generadas de forma privada en tu navegador.',

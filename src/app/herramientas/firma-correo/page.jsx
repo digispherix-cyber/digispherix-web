@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Generador de Firma de Correo Gratis – DigiSpherix',
   description:
     'Crea una firma de correo profesional con tus datos, logo y colores. Cópiala y pégala en Gmail u Outlook. Gratis y en tu navegador, sin registro.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/firma-correo' },
   openGraph: {
     title: 'Generador de Firma de Correo Gratis – DigiSpherix',
     description: 'Firma de correo profesional lista para Gmail y Outlook, en segundos.',

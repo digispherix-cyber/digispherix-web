@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Recortar Video Online Gratis – DigiSpherix',
   description:
     'Recorta un tramo de tu video o extrae su audio directo en el navegador, sin instalar nada y sin subir el archivo a internet. Gratis, rápido y privado.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/recortar-video' },
   openGraph: {
     title: 'Recortar Video Online Gratis – DigiSpherix',
     description: 'Corta tu video o extrae su audio en el navegador, sin subir nada.',

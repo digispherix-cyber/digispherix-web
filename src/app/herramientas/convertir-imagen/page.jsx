@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Convertir Imagen JPG, PNG y WebP Gratis – DigiSpherix',
   description:
     'Convierte tus imágenes entre JPG, PNG y WebP gratis. Ajusta la calidad y optimiza el peso de tus fotos. Todo en tu navegador, sin subir archivos.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/convertir-imagen' },
   openGraph: {
     title: 'Convertir Imagen JPG, PNG y WebP – DigiSpherix',
     description: 'Convierte y optimiza imágenes de forma privada en tu navegador.',

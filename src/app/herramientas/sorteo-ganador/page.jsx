@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Sorteo y Ganador al Azar Gratis – DigiSpherix',
   description:
     'Elige un ganador al azar de forma justa a partir de tu lista de participantes. Ideal para rifas y concursos de Instagram y Facebook. Gratis y en tu navegador.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/sorteo-ganador' },
   openGraph: {
     title: 'Sorteo y Ganador al Azar Gratis – DigiSpherix',
     description: 'Elige ganadores al azar para tus dinámicas y concursos en redes.',

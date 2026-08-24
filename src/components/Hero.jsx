@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useMotionValue, useInView, animate } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 function CountUp({ to, suffix = '' }) {
   const ref = useRef(null)
@@ -165,7 +166,8 @@ export default function Hero() {
           transition={{ duration: 0.7, type: 'spring' }}
           style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}
         >
-          <img src="/logo-square.png" alt="DigiSpherix" className="object-contain drop-shadow-2xl"
+          <Image src="/logo-square.png" alt="DigiSpherix" width={164} height={164} priority
+            className="object-contain drop-shadow-2xl"
             style={{ width: '164px', height: '164px' }} />
         </motion.div>
 

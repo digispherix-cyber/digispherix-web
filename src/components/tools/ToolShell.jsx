@@ -7,14 +7,25 @@ import ToolContent from './ToolContent'
 // Renderiza el encabezado, la nota de privacidad, el contenido interactivo
 // (children), el CTA hacia WhatsApp y la sección de contenido (cómo funciona + FAQ).
 export default function ToolShell({ tool, children }) {
-  const { name, description: tagline, accent = '#7c3aed', howItWorks, faqs } = tool
+  const { name, description: tagline, accent = '#7c3aed', howItWorks, faqs, slug } = tool
   const privacyNote = tool.privacyNote || 'tus archivos no salen de tu dispositivo'
   const waMsg = encodeURIComponent(
     `Hola DigiSpherix! Estuve usando sus herramientas gratis y me gustaría cotizar un proyecto.`,
   )
 
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://digispherix.com.mx' },
+      { '@type': 'ListItem', position: 2, name: 'Herramientas', item: 'https://digispherix.com.mx/herramientas' },
+      { '@type': 'ListItem', position: 3, name, item: `https://digispherix.com.mx/herramientas/${slug}` },
+    ],
+  }
+
   return (
     <main style={{ minHeight: '100vh', color: 'var(--text)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <Particles />
 
       <section style={{ paddingTop: '120px', paddingBottom: '40px', position: 'relative', overflow: 'hidden' }}>

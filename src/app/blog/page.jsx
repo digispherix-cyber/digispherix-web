@@ -7,6 +7,7 @@ import NewsletterForm from '../../components/NewsletterForm'
 export const metadata = {
   title: 'Blog – DigiSpherix | Diseño Web, Apps Android y Marketing Digital en México',
   description: 'Guías y artículos sobre diseño web, apps Android y marketing digital para hacer crecer tu negocio en México.',
+  alternates: { canonical: 'https://digispherix.com.mx/blog' },
   openGraph: {
     title: 'Blog – DigiSpherix',
     description: 'Guías y artículos sobre diseño web y marketing digital en México.',

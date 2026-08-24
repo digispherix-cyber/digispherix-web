@@ -38,6 +38,7 @@ export async function generateMetadata({ params }) {
   return {
     title: `${post.title} – Blog DigiSpherix`,
     description: post.excerpt,
+    alternates: { canonical: `https://digispherix.com.mx/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -78,9 +79,20 @@ export default async function ArticlePage({ params }) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://digispherix.com.mx/blog/${slug}` },
   }
 
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://digispherix.com.mx' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://digispherix.com.mx/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://digispherix.com.mx/blog/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <ReadingProgress />
 
       <Particles />

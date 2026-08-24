@@ -2,6 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 
 const projects = [
@@ -131,26 +132,19 @@ function ProjectCard({ p, index }) {
 
         {/* Screenshot */}
         <div style={{ height: '180px', overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
-          <motion.picture
+          <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
-            style={{ display: 'block', width: '100%', height: '100%' }}
+            style={{ position: 'absolute', inset: 0 }}
           >
-            <source srcSet={p.image} type="image/webp" />
-            <img
-              src={p.imageFallback}
+            <Image
+              src={p.image}
               alt={`Screenshot del sitio web de ${p.name}`}
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="720"
-              style={{
-                width: '100%', height: '100%',
-                objectFit: 'cover', objectPosition: 'top',
-                display: 'block',
-              }}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
             />
-          </motion.picture>
+          </motion.div>
 
           {/* Hover overlay */}
           <motion.div

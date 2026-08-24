@@ -43,6 +43,21 @@ export const metadata = {
   },
 }
 
+// Schema WebSite: refuerza la identidad del sitio para Google (marca, idioma).
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DigiSpherix',
+  url: 'https://digispherix.com.mx',
+  inLanguage: 'es-MX',
+  publisher: {
+    '@type': 'Organization',
+    name: 'DigiSpherix',
+    url: 'https://digispherix.com.mx',
+    logo: 'https://digispherix.com.mx/logo-square.png',
+  },
+}
+
 const schemaData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -104,6 +119,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script
           dangerouslySetInnerHTML={{ __html: `

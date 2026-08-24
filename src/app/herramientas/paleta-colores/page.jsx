@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Selector y Paleta de Colores Gratis (HEX, RGB, HSL) – DigiSpherix',
   description:
     'Elige un color y obtén sus códigos HEX, RGB y HSL, más una paleta de tonos y colores armónicos lista para copiar. Gratis y directo en tu navegador.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/paleta-colores' },
   openGraph: {
     title: 'Selector y Paleta de Colores Gratis – DigiSpherix',
     description: 'Genera paletas y copia códigos de color HEX, RGB y HSL en tu navegador.',

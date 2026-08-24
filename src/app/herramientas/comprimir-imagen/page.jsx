@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Comprimir Imagen Online Gratis – DigiSpherix',
   description:
     'Reduce el peso de tus imágenes JPG, PNG y WebP gratis, sin perder calidad. Ideal para que tu web cargue más rápido. Todo en tu navegador, sin subir archivos.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/comprimir-imagen' },
   openGraph: {
     title: 'Comprimir Imagen Online Gratis – DigiSpherix',
     description: 'Baja el peso de tus fotos de forma privada, directo en tu navegador.',

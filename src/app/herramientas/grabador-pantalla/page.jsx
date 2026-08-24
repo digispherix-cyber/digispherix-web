@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Grabador de Pantalla Online Gratis – DigiSpherix',
   description:
     'Graba tu pantalla y micrófono directo en el navegador, sin instalar nada, y descarga el video. Ideal para tutoriales, demos y presentaciones. Gratis y privado.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/grabador-pantalla' },
   openGraph: {
     title: 'Grabador de Pantalla Online Gratis – DigiSpherix',
     description: 'Graba tu pantalla con audio y descarga el video, sin instalar nada.',

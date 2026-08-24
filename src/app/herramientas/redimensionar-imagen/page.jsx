@@ -8,6 +8,7 @@ export const metadata = {
   title: 'Redimensionar Imagen Online Gratis – DigiSpherix',
   description:
     'Cambia el tamaño de tus imágenes gratis y sin marcas de agua. Ajusta ancho y alto manteniendo la proporción. Funciona en tu navegador, sin subir archivos.',
+  alternates: { canonical: 'https://digispherix.com.mx/herramientas/redimensionar-imagen' },
   openGraph: {
     title: 'Redimensionar Imagen Online Gratis – DigiSpherix',
     description: 'Cambia el tamaño de tus fotos de forma privada, directo en tu navegador.',
