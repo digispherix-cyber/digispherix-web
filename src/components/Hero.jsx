@@ -36,9 +36,15 @@ const floatingBadges = [
   { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '7%',  top: '80%', depth: 0.05, color: '#f43f5e' },
 ]
 
-function MouseBadge({ b, index }) {
+function MouseBadge({ b, index, scrollOpacity }) {
   return (
-    // Nivel A: posición + animación de entrada.
+    // Nivel 0: posición + desvanecido con el scroll (en sincronía con el
+    // contenido del Hero, para que todo salga junto y nada quede "flotando").
+    <motion.div
+      className="absolute hidden lg:block select-none"
+      style={{ right: b.right, left: b.left, top: b.top, opacity: scrollOpacity }}
+    >
+    {/* Nivel A: animación de entrada. */}
     <motion.div
       initial={{ opacity: 0, scale: 0.4 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -46,8 +52,6 @@ function MouseBadge({ b, index }) {
         opacity: { duration: 0.5, delay: 0.8 + index * 0.15 },
         scale:   { duration: 0.5, delay: 0.8 + index * 0.15, type: 'spring' },
       }}
-      className="absolute hidden lg:block select-none"
-      style={{ right: b.right, left: b.left, top: b.top }}
     >
       {/* Nivel B: flotación suave en loop. */}
       <motion.div
@@ -113,6 +117,7 @@ function MouseBadge({ b, index }) {
       </div>
         </motion.div>
       </motion.div>
+    </motion.div>
     </motion.div>
   )
 }
@@ -255,7 +260,7 @@ export default function Hero() {
 
       {/* Badges flotantes arrastrables */}
       {floatingBadges.map((b, i) => (
-        <MouseBadge key={b.label} b={b} index={i} />
+        <MouseBadge key={b.label} b={b} index={i} scrollOpacity={opacity} />
       ))}
     </section>
   )
