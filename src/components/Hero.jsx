@@ -36,13 +36,12 @@ const floatingBadges = [
   { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '7%',  top: '80%', depth: 0.05, color: '#f43f5e' },
 ]
 
-function MouseBadge({ b, index, scrollOpacity }) {
+function MouseBadge({ b, index }) {
   return (
-    // Nivel 0: posición + desvanecido con el scroll (en sincronía con el
-    // contenido del Hero, para que todo salga junto y nada quede "flotando").
+    // Nivel 0: posición (sale con el scroll junto al Hero, como el resto).
     <motion.div
       className="absolute hidden lg:block select-none"
-      style={{ right: b.right, left: b.left, top: b.top, opacity: scrollOpacity }}
+      style={{ right: b.right, left: b.left, top: b.top }}
     >
     {/* Nivel A: animación de entrada. */}
     <motion.div
@@ -125,11 +124,9 @@ function MouseBadge({ b, index, scrollOpacity }) {
 export default function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const opacity   = useTransform(scrollYProgress, [0, 0.7], [1, 0])
   const yBlob1    = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
   const yBlob2    = useTransform(scrollYProgress, [0, 1], ['0%', '55%'])
   const yBlob3    = useTransform(scrollYProgress, [0, 1], ['0%', '85%'])
-  const yContent  = useTransform(scrollYProgress, [0, 1], ['0px', '60px'])
   const scaleBg   = useTransform(scrollYProgress, [0, 1], [1, 1.15])
 
   return (
@@ -159,9 +156,10 @@ export default function Hero() {
           style={{ background: 'radial-gradient(circle, #a855f7, transparent)' }} />
       </motion.div>
 
-      {/* Main content */}
-      <motion.div
-        style={{ opacity, y: yContent, maxWidth: '860px', margin: '0 auto', padding: '0 40px' }}
+      {/* Main content (sale con el scroll de forma normal, como las demás
+          secciones — sin desvanecido ni parallax que dejen "fantasmas"). */}
+      <div
+        style={{ maxWidth: '860px', margin: '0 auto', padding: '0 40px' }}
         className="relative z-10 text-center"
       >
         {/* Logo */}
@@ -256,11 +254,11 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Badges flotantes arrastrables */}
       {floatingBadges.map((b, i) => (
-        <MouseBadge key={b.label} b={b} index={i} scrollOpacity={opacity} />
+        <MouseBadge key={b.label} b={b} index={i} />
       ))}
     </section>
   )
