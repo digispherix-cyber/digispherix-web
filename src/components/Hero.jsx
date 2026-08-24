@@ -127,15 +127,10 @@ export default function Hero() {
           style={{ background: 'radial-gradient(circle, #4f46e5, transparent)' }} />
       </motion.div>
 
-      {/* Layer 3 — fastest + grid */}
+      {/* Layer 3 — fastest (sin cuadrícula, para empatar con las demás secciones) */}
       <motion.div style={{ y: yBlob3 }} className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-1/3 left-1/2 w-80 h-80 rounded-full opacity-15 blur-3xl"
           style={{ background: 'radial-gradient(circle, #a855f7, transparent)' }} />
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(124,58,237,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }} />
       </motion.div>
 
       {/* Main content */}
