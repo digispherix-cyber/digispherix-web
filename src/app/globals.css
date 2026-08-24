@@ -108,6 +108,15 @@ body {
   100% { transform: translateY(-100vh) scale(0.6); opacity: 0; }
 }
 
+/* ── Badges flotantes del Hero (brillo por color al hover) ── */
+.hero-badge {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.hero-badge:hover {
+  border-color: var(--bc);
+  box-shadow: 0 12px 36px -4px var(--bc);
+}
+
 /* ── Marquee de stack tecnológico ── */
 .tech-marquee {
   overflow: hidden;

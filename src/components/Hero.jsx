@@ -23,15 +23,16 @@ import { ArrowRight, Code2, Smartphone, TrendingUp, Globe, Server, Award, Shield
 
 // Acomodo simétrico: 4 pares parejos (misma altura izquierda-derecha,
 // mismo margen de orilla y misma profundidad de parallax por par).
+// Cada badge tiene su color de categoría (para el ícono, el borde y el glow).
 const floatingBadges = [
-  { icon: <Code2 size={15} />,      label: 'Sitios Web',           right: '7%', top: '26%', depth: 0.05 },
-  { icon: <TrendingUp size={15} />, label: 'Marketing Digital',    left: '7%',  top: '26%', depth: 0.05 },
-  { icon: <Smartphone size={15} />, label: 'Apps Android',         right: '7%', top: '44%', depth: 0.06 },
-  { icon: <Server size={15} />,     label: 'Soluciones TI',        left: '7%',  top: '44%', depth: 0.06 },
-  { icon: <Globe size={15} />,      label: 'Google Workspace',     right: '7%', top: '62%', depth: 0.04 },
-  { icon: <Layers size={15} />,     label: 'Soluciones Digitales', left: '7%',  top: '62%', depth: 0.04 },
-  { icon: <Shield size={15} />,     label: 'Soporte 24/7',         right: '7%', top: '80%', depth: 0.05 },
-  { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '7%',  top: '80%', depth: 0.05 },
+  { icon: <Code2 size={15} />,      label: 'Sitios Web',           right: '7%', top: '26%', depth: 0.05, color: '#7c3aed' },
+  { icon: <TrendingUp size={15} />, label: 'Marketing Digital',    left: '7%',  top: '26%', depth: 0.05, color: '#ec4899' },
+  { icon: <Smartphone size={15} />, label: 'Apps Android',         right: '7%', top: '44%', depth: 0.06, color: '#22c55e' },
+  { icon: <Server size={15} />,     label: 'Soluciones TI',        left: '7%',  top: '44%', depth: 0.06, color: '#0ea5e9' },
+  { icon: <Globe size={15} />,      label: 'Google Workspace',     right: '7%', top: '62%', depth: 0.04, color: '#f59e0b' },
+  { icon: <Layers size={15} />,     label: 'Soluciones Digitales', left: '7%',  top: '62%', depth: 0.04, color: '#a855f7' },
+  { icon: <Shield size={15} />,     label: 'Soporte 24/7',         right: '7%', top: '80%', depth: 0.05, color: '#06b6d4' },
+  { icon: <Award size={15} />,      label: '100% Satisfechos',     left: '7%',  top: '80%', depth: 0.05, color: '#f43f5e' },
 ]
 
 function MouseBadge({ b, index, mouseX, mouseY }) {
@@ -64,19 +65,48 @@ function MouseBadge({ b, index, mouseX, mouseY }) {
     >
       {/* inner styled wrapper to avoid style conflict */}
       <div
+        className="hero-badge"
         style={{
-          display: 'flex', alignItems: 'center', gap: '8px',
-          padding: '8px 16px', borderRadius: '999px',
+          position: 'relative',
+          display: 'flex', alignItems: 'center', gap: '9px',
+          padding: '7px 16px 7px 8px', borderRadius: '999px',
           background: 'var(--dropdown-bg)',
-          border: '1px solid var(--border)',
-          color: 'var(--accent-2)',
-          backdropFilter: 'blur(12px)',
-          boxShadow: '0 4px 24px rgba(124,58,237,0.2)',
-          fontSize: '0.85rem', fontWeight: 500,
+          border: `1px solid ${b.color}55`,
+          color: 'var(--text-strong)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
+          boxShadow: `0 6px 22px -6px ${b.color}66`,
+          fontSize: '0.85rem', fontWeight: 600,
           whiteSpace: 'nowrap',
+          ['--bc']: b.color,
         }}
       >
-        {b.icon}
+        {/* Conector tipo constelación hacia el centro */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: '50%', transform: 'translateY(-50%)',
+            [b.right ? 'right' : 'left']: '100%',
+            width: '30px', height: '1px',
+            background: `linear-gradient(${b.right ? 'to left' : 'to right'}, ${b.color}, transparent)`,
+          }}
+        >
+          <span style={{
+            position: 'absolute', top: '50%', transform: 'translateY(-50%)',
+            [b.right ? 'left' : 'right']: 0,
+            width: '5px', height: '5px', borderRadius: '50%',
+            background: b.color, boxShadow: `0 0 6px ${b.color}`,
+          }} />
+        </span>
+
+        {/* Ícono en círculo de color */}
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: '26px', height: '26px', borderRadius: '50%', flexShrink: 0,
+          background: `${b.color}22`, border: `1px solid ${b.color}55`, color: b.color,
+        }}>
+          {b.icon}
+        </span>
         {b.label}
       </div>
     </motion.div>
