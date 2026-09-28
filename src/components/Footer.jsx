@@ -229,6 +229,17 @@ export default function Footer() {
             >
               Términos y Condiciones
             </a>
+            <a
+              href="https://www.siteground.com/?referrer_id=9114354"
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              title="Enlace de referido: si te registras con SiteGround usando este enlace, DigiSpherix puede recibir una recompensa"
+              style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = '#e879f9'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-muted)'}
+            >
+              Hosting recomendado: SiteGround
+            </a>
           </div>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
             © {new Date().getFullYear()} DigiSpherix. Todos los derechos reservados.
